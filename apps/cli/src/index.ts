@@ -27,7 +27,11 @@ program
   .argument("<task>", "browser task to run")
   .option("--headless", "run Chrome headless")
   .option("--max-steps <number>", "maximum agent steps", "20")
-  .option("--provider <provider>", "mock, openai, openai-compatible, local, anthropic", process.env.CHROMECLAW_PROVIDER ?? "mock")
+  .option(
+    "--provider <provider>",
+    "mock, openai, openai-compatible, local, huggingface, hf, anthropic",
+    process.env.CHROMECLAW_PROVIDER ?? "mock"
+  )
   .option("--model <model>", "model name", process.env.CHROMECLAW_MODEL ?? "mock-browser-operator")
   .option("--log-dir <path>", "directory for JSONL run logs", ".chromeclaw/runs")
   .action(async (task, options) => {

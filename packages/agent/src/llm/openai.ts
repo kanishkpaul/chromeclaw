@@ -6,10 +6,11 @@ interface OpenAIConfig {
   model: string;
   apiKey?: string | undefined;
   baseUrl?: string | undefined;
+  providerName?: string | undefined;
 }
 
 export class OpenAICompatiblePlanner implements Planner {
-  name = "openai-compatible";
+  name: string;
   model: string;
   private apiKey?: string | undefined;
   private baseUrl: string;
@@ -18,11 +19,13 @@ export class OpenAICompatiblePlanner implements Planner {
     this.model = config.model;
     this.apiKey = config.apiKey;
     this.baseUrl = (config.baseUrl || "https://api.openai.com/v1").replace(/\/$/, "");
+    this.name = config.providerName ?? "openai-compatible";
   }
 
   async plan(input: PlannerInput): Promise<BrowserAction> {
     if (!this.apiKey && !this.baseUrl.includes("localhost") && !this.baseUrl.includes("127.0.0.1")) {
-      throw new Error("OPENAI_API_KEY is required for hosted OpenAI-compatible providers. Use CHROMECLAW_PROVIDER=mock for keyless mode.");
+      const credential = this.name === "huggingface" ? "HF_TOKEN or HUGGINGFACE_API_KEY" : "OPENAI_API_KEY";
+      throw new Error(`${credential} is required for hosted ${this.name} requests. Use CHROMECLAW_PROVIDER=mock for keyless mode.`);
     }
 
     const response = await fetch(`${this.baseUrl}/chat/completions`, {

@@ -80,6 +80,9 @@ Use `.env.example` for local setup:
 ```env
 OPENAI_API_KEY=
 OPENAI_BASE_URL=
+HF_TOKEN=
+HUGGINGFACE_API_KEY=
+HF_BASE_URL=https://router.huggingface.co/v1
 CHROMECLAW_PROVIDER=openai
 CHROMECLAW_MODEL=gpt-4.1-mini
 CHROMECLAW_HEADLESS=false
@@ -99,6 +102,17 @@ OPENAI_BASE_URL=http://localhost:11434/v1
 CHROMECLAW_PROVIDER=local
 CHROMECLAW_MODEL=qwen2.5-coder:7b
 ```
+
+Hugging Face Inference Providers:
+
+```env
+CHROMECLAW_PROVIDER=huggingface
+HF_TOKEN=hf_xxx
+CHROMECLAW_MODEL=Qwen/Qwen2.5-Coder-32B-Instruct
+```
+
+ChromeClaw uses Hugging Face's OpenAI-compatible chat completions API at `https://router.huggingface.co/v1` by default, following the official Hugging Face docs:
+[Chat Completion](https://huggingface.co/docs/inference-providers/tasks/chat-completion)
 
 ## Terminal UX
 
@@ -148,6 +162,7 @@ pnpm --filter @chromeclaw/evals eval -- --all
 - Structured Zod action schemas and strict JSON planning.
 - Mock planner for keyless testing.
 - OpenAI-compatible chat-completions planner.
+- Hugging Face Inference Providers support through the OpenAI-compatible router API.
 - Accessibility, visible-text, and ranked-target observations.
 - Safety-gated execution.
 - JSONL run logs under `.chromeclaw/runs`.
