@@ -1,14 +1,14 @@
 # ChromeClaw
 
-**A transparent browser-control agent for Chrome.**
+**A transparent terminal-first browser-control agent for Chrome.**
 
-ChromeClaw is an OpenClaw-inspired local browser operator: it can chat with a user, plan a browser task, control Chrome through Playwright, observe webpages through text, accessibility summaries, ranked interactive targets, and screenshots, then explain the action trace in a polished web UI or terminal.
+ChromeClaw is a local browser operator built for the command line. It plans browser tasks, controls Chrome through Playwright, observes pages through visible text and accessibility summaries, records every step to JSONL, and makes the full agent trace easy to inspect from the terminal.
 
-It is designed as a resume-grade frontier-lab artifact: real browser control, structured tool use, safety-gated autonomy, run logging, and reproducible browser-agent evals.
+This repo is intentionally focused on the terminal experience now. No web dashboard, no localhost control plane, no glossy wrapper around the interesting part.
 
 ## Pitch
 
-ChromeClaw = **an agentic browser operator that can see, plan, act, recover, and explain.**
+ChromeClaw = **an agentic browser operator that can see, plan, act, recover, and explain** from the terminal.
 
 The first working vertical slice:
 
@@ -31,29 +31,20 @@ flowchart LR
   G --> H["Observation Builder"]
   H --> I["Run Log"]
   H --> B
-  I --> J["Web UI Trace"]
-  I --> K["CLI / Eval Reports"]
+  I --> J["CLI Trace"]
+  I --> K["Eval Reports"]
 ```
 
 ## Repository
 
 ```text
-apps/web          Next.js lab console with task panel, browser state, metrics, trace, and run viewer
-apps/cli          Commander CLI: run, repl, eval
-packages/agent    Agent loop, prompts, model providers, safety policy, JSONL logging
+apps/cli          Commander-based terminal interface: run, repl, runs, show, eval
+packages/agent    Agent loop, prompts, providers, safety policy, JSONL logging
 packages/browser  Playwright browser controller, observations, target resolution
-packages/shared   Zod action schemas, shared types, truncation/ranking utilities
+packages/shared   Zod action schemas, shared types, truncation and ranking utilities
 packages/evals    Browser-task benchmark harness and scoring
 docs              Safety and eval notes
 ```
-
-## Screenshots
-
-Placeholders for project docs:
-
-- `docs/screenshots/web-console.png` - ChromeClaw lab console
-- `docs/screenshots/agent-trace.png` - flight-recorder action timeline
-- `docs/screenshots/cli-run.png` - terminal run output
 
 ## Quickstart
 
@@ -63,18 +54,20 @@ pnpm build
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+`pnpm dev` opens the interactive terminal REPL.
 
-CLI smoke test:
+Direct CLI examples:
 
 ```bash
-pnpm build
 node apps/cli/dist/index.js run "Go to example.com and tell me the page title." --headless --provider mock --max-steps 4
+node apps/cli/dist/index.js runs
+node apps/cli/dist/index.js show <run-id>
 ```
 
-Run tests and evals:
+Run checks:
 
 ```bash
+pnpm lint
 pnpm typecheck
 pnpm test
 pnpm eval
@@ -82,7 +75,7 @@ pnpm eval
 
 ## Configuration
 
-Copy `.env.example` to `.env` and choose a provider.
+Use `.env.example` for local setup:
 
 ```env
 OPENAI_API_KEY=
@@ -93,7 +86,7 @@ CHROMECLAW_HEADLESS=false
 CHROMECLAW_MAX_STEPS=20
 ```
 
-Keyless smoke tests use:
+Keyless smoke tests:
 
 ```env
 CHROMECLAW_PROVIDER=mock
@@ -107,14 +100,22 @@ CHROMECLAW_PROVIDER=local
 CHROMECLAW_MODEL=qwen2.5-coder:7b
 ```
 
+## Terminal UX
+
+- `chromeclaw run "<task>"` executes one task and prints the live flight recorder.
+- `chromeclaw repl` keeps a terminal session open for repeated tasks.
+- `chromeclaw runs` lists recent JSONL traces.
+- `chromeclaw show <run-id>` prints a past run with step-by-step context.
+- `chromeclaw eval` runs the benchmark harness.
+
 ## Example Tasks
 
-- “Go to example.com and tell me the page title.”
-- “Find the top 5 recent papers on browser agents and summarize them.”
-- “Open Hacker News and find the highest-ranked AI story.”
-- “Compare prices for a product across 3 sites without logging in.”
-- “Extract the headings from this webpage.”
-- “Find documentation for Playwright accessibility snapshots.”
+- "Go to example.com and tell me the page title."
+- "Find the top 5 recent papers on browser agents and summarize them."
+- "Open Hacker News and find the highest-ranked AI story."
+- "Compare prices for a product across 3 sites without logging in."
+- "Extract the headings from this webpage."
+- "Find documentation for Playwright accessibility snapshots."
 
 ## Safety Model
 
@@ -122,7 +123,7 @@ ChromeClaw has an explicit `SafetyPolicy` module. It blocks or requires confirma
 
 - Login, credentials, 2FA, or private data entry.
 - Purchases, checkout, banking, trading, payments, or subscriptions.
-- Sending emails/messages/posts/comments.
+- Sending emails, messages, posts, or comments.
 - Deleting, modifying, uploading, or downloading user data.
 - Bypassing CAPTCHAs, paywalls, login walls, or security barriers.
 - Sensitive browser, file, or local administrative pages.
@@ -131,14 +132,7 @@ The agent stores short `thoughtSummary` fields only. It does not expose hidden c
 
 ## Evals
 
-The eval harness includes 10 browser tasks with deterministic substring or validator checks. The default smoke subset currently passes in mock mode:
-
-```text
-successRate: 1.0
-averageSteps: 2.33
-tasks: example title, Playwright docs, Hacker News top page
-report: .chromeclaw/eval-report.json
-```
+ChromeClaw ships with a 10-task browser benchmark harness. The default smoke subset passes in mock mode and writes a report to `.chromeclaw/eval-report.json`.
 
 Run all evals:
 
@@ -148,44 +142,42 @@ pnpm --filter @chromeclaw/evals eval -- --all
 
 ## What Works
 
-- Real Playwright browser launch/control.
+- Real Playwright browser launch and control.
 - Headless or visible Chrome/Chromium operation.
 - Persistent profile directory under `.chromeclaw/profile`.
-- Structured Zod action schemas.
+- Structured Zod action schemas and strict JSON planning.
 - Mock planner for keyless testing.
 - OpenAI-compatible chat-completions planner.
-- Anthropic provider placeholder behind the provider abstraction.
-- Accessibility/text/interactive-target observations with truncation and ranking.
-- Safety-gated action execution.
+- Accessibility, visible-text, and ranked-target observations.
+- Safety-gated execution.
 - JSONL run logs under `.chromeclaw/runs`.
-- Next.js web console with trace, browser state, metrics, samples, and run history.
-- CLI `run`, `repl`, and `eval`.
-- Vitest coverage for schemas, safety, truncation/ranking, target helpers, and eval scoring.
+- Terminal run viewer and trace inspector.
+- CLI `run`, `repl`, `runs`, `show`, and `eval`.
+- Vitest coverage for schemas, safety, truncation, target helpers, and eval scoring.
 
 ## What Is Stubbed
 
-- Anthropic-compatible provider is a placeholder.
-- Web “Stop” aborts the client request; a durable server-side cancellation registry is future work.
-- SQLite is not enabled by default; JSONL was chosen for zero native dependency friction.
-- Experimental arbitrary JavaScript execution is intentionally not exposed.
+- Anthropic-compatible provider is still a placeholder.
+- Human confirmation is surfaced as a blocked run rather than a full interactive approval workflow.
+- SQLite is not enabled by default; JSONL keeps setup friction low.
+- Experimental arbitrary JavaScript execution remains intentionally disabled.
 
 ## Roadmap
 
-- Streaming step updates over SSE/WebSocket.
+- Richer terminal streaming with partial observation panes.
 - Durable run cancellation and resume.
-- SQLite storage adapter and richer run search.
-- More robust role/name target scoring from full accessibility snapshots.
-- Human confirmation UI for gated actions.
-- Larger eval suite with fixtures, replay, and per-action error taxonomies.
-- Optional CDP performance/network tracing.
-- Browser preview streaming instead of post-step screenshots.
+- SQLite storage adapter and better log querying.
+- Stronger role/name target ranking from accessibility snapshots.
+- Interactive terminal approval prompts for gated actions.
+- Larger replayable eval suite with failure taxonomies.
+- Optional CDP network and performance tracing.
 
 ## Why This Matters
 
 ChromeClaw demonstrates:
 
 - Tool-using agent loops.
-- Browser-grounded observation/action cycles.
+- Browser-grounded observation and action cycles.
 - Structured LLM outputs.
 - Safety-gated autonomy.
 - Reproducible browser-agent evaluation.
@@ -193,7 +185,7 @@ ChromeClaw demonstrates:
 
 Resume bullet:
 
-> Built ChromeClaw, a TypeScript browser-control agent that uses structured LLM planning, Playwright/CDP browser actions, safety-gated execution, trace logging, and a browser-task eval harness to autonomously complete web tasks through Chrome.
+> Built ChromeClaw, a TypeScript browser-control agent that uses structured LLM planning, Playwright browser actions, safety-gated execution, trace logging, and a browser-task eval harness to autonomously complete web tasks from a terminal workflow.
 
 ## License
 

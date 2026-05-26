@@ -25,5 +25,5 @@ Please include:
 
 - A short summary of behavior changes.
 - Tests or an explanation of why tests are not needed.
-- Screenshots for UI changes.
+- Terminal output examples when the CLI behavior changes materially.
 - Notes for any new permissions, storage, or external network behavior.

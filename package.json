@@ -9,12 +9,12 @@
     "node": ">=20.9.0"
   },
   "scripts": {
-    "dev": "pnpm build:packages && pnpm --filter @chromeclaw/web dev",
+    "dev": "pnpm build:packages && pnpm --filter @chromeclaw/cli dev repl",
     "build:packages": "pnpm --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build",
-    "build": "pnpm -r build",
-    "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "build": "pnpm build:packages && pnpm --filter @chromeclaw/cli build",
+    "lint": "pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint",
+    "typecheck": "pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck",
+    "test": "pnpm --filter @chromeclaw/shared test && pnpm --filter @chromeclaw/browser test && pnpm --filter @chromeclaw/agent test && pnpm --filter @chromeclaw/evals test && pnpm --filter @chromeclaw/cli test",
     "eval": "pnpm --filter @chromeclaw/evals eval",
     "format": "prettier --write ."
   },
