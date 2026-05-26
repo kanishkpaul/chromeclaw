@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@chromeclaw/shared": ["packages/shared/src/index.ts"],
+      "@chromeclaw/browser": ["packages/browser/src/index.ts"],
+      "@chromeclaw/agent": ["packages/agent/src/index.ts"],
+      "@chromeclaw/evals": ["packages/evals/src/index.ts"]
+    }
+  }
+}

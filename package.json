@@ -1,0 +1,32 @@
+{
+  "name": "chromeclaw",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ChromeClaw: a transparent browser-control agent for Chrome.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.23.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "pnpm build:packages && pnpm --filter @chromeclaw/web dev",
+    "build:packages": "pnpm --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "eval": "pnpm --filter @chromeclaw/evals eval",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "tsup": "^8.3.5",
+    "typescript-eslint": "^8.18.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

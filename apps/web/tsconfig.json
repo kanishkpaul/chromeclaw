@@ -1,0 +1,42 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "noEmit": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@chromeclaw/shared": [
+        "../../packages/shared/src/index.ts"
+      ],
+      "@chromeclaw/agent": [
+        "../../packages/agent/src/index.ts"
+      ],
+      "@chromeclaw/browser": [
+        "../../packages/browser/src/index.ts"
+      ],
+      "@chromeclaw/evals": [
+        "../../packages/evals/src/index.ts"
+      ]
+    },
+    "allowJs": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
