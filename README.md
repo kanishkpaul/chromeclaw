@@ -4,13 +4,7 @@
 
 ChromeClaw is a local browser operator built for the command line. It plans browser tasks, controls Chrome through Playwright, observes pages through visible text and accessibility summaries, records every step to JSONL, and makes the full agent trace easy to inspect from the terminal.
 
-This repo is intentionally focused on the terminal experience now. No web dashboard, no localhost control plane, no glossy wrapper around the interesting part.
-
-## Pitch
-
 ChromeClaw = **an agentic browser operator that can see, plan, act, recover, and explain** from the terminal.
-
-The first working vertical slice:
 
 ```bash
 chromeclaw run "Go to example.com and tell me the page title." --headless --provider mock
@@ -177,30 +171,6 @@ pnpm --filter @chromeclaw/evals eval -- --all
 - SQLite is not enabled by default; JSONL keeps setup friction low.
 - Experimental arbitrary JavaScript execution remains intentionally disabled.
 
-## Roadmap
-
-- Richer terminal streaming with partial observation panes.
-- Durable run cancellation and resume.
-- SQLite storage adapter and better log querying.
-- Stronger role/name target ranking from accessibility snapshots.
-- Interactive terminal approval prompts for gated actions.
-- Larger replayable eval suite with failure taxonomies.
-- Optional CDP network and performance tracing.
-
-## Why This Matters
-
-ChromeClaw demonstrates:
-
-- Tool-using agent loops.
-- Browser-grounded observation and action cycles.
-- Structured LLM outputs.
-- Safety-gated autonomy.
-- Reproducible browser-agent evaluation.
-- Production-grade TypeScript packaging.
-
-Resume bullet:
-
-> Built ChromeClaw, a TypeScript browser-control agent that uses structured LLM planning, Playwright browser actions, safety-gated execution, trace logging, and a browser-task eval harness to autonomously complete web tasks from a terminal workflow.
 
 ## License
 
