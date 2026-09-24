@@ -1,112 +1,136 @@
 # ChromeClaw
 
-ChromeClaw is a terminal-first browser agent for running web tasks with visible traces, explicit safety gates, and a small eval loop.
+A terminal-first browser agent. You give it a task, it drives Chrome through
+Playwright one action at a time, and every step is printed, logged to JSONL,
+and replayable. A safety policy sits between the planner and the browser.
 
-I built it as a practical agent systems repo, not as a "magic browser AI" demo. The main idea is that browser automation gets more useful when planning, execution, failure, and recovery are all inspectable.
+```text
+$ node apps/cli/dist/index.js run "Go to example.com and tell me the page title." --headless --provider mock
 
-```bash
-chromeclaw run "Go to example.com and tell me the page title." --headless --provider mock
+ACT #0 navigate 1033ms
+  reason Open the target page first so I can inspect its title.
+  action https://example.com
+  page  about:blank
+
+DONE #1 finish 165ms
+  reason The requested page is open and the title is visible in the browser state.
+  action The page title is "Example Domain".
+  page Example Domain https://example.com/
+
+Final
+DONE The page title is "Example Domain".
+Run id: run_muflu8i6_fylw6wp
+Trace: .chromeclaw/runs/run_muflu8i6_fylw6wp.jsonl
 ```
 
-## What it does today
+The point is inspectability: what the model saw, why it chose that element,
+how to reproduce a failure, and what happens at logins, payments, and
+destructive actions.
 
-- Accepts a browser task from the CLI
-- Observes the page through structured snapshots and visible text
-- Plans one strict JSON action at a time
-- Executes the action through Playwright
-- Logs the full run to JSONL for later inspection
-- Replays recent runs from the terminal
-- Supports a mock planner for cheap smoke tests
-- Includes an eval harness for browser-task benchmarking
-- Applies a safety policy before sensitive or risky actions
+## How a step works
 
-## Why this project matters
+1. **Observe.** Build a structured snapshot of the page: visible text plus a
+   ranked list of interactive elements.
+2. **Plan.** Ask the planner for exactly one action as strict JSON, validated
+   with Zod.
+3. **Check.** Run the action and the task through the safety policy: `allow`,
+   `confirm`, or `block`.
+4. **Act.** Execute through Playwright.
+5. **Log.** Append the observation, action, reason, and outcome to the run's
+   JSONL file.
 
-A lot of agent demos look impressive until you ask basic systems questions:
+## Run it
 
-- What exactly did the model see?
-- Why did it click that element?
-- How do you reproduce a failure?
-- What happens around login, payments, or destructive actions?
+Needs Node 20.9+ and pnpm. ChromeClaw drives your installed Google Chrome and
+falls back to Playwright's Chromium if Chrome isn't there.
 
-ChromeClaw is my answer to those questions. It is a browser agent scaffold that makes traces, safety, and evaluation first-class instead of afterthoughts.
+```bash
+npm install -g pnpm                      # if you don't have it
+pnpm install
+pnpm build
+pnpm exec playwright install chromium    # only if Google Chrome isn't installed
+```
+
+```bash
+node apps/cli/dist/index.js run "Open example.com and report the page title." --headless --provider mock
+node apps/cli/dist/index.js repl         # interactive session
+node apps/cli/dist/index.js runs         # recent runs
+node apps/cli/dist/index.js show <run-id>
+```
+
+Tested on macOS (Apple Silicon) with Node 24 and Chrome.
+
+## Planners
+
+| Provider | Setup |
+| --- | --- |
+| `mock` | No key. A scripted planner for smoke tests. |
+| `openai` | `OPENAI_API_KEY`. Set `OPENAI_BASE_URL` for any OpenAI-compatible server, including local ones (Ollama, LM Studio, `llama-server`). |
+| `huggingface` | `HF_TOKEN`, through Hugging Face's OpenAI-compatible router. |
+| `anthropic` | Placeholder; not implemented yet. |
+
+Copy `.env.example` to `.env` to configure the provider, model, headless mode,
+and step limit.
+
+## Safety model
+
+The policy in [`packages/agent/src/safety.ts`](packages/agent/src/safety.ts)
+blocks or asks for confirmation before:
+
+- logging in or entering credentials
+- sending messages, posts, or forms with personal data
+- purchases, payments, banking, or checkout
+- deleting, uploading, or downloading user data
+- bypassing CAPTCHAs, paywalls, or login walls
+- visiting browser-internal or local system pages
+
+A `confirm` decision currently ends the run as `blocked` rather than pausing
+for approval. Arbitrary JavaScript execution is disabled. See
+[`docs/SAFETY.md`](docs/SAFETY.md).
+
+## Evals
+
+```bash
+node apps/cli/dist/index.js eval          # first 3 tasks
+node apps/cli/dist/index.js eval --all    # all 10
+```
+
+Tasks are in [`packages/evals/src/tasks.ts`](packages/evals/src/tasks.ts) and
+the report goes to `.chromeclaw/eval-report.json` with success rate, steps,
+duration, and failure reasons.
+
+Two caveats before reading anything into the numbers:
+
+- **The tasks hit live websites** (Hacker News, Wikipedia, DuckDuckGo), so
+  results change with the sites.
+- **Scoring is loose.** Most tasks pass if an expected substring appears in the
+  answer *or anywhere in a page observation*, and some only check the URL
+  visited. The scripted mock planner scores 3/3 on the default set without
+  solving the Hacker News task. The loop is measurable; the scores aren't a
+  benchmark yet.
 
 ## Repo layout
 
 ```text
-apps/cli          CLI surface: run, repl, runs, show, eval
-packages/agent    Runtime loop, planners, safety, JSONL storage
-packages/browser  Playwright control and observation building
-packages/shared   Shared schemas, types, and helpers
-packages/evals    Task definitions and scoring
-docs              Notes on safety and evaluation
+apps/cli          CLI: run, repl, runs, show, eval
+packages/agent    runtime loop, planners, safety policy, JSONL storage
+packages/browser  Playwright control and page observation
+packages/shared   Zod schemas, types, helpers
+packages/evals    task definitions and scoring
+docs              safety and eval notes
 ```
 
-## Local setup
+## Development
 
 ```bash
-pnpm install
-pnpm build
-pnpm dev
+pnpm test        # vitest, 15 tests across 4 packages
+pnpm lint
+pnpm typecheck
 ```
 
-Useful commands:
+On macOS, clone into a path without spaces. Vitest fails to resolve the
+workspace packages from paths like `~/Library/Application Support/...`.
 
-```bash
-node apps/cli/dist/index.js run "Open example.com and report the page title." --headless --provider mock --max-steps 4
-node apps/cli/dist/index.js runs
-node apps/cli/dist/index.js show <run-id>
-pnpm test
-pnpm eval
-```
+## License
 
-## Configuration
-
-ChromeClaw supports mock mode, OpenAI-compatible endpoints, and Hugging Face's router API through environment variables.
-
-The quickest zero-key path is:
-
-```env
-CHROMECLAW_PROVIDER=mock
-```
-
-For real planner calls, start from `.env.example`.
-
-## Safety model
-
-ChromeClaw is intentionally conservative around:
-
-- logins and credentials
-- purchases and payments
-- sending or publishing content
-- destructive edits or file/system pages
-- attempts to bypass access controls
-
-Instead of pretending those edge cases do not exist, the runtime blocks or requires confirmation when a task crosses those boundaries.
-
-## Evaluation
-
-The repo includes a small deterministic benchmark harness in `packages/evals`.
-
-- Mock mode keeps the basic loop testable without paid model keys.
-- Eval runs emit a report with success rate, step count, and failure reasons.
-- The goal is not to claim solved browser autonomy; it is to make iteration measurable.
-
-## Current gaps
-
-- Anthropic support is still a placeholder
-- Confirmation is surfaced as a blocked run instead of a full approval workflow
-- JSONL is the default storage path; a richer persistence layer can come later
-- Arbitrary JavaScript execution is intentionally disabled for now
-
-## What I am exploring next
-
-- Better recovery after ambiguous page states
-- More grounded element selection and ranking
-- Richer eval tasks and failure taxonomies
-- Interactive approval flows for sensitive actions
-- Cleaner trace visualization outside the terminal
-
-## Why it belongs in this repo collection
-
-ChromeClaw shows how I think about agents as systems work: tools, traces, safety, evals, and failure handling, not just prompt wrappers around browser clicks.
+MIT
