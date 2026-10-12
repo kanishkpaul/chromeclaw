@@ -1,8 +1,15 @@
-# ChromeClaw
+# ChromeClaw, the terminal agent (archived)
 
-A terminal-first browser agent. You give it a task, it drives Chrome through
-Playwright one action at a time, and every step is printed, logged to JSONL,
-and replayable. A safety policy sits between the planner and the browser.
+> **This branch is the archive.** It holds the first ChromeClaw: a terminal agent that drives Chrome
+> through Playwright. It is kept runnable as the baseline the rebuild has to beat, and it gets no new
+> features. ChromeClaw is being rebuilt as a Chrome extension on
+> [`main`](https://github.com/kanishkpaul/chromeclaw/tree/main). Start there.
+
+## What this was
+
+A terminal-first browser agent, built May 2026. You give it a task. It opens Chrome through
+Playwright, takes one action at a time, prints every step, and writes the run to a JSONL trace you
+can inspect later.
 
 ```text
 $ node apps/cli/dist/index.js run "Go to example.com and tell me the page title." --headless --provider mock
@@ -23,113 +30,86 @@ Run id: run_muflu8i6_fylw6wp
 Trace: .chromeclaw/runs/run_muflu8i6_fylw6wp.jsonl
 ```
 
-The point is inspectability: what the model saw, why it chose that element,
-how to reproduce a failure, and what happens at logins, payments, and
-destructive actions.
+Each step:
 
-## How a step works
+1. **Observe:** visible text plus a ranked list of interactive elements.
+2. **Plan:** ask the planner for one action as JSON, validated with Zod.
+3. **Check:** run a safety policy that allows, asks to confirm, or blocks.
+4. **Act:** through Playwright.
+5. **Log:** append the step to the run's JSONL file.
 
-1. **Observe.** Build a structured snapshot of the page: visible text plus a
-   ranked list of interactive elements.
-2. **Plan.** Ask the planner for exactly one action as strict JSON, validated
-   with Zod.
-3. **Check.** Run the action and the task through the safety policy: `allow`,
-   `confirm`, or `block`.
-4. **Act.** Execute through Playwright.
-5. **Log.** Append the observation, action, reason, and outcome to the run's
-   JSONL file.
+## Why it was replaced
 
-## Run it
+An audit on 2026-10-13 found the loop sound and the agent around it too thin to build on. The
+rebuild on `main` addresses each of these:
 
-Needs Node 20.9+ and pnpm. ChromeClaw drives your installed Google Chrome and
-falls back to Playwright's Chromium if Chrome isn't there.
+- **The model saw too little.** Its history carried only each step's action type, never the URL it
+  opened, the text it typed or what `extract_text` returned. The prompt held an 1,800-character
+  summary and 8 elements without selectors.
+- **The model wrote selectors,** and a resolver guessed what it meant. The rebuild has the model pick
+  an index from a numbered list instead.
+- **The accessibility snapshot stopped working.** Playwright 1.60 removed `page.accessibility`, so
+  every run records it as unavailable.
+- **There was no recovery.** One unresolved click or one malformed model reply ends the run.
+  `ask_user` logs a line and carries on.
+- **The safety policy is regexes with no word boundaries.** Two examples:
+  - It blocks `finish` on a Wikipedia article about phishing, and asks to confirm any click when the
+    task mentions "postgres".
+  - It allows a click on an unlabelled button on a `/cart` page, and navigation to a router admin
+    page.
+- **The evals measure the loop, not the agent.** With the scripted mock planner, `eval --all` scored
+  9 of 10. Five of those passed because the search results page title repeats the query that
+  contains the expected word. The one safety task, "log in to my bank", failed.
+
+The full audit and the lessons carried forward are in
+[`docs/PREBUILD.md` on `main`](https://github.com/kanishkpaul/chromeclaw/blob/main/docs/PREBUILD.md).
+
+## Running it
+
+Needs Node 20.9 or later and pnpm. It drives your installed Google Chrome and falls back to
+Playwright's Chromium if Chrome is not there.
 
 ```bash
-npm install -g pnpm                      # if you don't have it
 pnpm install
 pnpm build
-pnpm exec playwright install chromium    # only if Google Chrome isn't installed
+pnpm exec playwright install chromium    # only if Google Chrome is not installed
 ```
 
 ```bash
 node apps/cli/dist/index.js run "Open example.com and report the page title." --headless --provider mock
-node apps/cli/dist/index.js repl         # interactive session
-node apps/cli/dist/index.js runs         # recent runs
-node apps/cli/dist/index.js show <run-id>
+node apps/cli/dist/index.js repl              # interactive session
+node apps/cli/dist/index.js runs              # recent runs
+node apps/cli/dist/index.js show <run-id>     # one run's full trace
+node apps/cli/dist/index.js eval --all        # all 10 eval tasks, printed as JSON
+pnpm eval                                     # the same tasks, also written to .chromeclaw/eval-report.json
 ```
 
-Tested on macOS (Apple Silicon) with Node 24 and Chrome.
+Last checked on 2026-10-13 on macOS with Node 24: it builds, typechecks and lints, all 15 tests pass,
+and the example above runs.
 
 ## Planners
 
 | Provider | Setup |
 | --- | --- |
-| `mock` | No key. A scripted planner for smoke tests. |
-| `openai` | `OPENAI_API_KEY`. Set `OPENAI_BASE_URL` for any OpenAI-compatible server, including local ones (Ollama, LM Studio, `llama-server`). |
-| `huggingface` | `HF_TOKEN`, through Hugging Face's OpenAI-compatible router. |
-| `anthropic` | Placeholder; not implemented yet. |
+| `mock` | No key. Scripted, for smoke tests only. Its scores mean nothing |
+| `openai` | `OPENAI_API_KEY`, and `OPENAI_BASE_URL` for any OpenAI-compatible server, including Ollama, LM Studio and `llama-server` |
+| `huggingface` | `HF_TOKEN`, through Hugging Face's OpenAI-compatible router |
+| `anthropic` | A placeholder that throws |
 
-Copy `.env.example` to `.env` to configure the provider, model, headless mode,
-and step limit.
+Copy `.env.example` to `.env` to set the provider, model, headless mode and step limit. The example
+file sets `CHROMECLAW_PROVIDER=openai`, so without a key either set it to `mock` or pass
+`--provider mock`.
 
-## Safety model
-
-The policy in [`packages/agent/src/safety.ts`](packages/agent/src/safety.ts)
-blocks or asks for confirmation before:
-
-- logging in or entering credentials
-- sending messages, posts, or forms with personal data
-- purchases, payments, banking, or checkout
-- deleting, uploading, or downloading user data
-- bypassing CAPTCHAs, paywalls, or login walls
-- visiting browser-internal or local system pages
-
-A `confirm` decision currently ends the run as `blocked` rather than pausing
-for approval. Arbitrary JavaScript execution is disabled. See
-[`docs/SAFETY.md`](docs/SAFETY.md).
-
-## Evals
-
-```bash
-node apps/cli/dist/index.js eval          # first 3 tasks
-node apps/cli/dist/index.js eval --all    # all 10
-```
-
-Tasks are in [`packages/evals/src/tasks.ts`](packages/evals/src/tasks.ts) and
-the report goes to `.chromeclaw/eval-report.json` with success rate, steps,
-duration, and failure reasons.
-
-Two caveats before reading anything into the numbers:
-
-- **The tasks hit live websites** (Hacker News, Wikipedia, DuckDuckGo), so
-  results change with the sites.
-- **Scoring is loose.** Most tasks pass if an expected substring appears in the
-  answer *or anywhere in a page observation*, and some only check the URL
-  visited. The scripted mock planner scores 3/3 on the default set without
-  solving the Hacker News task. The loop is measurable; the scores aren't a
-  benchmark yet.
-
-## Repo layout
+## Layout
 
 ```text
-apps/cli          CLI: run, repl, runs, show, eval
+apps/cli          run, repl, runs, show, eval
 packages/agent    runtime loop, planners, safety policy, JSONL storage
 packages/browser  Playwright control and page observation
 packages/shared   Zod schemas, types, helpers
-packages/evals    task definitions and scoring
-docs              safety and eval notes
+packages/evals    the 10 task definitions and scoring
+docs              safety and eval notes, as written at the time
 ```
-
-## Development
-
-```bash
-pnpm test        # vitest, 15 tests across 4 packages
-pnpm lint
-pnpm typecheck
-```
-
-On macOS, clone into a path without spaces. Vitest fails to resolve the
-workspace packages from paths like `~/Library/Application Support/...`.
 
 ## License
 
