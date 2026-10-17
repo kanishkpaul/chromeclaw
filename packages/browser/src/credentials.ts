@@ -9,18 +9,30 @@ export interface FieldInspection {
 /** Runs in the element's document. Credential values are never read, including for labels. */
 export function inspectField(element: Node, value?: string | void): FieldInspection {
   if (!(element instanceof Element)) return { credential: false, label: "", text: "", written: false, refusal: "The target is not an element." };
-  const safeText = (node: Node): string => {
-    if (node instanceof Element && node.matches("input,textarea,select,[contenteditable],script,style,noscript")) return "";
-    if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? "";
-    return Array.from(node.childNodes).map(safeText).join(" ");
-  };
   const nativeInput = element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement;
   const editable = nativeInput || (element instanceof HTMLElement && element.isContentEditable);
   const root = element.getRootNode();
-  const labelled = (element.getAttribute("aria-labelledby") ?? "").split(/\s+/)
-    .map((id) => root instanceof Document || root instanceof ShadowRoot ? safeText(root.getElementById(id) ?? document.createTextNode("")) : "").join(" ").trim();
-  const label = element.getAttribute("aria-label") || labelled ||
-    (nativeInput ? Array.from(element.labels ?? []).map(safeText).join(" ") : "") ||
+  const references: Element[] = [];
+  for (const id of (element.getAttribute("aria-labelledby") ?? "").split(/\s+/)) {
+    const node = root instanceof Document || root instanceof ShadowRoot ? root.getElementById(id) : null;
+    if (node) references.push(node);
+  }
+  const labels = nativeInput ? Array.from(element.labels ?? []) : [];
+  const texts: string[] = [];
+  // A recursive local function gains a tsx naming helper that cannot travel into Playwright's
+  // document. Walk each label without closures, and skip control descendants before reading text.
+  for (const textRoot of [element, ...references, ...labels]) {
+    const walker = textRoot.ownerDocument.createTreeWalker(textRoot, NodeFilter.SHOW_TEXT);
+    const parts: string[] = [];
+    while (walker.nextNode()) {
+      if (!walker.currentNode.parentElement?.closest("input,textarea,select,[contenteditable],script,style,noscript")) {
+        parts.push(walker.currentNode.textContent ?? "");
+      }
+    }
+    texts.push(parts.join(" ").trim());
+  }
+  const label = element.getAttribute("aria-label") || texts.slice(1, 1 + references.length).join(" ").trim() ||
+    texts.slice(1 + references.length).join(" ").trim() ||
     element.getAttribute("placeholder") || element.getAttribute("name") || "";
   const tokens = (element.getAttribute("autocomplete") ?? "").toLowerCase().split(/\s+/);
   const credential = editable && (
@@ -28,7 +40,7 @@ export function inspectField(element: Node, value?: string | void): FieldInspect
     tokens.some((token) => ["current-password", "new-password", "one-time-code"].includes(token)) ||
     /\b(?:password|passwd|passphrase|passcode|otp|one[\s-]?time[\s-]?(?:password|code)|cvv2?|cvc2?|(?:security|verification|authenticator|backup|recovery|sign[\s-]?in)\s*code|2fa|two[\s-]?factor|pin(?!\s*code))\b/i.test(label)
   );
-  const inspection: FieldInspection = { credential, label: label.trim(), text: editable ? "" : safeText(element).trim(), written: false };
+  const inspection: FieldInspection = { credential, label: label.trim(), text: editable ? "" : texts[0] ?? "", written: false };
   if (value === undefined) return inspection;
   if (!element.isConnected || !editable) return { ...inspection, refusal: "The target is detached or is not an editable field." };
   if (credential) return { ...inspection, refusal: "Credential entry is refused. Enter it yourself in Chrome." };

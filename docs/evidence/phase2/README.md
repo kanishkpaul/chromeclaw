@@ -49,3 +49,19 @@ for deliberately mislabelled custom credential widgets, stale click safety, or s
 navigation. Existing selector and task-permission defects remain. This is a reviewed-sized
 credential fix, not a declaration that the whole agent is safe for unattended use. Hosted CI
 status belongs to the PR and is not inferred from these local artifacts.
+
+
+## Source entry point regression
+
+The first hosted run failed in `pnpm eval`: tsx preserved a nested function name by inserting
+`__name`, which was unavailable when Playwright serialized the function into the page. The
+built CLI did not reproduce it. Replaced that nested recursive function with a self-contained
+DOM walk, preserving field/label suppression. The page function needs no loader helpers or
+application closures. Failed run: GitHub Actions `39024179011`, implementation commit `86a1338`.
+
+After the repair, `pnpm check` passed 25 tests (`source-check.log`), the actual source-run
+`pnpm eval` passed three fixtures (`source-eval.log`), the credential suite passed all 13 groups
+(`source-credentials.log`, `source-credentials-report.json` and its matching JSONL), and the
+built CLI passed three fixtures (`built-eval.log`). Both source and compiled entry points are
+required evidence; one does not stand in for the other. The same atomic-guard mutation was
+repeated on the repaired artifact and still failed as expected (`source-guard-mutation.log`).
