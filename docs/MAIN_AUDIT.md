@@ -3,7 +3,8 @@
 ## Conclusion
 
 Build on the runnable CLI on GitHub `main`, after fixing its safety boundaries, observations,
-state machine and evaluation oracle. Preserve the extension design as a local reference. Do not
+state machine and evaluation oracle. The updated direction is a terminal TUI, using the local
+design-kit and preserved `new` assets. Preserve the extension design as historical reference. Do not
 merge the archived branch wholesale: that would replace the implementation with a plan.
 
 The current code has useful pieces: a runnable workspace, browser launch and input functions,
@@ -12,6 +13,9 @@ loop is not ready for unattended work on signed-in sites. It can expose credenti
 execute consequential controls without confirmation, and declare completion without evidence.
 
 This audit changes documentation and adds a reproduction script. It fixes no production bugs.
+The owner's subsequent direction on 17 October makes the TUI the full product frontend, requires
+BYOK and local models, and calls for retaining/upgrading old safety with concise, maintainable
+code. The current plans reflect that direction; archived side-panel requirements are superseded.
 
 ## Exact sources and branch handling
 
@@ -42,8 +46,8 @@ from GitHub `main`. The modified local Blindfold checkout was not touched. Its c
 | J3b, find in history | Search history and bookmarks, confirm candidate pages | No history integration |
 | J3c, find on web | Return a verified target URL from a vague description | Search navigation only. No target-identity check |
 
-None of the extension phase gates has fresh evidence in this audit. No extension exists on the
-audited `main`; it produces a CLI build. The archived plan's claims about `main` and `old` no
+The extension phase gates are historical and are not the current delivery path. The audited
+`main` produces a CLI build and contains no extension. The archived plan's claims about `main` and `old` no
 longer describe GitHub's current branch layout.
 
 ## Implementation assessment
@@ -85,7 +89,7 @@ fixture runner below; "inspected" means source evidence without an end-to-end de
 | B15 | P2 | Inspected | `packages/agent/src/storage/jsonl.ts:32` trusts JSON without schemas, hides read errors and resolves unchecked run IDs as paths. A partial final line can hide otherwise readable events. This is a local-file integrity issue, not a demonstrated remote exploit |
 | B16 | P1 | Observed and inspected | `pnpm check` does not exist; no CI workflow or architecture tests exist on this branch. CLI tests use `--passWithNoTests`. README calls current main an archive and links missing `PREBUILD.md`. `docs/EVALS.md` calls live-site tasks deterministic, and README says `pnpm eval` runs ten although its default selects three |
 | B17 | P2 | Inspected only | `apps/cli/src/index.ts:56` prints a failed/blocked run without setting a failure exit status. Step limits are parsed with `Number` without range checks; CLI defaults override environment headless/step settings. No clean JSON run mode exists. The separate Anthropic CLI exit-status probe was not executed |
-| B18 | P2 | Inspected | `packages/agent/src/llm/anthropic.ts` is a throwing placeholder exposed in the CLI provider list. No capability profiles distinguish text, vision, structured output or context limits. The extension's Chrome built-in adapter is a planned feature, not a working provider |
+| B18 | P2 | Inspected | `packages/agent/src/llm/anthropic.ts` is a throwing placeholder exposed in the CLI provider list. No capability profiles distinguish text, vision, structured output or context limits. The archived extension's Chrome built-in adapter was proposed, not implemented or required by the current TUI plan |
 
 ## Verification
 

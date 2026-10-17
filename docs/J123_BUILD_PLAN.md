@@ -1,209 +1,224 @@
 # Build plan after the bug fixes
 
-J1 is research. J2 is work on a page. J3 is finding from a vague description, on the page (J3a),
-in history (J3b), or on the web (J3c). These definitions come from local `new` at `2a8b4c1`.
-The implementation base is executable GitHub main at `50355b9`.
+ChromeClaw lives fully in the terminal as a TUI. J1 is research. J2 is work on a webpage. J3 is
+finding from a vague description, on the page (J3a), in history (J3b), or on the web (J3c).
+The job definitions come from local `new` at `2a8b4c1`; executable main at `50355b9` is the base.
 
-This plan is proposed, and every task is pending. It follows [BUG_FIX_PLAN.md](BUG_FIX_PLAN.md).
-The archived plan is available through `git show new:docs/BUILD_PLAN.md`; its original phase/task
-IDs remain useful references, not evidence that a phase is complete.
+This plan is proposed and every task is pending. It follows [BUG_FIX_PLAN.md](BUG_FIX_PLAN.md).
+The owner's terminal direction on 17 October 2026 replaces this plan's earlier extension path.
+The archived `new:docs/BUILD_PLAN.md` supplies ideas and evidence requirements, not a requirement
+for a side panel, extension frontend, omnibox, Chrome built-in model or service-worker lifecycle.
+See [DECISIONS.md](DECISIONS.md).
 
 ## Product and architecture
 
-Ship a personal Chrome side-panel extension that reuses existing signed-in sessions, supports
-hosted and local model adapters, shows its work and hands control back for credentials. Keep
-the repaired CLI as a harness and diagnostic entry point. Reject a second independent extension
-loop: every later recovery or gate fix would otherwise need two implementations.
+The TUI owns requests, answers, settings, provider selection, step history, approvals, hand-back,
+pause/resume/cancel, sources and trace inspection. Browser pages are the work surface. The user
+may interact with Chrome for login or takeover; every ChromeClaw control remains in the terminal.
+One-shot CLI commands and clean JSON/JSONL output remain supported alongside interactive sessions.
 
-Extract the repaired pure decisions into `packages/core`, page capture into `packages/page` and
-transport into `packages/egress`. The shell supplies Chrome storage, tabs, debugger, clock and
-abort operations. Core performs no I/O and reads no ambient time or randomness.
+Keep the existing TypeScript/Playwright implementation and one repaired agent loop. Extract pure
+policy/loop decisions, page capture and egress only when their boundaries earn the code. Core has
+no I/O or ambient clock/randomness. Browser and terminal adapters supply those dependencies. A
+terminal frontend does not justify rewriting the project in Rust or adding another runtime.
 
-Abilities, tools, model adapters and search backends remain four separate plugin kinds. Each has
-its own folder and one registration line. Plugins import contracts, not other plugins. Abilities
-request tools or search through injected interfaces and IDs.
+Abilities, tools, model adapters and search backends remain four plugin kinds. Each owns its
+folder and one registration line. Plugins import contracts, not each other; request tools/readers
+through injected interfaces and IDs. The application composes registries and injects them into
+core, so core need not import plugins. Record any actual package-boundary change with its PR.
 
-The archived architecture puts registries inside core and also says core cannot import internal
-packages. Resolve that conflict before implementation: core owns registry types and validation;
-the application composition root imports plugin objects into plain registry arrays and injects
-them. This keeps the dependency graph inward. Record this choice in `docs/DECISIONS.md` in the
-same PR that extracts core. Do not introduce a dynamic loader or runtime plugin marketplace.
+Only egress sends model/search API requests; page navigation and page actions are gated browser
+operations. Architecture checks distinguish fixture-site traffic from application egress. A
+browser bridge, if later required for history/session access, contains only browser integration;
+it adds no second loop or user interface. Do not build it before a measured API gap requires it.
+Deleting a plugin and its registration line must leave check/build working. Unfinished plugins
+remain disabled by default.
 
-Only extension code calls `chrome.*`; only egress calls fetch. Page navigation and page actions
-are separately gated browser operations. The architecture test must distinguish a fixture site's
-network activity from extension-originated off-machine requests. Deleting a plugin and its one
-registration line must leave check/build working. Unfinished registered plugins start disabled.
+## Frontend sources and implementation standard
 
-Use the preserved design kit for panel, options, overlay and harness output. Restore it through
-the master update workflow rather than inventing local tokens. Record new dependencies,
-permissions and top-level directories as decisions. Request history/bookmark permissions only
-when the user enables the history feature; page read access is scoped to the task.
+Use the master at `/Users/kanishk/Downloads/GitHub/design-kit` (`../design-kit` from this repo) and
+preserved `new:design/`. Read the master's `system/DESIGN.md` and `system/TUI.md`, then compare
+`new:design/README.md`, `new:design/kit.json` and `new:design/rust/{theme,palettes,identity}.rs`.
+Borrow ChromeClaw's Ember skin, identity, terminal grammar and useful assets. Rewrite the
+project-owned direction around a TUI. Do not carry forward the archive's side-panel layout.
+
+Install/update through the kit workflow and record provenance in `design/kit.json`. Shared
+changes belong in the master. Use a small TypeScript presentation adapter over kit tokens and
+identity data if needed; do not hand-maintain another palette or port the entire Rust theme
+module. Choose a terminal library only when a concrete interaction needs it, and record the
+new dependency. Existing language and dependencies are the starting point.
+
+The interface uses readable tool rows (`┊`), an interactive status line, source references and
+approval blocks with explicit action/origin/reason. Approval defaults to deny; Enter alone never
+authorizes an act. Respect NO_COLOR, terminal capabilities, light/dark settings and narrow widths.
+No banner, animation, color or terminal control sequences in JSON/JSONL. Render page/model text
+as data: escape ANSI/control sequences so it cannot spoof approval prompts or operate the terminal.
+
+Follow `new:docs/ENGINEERING.md` for code, comments and commits, subject to the current terminal
+direction. Prefer five clear lines over fifty when both satisfy the same contract. Avoid wrapper
+layers, speculative abstractions and dependency growth. Keep required validation and safety even
+when they cost lines. Comments explain why and contracts; commits are focused, imperative and
+state verification and gaps. No attribution trailers. The bug-fix plan makes these review checks
+explicit for every task.
+
+## BYOK and local models
+
+Every job supports user-configured BYOK hosted adapters and local model servers through one
+reply contract. Start with OpenAI-compatible endpoints, including Ollama, LM Studio and llama.cpp.
+Implement distinct adapters where a provider requires a different protocol. The TUI shows model,
+endpoint and local/hosted status before execution, and permits explicit provider/model selection.
+
+No bundled hosted credentials, silent provider changes or local-to-cloud fallback. Keep keys out
+of prompts, traces and terminal output. Apply the same envelopes, target checks, approvals,
+credential refusal and budgets in both modes. Capability profiles control vision, context and
+structured-output support; missing capabilities are reported, not guessed. Fully local runs use
+no hosted model API, though requested web browsing still contacts the chosen sites/search backend.
+
+Acceptance for each job includes one actual BYOK hosted model and one actual local model, with
+reports separated by adapter/model. A scripted mock proves loop plumbing only. Missing real model
+access keeps that acceptance check open. Planning does not authorize paid calls or credential use.
+
+## Retain and upgrade safety
+
+Use the old policy and tests as an inventory, not as proof of protection. Preserve the intent of
+credential/login hand-back, CAPTCHA/paywall/security-bypass refusal, consequential-action approval,
+restricted destinations and inspectable traces. Upgrade mechanisms where audit evidence shows
+a failure. Map each old protection to a replacement regression; local execution cannot disable it.
+Keep fixes to false positives separate from permission expansion. [BUG_FIX_PLAN.md](BUG_FIX_PLAN.md)
+defines the gates and their real-browser checks.
 
 ## Delivery sequence
 
-`fix-09 → ext-00 → ext-01 → find-01 (J3a) → work-01 (J2) → research-01 (J1) → find-02/03 (J3b/J3c) → daily-01`
+`fix-09 → tui-00 → tui-01 → find-01 (J3a) → work-01 (J2) → research-01 (J1) → find-02/03 (J3b/J3c) → daily-01`
 
-This order gives each next job a tested dependency. J3a proves target grounding before actions;
-J2 proves the loop and interruption paths before parallel source reading; J1 provides search,
-source reading and evidence checking that J3c can reuse through interfaces.
+`tui-00` and `tui-01` replace the earlier unimplemented `ext-00` and `ext-01` proposals. Grounding
+precedes acting; verified page work precedes multi-source orchestration. J1 supplies shared
+search/reader interfaces for J3c without making one ability import another.
 
-### ext-00: Prove the Chrome shell and extract the shared core
+### tui-00: Make the terminal the complete control surface
 
-Archived references: p0-01, p0-03, p0-05 through p0-10, p3-01 and p3-08.
+Bring the repaired runtime into an interactive terminal session using the kit sources above.
+Support multiline input, streaming replies, step history, provider settings, source/trace views
+and explicit approval/answer input. Keep terminal rendering separate from trusted runtime events.
+Persist task checkpoints; interruption or reconnect recaptures the browser and pauses before acts.
 
-Deliver a small MV3 extension, side panel and extension-loading harness. Move pure runtime
-decisions out of the Node agent while retaining its working CLI adapter. Do not carry filesystem,
-process environment or Playwright into core. Decide plain Vite versus WXT from the spike, not from
-an untested preference. Record the actual minimum Chrome version and permission list.
+Measure connecting to a user-authorized browser session versus a ChromeClaw-owned profile. Do not
+silently attach to a personal default profile or assume existing sessions are accessible. Handle
+browser disconnect, terminal resize, EOF, Ctrl-C, user takeover and long model streams. Record any
+browser integration limitation before choosing an auxiliary bridge.
 
-Measure a two-minute model stream, worker termination/restart, trusted versus synthetic input,
-background-tab AX/screenshot/input, local endpoint reachability and Prompt API availability.
-Checkpoint each step. A restarted worker pauses and recaptures; it never resumes a stale act.
-If long tasks require an offscreen host, make that choice from the measurement.
+Done when: a PTY recording shows task input, progress, ask/answer, approval/denial, cancellation and
+trace inspection in the TUI while a real browser runs the fixture. Narrow width, noninteractive
+output, NO_COLOR and JSON/JSONL cases behave correctly. Terminal injection text cannot rewrite a
+trusted approval row. An interrupted run cannot execute a stale pending action on restart.
 
-Done when: the unpacked build loads and the panel opens in a real browser; the CLI and extension
-exercise the same core decisions; a removal drill passes; killing the worker pauses the task;
-each spike has command/steps and a recorded result. Use bundled Chromium to load the extension
-and separately verify the installed Chrome daily-use path. Existing CLI fixture success does
-not count as extension evidence.
+### tui-01: Read a page and answer with evidence
 
-### ext-01: Read the page and answer with evidence
+Wire the repaired page model, one prompt builder, egress and provider profiles into the TUI.
+Add an `ask` ability with passage IDs bound to captured snapshots. Source selection reveals the
+passage in the terminal and can explicitly open the cited page in Chrome. Validate link schemes.
+The trace shows proposals, gates, actual crossings and verified results without secrets.
 
-Archived references: p0-02, p1-01 through p1-11.
+Measure grounding before enabling actions for a profile. The archive's 50 labelled snapshots and
+30 challenging sites are sampling targets, not completed coverage. Include frames, shadow roots,
+scrims, React forms, virtualized lists and canvas-only content; report unreadable regions.
 
-Bring the repaired page model, prompt builder, egress and trace into the extension. Start with
-OpenAI-compatible hosted/local endpoints and add Anthropic as an independent adapter. Probe Chrome's
-built-in model and ship its adapter disabled when unavailable; explain setup rather than silently
-falling back. Profiles declare vision, context, structured replies and local/hosted destination.
-
-Add an `ask` ability, passage IDs tied to captured snapshots, clickable citations, options driven
-by plugin settings, and a trace view showing permission decisions and actual crossings. Panel
-rendering creates DOM from parsed Markdown with raw HTML disabled. Treat both model prose and
-source links as untrusted. Define safe link schemes and explicit source opening.
-
-Measure grounding before enabling actions on a model profile. Use the archived proposal of 50
-labelled snapshots and 30 challenging sites as sampling targets, not completed coverage. Include
-shadow roots, frames, scrims, React forms, virtualized lists and canvas-only content. Report
-unreadable regions rather than implying text coverage. A screenshot alone does not prove grounding.
-
-Done when: 20 controlled ask tasks have independent answer checks and resolvable passage citations;
-the panel can reveal a citation; provider/settings changes work without UI special cases; traces
-contain no synthetic credential markers. Report each configured real model separately. Disabled
-or unavailable adapters remain explicit gaps, never substitutes for passing all-model coverage.
+Done when: 20 controlled ask tasks have independent answer checks and resolvable citations. The
+TUI can inspect their passages and safe traces. Run a configured BYOK model and an actual local
+model separately. Provider failure does not silently switch endpoints. A screenshot alone does
+not establish grounding and missing adapter coverage stays explicit.
 
 ### find-01: J3a, find on the page
 
-Archived references: p2-01 through p2-04. Depend on ext-01.
+Depend on tui-01. Rank up to three observed elements/passages from a vague description. Show
+numbered results and reasons in the TUI; optional browser scrolling/highlighting only reveals
+the result and adds no page-based control UI. Low confidence produces no-match or a clarification.
+Bind results to snapshots and revalidate before revealing them. This mode does not click controls.
 
-Implement a `find` ability with on-page mode. Given a vague description, rank up to three offered
-nodes/passages, give short reasons and reveal/highlight them. Low confidence returns no-match or
-asks a clarifying question. It does not click. Bind each result to a snapshot and revalidate before
-scrolling/highlighting. Remove overlay state on navigation, cancellation and task end.
-
-Use a closed shadow-root overlay styled by the shared kit. It must not obscure the target or be
-included as page content in later capture. Keyboard access and screen-reader feedback matter on
-this surface; color alone cannot identify the selected candidate.
-
-Done when: a 20-task labelled fixture set reports top-1/top-3 and no-match behavior per profile;
-duplicate labels, paraphrases, absent targets, offscreen targets, overlays, frames and stale results
-have explicit tests. A real-browser demo shows a vague request finding the labelled element with
-no act permission. Propose the confidence threshold from calibration, then freeze it before held-out use.
+Done when: a 20-task labelled fixture set reports top-1/top-3 and no-match errors per model.
+Duplicate labels, paraphrases, missing/offscreen/covered targets, frames and stale results are
+covered. A TUI/browser recording shows the correct labelled element found without act permission.
+Calibrate confidence on the development set, then freeze it before held-out evaluation.
 
 ### work-01: J2, page work
 
-Archived references: p3-01 through p3-11. Depend on find-01 and fix-09's verified loop.
+Depend on find-01 and fix-09. Register click, type, select, press, scroll, navigate, back, wait and
+tab tools with honest effects and permission metadata. Use the browser driver's trusted input
+path and trace any fallback. Reuse target bindings, credential refusal and action-bound approval.
 
-Register independent click, type, select, press, scroll, navigate, back, wait and tab-management
-tools with accurate effect, irreversibility, cross-origin and permission metadata. Attach debugger
-only when trusted input is needed and detach on completion/cancel. Keep driver fallback explicit
-and trace it. Reuse numbered target bindings, credentials refusal and action-bound approvals.
+The TUI shows the proposal, steps, budgets and pause/resume/cancel controls. Credentials and CAPTCHA
+hand control to the person in Chrome, then Continue triggers fresh capture. Scope permissions
+before page reads. Keyboard/form submission reaches the same gate as clicking a submit button.
 
-The panel shows current proposal, steps, budgets, Allow/Deny, Stop and hand-back/Continue. A real
-user interaction pauses autonomous control. Scope the permissions before reading any task pages.
-Page text cannot expand them. Submission through keyboard and form APIs must reach the same gate
-as pressing a submit button.
-
-Done when: a six-step form and 20 fixture tasks reach independently verified page states. Run all
-six perturbations from fix-06. Attack fixtures include hidden text, image instructions, OTP theft,
-URL exfiltration, a deceptive overlay and disguised credential fields. Record zero unsafe acts for
-every enabled adapter. Worker death, panel closure, user takeover and mid-request cancellation have
-traces. Unsupported/non-English commit-label cases are reported as gaps, not solved by English regexes.
+Done when: a six-step form and 20 fixture tasks reach independently checked states through the
+terminal. Run selector drift, duplicate targets, session expiry, a modal, 429 and an irreversible
+step. Attack fixtures cover hidden/image instructions, OTP theft, URL exfiltration, deceptive
+controls and disguised credentials, with zero unsafe acts per enabled adapter. Browser/terminal
+loss, takeover and cancellation have traces. Report unknown/non-English label gaps plainly.
 
 ### research-01: J1, research
 
-Archived references: p4-01 through p4-09. Depend on work-01 and ext-01.
+Depend on work-01 and tui-01. Add engine-tab search, then compare API candidates before choosing
+an API backend. Every API request uses egress. Search CAPTCHA hands back. Queries derive from
+user intent and the trusted plan; source text cannot append private page/history data to a query.
 
-Build `engine-tab` as the first search backend and compare it with API candidates before choosing
-one API backend. All API calls use egress. Search-engine CAPTCHA is a hand-back. Search queries
-come from user intent and the trusted research plan; a source cannot append a query carrying
-private page/history data. Proposed expansion beyond the envelope pauses for user direction.
+Plan subquestions, search, deduplicate URLs and read bounded background tabs. Show source hosts,
+notes, progress and budgets in the TUI while the user continues browsing. Own and clean up only
+the tabs created by the run. Use a browser tab group only if the chosen driver supports it;
+terminal tab tracking is sufficient. Per-source failure and cancellation stop their work.
 
-The research ability plans subquestions, searches, deduplicates canonical URLs, opens bounded
-background tabs in a ChromeClaw-owned group, extracts passages, records notes and synthesizes
-claims with source/passage references. Use per-source timeout and concurrency limits. Closing the
-group stops its tasks. Read operations do not gain write privileges by being part of research.
+Synthesize claims with source/passage references. Distinguish citation resolution from evidence
+support: keyword overlap is diagnostic, not entailment. Reject invalid references, report
+contradictions and qualify unsupported claims. Reading sources never grants write permission.
 
-Make citation validity and evidence support separate checks. A passage ID existing proves only
-that a citation resolves. Keyword overlap is a weak diagnostic, not proof of entailment. Evaluate
-support against labelled claim/passage pairs, record contradictions and qualify unsupported claims.
-Do not silently drop an invalid cited ID or present it as a grounded answer.
-
-Done when: a multi-source fixture question has a trace from search through supported claims; every
-citation resolves to the captured passage; the source/time/cost budget stops a run; five concurrent
-reader tabs have measured throttling behavior. A 20-question set reports answer correctness,
-citation validity and citation support separately. Held-out live questions are separate from
-fixtures and tagged site-changed/model/agent failure. Poisoned sources cause zero unsafe acts.
+Done when: a fixture question has a trace from search through supported claims; budget stops and
+five concurrent reader tabs have recorded results. A 20-question set reports answer correctness,
+citation validity and support per BYOK/local model. Live held-out questions stay separate and
+classify site/model/agent failure. Poisoned sources cause zero unsafe acts. Sources and passages
+are reviewable from the terminal.
 
 ### find-02: J3b, find in my history
 
-Archived references: p5-01 through p5-03, p5-05 and p5-07. Depend on ext-01; use J1's reader interface.
+Depend on tui-01 and use shared reader interfaces. First prove bounded history/bookmark access
+with the selected browser integration. If a minimal browser bridge is required, record that gap,
+its permission scope and transport before building it. All requests and approvals remain in the
+TUI. Do not scrape a live personal profile database or add a browser frontend as a shortcut.
 
-Add history/bookmark tool plugins with optional permissions, explicit time windows, title/URL
-search and local candidate filtering. Send only the approved candidate metadata to a hosted model.
-Do not send the whole history because one request says "that page last week". Record the crossing.
+Search explicit time windows and title/URL terms, filter locally, and send only approved candidate
+metadata to a hosted model. Open a bounded shortlist to confirm the target. Show the searched
+scope and support forgetting retained notes. Measure 20 personal recollections before deciding
+whether an opt-in local text/embedding index earns its storage and maintenance cost.
 
-Rerank candidates and open only a bounded shortlist to verify the target. Show which records
-were searched and allow forgetting stored notes. A local index is conditional: first run 20 real
-recollections and measure title/URL retrieval. Add page-text indexing and embeddings only if those
-misses justify the storage, consent, model download and deletion work.
+Done when: seeded history tasks recover known URLs in the top three, unselected private pages
+remain unread, and revoking access stops the search. Report per-query misses separately. If an
+index is justified, measure its incremental gain, deletion and quotas, and verify it stays local.
 
-Done when: seeded-profile tasks recover the known URL in the top three, never read unselected
-private pages, and revoking permission stops access. Report the 20 personal recollections as a
-small sample with per-query misses. If indexing is added, measure incremental gain and verify
-deletion, quota handling and that index/embeddings stay on the device.
+### find-03: J3c, find on the web
 
-### find-03: J3c, find on the web and shared entry points
+Depend on research-01. Use injected search/readers in the find ability to return a verified target
+URL and a reason it matches. Search snippets are candidates, not proof. Handle redirects,
+duplicates, unavailable targets and explicit no-match. Route from TUI requests or one-shot CLI
+flags; the chosen mode and permission scope are visible before execution.
 
-Archived references: p5-04, p5-06 and p5-07. Depend on research-01; do not import its ability plugin.
-
-Extend the `find` ability with web mode using injected search/reader services. The outcome is a
-verified target URL and a reason it matches the description. Search snippets alone are candidates,
-not proof. Handle redirects, duplicates, unavailable targets and explicit no-match.
-
-Wire panel, context menu and omnibox `cc` through the shell. Show the selected ability before a
-permission-bearing task starts. A router cannot silently turn a page question into a write task.
-
-Done when: a labelled vague-query set returns known canonical URLs and refuses the absent targets;
-all three find modes work through each entry point; permission/envelope construction is identical
-across entry points; adapter-specific top-1/top-3 and no-match errors are recorded.
+Done when: labelled vague queries return known canonical URLs and refuse absent targets. All
+three find modes work through TUI and machine-readable CLI with identical permission construction.
+Report top-1/top-3 and no-match errors separately for BYOK/local model profiles. Routing cannot
+silently convert a read request into a write task.
 
 ### daily-01: Make the three jobs dependable
 
-Archived references: p6-01 through p6-05.
+Use the TUI for a week of bounded personal tasks. Each failure becomes an eval before its fix.
+Add adapters, cross-tab ask or routing complexity only when recorded needs justify them. Generate
+model reports from the acceptance reports, separating fixtures, perturbations, attacks and live
+held-out tasks. Report cold/warm latency, steps, tokens/cost, interventions and refusal errors.
 
-Run a week of personal use with bounded tasks. Each failure becomes a fixture/eval before its fix.
-Add cross-tab ask, additional adapters or router refinement only when a recorded need supports it.
-Keep a per-profile model report generated from the same reports used for acceptance. Track cold
-and warm latency separately, steps, token/cost estimates, interventions, refusal errors and unsafe
-acts. Keep the safety target at zero; derive capability baselines from measurements.
-
-Done when: seven days of traces are reviewed, each observed failure has a regression case, current
-docs match actual commands and enabled plugins, and the published report distinguishes fixtures,
-perturbations, attacks and live held-out runs. No single mock score stands in for model quality.
+Done when: seven days of traces are reviewed, every observed failure has a regression, docs match
+the actual commands and enabled plugins, and the TUI remains usable under long output and resize.
+Existing safety regressions still pass. Mock scores never stand in for model quality.
 
 ## First implementation cut
 
-Start with `fix-00`, followed by credential suppression and target-bound gates. Finish and measure
-the bug-fix release before opening extension feature work. No dates or model-quality thresholds
-are promised before the baseline. The deliverable of this audit is the plan and evidence, not a
-claim that any of these jobs has shipped.
+Start with fix-00, credential suppression and target-bound gates, then complete the bug-fix release.
+The next feature work is the terminal frontend and J3a, not an extension shell. Keep each delivery
+small enough to review, with the shortest clear implementation that meets its acceptance checks.
+No code, model compatibility or job completion is claimed by this planning update.

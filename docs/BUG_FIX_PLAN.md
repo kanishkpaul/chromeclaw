@@ -2,11 +2,37 @@
 
 This plan applies to executable main at `50355b9`. Findings and reproductions are in
 [MAIN_AUDIT.md](MAIN_AUDIT.md). Every task below is pending. Keep changes on task branches,
-attach real-browser evidence and let Kanishk decide what merges.
+attach real-browser evidence and let Kanishk decide what merges. ChromeClaw lives fully in the
+terminal as a TUI. BYOK hosted models and local models are required paths for every job.
 
 Stabilize the existing implementation before adding jobs. Reject a wholesale merge of local
 `new`: it removes working code. Also reject patching every selector fallback or adding task-word
 regexes: those retain the causes of B02, B03 and B05.
+
+## Engineering standard
+
+Follow the engineering rules preserved at `new:docs/ENGINEERING.md`. Write code, comments and
+commits as a senior engineer maintaining this code for another person:
+
+- Choose the smallest clear implementation that meets the contract. If five readable lines solve
+  the problem, do not write fifty. Do not compress away validation, safety or useful error handling.
+- Add a module or abstraction only when it hides real complexity. Avoid speculative frameworks,
+  forwarding wrappers, duplicate state, unused options and new dependencies without a reason.
+- Use precise names, strict boundary types and explicit failure outcomes. Comments explain why,
+  contracts, constraints or tradeoffs; delete narration, commented-out code and bare TODOs.
+- Keep each commit focused. Use an imperative task-ID subject under 72 characters. The body states
+  why, the rejected alternative, verification and what was not verified. No attribution trailers.
+- Review the diff for unnecessary code before committing. Every bug fix gets the regression that
+  would have caught it and evidence from the integrated browser path.
+
+## Retain and upgrade existing safety
+
+Inventory the old policy, prompt restrictions, schemas and tests before replacing them. Preserve
+credential/login hand-back, CAPTCHA/paywall/security-bypass refusal, consequential-action approval,
+restricted-destination checks and inspectable traces. Upgrade each boundary where the audit found
+it ineffective. Keep a mapping from old protection to its replacement regression so a rewrite
+cannot silently remove coverage. Reject task-keyword false positives without weakening the
+underlying protection. Local models receive the same gates as BYOK hosted models.
 
 ## Order and dependencies
 
@@ -28,8 +54,9 @@ README, test configuration and CI.
   refusal/hand-back expectation, never ordinary task completion.
 - Replace substring-oracle defaults. Record selected task count, adapter/model, fixture version,
   terminal status and failure classification. Exit nonzero on a required failed task.
-- Correct the README's branch links, build output and eval defaults. Document the user-supplied
-  engineering contract as active policy rather than treating the archived README as authority.
+- Correct the README's branch links, build output and eval defaults. Restore the applicable
+  engineering contract from `new`, with the terminal-only product decision taking precedence over
+  its side-panel requirements. Document the safety inventory and old-to-new regression mapping.
 
 Done when: a deliberately wrong answer with a matching search title fails; blocked comparison
 fails; the explicit login hand-back task passes only the expected hand-back; a broken fixture
@@ -144,7 +171,7 @@ Done when: false completion on a blank page fails; a six-step form reaches its i
 state. Selector drift, duplicate targets, session expiry, a modal, 429 and an irreversible step
 all produce recorded outcomes. Ambiguous commit acknowledgment pauses instead of duplicating it.
 
-### fix-07: Correct provider and CLI configuration
+### fix-07: Make BYOK and local configuration work end to end
 
 Addresses B13, B17 and B18. Owns provider factory, configuration parsing and CLI commands.
 
@@ -152,12 +179,22 @@ Addresses B13, B17 and B18. Owns provider factory, configuration parsing and CLI
   required model configuration. Honor flag-over-environment-over-default precedence.
 - `local` requires an explicit local endpoint; parse hostnames instead of substring matches.
   Validate key/destination pairing. Refuse an unavailable provider before opening the browser.
+- Make BYOK explicit: user-selected provider/base URL, model and key, with OpenAI-compatible hosted
+  endpoints and independently implemented adapters where protocols differ. Support local servers
+  such as Ollama, LM Studio and llama.cpp through their compatible API. Do not bundle a hosted key.
+- Run the same job protocol, safety gates and trace paths in both modes. A local failure never
+  falls back to a hosted model. Show model, endpoint and local/hosted status in the terminal before
+  the run. Keys and authorization headers never enter prompts, console output or traces.
 - Represent provider capabilities honestly. Keep Anthropic disabled/unavailable until implemented.
-  Add clean JSON output and meaningful exit statuses for failed, stopped and awaiting-input runs.
+  Add clean JSON/JSONL output and meaningful exit statuses for failed, stopped and awaiting-input
+  runs. No TUI decorations in machine-readable output.
 
 Done when: CLI process tests cover each terminal state, option precedence, invalid budgets, hosted
 model omissions, an attacker hostname containing localhost and local-without-endpoint. Provider
-selection never silently crosses to a hosted endpoint. Attach a CLI browser smoke run.
+selection never silently crosses to a hosted endpoint. Attach browser smoke runs through one
+configured BYOK hosted adapter and one actual local model server, reported separately. Simulated
+HTTP transport tests do not count as model compatibility. If either real endpoint is unavailable,
+keep its acceptance check open; do not use credentials or make paid calls merely to edit this plan.
 
 ### fix-08: Make traces and storage explain failures
 
@@ -189,6 +226,8 @@ readiness. If unavailable, keep that gate open and say so. Live held-out tasks r
 
 ## Scope after this plan
 
-Keep the CLI as a working entry point and evaluation driver. Its repaired contracts and pure
-decisions become the extension's shared core; its filesystem and Playwright I/O do not. The next
-plan adds the Chrome shell and jobs, rather than maintaining two different autonomous loops.
+The terminal TUI is the product frontend. Keep one-shot CLI commands and JSON/JSONL for automation.
+The repaired runtime powers J1, J2 and J3 from that same terminal application. Extract pure core,
+page capture or egress modules only where they enforce a real boundary; filesystem and Playwright
+I/O stay in adapters. Follow [J123_BUILD_PLAN.md](J123_BUILD_PLAN.md) for the TUI and job delivery.
+Reuse the local `../design-kit` and the preserved `new:design/` assets for terminal presentation.
