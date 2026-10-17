@@ -132,6 +132,7 @@ export class SafetyPolicy {
       return block(
         "Only target-bound button or link activation is supported. Implicit submission is refused.",
       );
+    if (action.type === "press" && !["button", "link"].includes(target.role ?? "")) return block("Implicit keyboard submission is refused. Select the submit control separately.");
     // Label heuristics cannot prove that an unknown handler is harmless. Confirm every remaining
     // activation, including unnamed buttons, instead of guessing that "Continue" cannot commit.
     if (!permissions.write || permissions.irreversible !== "confirm")

@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 const root = fileURLToPath(new URL("../../../", import.meta.url));
 const dependencies: Readonly<Record<string, readonly string[]>> = {
-  shared: [], browser: ["shared"], agent: ["browser", "shared"], evals: ["agent", "shared"], cli: ["agent", "evals", "shared"]
+  egress: [], shared: [], browser: ["shared"], agent: ["browser", "shared", "egress"], evals: ["agent", "shared"], cli: ["agent", "evals", "shared"]
 };
 
 function violations(source: string, owner: string, file: string): string[] {
@@ -21,8 +21,8 @@ function violations(source: string, owner: string, file: string): string[] {
     }
     if ((ts.isCallExpression(node) || ts.isNewExpression(node)) &&
       ["fetch", "globalThis.fetch", "XMLHttpRequest", "WebSocket", "navigator.sendBeacon"].includes(node.expression.getText(syntax)) &&
-      file !== "packages/agent/src/llm/openai.ts") {
-      errors.push(`Network I/O outside the legacy egress boundary: ${file}`);
+      file !== "packages/egress/src/index.ts") {
+      errors.push(`Network I/O outside the egress boundary: ${file}`);
     }
     if (ts.isPropertyAccessExpression(node) && node.expression.getText(syntax) === "chrome") {
       errors.push(`Chrome API outside a browser bridge: ${file}`);

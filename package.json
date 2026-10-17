@@ -10,16 +10,17 @@
   },
   "scripts": {
     "dev": "pnpm build:packages && pnpm --filter @chromeclaw/cli dev repl",
-    "build:packages": "pnpm --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build",
+    "build:packages": "pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build",
     "build": "pnpm build:packages && pnpm --filter @chromeclaw/cli build",
-    "lint": "pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint",
-    "typecheck": "pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck",
+    "lint": "pnpm --filter @chromeclaw/egress lint && pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint",
+    "typecheck": "pnpm --filter @chromeclaw/egress typecheck && pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck",
     "test": "vitest run",
     "eval": "pnpm build:packages && pnpm --filter @chromeclaw/evals eval",
     "format": "prettier --write .",
     "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test",
     "eval:credentials": "pnpm build:packages && node packages/browser/tests/credentials.browser.mjs",
-    "eval:safety": "pnpm build:packages && tsx --tsconfig tsconfig.base.json packages/browser/tests/safety.browser.mjs --source"
+    "eval:safety": "pnpm build:packages && tsx --tsconfig tsconfig.base.json packages/browser/tests/safety.browser.mjs --source",
+    "eval:runtime": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/runtime.browser.mjs --source"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

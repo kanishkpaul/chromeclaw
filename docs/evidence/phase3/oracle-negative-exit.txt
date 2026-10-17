@@ -1,0 +1,2 @@
+Expected exit: 1
+Observed exit: 1

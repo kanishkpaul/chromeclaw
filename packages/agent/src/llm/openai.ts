@@ -1,3 +1,5 @@
+import { z } from "zod";
+import { postJson } from "@chromeclaw/egress";
 import { BrowserActionSchema, type BrowserAction } from "@chromeclaw/shared";
 import { BROWSER_AGENT_SYSTEM_PROMPT, buildPlannerPrompt } from "../prompt";
 import type { Planner, PlannerInput } from "./index";
@@ -7,48 +9,46 @@ interface OpenAIConfig {
   apiKey?: string | undefined;
   baseUrl?: string | undefined;
   providerName?: string | undefined;
+  timeoutMs?: number;
 }
+const ResponseSchema = z.object({
+  choices: z
+    .array(z.object({ message: z.object({ content: z.string().min(1) }) }))
+    .min(1),
+});
 
-type LegacyActionPayload = Record<string, unknown>;
+export class PlannerReplyError extends Error {}
 
+/** Only stable transport codes and HTTP status belong in public diagnostics. */
+export class PlannerTransportError extends Error {}
+
+/** JSON mode is transport syntax, not schema adherence. Every reply is parsed locally. */
 export class OpenAICompatiblePlanner implements Planner {
   name: string;
   model: string;
-  private apiKey?: string | undefined;
-  private baseUrl: string;
-
-  constructor(config: OpenAIConfig) {
-    this.model = config.model;
-    this.apiKey = config.apiKey;
-    this.baseUrl = (config.baseUrl || "https://api.openai.com/v1").replace(
-      /\/$/,
-      "",
-    );
+  constructor(private config: OpenAIConfig) {
     this.name = config.providerName ?? "openai-compatible";
+    this.model = config.model;
   }
-
   async plan(input: PlannerInput): Promise<BrowserAction> {
+    const base = new URL(this.config.baseUrl ?? "https://api.openai.com/v1");
     if (
-      !this.apiKey &&
-      !this.baseUrl.includes("localhost") &&
-      !this.baseUrl.includes("127.0.0.1")
-    ) {
-      const credential =
-        this.name === "huggingface"
-          ? "HF_TOKEN or HUGGINGFACE_API_KEY"
-          : "OPENAI_API_KEY";
+      !this.config.apiKey &&
+      !["localhost", "127.0.0.1", "[::1]"].includes(base.hostname)
+    )
+      throw new Error("A key is required for this hosted planner.");
+    if (!input.onCrossing)
       throw new Error(
-        `${credential} is required for hosted ${this.name} requests. Use CHROMECLAW_PROVIDER=mock for keyless mode.`,
+        "A durable crossing recorder is required before any planner request.",
       );
-    }
-
-    const response = await fetch(`${this.baseUrl}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        ...(this.apiKey ? { authorization: `Bearer ${this.apiKey}` } : {}),
-      },
-      body: JSON.stringify({
+    const result = await postJson({
+      url: `${base.href.replace(/\/$/, "")}/chat/completions`,
+      approvedOrigin: base.origin,
+      apiKey: this.config.apiKey,
+      signal: input.signal,
+      ...(this.config.timeoutMs ? { timeoutMs: this.config.timeoutMs } : {}),
+      onCrossing: input.onCrossing,
+      body: {
         model: this.model,
         temperature: 0.1,
         response_format: { type: "json_object" },
@@ -57,160 +57,45 @@ export class OpenAICompatiblePlanner implements Planner {
           {
             role: "user",
             content: buildPlannerPrompt({
-              task: input.task,
-              observationSummary: `${input.observationSummary}\nSnapshot: ${input.observation.snapshotId}\nOffered numbered targets (use only these):\n${JSON.stringify(input.observation.interactiveElements)}`,
-              recentSteps: input.recentSteps,
-              maxSteps: input.maxSteps,
+              ...input,
+              sensitiveValues: [
+                ...(input.sensitiveValues ?? []),
+                ...(this.config.apiKey ? [this.config.apiKey] : []),
+              ],
             }),
           },
         ],
-      }),
+      },
     });
-
-    if (!response.ok) {
-      throw new Error(
-        `Planner request failed: ${response.status} ${await response.text()}`,
+    if (!result.ok)
+      throw new PlannerTransportError(
+        `Planner transport failed: ${result.code}${result.status ? ` (${result.status})` : ""}.`,
       );
-    }
-
-    const json = (await response.json()) as {
-      choices?: Array<{ message?: { content?: string } }>;
-    };
-    const content = json.choices?.[0]?.message?.content;
-    if (!content) throw new Error("Planner returned no content.");
-    return BrowserActionSchema.parse(
-      normalizeModelActionPayload(parsePlannerJson(content)),
-    );
+    const response = ResponseSchema.safeParse(result.value);
+    if (!response.success)
+      throw new PlannerReplyError(
+        "Planner response has no valid message content.",
+      );
+    const first = response.data.choices[0];
+    if (!first) throw new PlannerReplyError("Planner response has no choices.");
+    return parsePlannerAction(first.message.content);
   }
 }
 
-function parsePlannerJson(content: string): unknown {
+/** One enclosing JSON fence is accepted. Embedded objects in prose and unknown keys refuse. */
+export function parsePlannerAction(content: string): BrowserAction {
+  const trimmed = content.trim();
+  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  let value: unknown;
   try {
-    return JSON.parse(content);
+    value = JSON.parse(fenced?.[1] ?? trimmed);
   } catch {
-    const fenced = content.match(/```(?:json)?\s*([\s\S]*?)\s*```/i)?.[1];
-    if (fenced) {
-      return JSON.parse(fenced);
-    }
-
-    const firstBrace = content.indexOf("{");
-    const lastBrace = content.lastIndexOf("}");
-    if (firstBrace >= 0 && lastBrace > firstBrace) {
-      return JSON.parse(content.slice(firstBrace, lastBrace + 1));
-    }
-
-    throw new Error(
-      `Planner returned non-JSON content: ${content.slice(0, 400)}`,
+    throw new PlannerReplyError("Planner reply is not a complete JSON action.");
+  }
+  const action = BrowserActionSchema.safeParse(value);
+  if (!action.success)
+    throw new PlannerReplyError(
+      "Planner reply does not match the strict action contract.",
     );
-  }
-}
-
-export function normalizeModelActionPayload(value: unknown): unknown {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
-
-  const payload: LegacyActionPayload = { ...(value as LegacyActionPayload) };
-  const type =
-    typeof payload.type === "string"
-      ? payload.type
-      : typeof payload.action === "string"
-        ? payload.action
-        : undefined;
-
-  if (!type) return payload;
-
-  const thoughtSummary =
-    typeof payload.thoughtSummary === "string"
-      ? payload.thoughtSummary
-      : undefined;
-
-  switch (type) {
-    case "navigate": {
-      const url =
-        asString(payload.url) ??
-        asString(payload.target) ??
-        asString(payload.text);
-      return thoughtSummary ? { type, thoughtSummary, url } : { type, url };
-    }
-    case "search_web": {
-      const query =
-        asString(payload.query) ??
-        asString(payload.target) ??
-        asString(payload.url) ??
-        asString(payload.text);
-      return thoughtSummary ? { type, thoughtSummary, query } : { type, query };
-    }
-    case "click":
-    case "type":
-    case "press":
-      // Legacy selector proposals must fail the strict schema, never regain fallback targeting.
-      return payload;
-    case "wait": {
-      const ms = asNumber(payload.ms) ?? asNumber(payload.target);
-      return thoughtSummary ? { type, thoughtSummary, ms } : { type, ms };
-    }
-    case "extract_text":
-    case "summarize_page":
-    case "screenshot": {
-      return thoughtSummary ? { type, thoughtSummary } : { type };
-    }
-    case "scroll": {
-      const next = {
-        type,
-        thoughtSummary,
-        direction: asString(payload.direction),
-        amount: asNumber(payload.amount),
-      };
-      return removeUndefined(next);
-    }
-    case "ask_user": {
-      const question =
-        asString(payload.question) ??
-        asString(payload.target) ??
-        asString(payload.text);
-      return thoughtSummary
-        ? { type, thoughtSummary, question }
-        : { type, question };
-    }
-    case "finish": {
-      const answer =
-        asString(payload.answer) ??
-        asString(payload.text) ??
-        asString(payload.target);
-      return thoughtSummary
-        ? { type, thoughtSummary, answer }
-        : { type, answer };
-    }
-    case "fail": {
-      const reason =
-        asString(payload.reason) ??
-        asString(payload.text) ??
-        asString(payload.target);
-      return thoughtSummary
-        ? { type, thoughtSummary, reason }
-        : { type, reason };
-    }
-    default:
-      return payload;
-  }
-}
-
-function asString(value: unknown): string | undefined {
-  return typeof value === "string" && value.length > 0 ? value : undefined;
-}
-
-function asNumber(value: unknown): number | undefined {
-  if (typeof value === "number" && Number.isFinite(value)) return value;
-  if (typeof value === "string" && value.trim().length > 0) {
-    const parsed = Number(value);
-    if (Number.isFinite(parsed)) return parsed;
-  }
-  return undefined;
-}
-
-function removeUndefined<T extends Record<string, unknown>>(value: T): T {
-  return Object.fromEntries(
-    Object.entries(value).filter(
-      ([, currentValue]) => currentValue !== undefined,
-    ),
-  ) as T;
+  return action.data;
 }

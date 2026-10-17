@@ -234,7 +234,7 @@ try {
     screenshotsDir: path.join(output, "runtime-screenshots"),
     onStep(step, liveRun) {
       if (step.action?.type === "type") {
-        assert.equal(liveRun.status, "blocked");
+        assert.equal(liveRun.status, "awaiting-answer");
         assert.equal(step.action.text, "[withheld]");
         assert.equal(step.thoughtSummary, undefined);
       }
@@ -251,7 +251,7 @@ try {
       },
     },
   });
-  assert.equal(run.status, "blocked");
+  assert.equal(run.status, "awaiting-answer");
   assert.match(run.finalAnswer, /Credential entry is refused/);
   const trace = await readFile(
     path.join(output, "runs", `${run.id}.jsonl`),
@@ -265,7 +265,7 @@ try {
     (await readdir(path.join(output, "runtime-screenshots"))).length,
     runtimeFilesBefore.length + 1,
   );
-  record("runtime-driver-refusal-is-blocked-not-done");
+  record("runtime-credential-handback-is-awaiting-answer-not-done");
   record("trace-and-screenshots-exclude-synthetic-secrets");
   assert.ok(requests > 0);
   const report = {

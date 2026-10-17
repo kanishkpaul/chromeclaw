@@ -35,7 +35,7 @@ an isolated real browser with synthetic values. It tests capture, driver refusal
 of policy, autocomplete lists, labelled textarea/OTP, open shadow roots, focused frames, focus-time
 changes, action-log withholding and ordinary field events. Reports/JSONL/masked screenshots go
 to `.chromeclaw/credential-safety` and are uploaded by CI. It does not measure model quality. Target/envelope evidence is in `eval:safety`;
-resumable hand-back remains Phase 3. A safe DOM target summary replaces the legacy broken
+resumable hand-back is checked by the Phase 3 runtime suite. A safe DOM target summary replaces the legacy broken
 AX call for now; no raw native AX field values are captured.
 
 
@@ -52,3 +52,19 @@ exact/denied/stale approvals, Enter activation, transfer/pay/post/delete/unknown
 cross-origin form/query exports. PostgreSQL reading must remain allowed. Mutation logs in
 `docs/evidence/phase2/completion/` show that removing each critical gate breaks a browser oracle.
 Scripted fixture success does not replace the real-model, live-site or daily-use phase gates.
+
+
+`pnpm eval:runtime` builds the app and runs the Phase 3 lifecycle suite through source aliases.
+`node packages/agent/tests/runtime.browser.mjs` runs the same assertions through compiled packages.
+Each invocation uses a separate evidence directory under `.chromeclaw/phase3-runtime` and writes
+`report.json`. It uses scripted planners and a loopback HTTP model adapter with a synthetic key;
+it is not a model benchmark. It checks retained extractions/fences, crossing order, 429, human
+answers, exact/one-use/racing approvals, credential continuation, six-step world state, false
+completion, invalid citations, repeated no-change proposals, ambiguous commits, modal handling,
+cancellation, reopen, SIGKILL/new-process recovery, corrupt-tail reads, startup/cleanup/storage
+failure and undecorated CLI JSON. CI archives the directory even on failure.
+
+The baseline's credential case now explicitly expects `handback` (`awaiting-answer`) and no
+submission. Explicit refusal tasks still require `blocked`. Ordinary tasks never pass by being
+blocked, awaiting input or uncertain. Versioned Phase 3 events differ from historical JSONL;
+legacy traces are retained as historical data rather than converted into current authority.

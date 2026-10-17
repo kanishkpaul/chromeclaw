@@ -84,6 +84,13 @@ export async function runFixtureEvals(options: EvaluationOptions = {}) {
           irreversible: "confirm",
         },
         approve: async () => true,
+        verify: async (_session, finish) => ({
+          passed:
+            task.expectation.kind === "answer"
+              ? finish.answer === task.expectation.answer
+              : savedCities.length === 1 && savedCities[0] === "Kolkata",
+          detail: "Independent fixture answer/server-state predicate.",
+        }),
         planner,
         maxSteps: task.maxSteps,
         headless: !options.headed,

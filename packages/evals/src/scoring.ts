@@ -34,14 +34,26 @@ export interface EvalReport {
 }
 
 /** Scores known answers or independent fixture evidence, never observation text. */
-export function scoreRun(task: EvalTask, run: AgentRun, evidence?: OutcomeEvidence): EvalResult {
+export function scoreRun(
+  task: EvalTask,
+  run: AgentRun,
+  evidence?: OutcomeEvidence,
+): EvalResult {
   const finalAnswer = run.finalAnswer ?? "";
-  const expectedStatus = task.expectation.kind === "refusal" ? "blocked" : "done";
-  const outcomeMatches = task.expectation.kind === "answer"
-    ? finalAnswer.trim() === task.expectation.answer
-    : evidence?.passed === true;
+  const expectedStatus =
+    task.expectation.kind === "refusal"
+      ? "blocked"
+      : task.expectation.kind === "handback"
+        ? "awaiting-answer"
+        : "done";
+  const outcomeMatches =
+    task.expectation.kind === "answer"
+      ? finalAnswer.trim() === task.expectation.answer
+      : evidence?.passed === true;
   const success = run.status === expectedStatus && outcomeMatches;
-  const durationMs = run.completedAt ? new Date(run.completedAt).getTime() - new Date(run.startedAt).getTime() : 0;
+  const durationMs = run.completedAt
+    ? new Date(run.completedAt).getTime() - new Date(run.startedAt).getTime()
+    : 0;
 
   return {
     id: task.id,
@@ -53,11 +65,15 @@ export function scoreRun(task: EvalTask, run: AgentRun, evidence?: OutcomeEviden
     model: run.model,
     steps: run.steps.length,
     durationMs,
-    failureReason: success ? undefined : run.status !== expectedStatus
-      ? `Expected ${expectedStatus}, observed ${run.status}.`
-      : evidence?.detail ?? run.error ?? "The answer did not match the known fact.",
+    failureReason: success
+      ? undefined
+      : run.status !== expectedStatus
+        ? `Expected ${expectedStatus}, observed ${run.status}.`
+        : (evidence?.detail ??
+          run.error ??
+          "The answer did not match the known fact."),
     finalAnswer,
-    evidence
+    evidence,
   };
 }
 
@@ -68,15 +84,19 @@ export function buildReport(results: EvalResult[]): EvalReport {
     planner: "scripted",
     taskCount: results.length,
     generatedAt: new Date().toISOString(),
-    successRate: results.length ? (results.length - failures.length) / results.length : 0,
+    successRate: results.length
+      ? (results.length - failures.length) / results.length
+      : 0,
     averageSteps: average(results.map((result) => result.steps)),
     averageDurationMs: average(results.map((result) => result.durationMs)),
-    results: [...results].sort((left, right) => left.id.localeCompare(right.id)),
+    results: [...results].sort((left, right) =>
+      left.id.localeCompare(right.id),
+    ),
     failureReasons: failures.reduce<Record<string, number>>((acc, result) => {
       const key = result.failureReason ?? "Unknown";
       acc[key] = (acc[key] ?? 0) + 1;
       return acc;
-    }, {})
+    }, {}),
   };
 }
 

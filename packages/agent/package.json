@@ -19,7 +19,8 @@
   "dependencies": {
     "@chromeclaw/browser": "workspace:*",
     "@chromeclaw/shared": "workspace:*",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "@chromeclaw/egress": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
