@@ -1,0 +1,132 @@
+{
+  "suite": "phase2-gate-mutations",
+  "mutations": [
+    {
+      "gate": "atomic-credential",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 4.79,
+      "patches": [
+        {
+          "file": "packages/browser/src/credentials.ts",
+          "before": "if (credential)",
+          "after": "if (false)"
+        }
+      ]
+    },
+    {
+      "gate": "origin",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 1.99,
+      "patches": [
+        {
+          "file": "packages/shared/src/permissions.ts",
+          "before": "if (!envelope.origins.includes(url.origin))",
+          "after": "if (false)"
+        }
+      ]
+    },
+    {
+      "gate": "target-state",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 1.06,
+      "patches": [
+        {
+          "file": "packages/browser/src/targets.ts",
+          "before": "if (!(await snapshotIsCurrent(page, query.snapshotId))) return undefined;",
+          "after": ""
+        },
+        {
+          "file": "packages/browser/src/targets.ts",
+          "before": "!input.state.isCurrent() ||",
+          "after": "false ||"
+        },
+        {
+          "file": "packages/browser/src/targets.ts",
+          "before": "fingerprint !== input.expected ||",
+          "after": "false ||"
+        }
+      ]
+    },
+    {
+      "gate": "write",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 7.37,
+      "patches": [
+        {
+          "file": "packages/agent/src/safety.ts",
+          "before": "!permissions.write || permissions.irreversible !== \"confirm\"",
+          "after": "permissions.irreversible !== \"confirm\""
+        },
+        {
+          "file": "packages/browser/src/navigation.ts",
+          "before": "permissions.write &&",
+          "after": "true &&"
+        }
+      ]
+    },
+    {
+      "gate": "tool",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 7.62,
+      "patches": [
+        {
+          "file": "packages/agent/src/safety.ts",
+          "before": "if (!permissions.tools.includes(action.type))",
+          "after": "if (false)"
+        }
+      ]
+    },
+    {
+      "gate": "request-approval",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 1.93,
+      "patches": [
+        {
+          "file": "packages/browser/src/navigation.ts",
+          "before": "else if (ticket !== destination)",
+          "after": "else if (false)"
+        }
+      ]
+    },
+    {
+      "gate": "request-expiry",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 3.5,
+      "patches": [
+        {
+          "file": "packages/browser/src/navigation.ts",
+          "before": "Date.now() >= permissions.expiresAt",
+          "after": "false"
+        }
+      ]
+    },
+    {
+      "gate": "redirect",
+      "exitCode": 1,
+      "caughtByAssertion": true,
+      "seconds": 1.42,
+      "patches": [
+        {
+          "file": "packages/browser/src/navigation.ts",
+          "before": "maxRedirects: 0",
+          "after": "maxRedirects: 5"
+        }
+      ]
+    }
+  ],
+  "restored": true,
+  "sourceHashes": {
+    "packages/browser/src/credentials.ts": "c14b9afafd5c3eff78b48569b792d8078aed3cbed1d713908f771522f9672b48",
+    "packages/shared/src/permissions.ts": "6a6b93385e037022a6095b22a42fac4c5230bad0b5c95ffdb6771841451ed282",
+    "packages/browser/src/targets.ts": "7a25550dca13f4437045b0509adea086ec8da6bd986d72109172fa144b15fd1b",
+    "packages/agent/src/safety.ts": "e64d8db2caf0e48538aaa62c850c353856efb97f37d01a963ae73dddb891d519",
+    "packages/browser/src/navigation.ts": "b73284d508fc8ee0c054204fd5a4b4059f88e4e04bf0436ebec1cf2594feda65"
+  }
+}

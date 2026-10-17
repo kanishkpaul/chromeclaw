@@ -16,7 +16,8 @@ orders migration; [DECISIONS.md](DECISIONS.md) records the terminal product dire
 
 Root Vitest aliases resolve packages to source. `pnpm check` builds, typechecks, lints and tests.
 Architecture tests check the current dependency direction, keep Chrome APIs out of Node packages
-and prevent a second network sender. The existing provider fetch is a documented temporary
+and prevent a second network sender. The browser request guard uses Playwright routing with redirects disabled; it is separate from
+application model/search egress. The existing provider fetch is a documented temporary
 boundary; Phase 3 moves it into egress. These tests are regression guards, not a full static
 proof against every JavaScript networking or import pattern.
 
@@ -35,3 +36,14 @@ controls, including approvals; a browser bridge is conditional on a measured int
 
 The extension architecture preserved at `new:docs/ARCHITECTURE.md` is a reference for boundaries,
 not the current product contract. Do not import its side-panel, worker or offscreen lifecycle.
+
+
+## Phase 2 execution boundary
+
+`shared/permissions.ts` constructs frozen task powers and parses destinations without I/O.
+`browser/targets.ts` retains document/node handles and exposes numbered snapshot targets;
+`browser/navigation.ts` gates browser-origin HTTP and refuses redirects/popups. Browser I/O,
+DNS and snapshot IDs stay in the browser adapter. `agent/safety.ts` makes pure admission decisions
+with explicit time/step/spend inputs; the runtime rechecks them after its trusted approval callback.
+No plugin registry or new pure-core package is claimed. See D-015 for the limits and rejected
+alternatives; `SAFETY.md` maps every retained protection to its regression.

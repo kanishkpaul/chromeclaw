@@ -21,11 +21,15 @@ merges; agents do not merge their own PRs.
 
 ## Progress
 
-Phase 0 is complete. Phase 1 is implemented and its local gate passed: 24 tests, three browser
-fixtures, a wrong-city negative control, skip/todo rejection and a forbidden-sender mutation.
-See [the evidence](evidence/phase1/README.md). Hosted CI verification remains pending until the
-implementation PR runs. Phases 2 through 9 are pending; no runtime safety or model readiness is
-inferred from the scripted baseline.
+Phases 0 and 1 are merged into main through PRs #2 and #3. Phase 1 passed its 24 tests and three
+browser fixtures locally and in hosted CI. See [the evidence](evidence/phase1/README.md).
+Phase 2 is complete against its controlled browser gate: 28 tests, 3 baseline fixtures,
+13 credential groups, 35 safety groups in source/compiled modes and 8 failing gate mutations.
+It implements credential protection, fresh numbered targets, immutable task permissions,
+origin/data-flow gates and exact approvals. The acceptance report and negative controls are in
+[Phase 2 evidence](evidence/phase2/README.md). Phases 3 through 9 are pending. Credential
+continuation, generic PII/egress handling and durable approvals remain Phase 3 work, as scoped
+below; controlled scripted fixtures do not establish model quality or signed-in-site readiness.
 
 ## p1-01: Trustworthy checks and fixture baseline
 
@@ -43,6 +47,41 @@ Done when: `pnpm check` passes, all controlled browser fixtures pass, a skipped/
 nonzero exit, and deliberately saving the wrong city produces a failed eval and nonzero process
 status. Attach commands, raw report and JSONL. CI configuration being present does not prove the
 hosted CI job ran.
+
+## p2-01: Credential capture and driver protection
+
+Port the relevant Blindfold credential metadata and refusal behavior into the existing driver,
+with autocomplete token lists, safe labels and no field values in capture. Recheck at write time,
+including focus-time changes. Block paste/keyboard and implicit-submit bypasses; withhold typed
+values in action logs. Ordinary noncredential editing must still emit input/change events.
+
+Done when: unit checks and the credential browser suite pass, synthetic stored values and
+attempted write values stay out of runtime JSONL, credential/framed screenshots are withheld,
+and password/OTP, textarea, shadow/frame, focus replacement and ordinary-edit cases have evidence.
+This slice did not implement fresh numbering or fixed permissions; p2-02 supplies those.
+General PII/egress handling and resumable hand-back remain explicit Phase 3 acceptance gaps.
+
+## p2-02: Observed targets and fixed task permissions
+
+Implements the Phase 2 portions of fix-02/fix-03. Replace selectors with offered target numbers
+and snapshot IDs backed by retained node handles. Admit visible controls in document order,
+report omitted targets and unreadable frames, and compare DOM metadata with native ARIA fixtures.
+Recheck document, frame, geometry, metadata and ordinary form state immediately before acting.
+Stale proposals recapture without replaying the act.
+
+Freeze copied user permissions before page reads. Enforce tools, origins, reads/writes,
+irreversible policy and step/time/cost limits. Parse schemes/hosts; gate redirects, popups and
+browser requests. Deny cross-origin form/query/hash exports even between permitted origins.
+Every activation, including an unknown control or Enter/Space on a button, needs exact approval.
+Recheck state and permissions after approval, consume the target once and never let approval
+widen the envelope. Missing callback hands back; durable waiting/resume stays in Phase 3.
+
+Done when: `pnpm check`, the three baseline fixtures, 13 credential groups and the safety browser
+matrix pass; the fixture servers record zero unsafe acts and zero requests at denied destinations.
+Disabling each critical gate must break a browser assertion, and source files must be restored
+byte-for-byte. Attach source/built runs, gate mutations and native ARIA/DOM comparison. Real
+BYOK/local models, signed-in sites, arbitrary malicious-JavaScript isolation and DNS rebinding
+are not established by this gate. See D-015 and SAFETY.md for conservative behavior and limits.
 
 ## live-01: Live testing, second-last
 

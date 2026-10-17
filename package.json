@@ -17,7 +17,9 @@
     "test": "vitest run",
     "eval": "pnpm build:packages && pnpm --filter @chromeclaw/evals eval",
     "format": "prettier --write .",
-    "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test"
+    "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test",
+    "eval:credentials": "pnpm build:packages && node packages/browser/tests/credentials.browser.mjs",
+    "eval:safety": "pnpm build:packages && tsx --tsconfig tsconfig.base.json packages/browser/tests/safety.browser.mjs --source"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

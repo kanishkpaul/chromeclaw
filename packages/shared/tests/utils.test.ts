@@ -10,8 +10,8 @@ describe("observation utilities", () => {
 
   it("ranks visible named targets first", () => {
     const ranked = rankInteractiveElements([
-      { id: "a", isVisible: false, score: 0, text: "hidden" },
-      { id: "b", isVisible: true, score: 0, role: "button", name: "Submit" }
+      { id: "a", isVisible: false, isCredential: false, score: 0, text: "hidden" },
+      { id: "b", isVisible: true, isCredential: false, score: 0, role: "button", name: "Submit" }
     ]);
     expect(ranked[0]?.id).toBe("b");
   });

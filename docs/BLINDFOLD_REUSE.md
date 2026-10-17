@@ -68,3 +68,11 @@ J1 needs source passages and task budgets before any of those systems.
 
 The decision is selective reuse under the owner's instruction. The rejected alternative is a
 framework transplant: it would expand maintenance before proving J1, J2 or J3.
+
+
+Phase 2 adapts frozen/copy-on-construction envelope behavior, control-based irreversible gating
+and action/state/replay binding from the pinned modules above. ChromeClaw uses its own Playwright
+node handles and a trusted in-process approval callback, with expiry rechecked at admission.
+It confirms all activations because unknown English labels cannot prove reversibility. It does
+not inherit Blindfold's extension executor, signed-approval transport or full test-suite claims.
+The integrated browser attack and mutation reports are in `evidence/phase2/completion/`.

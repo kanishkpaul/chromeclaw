@@ -1,0 +1,150 @@
+
+> chromeclaw@0.1.0 check /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && pnpm typecheck && pnpm lint && pnpm test
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 4 of 6 workspace projects
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/shared build: ESM dist/index.js 4.28 KB
+packages/shared build: ESM ⚡️ Build success in 39ms
+packages/shared build: DTS Build start
+packages/shared build: DTS ⚡️ Build success in 457ms
+packages/shared build: DTS dist/index.d.ts 19.91 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 13.54 KB
+packages/browser build: ESM ⚡️ Build success in 10ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 515ms
+packages/browser build: DTS dist/index.d.ts 2.12 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/index.js 22.82 KB
+packages/agent build: ESM ⚡️ Build success in 11ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 681ms
+packages/agent build: DTS dist/index.d.ts 3.44 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 7.71 KB
+packages/evals build: ESM ⚡️ Build success in 10ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 553ms
+packages/evals build: DTS dist/index.d.ts 2.35 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 8.03 KB
+ESM ⚡️ Build success in 9ms
+DTS Build start
+DTS ⚡️ Build success in 567ms
+DTS dist/index.d.ts 20.00 B
+
+> chromeclaw@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck
+
+
+> @chromeclaw/shared@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> tsc --noEmit
+
+
+> @chromeclaw/browser@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> tsc --noEmit
+
+
+> @chromeclaw/agent@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> tsc --noEmit
+
+
+> @chromeclaw/evals@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> tsc --noEmit
+
+
+> @chromeclaw/cli@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsc --noEmit
+
+
+> chromeclaw@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint
+
+
+> @chromeclaw/shared@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/browser@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/agent@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/evals@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/cli@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> eslint src tests --ext .ts
+
+
+> chromeclaw@0.1.0 test /Users/kanishk/Downloads/GitHub/chromeclaw
+> vitest run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ✓ packages/shared/tests/utils.test.ts (2 tests) 2ms
+ ✓ packages/shared/tests/schemas.test.ts (3 tests) 4ms
+ ✓ packages/agent/tests/openai.test.ts (2 tests) 2ms
+ ✓ packages/browser/tests/targets.test.ts (1 test) 2ms
+ ✓ packages/agent/tests/planner.test.ts (2 tests) 2ms
+ ✓ packages/agent/tests/safety.test.ts (4 tests) 2ms
+ ✓ packages/evals/tests/scoring.test.ts (6 tests) 12ms
+ ✓ packages/shared/tests/architecture.test.ts (2 tests) 39ms
+ ✓ apps/cli/tests/cli.test.ts (3 tests) 426ms
+
+ Test Files  9 passed (9)
+      Tests  25 passed (25)
+   Start at  15:48:29
+   Duration  665ms (transform 276ms, setup 0ms, collect 1.17s, tests 490ms, environment 1ms, prepare 428ms)

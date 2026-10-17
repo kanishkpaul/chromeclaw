@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'done' !== 'blocked'
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser/tests/safety.browser.mjs:408:10) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'done',
+  expected: 'blocked',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0
