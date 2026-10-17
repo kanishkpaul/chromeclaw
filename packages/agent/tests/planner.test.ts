@@ -14,20 +14,20 @@ describe("createPlanner", () => {
     const planner = createPlanner({
       provider: "huggingface",
       model: "Qwen/Qwen2.5-Coder-32B-Instruct",
-      apiKey: "hf_test"
+      apiKey: "hf_test",
     });
 
     expect(planner.name).toBe("huggingface");
     expect(planner.model).toBe("Qwen/Qwen2.5-Coder-32B-Instruct");
   });
 
-  it("prefers Hugging Face when HF credentials are present in env", () => {
+  it("does not select a hosted provider merely because its key exists", () => {
     process.env.HF_TOKEN = "hf_test";
     process.env.CHROMECLAW_MODEL = "openai/gpt-oss-120b";
 
     const planner = createPlanner();
 
-    expect(planner.name).toBe("huggingface");
+    expect(planner.name).toBe("mock");
     expect(planner.model).toBe("openai/gpt-oss-120b");
   });
 });

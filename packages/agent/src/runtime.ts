@@ -30,7 +30,12 @@ import {
   type PendingInput,
   type ActionApproval,
 } from "@chromeclaw/shared";
-import { createPlanner, type Planner } from "./llm/index";
+import {
+  createPlanner,
+  PlannerConfigError,
+  resolveRunSettings,
+  type Planner,
+} from "./llm/index";
 import { PlannerReplyError, PlannerTransportError } from "./llm/openai";
 import { SafetyPolicy } from "./safety";
 import { JsonlRunStore, type RunLogEvent } from "./storage/jsonl";
@@ -48,6 +53,7 @@ export interface AgentRunOptions {
   headless?: boolean | undefined;
   provider?: string | undefined;
   model?: string | undefined;
+  baseUrl?: string | undefined;
   profileDir?: string | undefined;
   logDir?: string | undefined;
   screenshotsDir?: string | undefined;
@@ -129,17 +135,22 @@ export class BrowserAgentRuntime {
   ): Promise<AgentRun> {
     if (this.controller)
       throw new Error("This runtime already owns an active run.");
-    const maxSteps =
-      previous?.maxSteps ??
-      options.maxSteps ??
-      Number(process.env.CHROMECLAW_MAX_STEPS ?? 20);
+    const settings = resolveRunSettings({
+      maxSteps: previous?.maxSteps ?? options.maxSteps,
+      timeoutMs: options.permissions?.timeoutMs,
+      headless: options.headless,
+    });
+    const maxSteps = settings.maxSteps;
     const permissions = previous?.permissions
       ? Object.freeze({
           ...previous.permissions,
           origins: Object.freeze([...previous.permissions.origins]),
           tools: Object.freeze([...previous.permissions.tools]),
         })
-      : createPermissions({ ...options.permissions, maxSteps }, Date.now());
+      : createPermissions(
+          { ...options.permissions, maxSteps, timeoutMs: settings.timeoutMs },
+          Date.now(),
+        );
     if (!permissions) throw new Error("No task permissions.");
     let planner = options.planner;
     const privacy = new PrivacyFilter(options.sensitiveValues);
@@ -158,8 +169,9 @@ export class BrowserAgentRuntime {
           startedAt: new Date().toISOString(),
           maxSteps,
           permissions,
-          provider: planner?.name ?? options.provider ?? "automatic",
-          model: planner?.model ?? options.model ?? "configured",
+          // Rejected settings must not become trusted trace identities before parsing.
+          provider: planner?.name ?? "unresolved",
+          model: planner?.model ?? "unresolved",
           steps: [],
           answers: [],
         };
@@ -320,6 +332,7 @@ export class BrowserAgentRuntime {
       planner ??= createPlanner({
         provider: options.provider,
         model: options.model,
+        baseUrl: options.baseUrl,
       });
       run.provider = planner.name;
       run.model = planner.model;
@@ -329,8 +342,7 @@ export class BrowserAgentRuntime {
           "Paid-model accounting is unavailable in this phase.",
         );
       session = await openBrowser({
-        headless:
-          options.headless ?? parseBoolean(process.env.CHROMECLAW_HEADLESS),
+        headless: settings.headless,
         profileDir: options.profileDir,
         screenshotsDir: options.screenshotsDir,
       });
@@ -791,6 +803,7 @@ export class BrowserAgentRuntime {
           : `Stopped by user.${inFlight ? " An act was already in flight; side effects may have occurred." : " No new act will be dispatched."}`
         : error instanceof PlannerReplyError ||
             error instanceof PlannerTransportError ||
+            error instanceof PlannerConfigError ||
             error instanceof RuntimeFailure
           ? error.message
           : `Failure during ${stage}. Diagnostic details withheld.`;
@@ -912,11 +925,7 @@ function proposalKey(action: BrowserAction): string {
     thoughtSummary: undefined,
   });
 }
-function parseBoolean(value: string | undefined): boolean {
-  return (
-    value !== undefined && ["1", "true", "yes"].includes(value.toLowerCase())
-  );
-}
+
 function verifyExtractiveAnswer(
   action: Extract<BrowserAction, { type: "finish" }>,
   observations: ReadonlyMap<string, BrowserObservation>,

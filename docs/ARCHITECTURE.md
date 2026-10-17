@@ -58,3 +58,12 @@ outcome predicates verify world state; otherwise exact source-grounded answers h
 extractive check and other completion proposals are uncertain. Versioned event records reconstruct
 runs and preserve interrupted/corrupt-tail evidence. [PHASE3.md](PHASE3.md) specifies the contracts.
 The four final plugin registries and pure-core package are still not claimed as implemented.
+
+
+## Phase 4 configuration boundary
+
+`agent/llm/config.ts` parses explicit provider/model/endpoint/key selection and task timing settings.
+The factory consumes its resolved union; possessing a key cannot choose a provider. Local has
+separate environment names and an explicit loopback endpoint. Configuration inspection describes
+selection without a network probe or credential output. Non-mock production execution remains
+locked while accounting is unfinished. See [PHASE4.md](PHASE4.md).

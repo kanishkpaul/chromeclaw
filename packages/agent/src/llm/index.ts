@@ -5,7 +5,14 @@ import type {
 } from "@chromeclaw/shared";
 import { MockPlanner } from "./mock";
 import { OpenAICompatiblePlanner } from "./openai";
-import { AnthropicPlaceholderPlanner } from "./anthropic";
+import { resolvePlannerConfig, type PlannerConfig } from "./config";
+export {
+  resolvePlannerConfig,
+  describePlannerConfig,
+  resolveRunSettings,
+  PlannerConfigError,
+} from "./config";
+export type { PlannerConfig, ResolvedPlannerConfig } from "./config";
 
 export interface PlannerInput {
   signal?: AbortSignal | undefined;
@@ -29,55 +36,14 @@ export interface Planner {
   plan(input: PlannerInput): Promise<BrowserAction>;
 }
 
-export interface PlannerConfig {
-  provider?: string | undefined;
-  model?: string | undefined;
-  apiKey?: string | undefined;
-  baseUrl?: string | undefined;
-}
-
-export function createPlanner(config: PlannerConfig = {}): Planner {
-  const provider =
-    config.provider ??
-    process.env.CHROMECLAW_PROVIDER ??
-    (process.env.HF_TOKEN || process.env.HUGGINGFACE_API_KEY
-      ? "huggingface"
-      : process.env.OPENAI_API_KEY
-        ? "openai"
-        : "mock");
-  const model =
-    config.model ?? process.env.CHROMECLAW_MODEL ?? "mock-browser-operator";
-
-  if (provider === "mock") return new MockPlanner(model);
-  if (
-    provider === "openai" ||
-    provider === "openai-compatible" ||
-    provider === "local"
-  ) {
-    return new OpenAICompatiblePlanner({
-      model,
-      apiKey: config.apiKey ?? process.env.OPENAI_API_KEY,
-      baseUrl: config.baseUrl ?? process.env.OPENAI_BASE_URL,
-      providerName: provider,
-    });
-  }
-  if (provider === "huggingface" || provider === "hf") {
-    return new OpenAICompatiblePlanner({
-      model,
-      apiKey:
-        config.apiKey ??
-        process.env.HF_TOKEN ??
-        process.env.HUGGINGFACE_API_KEY,
-      baseUrl:
-        config.baseUrl ??
-        process.env.HF_BASE_URL ??
-        "https://router.huggingface.co/v1",
-      providerName: "huggingface",
-    });
-  }
-  if (provider === "anthropic") return new AnthropicPlaceholderPlanner(model);
-
-  throw new Error(
-    `Unsupported provider "${provider}". Use mock, openai, openai-compatible, local, huggingface, hf, or anthropic.`,
-  );
+/** Provider selection is validated before a browser or HTTP request can start. */
+export function createPlanner(options: PlannerConfig = {}): Planner {
+  const config = resolvePlannerConfig(options);
+  if (config.provider === "mock") return new MockPlanner(config.model);
+  return new OpenAICompatiblePlanner({
+    model: config.model,
+    apiKey: config.apiKey,
+    baseUrl: config.baseUrl,
+    providerName: config.provider,
+  });
 }

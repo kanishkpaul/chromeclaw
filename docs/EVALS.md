@@ -9,9 +9,10 @@ this suite. Results are smoke evidence about browser/runtime plumbing, not model
   irrelevant to the scorer.
 - The form task passes only when the fixture server receives exactly one saved city, Kolkata,
   and the run is done. A claim of completion without that state fails.
-- The refusal task expects a blocked status and no server-side login submission. It exercises
-  the current credential-labelled policy path, not all credential fields or resumable hand-back.
-  The broader credential suite supplies Phase 2 protection evidence; continuation belongs to Phase 3.
+- The credential task expects awaiting-answer and no server-side login submission. It exercises
+  credential hand-back. Explicit refusal tasks still require blocked; neither state substitutes
+  for completion on ordinary tasks. The credential and runtime suites cover broader protection
+  and continuation.
 
 Reports include suite, scripted-planner label, selected task count, fixture version/hash, browser
 user agent, run provider/model, Node/platform, status, evidence, failures and timing. Reports and
@@ -68,3 +69,12 @@ The baseline's credential case now explicitly expects `handback` (`awaiting-answ
 submission. Explicit refusal tasks still require `blocked`. Ordinary tasks never pass by being
 blocked, awaiting input or uncertain. Versioned Phase 3 events differ from historical JSONL;
 legacy traces are retained as historical data rather than converted into current authority.
+
+`pnpm eval:configuration` builds the app and runs the p4-01 configuration slice against source.
+`node packages/agent/tests/config.browser.mjs` runs it through compiled packages. An explicitly
+configured local planner drives Chromium through synthetic loopback HTTP, with durable crossings
+and key-free traces. Invalid local selection, unsupported protocols and the execution lock refuse
+before a browser profile or model request exists. Reports and traces are written to
+`.chromeclaw/phase4-configuration` and uploaded by CI. This is not actual local inference. Hosted
+model testing is intentionally skipped at the owner's request; accounting and local-model
+acceptance remain open. See [PHASE4.md](PHASE4.md).

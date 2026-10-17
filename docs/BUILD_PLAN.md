@@ -29,8 +29,10 @@ It implements credential protection, fresh numbered targets, immutable task perm
 origin/data-flow gates and exact approvals. The acceptance report and negative controls are in
 [Phase 2 evidence](evidence/phase2/README.md). Phase 2 is merged through PR #4 at `4190094`. Phase 3 meets its controlled local gate with 39 tests, 3 baseline fixtures, 13 credential groups,
 35 safety groups and 28 runtime groups. Source and compiled runtime/safety suites pass. See
-[the evidence](evidence/phase3/README.md) and [the runtime contract](PHASE3.md). Phase 3 remains
-on its task branch for review; this does not claim it is merged. Phases 4 through 9 remain pending.
+[the evidence](evidence/phase3/README.md) and [the runtime contract](PHASE3.md). Phase 3 merged through PR #5 at `7a3c017` after hosted CI passed. Phase 4 has started with
+explicit provider configuration; accounting and actual local-model acceptance remain open. Hosted
+model testing is intentionally skipped at Kanishk's request. See [PHASE4.md](PHASE4.md).
+Phases 5 through 9 remain pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
 signed-in-site readiness.
@@ -108,6 +110,20 @@ completion, a six-step form, bounded failed proposals, parse repair, 429, modal/
 and ambiguous-commit cases have reports. A killed writer/new-process reader and corrupt tail
 retain readable trace evidence; startup/cleanup/storage failures stay truthful. Source and
 compiled runs both pass. See [PHASE3.md](PHASE3.md) for precise semantics and unverified limits.
+
+## p4-01: Explicit provider configuration
+
+Start fix-07 with one parsed provider/model/endpoint/key boundary and flag-over-environment
+precedence. Do not infer providers from keys. Require an explicit loopback endpoint for local,
+keep hosted keys separate, refuse invalid budgets and unavailable protocols before Chrome opens,
+and provide key-free inspection. Preserve the non-mock execution lock until accounting is ready.
+The slice report is in [configuration evidence](evidence/phase4/configuration/README.md).
+
+Done when: configuration and process tests cover precedence, invalid budgets, missing model/key/
+endpoint, attacker hostnames and key-free output. Integrated Chromium fixtures exercise a planner
+constructed from local configuration under the existing gates; they are synthetic HTTP tests,
+not actual local-model acceptance. Source and compiled suites pass. Phase 4 stays open for
+accounting and actual local inference. Hosted testing is intentionally skipped for this session.
 
 ## live-01: Live testing, second-last
 
