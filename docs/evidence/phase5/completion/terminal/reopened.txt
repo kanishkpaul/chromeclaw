@@ -1,0 +1,56 @@
+⋔ ChromeClaw
+ ChromeClaw 0.1.0 · synthetic-tui-model · local · http://127
+ .0.0.1:58196/v1
+❯   Task + Enter · /ask URL question · /passage ID · /open ID 
+  · /close-source · /compose then /send · /settings · /histo
+  ry · /trace · /sources · /source N · /pause · /continue · 
+  /cancel · /resume ID · /quit
+❯  synthetic-tui-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /model future-model
+  settings {"provider":"local","model":"future-model","mode"
+  settings :"local","endpoint":"http://127.0.0.1:58196/v1","
+  settings keyConfigured":false,"stream":true,"responseForma
+  settings t":"json","requestCost":0,"maxOutputTokens":1024,
+  settings "readiness":"configured"}
+❯ /resume run_mvcxodjs_gi22pgs
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model"
+  provider ,"configuration":{"stream":true,"responseFormat":
+  provider "json","endpoint":"http://127.0.0.1:58196/v1","mo
+  provider de":"local","requestCost":0,"maxOutputTokens":102
+  provider 4,"tokenLimitField":"max_tokens","requestTimeoutM
+  provider s":60000}}
+❯   Paused. Take over in Chrome if needed. /continue recapture
+  s before acting.
+❯  synthetic-tui-model │ local │ paused │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /approve pending_mvcxofd5_vyizqo4
+  A task is active. Use its pending command, /pause or /canc
+  el.
+❯ /continue
+  ┊ send      "http://127.0.0.1:58196/v1/chat/completions" ·
+  ┊  5172 bytes
+❯   ┊ receive   model proposal · 440 bytes; not validated
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"7358cb2f-584d-4482-
+  │ action 9cbb-43a33b862779","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:58196/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit
+  │ reason  a change."
+❯ ╰─ /approve pending_mvcxohki_pqxwczf · /deny or Esc denies ·
+╰─  Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved 
+ USD 0
+❯ ────────────────────────────────────────────────────────────
+❯   ┊ click     {"type":"click","snapshotId":"7358cb2f-584d-44
+  ┊ 82-9cbb-43a33b862779","target":2} · 267 ms
+❯   error "The exact action was denied."
+❯   result {"status":"blocked","answer":"The exact action was 
+  result denied.","runId":"run_mvcxodjs_gi22pgs"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ blocked │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /quit
+Closed. ⋔

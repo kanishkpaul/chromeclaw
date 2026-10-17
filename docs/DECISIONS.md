@@ -235,3 +235,34 @@ The first slice uses ChromeClaw-owned profiles. Authorized-session attachment is
 not an excuse to attach to a personal default profile. Token streaming and the 20-task `ask`
 acceptance remain open. PTY/browser integration tests use Python 3's standard library (test-only)
 and synthetic loopback model responses; they do not establish actual model quality.
+
+## D-021 · 2026-10-18 · Read-only ask and provisional stream progress
+
+Add an ask ability over the existing runtime, not a second loop or a claim that final plugin
+registries exist. Ask narrows tools/writes before capture; captured visible passages have IDs bound
+to snapshot records. Completion requires exact extractive answer support and resolvable passage
+citations. A separate owned, origin-guarded source window opens only after an explicit user command.
+It cannot attach to a personal default profile or renew an expired task permission.
+
+SSE uses the sole egress sender and the existing byte/deadline/reservation limits. Stream progress
+contains byte counts only; partial JSON proposals and potentially split secrets are never printed
+or acted on. The complete stream must finish and pass strict reply/usage validation. There is no
+protocol/provider fallback. Keep streaming explicit in saved configuration and allow legacy servers
+to opt out. Model-token counts still come only from validated server usage.
+
+Add pinned React/react-dom 19.2.0 as test-only development dependencies for an actual React form
+fixture, built locally with the existing tsup. No React enters the terminal/runtime bundle and no
+CDN is needed. No new top-level directory, npm runtime dependency or browser permission is added.
+An explicit disposable CDP session is measured separately from owned profiles before deciding
+whether a browser bridge is warranted. Personal Chrome session attachment remains out of scope.
+
+The session comparison records disposable CDP attachment versus owned launch/reopen timings
+on this Mac. Those are single development observations, not benchmarks; see the evidence report.
+Keep owned profiles: attachment exposes session contexts and needs a separate permission/cleanup
+contract. No auxiliary bridge is justified here. Browser context loss now interrupts pending
+model/user waits as a failed run, distinct from user cancellation. Ask opens the explicit URL
+through the existing policy before inference, avoiding blank-tab guesses; reopen retains the
+saved ability and pauses. The CLI declares its existing shared-package dependency directly.
+
+Phase 5 evidence-local attributes preserve raw transcript/log bytes and their prompt whitespace;
+production sources retain the normal whitespace checks.

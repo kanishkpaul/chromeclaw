@@ -1,0 +1,76 @@
+{
+  "suite": "phase5-terminal",
+  "checks": [
+    {
+      "id": "multiline-task-live-steps-answer-and-independent-known-fact",
+      "passed": true
+    },
+    {
+      "id": "key-free-settings-history-source-and-durable-crossing-inspection",
+      "passed": true
+    },
+    {
+      "id": "pause-stops-before-another-model-call-and-continue-recaptures",
+      "passed": true
+    },
+    {
+      "id": "read-only-ask-passage-citation-inspection-and-explicit-source-opening",
+      "passed": true
+    },
+    {
+      "id": "long-sse-progress-is-count-only-and-cancel-dispatches-no-partial-action",
+      "passed": true
+    },
+    {
+      "id": "closing-only-the-task-owned-browser-ends-pending-input-truthfully",
+      "passed": true
+    },
+    {
+      "id": "enter-denies-stale-id-refuses-and-one-exact-approval-saves-correct-city",
+      "passed": true
+    },
+    {
+      "id": "model-terminal-controls-stay-visible-data-and-cannot-spoof-gates",
+      "passed": true
+    },
+    {
+      "id": "ctrl-c-cancels-http-and-preserves-session",
+      "passed": true
+    },
+    {
+      "id": "narrow-resize-no-color-and-eof-cancel-without-commit",
+      "passed": true
+    },
+    {
+      "id": "reopen-pauses-before-planning-and-rejects-stale-approval",
+      "passed": true
+    },
+    {
+      "id": "noninteractive-tui-refuses-without-opening-browser",
+      "passed": true
+    }
+  ],
+  "savedCities": [
+    "Kolkata"
+  ],
+  "evidenceDir": "attempt-ws18_vp_",
+  "planner": "synthetic-loopback-http",
+  "actualLocal": false,
+  "modelRequests": {
+    "ask-fixture": 3,
+    "pause-fixture": 3,
+    "ask-page-fixture": 1,
+    "long-stream-fixture": 1,
+    "disconnect-fixture": 2,
+    "form-fixture": 3,
+    "approved-fixture": 4,
+    "injection-fixture": 2,
+    "slow-fixture": 1,
+    "restart-fixture": 4
+  },
+  "limitations": [
+    "No actual hosted/local inference in this terminal fixture.",
+    "Owned ChromeClaw profile only; disposable CDP comparison is in the separate session suite.",
+    "Raw proposal tokens stay buffered until validation; streaming progress is byte counts."
+  ]
+}

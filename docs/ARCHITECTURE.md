@@ -75,5 +75,8 @@ and cumulative reservations survive reopen. Provider usage stays distinct from r
 It does not implement another agent loop or browser driver. `terminal.ts` reads installed kit
 identity/palette data and escapes content before drawing. Settings changes affect future tasks;
 reopened runs retain and display their saved model configuration. Source/trace inspection reads
-filtered local events. The initial scrollback interface is a Phase 5 slice, not the finished
-passage/ability/plugin layout. See [PHASE5.md](PHASE5.md) and D-020.
+filtered local events. `agent/abilities/ask.ts` narrows permissions and validates snapshot-bound
+extractive citations; `browser/reading.ts` captures bounded visible passages. Source opening uses
+a separate guarded owned window. Egress buffers bounded SSE proposals while the terminal displays
+byte progress; only validated complete actions reach the runtime. The final plugin registries
+remain future work. See [PHASE5.md](PHASE5.md), D-020 and D-021.

@@ -28,6 +28,8 @@ program
   .option("--json", "print a single undecorated run object")
   .option("--jsonl", "stream durable events and one final result")
   .argument("<task>", "browser task to run")
+  .option("--ask <url>", "read-only passage-grounded question at this page")
+  .option("--stream", "receive bounded SSE model replies")
   .option("--headless", "run Chrome headless")
   .option(
     "--allow-loopback",
@@ -88,6 +90,7 @@ program
       const run = await runtime.run({
         ...controls.options,
         task,
+        askUrl: options.ask,
         permissions: {
           allowLoopback: Boolean(options.allowLoopback),
           maxCost: Number(
@@ -126,6 +129,7 @@ program
 program
   .command("tui")
   .alias("repl")
+  .option("--no-stream", "disable SSE for an explicitly selected legacy server")
   .option("--allow-commit", "permit asking for consequential action approval")
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
@@ -529,6 +533,7 @@ function printProvider(options: ProviderOptions): void {
 }
 
 interface ProviderOptions {
+  stream?: boolean;
   provider?: string;
   model?: string;
   baseUrl?: string;
@@ -540,6 +545,7 @@ interface ProviderOptions {
 }
 function providerOptions(options: ProviderOptions) {
   return {
+    stream: options.stream,
     provider: options.provider,
     model: options.model,
     baseUrl: options.baseUrl,

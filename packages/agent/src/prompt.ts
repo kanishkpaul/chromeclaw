@@ -15,7 +15,7 @@ ${BrowserActionSchema.options.map((schema) => `${schema.shape.type.value}: ${Obj
 Return actual property values, never a fields array or an action wrapper.
 Examples of response shape: {"type":"navigate","url":"https://example.com"} and {"type":"click","target":1,"snapshotId":"copy-current-snapshot-id"}.
 Target is a positive integer. URL/query/text/question/answer/reason/snapshotId are strings. wait.ms is 50..30000; scroll.direction is up/down/left/right and amount is 50..5000. press.key may be Enter or Space on a numbered button/link; other input refuses. type.submit cannot be true.
-finish.evidence, when used, is an array of {snapshotId,quote}; quotes must be exact captured passages. Never fabricate evidence.`;
+finish.evidence, when used, is an array of {snapshotId,quote,passageId?}; read-only ask requires the offered passageId. quotes must be exact captured passages. Never fabricate evidence.`;
 
 function fence(provenance: string, value: unknown): string {
   // Adapted from Blindfold's single confinement builder. Escape every angle bracket, rather
@@ -57,7 +57,7 @@ export function buildPlannerPrompt(input: PlannerInput): string {
 Include a brief thoughtSummary explaining how successful previous actions affect the next action.
 Fixed task permissions: ${JSON.stringify(input.permissions ?? { maxSteps: input.maxSteps })}
 Trusted user answers: ${JSON.stringify(privacy.record(input.answers ?? []).slice(-8))}
-${fence("page", { url: observation.url, snapshotId: observation.snapshotId, title: observation.title.slice(0, 500), text: observation.visibleText.slice(0, 6000) })}
+${fence("page", { url: observation.url, snapshotId: observation.snapshotId, title: observation.title.slice(0, 500), text: observation.visibleText.slice(0, 6000), ...(observation.passages ? { passages: observation.passages, unreadableRegions: observation.unreadableRegions, omittedPassages: observation.omittedPassages } : {}) })}
 ${fence("offered-targets", { snapshotId: observation.snapshotId, targets, omitted: observation.interactiveElements.length - targets.length + (observation.omittedTargets ?? 0), unreadableFrames: observation.unreadableFrames })}
 ${fence("history-model-and-page-data", privacy.text(input.recentSteps).slice(-6000))}
 ${fence(

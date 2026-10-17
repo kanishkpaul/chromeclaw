@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export interface PlannerConfig {
+  stream?: boolean | undefined;
   provider?: string | undefined;
   model?: string | undefined;
   apiKey?: string | undefined;
@@ -36,6 +37,7 @@ export type ResolvedPlannerConfig =
       mode: "local" | "hosted";
       baseUrl: string;
       apiKey?: string;
+      stream: boolean;
       responseFormat: "json" | "llama-schema";
       requestCost: number | null;
       maxOutputTokens: number;
@@ -129,6 +131,10 @@ export function resolvePlannerConfig(
     );
   const limits = z
     .object({
+      stream: z.union([
+        z.boolean(),
+        z.enum(["true", "false"]).transform((value) => value === "true"),
+      ]),
       responseFormat: z.enum(["json", "llama-schema"]),
       requestCost: z.number().finite().positive().nullable(),
       maxOutputTokens: z.coerce.number().int().positive().max(32768),
@@ -136,6 +142,7 @@ export function resolvePlannerConfig(
       requestTimeoutMs: z.coerce.number().int().positive().max(2147483647),
     })
     .safeParse({
+      stream: options.stream ?? env.CHROMECLAW_STREAM ?? false,
       responseFormat:
         options.responseFormat ?? env.CHROMECLAW_RESPONSE_FORMAT ?? "json",
       requestCost: local
@@ -175,6 +182,7 @@ export function describePlannerConfig(config: ResolvedPlannerConfig) {
     mode: config.mode,
     endpoint: config.provider === "mock" ? null : config.baseUrl,
     keyConfigured: config.provider !== "mock" && Boolean(config.apiKey),
+    stream: config.provider !== "mock" && config.stream,
     responseFormat: config.provider === "mock" ? null : config.responseFormat,
     requestCost:
       config.provider === "mock" || config.mode === "local"

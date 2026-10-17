@@ -35,9 +35,11 @@ Phase 4 is complete against the controlled gate with the explicit hosted-testing
 The gate and endpoint limitations are recorded in
 [Phase 4 completion evidence](evidence/phase4/completion/README.md). Hosted model testing is
 intentionally waived at Kanishk's request; it remains unverified. See [PHASE4.md](PHASE4.md).
-Phase 4 merged through PR #7 at `5ee565e` after hosted CI passed. Phase 5 has started with
-a kit-based scrollback TUI over the existing runtime; see [PHASE5.md](PHASE5.md). The complete
-`tui-00` and `tui-01` gates remain open. Phases 6 through 9 remain pending.
+Phase 4 merged through PR #7 at `5ee565e` after hosted CI passed. Phase 5 starter merged through
+PR #8 at `4d09383`. The completion implements grounded read-only ask, explicit source opening,
+bounded SSE, disconnect handling and a measured disposable-session comparison. See
+[PHASE5.md](PHASE5.md) and its [completion evidence](evidence/phase5/completion/README.md) for
+controlled acceptance and the hosted-testing waiver. Phases 6 through 9 remain pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
 signed-in-site readiness.

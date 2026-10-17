@@ -11,6 +11,7 @@ interface OpenAIConfig {
   baseUrl?: string | undefined;
   providerName?: string | undefined;
   timeoutMs?: number;
+  stream?: boolean;
   mode?: "local" | "hosted";
   responseFormat?: "json" | "llama-schema";
   requestCost?: number | null;
@@ -45,6 +46,7 @@ export class OpenAICompatiblePlanner implements Planner {
     this.sensitiveValues = config.apiKey ? [config.apiKey] : [];
     this.configuration = config.mode
       ? {
+          stream: config.stream ?? false,
           responseFormat: config.responseFormat ?? "json",
           endpoint: config.baseUrl ?? "https://api.openai.com/v1",
           mode: config.mode,
@@ -83,13 +85,19 @@ export class OpenAICompatiblePlanner implements Planner {
       signal: input.signal,
       ...(this.config.timeoutMs ? { timeoutMs: this.config.timeoutMs } : {}),
       onCrossing: input.onCrossing,
+      ...(this.config.stream
+        ? { responseMode: "sse", onProgress: input.onProgress }
+        : {}),
       ...(reservation ? { reservation } : {}),
       body: {
         model: this.model,
         [this.config.tokenLimitField ?? "max_tokens"]:
           this.config.maxOutputTokens ?? 1024,
         n: 1,
-        stream: false,
+        stream: this.config.stream ?? false,
+        ...(this.config.stream
+          ? { stream_options: { include_usage: true } }
+          : {}),
         response_format: {
           type: "json_object",
           ...(this.config.responseFormat === "llama-schema"
@@ -115,6 +123,14 @@ export class OpenAICompatiblePlanner implements Planner {
       throw new PlannerTransportError(
         `Planner transport failed: ${result.code}${result.status ? ` (${result.status})` : ""}.`,
       );
+    let value = result.value;
+    if (this.config.stream) value = assembleStream(value);
+    // A key may be split across valid SSE frames, so check the joined content as well.
+    if (
+      this.config.apiKey &&
+      JSON.stringify(value).includes(this.config.apiKey)
+    )
+      throw new PlannerTransportError("Planner returned a credential echo.");
     const usage = z
       .object({
         usage: z
@@ -124,7 +140,7 @@ export class OpenAICompatiblePlanner implements Planner {
           })
           .optional(),
       })
-      .safeParse(result.value);
+      .safeParse(value);
     if (!usage.success)
       throw new PlannerTransportError("Planner returned invalid token usage.");
     if (
@@ -138,7 +154,7 @@ export class OpenAICompatiblePlanner implements Planner {
       promptTokens: usage.data.usage?.prompt_tokens ?? null,
       completionTokens: usage.data.usage?.completion_tokens ?? null,
     });
-    const response = ResponseSchema.safeParse(result.value);
+    const response = ResponseSchema.safeParse(value);
     if (!response.success)
       throw new PlannerReplyError(
         "Planner response has no valid message content.",
@@ -169,4 +185,61 @@ export function parsePlannerAction(content: string): BrowserAction {
       "Planner reply does not match the strict action contract.",
     );
   return action.data;
+}
+
+/** Streams are proposals, never executable partial actions. Require a complete terminal frame. */
+function assembleStream(value: unknown): unknown {
+  const frames = z.array(z.string()).safeParse(value);
+  if (!frames.success || frames.data.at(-1) !== "[DONE]")
+    throw new PlannerTransportError("Planner stream ended before completion.");
+  let content = "",
+    finish: string | null = null,
+    usage: unknown;
+  const chunkSchema = z.object({
+    choices: z
+      .array(
+        z.object({
+          delta: z
+            .object({ content: z.string().nullable().optional() })
+            .passthrough(),
+          finish_reason: z.string().nullable().optional(),
+        }),
+      )
+      .max(1),
+    usage: z.unknown().optional(),
+  });
+  for (const frame of frames.data.slice(0, -1)) {
+    let decoded: unknown;
+    try {
+      decoded = JSON.parse(frame);
+    } catch {
+      throw new PlannerTransportError("Planner stream contains invalid JSON.");
+    }
+    const parsed = chunkSchema.safeParse(decoded);
+    if (!parsed.success)
+      throw new PlannerTransportError(
+        "Planner stream has an unsupported shape.",
+      );
+    if (parsed.data.usage != null) usage = parsed.data.usage;
+    const choice = parsed.data.choices[0];
+    if (!choice) continue;
+    if (choice.delta.tool_calls || choice.delta.refusal)
+      throw new PlannerTransportError(
+        "Planner stream contains an unsupported tool or refusal.",
+      );
+    if (finish !== null && choice.delta.content)
+      throw new PlannerTransportError(
+        "Planner stream continued after its finish marker.",
+      );
+    content += choice.delta.content ?? "";
+    if (choice.finish_reason) finish = choice.finish_reason;
+  }
+  if (finish !== "stop" && finish !== "length")
+    throw new PlannerTransportError(
+      "Planner stream has no supported finish marker.",
+    );
+  return {
+    choices: [{ message: { content }, finish_reason: finish }],
+    ...(usage === undefined ? {} : { usage }),
+  };
 }

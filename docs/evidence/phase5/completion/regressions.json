@@ -1,0 +1,159 @@
+[
+  {
+    "id": "baseline",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@chromeclaw/evals",
+      "eval"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 2.46
+  },
+  {
+    "id": "credentials",
+    "command": [
+      "node",
+      "packages/browser/tests/credentials.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 1.75
+  },
+  {
+    "id": "safety-source",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/browser/tests/safety.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 19.63
+  },
+  {
+    "id": "safety-built",
+    "command": [
+      "node",
+      "packages/browser/tests/safety.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 20.33
+  },
+  {
+    "id": "runtime-source",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/runtime.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 17.1
+  },
+  {
+    "id": "runtime-built",
+    "command": [
+      "node",
+      "packages/agent/tests/runtime.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 14.34
+  },
+  {
+    "id": "config-source",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/config.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 1.23
+  },
+  {
+    "id": "config-built",
+    "command": [
+      "node",
+      "packages/agent/tests/config.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 0.89
+  },
+  {
+    "id": "models-source",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/models.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 13.46
+  },
+  {
+    "id": "models-built",
+    "command": [
+      "node",
+      "packages/agent/tests/models.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 14.23
+  },
+  {
+    "id": "ask-source",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/ask.browser.mjs"
+    ],
+    "exitCode": 0,
+    "note": "Rerun after adding navigation-away and expiry boundary assertions; 20 cases plus five checks passed."
+  },
+  {
+    "id": "ask-built",
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/ask.browser.mjs",
+      "--built"
+    ],
+    "exitCode": 0,
+    "note": "Rerun after adding navigation-away and expiry boundary assertions; 20 cases plus five checks passed."
+  },
+  {
+    "id": "session",
+    "command": [
+      "node",
+      "packages/browser/tests/session.browser.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 3.89
+  },
+  {
+    "id": "terminal",
+    "command": [
+      "python3",
+      "apps/cli/tests/tui.pty.py"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 25.78
+  }
+]

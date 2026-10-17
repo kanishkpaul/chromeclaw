@@ -12,9 +12,11 @@ import {
   resolveTarget,
   type TargetQuery,
 } from "./targets";
+import { capturePassages } from "./reading";
 import { inspectField } from "./credentials";
 
 export interface BrowserOptions {
+  readPassages?: boolean | undefined;
   headless?: boolean | undefined;
   profileDir?: string | undefined;
   screenshotsDir?: string | undefined;
@@ -107,6 +109,9 @@ async function capturePage(
   const capture = await captureTargets(page);
   return {
     ...capture,
+    ...(options.readPassages
+      ? await capturePassages(page, capture.snapshotId)
+      : {}),
     url: page.url(),
     title: await page.title(),
     visibleText: truncateEnd(visibleText, 6000),

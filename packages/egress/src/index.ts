@@ -13,6 +13,8 @@ export interface HttpRequest {
   url: string;
   approvedOrigin: string;
   body: unknown;
+  responseMode?: "json" | "sse";
+  onProgress?: ((progress: { receivedBytes: number }) => void) | undefined;
   apiKey?: string | undefined;
   signal?: AbortSignal | undefined;
   timeoutMs?: number;
@@ -156,6 +158,13 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
         await response.body?.cancel();
         return { ok: false, code: "http", status: response.status, attempts };
       }
+      if (
+        request.responseMode === "sse" &&
+        !response.headers.get("content-type")?.includes("text/event-stream")
+      ) {
+        await response.body?.cancel();
+        return { ok: false, code: "malformed-json", attempts };
+      }
       const reader = response.body?.getReader();
       if (!reader) return { ok: false, code: "malformed-json", attempts };
       const chunks: Uint8Array[] = [];
@@ -169,6 +178,7 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
           return { ok: false, code: "response-limit", attempts };
         }
         chunks.push(chunk.value);
+        request.onProgress?.({ receivedBytes: bytes });
       }
       const responseText = Buffer.concat(chunks).toString("utf8");
       if (request.apiKey && responseText.includes(request.apiKey))
@@ -176,7 +186,19 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
       try {
         return {
           ok: true,
-          value: JSON.parse(responseText),
+          value:
+            request.responseMode === "sse"
+              ? responseText
+                  .split(/\r?\n\r?\n/)
+                  .map((event) =>
+                    event
+                      .split(/\r?\n/)
+                      .filter((line) => line.startsWith("data:"))
+                      .map((line) => line.slice(5).trimStart())
+                      .join("\n"),
+                  )
+                  .filter(Boolean)
+              : JSON.parse(responseText),
           attempts,
         };
       } catch {

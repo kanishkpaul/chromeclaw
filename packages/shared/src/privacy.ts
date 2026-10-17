@@ -30,6 +30,7 @@ export class PrivacyFilter {
       "id",
       "runId",
       "snapshotId",
+      "passageId",
       "documentId",
       "frameId",
       "beforeId",

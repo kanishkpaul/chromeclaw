@@ -1,0 +1,51 @@
+⋔ ChromeClaw
+ ChromeClaw 0.1.0 · synthetic-tui-model 
+ · local · http://127.0.0.1:58196/v1
+❯   Task + Enter · /ask URL question · /pa
+  ssage ID · /open ID · /close-source · 
+  /compose then /send · /settings · /his
+  tory · /trace · /sources · /source N ·
+   /pause · /continue · /cancel · /resum
+  e ID · /quit
+❯  local │ ready
+❯ ────────────────────────────────────────
+❯ ❯  synthetic-tui-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ restart-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model"
+  provider ,"configuration":{"stream":true,"responseFormat":
+  provider "json","endpoint":"http://127.0.0.1:58196/v1","mo
+  provider de":"local","requestCost":0,"maxOutputTokens":102
+  provider 4,"tokenLimitField":"max_tokens","requestTimeoutM
+  provider s":60000}}
+❯   ┊ send      "http://127.0.0.1:58196/v1/chat/completions" ·
+  ┊  3780 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:581
+  ┊ 96/form"} · 275 ms
+❯   ┊ send      "http://127.0.0.1:58196/v1/chat/completions" ·
+  ┊  4542 bytes
+❯   ┊ type      target 1; value withheld · 110 ms
+❯   ┊ send      "http://127.0.0.1:58196/v1/chat/completions" ·
+  ┊  4982 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"9fcf3495-b503-4b76-
+  │ action 948b-09dc33230b2f","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:58196/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit
+  │ reason  a change."
+❯ ╰─ /approve pending_mvcxofd5_vyizqo4 · /deny or Esc denies ·
+╰─  Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved 
+ USD 0
+❯ ────────────────────────────────────────────────────────────
+❯   result {"status":"stopped","answer":"Stopped by user. No n
+  result ew act will be dispatched.","error":"Stopped by use
+  result r. No new act will be dispatched.","runId":"run_mvc
+  result xodjs_gi22pgs"}
+  /history · /trace · /sources · /resume <run-id>
+ synthetic-tui-model │ local │ stopped │ reserved USD 0
+────────────────────────────────────────────────────────────
+Closed. ⋔

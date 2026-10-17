@@ -1,0 +1,22 @@
+{
+  "phase": 5,
+  "gate": "controlled-local-with-hosted-waiver",
+  "unitTests": 61,
+  "controlledAsk": {
+    "source": 20,
+    "built": 20,
+    "safetyChecksEach": 5,
+    "groundedAnswersEach": 17,
+    "expectedHandbacksEach": 3
+  },
+  "actualLocalAsk": {
+    "source": 20,
+    "built": 20
+  },
+  "terminalGroups": 12,
+  "actualLocalTerminalGroups": 1,
+  "sessionGroups": 3,
+  "regressionSuites": 14,
+  "heldOutSitesTested": false,
+  "personalProfileTouched": false
+}

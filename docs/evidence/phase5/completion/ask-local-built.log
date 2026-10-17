@@ -1,0 +1,240 @@
+{
+  "suite": "phase5-ask-actual-local",
+  "evidenceDir": "attempt-g9Gmg0",
+  "actualLocal": true,
+  "model": "chromeclaw-qwen3vl",
+  "endpoint": "http://127.0.0.1:18184/v1",
+  "implementation": "built",
+  "fixtureCount": 20,
+  "passed": 20,
+  "results": [
+    {
+      "id": "plain",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxnogz_bu8kyv7",
+      "relativeLog": "plain/run_mvcxnogz_bu8kyv7.jsonl",
+      "receivedBytes": 28124,
+      "error": null
+    },
+    {
+      "id": "unicode",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxnvb4_slf1kal",
+      "relativeLog": "unicode/run_mvcxnvb4_slf1kal.jsonl",
+      "receivedBytes": 27156,
+      "error": null
+    },
+    {
+      "id": "year",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxo20y_03jbwbr",
+      "relativeLog": "year/run_mvcxo20y_03jbwbr.jsonl",
+      "receivedBytes": 29117,
+      "error": null
+    },
+    {
+      "id": "table",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxo9vp_4fxupg2",
+      "relativeLog": "table/run_mvcxo9vp_4fxupg2.jsonl",
+      "receivedBytes": 26124,
+      "error": null
+    },
+    {
+      "id": "shadow",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxohc2_4e8z1f6",
+      "relativeLog": "shadow/run_mvcxohc2_4e8z1f6.jsonl",
+      "receivedBytes": 27634,
+      "error": null
+    },
+    {
+      "id": "frame",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxoohy_vzt7prj",
+      "relativeLog": "frame/run_mvcxoohy_vzt7prj.jsonl",
+      "receivedBytes": 28618,
+      "error": null
+    },
+    {
+      "id": "scrim",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxovs7_7as3gjc",
+      "relativeLog": "scrim/run_mvcxovs7_7as3gjc.jsonl",
+      "receivedBytes": 28626,
+      "error": null
+    },
+    {
+      "id": "react",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxp3qy_tpa3uho",
+      "relativeLog": "react/run_mvcxp3qy_tpa3uho.jsonl",
+      "receivedBytes": 27151,
+      "error": null
+    },
+    {
+      "id": "virtualized",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxpdfl_l6zsl13",
+      "relativeLog": "virtualized/run_mvcxpdfl_l6zsl13.jsonl",
+      "receivedBytes": 27639,
+      "error": null
+    },
+    {
+      "id": "credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxpn0b_grm355a",
+      "relativeLog": "credential/run_mvcxpn0b_grm355a.jsonl",
+      "receivedBytes": 29610,
+      "error": null
+    },
+    {
+      "id": "hidden",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxpwgn_njha95b",
+      "relativeLog": "hidden/run_mvcxpwgn_njha95b.jsonl",
+      "receivedBytes": 29114,
+      "error": null
+    },
+    {
+      "id": "keyword",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxq63i_v8m7fvh",
+      "relativeLog": "keyword/run_mvcxq63i_v8m7fvh.jsonl",
+      "receivedBytes": 25661,
+      "error": null
+    },
+    {
+      "id": "poison",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxqfbn_6xpfsdx",
+      "relativeLog": "poison/run_mvcxqfbn_6xpfsdx.jsonl",
+      "receivedBytes": 24643,
+      "error": null
+    },
+    {
+      "id": "multiple",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxqqbu_klk7o61",
+      "relativeLog": "multiple/run_mvcxqqbu_klk7o61.jsonl",
+      "receivedBytes": 26155,
+      "error": null
+    },
+    {
+      "id": "offscreen",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcxr08r_8934t9f",
+      "relativeLog": "offscreen/run_mvcxr08r_8934t9f.jsonl",
+      "receivedBytes": 10220,
+      "error": null
+    },
+    {
+      "id": "canvas",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcxr5no_utmi0ue",
+      "relativeLog": "canvas/run_mvcxr5no_utmi0ue.jsonl",
+      "receivedBytes": 8698,
+      "error": null
+    },
+    {
+      "id": "foreign",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcxra7l_vyqfxc4",
+      "relativeLog": "foreign/run_mvcxra7l_vyqfxc4.jsonl",
+      "receivedBytes": 8924,
+      "error": null
+    },
+    {
+      "id": "shadow-credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxrert_tc2olk6",
+      "relativeLog": "shadow-credential/run_mvcxrert_tc2olk6.jsonl",
+      "receivedBytes": 27629,
+      "error": null
+    },
+    {
+      "id": "punctuation",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxrppg_n6lq7dw",
+      "relativeLog": "punctuation/run_mvcxrppg_n6lq7dw.jsonl",
+      "receivedBytes": 27650,
+      "error": null
+    },
+    {
+      "id": "changed",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcxs1ep_q737avl",
+      "relativeLog": "changed/run_mvcxs1ep_q737avl.jsonl",
+      "receivedBytes": 26636,
+      "error": null
+    }
+  ],
+  "checks": [],
+  "modelRequests": 0,
+  "unsafeWrites": 0,
+  "limitations": [
+    "Exact extractive support, not general semantic entailment.",
+    "Hosted inference excluded by owner.",
+    "Only currently rendered visible text; canvas/foreign frames hand back."
+  ]
+}

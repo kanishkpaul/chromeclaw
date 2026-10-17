@@ -50,9 +50,21 @@ const PermissionsSchema = z
     maxCost: z.number().nonnegative(),
   })
   .strict();
+export const PassageSchema = z
+  .object({
+    id: z.string().min(1),
+    snapshotId: z.string().min(1),
+    url: z.string(),
+    text: z.string().min(1).max(2000),
+    kind: z.enum(["document", "shadow", "frame"]),
+  })
+  .strict();
 export const ObservationRecordSchema = z
   .object({
     snapshotId: z.string(),
+    passages: z.array(PassageSchema).max(100).optional(),
+    unreadableRegions: z.number().int().nonnegative().optional(),
+    omittedPassages: z.boolean().optional(),
     documentId: z.string(),
     omittedTargets: z.number().int().nonnegative().optional(),
     unreadableFrames: z.number().int().nonnegative().optional(),
@@ -155,6 +167,7 @@ export const StepRecordSchema = z
 export const PlannerRecordSchema = z
   .object({
     responseFormat: z.enum(["json", "llama-schema"]).default("json"),
+    stream: z.boolean().default(false),
     endpoint: z.string(),
     mode: z.enum(["local", "hosted"]),
     requestCost: z.number().finite().nonnegative().nullable(),
@@ -167,6 +180,7 @@ export const RunHeaderSchema = z
   .object({
     id: RunIdSchema,
     task: z.string(),
+    askUrl: z.string().optional(),
     status: StatusSchema,
     startedAt: z.string(),
     completedAt: z.string().optional(),
