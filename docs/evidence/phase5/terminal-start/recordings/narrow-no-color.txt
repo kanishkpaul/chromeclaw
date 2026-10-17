@@ -1,0 +1,47 @@
+⋔ ChromeClaw
+ ChromeClaw 0.1.0 · synthetic-tui-model
+ · local · http://127.0.0.1:61833/v1
+❯   Task + Enter · /compose then /send · /
+  settings · /history · /trace · /source
+  s · /source N · /pause · /continue · /
+  cancel · /resume ID · /quit
+❯  local │ ready
+❯ ────────────────────────────────────────
+❯ ❯  synthetic-tui-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ restart-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model"
+  provider ,"configuration":{"responseFormat":"json","endpoi
+  provider nt":"http://127.0.0.1:61833/v1","mode":"local","r
+  provider equestCost":0,"maxOutputTokens":1024,"tokenLimitF
+  provider ield":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:61833/v1/chat/completions" ·
+  ┊  3684 bytes
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:618
+  ┊ 33/form"} · 89 ms
+❯   ┊ send      "http://127.0.0.1:61833/v1/chat/completions" ·
+  ┊  4446 bytes
+❯   ┊ type      target 1; value withheld · 41 ms
+❯   ┊ send      "http://127.0.0.1:61833/v1/chat/completions" ·
+  ┊  4886 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"bff6a7ed-d26c-4893-
+  │ action afcb-4d70e949c216","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:61833/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit
+  │ reason  a change."
+❯ ╰─ /approve pending_mvcs57rd_slky32g · /deny or Esc denies ·
+╰─  Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved
+ USD 0
+❯ ────────────────────────────────────────────────────────────
+❯   result {"status":"stopped","answer":"Stopped by user. No n
+  result ew act will be dispatched.","error":"Stopped by use
+  result r. No new act will be dispatched.","runId":"run_mvc
+  result s57a9_0eznlbl"}
+  /history · /trace · /sources · /resume <run-id>
+ synthetic-tui-model │ local │ stopped │ reserved USD 0
+────────────────────────────────────────────────────────────
+Closed. ⋔

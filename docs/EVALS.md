@@ -93,3 +93,12 @@ hand-back and compiled CLI read. Reports and traces go to `.chromeclaw/phase4-lo
 This is a separate manual acceptance command, not a skipped CI test or a scripted model score.
 The implementation session uses installed offline llama.cpp and cached Qwen3-VL 8B weights.
 No model is automatically downloaded. Hosted inference remains intentionally untested.
+
+
+`pnpm eval:tui` builds and runs `apps/cli/tests/tui.pty.py` with Python 3's standard library.
+It drives the compiled TUI through real pseudo-terminals and Chrome using a synthetic loopback
+model service. Independent form state checks denial, stale approval and exactly one correct save.
+The fixture includes answers, pause/continue, source/trace inspection, cancellation, EOF/reopen,
+buffered input after quit, terminal controls, resize and NO_COLOR. It retains asciicast output,
+reports and filtered JSONL in `.chromeclaw/phase5-terminal`; CI uploads those even on failure.
+This is terminal/driver evidence, not actual model inference or completion of Phase 5.

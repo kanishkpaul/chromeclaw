@@ -1,0 +1,80 @@
+{
+  "repo": "/Users/kanishk/Downloads/GitHub/chromeclaw",
+  "project": "chromeclaw",
+  "skin": "ember",
+  "version": "0.1.0",
+  "master": "0.1.0",
+  "steps": [
+    {
+      "rel": "README.md",
+      "state": "ignored"
+    },
+    {
+      "rel": "system/DESIGN.md",
+      "state": "current"
+    },
+    {
+      "rel": "system/COLOR.md",
+      "state": "current"
+    },
+    {
+      "rel": "system/TYPOGRAPHY.md",
+      "state": "current"
+    },
+    {
+      "rel": "system/COMPONENTS.md",
+      "state": "current"
+    },
+    {
+      "rel": "system/TUI.md",
+      "state": "current"
+    },
+    {
+      "rel": "system/RESEARCH.md",
+      "state": "current"
+    },
+    {
+      "rel": "tokens/base.css",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "tokens/components.css",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "tokens/loader.js",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "tokens/skins.css",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "tokens/tokens.json",
+      "state": "current"
+    },
+    {
+      "rel": "rust/theme.rs",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "rust/palettes.rs",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "rust/identity.rs",
+      "state": "deleted-locally"
+    },
+    {
+      "rel": "hermes.yaml",
+      "state": "deleted-locally"
+    }
+  ],
+  "counts": {
+    "ignored": 1,
+    "current": 7,
+    "deleted-locally": 8
+  },
+  "pending": [],
+  "changes": []
+}

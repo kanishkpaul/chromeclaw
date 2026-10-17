@@ -23,7 +23,8 @@
     "eval:runtime": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/runtime.browser.mjs --source",
     "eval:configuration": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/config.browser.mjs --source",
     "eval:models": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source",
-    "eval:local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source --actual-local"
+    "eval:local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source --actual-local",
+    "eval:tui": "pnpm build && python3 apps/cli/tests/tui.pty.py"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

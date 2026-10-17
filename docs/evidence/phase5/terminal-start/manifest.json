@@ -1,0 +1,22 @@
+{
+  "baseCommit": "5ee565e16915f87a3554baa292b57fe08a48ebe0",
+  "node": "v24.18.0",
+  "python": "3.14.8",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "commands": [
+    "pnpm check",
+    "python3 apps/cli/tests/tui.pty.py",
+    "node packages/agent/tests/models.browser.mjs"
+  ],
+  "sha256": {
+    "apps/cli/src/index.ts": "a36bde35966371a3a028cb283a32f8bc4bfb6c5e4acf36c5af2c07014707c809",
+    "apps/cli/src/tui.ts": "5f6e5baf75391c2a9801b0d9035442ec62357fc35afef993dce607b8e9e0e18f",
+    "apps/cli/src/terminal.ts": "31a0041b5d149652b3e7b494b9c0f6872d5caa353221854816ef2b68ca1b307a",
+    "apps/cli/tests/tui.pty.py": "1f67b9200049a42b36c37495022bb3dc76d689a6a091dbc89e12b3a568a07cc3",
+    "apps/cli/tests/terminal.test.ts": "e761a331e510ee417fed7d2906d2d5f5ffe93b8a8d8919be4f6c7b60535f8472",
+    "design/kit.json": "4f3b6b312e7af2845aa827407d46d06c7a2b7af4609bdd2b0d5425734e6058ae",
+    "design/tokens/tokens.json": "ad8b19e94aee9befbc79f57559052f6d4ee200bd6fa993aedfc0bdfaba0966a8",
+    "package.json": "cc24b5c3f015e959f4c7180821f6710511adf45b499b123f93d0843a33844e2c",
+    ".github/workflows/ci.yml": "1506a474dae7b53f2ed8c807892733f06101707b742554186eb12409741de501"
+  }
+}
