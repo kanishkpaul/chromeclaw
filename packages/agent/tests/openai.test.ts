@@ -11,6 +11,7 @@ describe("strict planner actions", () => {
     for (const content of [
       'prose {"type":"finish","answer":"done"}',
       '{"type":"finish","answer":"done","permission":"all"}',
+      '{"type":"navigate","fields":["navigate","https://example.com"]}',
       '{"action":"navigate","target":"https://example.com"}',
       '{"type":"click","selector":"#save"}',
     ])

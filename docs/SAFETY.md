@@ -54,8 +54,11 @@ hand back. The read/write permission is enforced on browser requests as well as 
   automatically beyond their local path.
 - Native DOM activation is untrusted input. Some real applications may reject it. React/custom
   widget and signed-in-site compatibility have not been established by these fixtures.
-- Zero monetary spend is enforced by disabling built-in non-mock planners until provider
-  accounting exists in Phase 4. Trusted scripted fixture planners use the same browser gates.
+- Phase 4 admits configured local inference with a zero provider monetary allowance. Hosted
+  attempts require a declared ceiling and total task budget, reserved durably before every send.
+  Failures/retries retain reservations; reopening does not reset them. This is dispatch accounting
+  under user-declared prices, not an invoice guarantee. Hosted inference testing is waived.
+  Trusted scripted fixture planners use the same browser gates.
   Time/step limits stop new acts; Phase 3 propagates cancellation to requests, waits and browser
   closure. It reports possible in-flight effects and does not claim rollback.
 - Phase 3 adds one confined prompt builder, one application egress, bounded retries, explicit

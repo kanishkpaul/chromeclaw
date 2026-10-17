@@ -37,6 +37,8 @@ export async function openBrowser(
     Parameters<typeof chromium.launchPersistentContext>[1]
   > = {
     headless: options.headless ?? false,
+    // The runtime owns SIGINT so it can persist and print the stopped outcome before exit.
+    handleSIGINT: false,
     serviceWorkers: "block",
     acceptDownloads: false,
     viewport: { width: 1440, height: 1000 },
@@ -204,7 +206,7 @@ export async function typeIntoTarget(
           "No change after an ordinary field write. Capture the page again.",
       };
     return result.written
-      ? `Typed into target ${query.target}`
+      ? `Typed into target ${query.target}. Verified that the field matches the proposed text. This write is complete.`
       : {
           refused: true,
           reason: result.refusal ?? "The field could not be written.",

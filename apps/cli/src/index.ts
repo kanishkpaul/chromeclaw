@@ -33,11 +33,25 @@ program
   .option("--interactive", "wait for answers and exact one-action approvals")
   .option("--allow-commit", "permit asking for consequential action approval")
   .option("--json", "print a single undecorated run object")
+  .option("--jsonl", "stream durable events and one final result")
   .argument("<task>", "browser task to run")
   .option("--headless", "run Chrome headless")
+  .option(
+    "--allow-loopback",
+    "permit explicitly listed loopback browser origins",
+  )
   .option("--max-steps <number>", "maximum agent steps")
   .option("--timeout-ms <number>", "task time budget in milliseconds")
+  .option("--max-cost <usd>", "total hosted request reservations allowed")
   .option("--base-url <url>", "explicit provider API base URL")
+  .option(
+    "--request-cost <usd>",
+    "declared USD ceiling per hosted request attempt",
+  )
+  .option("--max-output-tokens <number>", "bound output tokens per request")
+  .option("--response-format <format>", "json or explicit llama-schema grammar")
+  .option("--token-limit-field <field>", "max_tokens or max_completion_tokens")
+  .option("--request-timeout-ms <number>", "deadline for one inference request")
   .option(
     "--origin <origins...>",
     "permitted HTTP(S) origins, fixed before page reads",
@@ -58,23 +72,34 @@ program
     ".chromeclaw/runs",
   )
   .action(async (task, options) => {
-    if (!options.json) {
+    if (options.json && options.jsonl)
+      throw new Error("Choose either --json or --jsonl.");
+    if (!(options.json || options.jsonl)) {
+      const selected = resolvePlannerConfig(providerOptions(options));
       console.log(pc.dim("Task"));
-      console.log(task);
+      console.log(
+        selected.provider !== "mock" && selected.apiKey
+          ? task.split(selected.apiKey).join("[withheld]")
+          : task,
+      );
       console.log("");
     }
 
-    if (!options.json) printProvider(options);
+    if (!(options.json || options.jsonl)) printProvider(options);
     const runtime = new BrowserAgentRuntime();
     const controls = terminalControls(
       runtime,
-      Boolean(options.interactive) && !options.json,
+      Boolean(options.interactive) && !(options.json || options.jsonl),
     );
     try {
       const run = await runtime.run({
         ...controls.options,
         task,
         permissions: {
+          allowLoopback: Boolean(options.allowLoopback),
+          maxCost: Number(
+            options.maxCost ?? process.env.CHROMECLAW_MAX_COST ?? 0,
+          ),
           origins: options.origin,
           write: Boolean(options.write),
           irreversible: options.allowCommit ? "confirm" : "deny",
@@ -85,14 +110,19 @@ program
         headless: options.headless,
         maxSteps:
           options.maxSteps === undefined ? undefined : Number(options.maxSteps),
-        provider: options.provider,
-        model: options.model,
-        baseUrl: options.baseUrl,
+        ...providerOptions(options),
         logDir: options.logDir,
         screenshotsDir: ".chromeclaw/screenshots",
-        onStep: options.json ? undefined : (step) => printStep(step),
+        onEvent: options.jsonl
+          ? (event) => {
+              console.log(JSON.stringify(event));
+            }
+          : undefined,
+        onStep:
+          options.json || options.jsonl ? undefined : (step) => printStep(step),
       });
-      if (options.json) console.log(JSON.stringify(run));
+      if (options.jsonl) console.log(JSON.stringify({ type: "result", run }));
+      else if (options.json) console.log(JSON.stringify(run));
       else printRunSummary(run, options.logDir);
       process.exitCode = exitStatus(run);
     } finally {
@@ -105,9 +135,22 @@ program
   .option("--allow-commit", "permit asking for consequential action approval")
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
+  .option(
+    "--allow-loopback",
+    "permit explicitly listed loopback browser origins",
+  )
   .option("--max-steps <number>", "maximum agent steps")
   .option("--timeout-ms <number>", "task time budget in milliseconds")
+  .option("--max-cost <usd>", "total hosted request reservations allowed")
   .option("--base-url <url>", "explicit provider API base URL")
+  .option(
+    "--request-cost <usd>",
+    "declared USD ceiling per hosted request attempt",
+  )
+  .option("--max-output-tokens <number>", "bound output tokens per request")
+  .option("--response-format <format>", "json or explicit llama-schema grammar")
+  .option("--token-limit-field <field>", "max_tokens or max_completion_tokens")
+  .option("--request-timeout-ms <number>", "deadline for one inference request")
   .option(
     "--origin <origins...>",
     "permitted HTTP(S) origins, fixed before page reads",
@@ -137,6 +180,10 @@ program
           ...controls.options,
           task,
           permissions: {
+            allowLoopback: Boolean(options.allowLoopback),
+            maxCost: Number(
+              options.maxCost ?? process.env.CHROMECLAW_MAX_COST ?? 0,
+            ),
             origins: options.origin,
             write: Boolean(options.write),
             irreversible: options.allowCommit ? "confirm" : "deny",
@@ -149,9 +196,7 @@ program
             options.maxSteps === undefined
               ? undefined
               : Number(options.maxSteps),
-          provider: options.provider,
-          model: options.model,
-          baseUrl: options.baseUrl,
+          ...providerOptions(options),
           screenshotsDir: ".chromeclaw/screenshots",
           onStep: (step) => printStep(step),
         });
@@ -171,9 +216,19 @@ program
   .option("--provider <provider>", "explicit provider")
   .option("--model <model>", "explicit model")
   .option("--base-url <url>", "explicit provider API base URL")
+  .option(
+    "--request-cost <usd>",
+    "declared USD ceiling per hosted request attempt",
+  )
+  .option("--max-output-tokens <number>", "bound output tokens per request")
+  .option("--response-format <format>", "json or explicit llama-schema grammar")
+  .option("--token-limit-field <field>", "max_tokens or max_completion_tokens")
+  .option("--request-timeout-ms <number>", "deadline for one inference request")
   .option("--json", "print one undecorated configuration object")
   .action((options) => {
-    const config = describePlannerConfig(resolvePlannerConfig(options));
+    const config = describePlannerConfig(
+      resolvePlannerConfig(providerOptions(options)),
+    );
     if (options.json) console.log(JSON.stringify(config));
     else printProvider(options);
   });
@@ -184,24 +239,33 @@ program
   .option("--headless", "run Chrome headless")
   .option("--interactive", "wait for an explicit resume decision")
   .option("--json", "print one undecorated run object")
+  .option("--jsonl", "stream durable events and one final result")
   .option(
     "--log-dir <path>",
     "directory for JSONL run logs",
     ".chromeclaw/runs",
   )
   .action(async (runId, options) => {
+    if (options.json && options.jsonl)
+      throw new Error("Choose either --json or --jsonl.");
     const runtime = new BrowserAgentRuntime();
     const controls = terminalControls(
       runtime,
-      Boolean(options.interactive) && !options.json,
+      Boolean(options.interactive) && !(options.json || options.jsonl),
     );
     try {
       const run = await runtime.reopen(runId, {
         ...controls.options,
         headless: options.headless,
         logDir: options.logDir,
+        onEvent: options.jsonl
+          ? (event) => {
+              console.log(JSON.stringify(event));
+            }
+          : undefined,
       });
-      if (options.json) console.log(JSON.stringify(run));
+      if (options.jsonl) console.log(JSON.stringify({ type: "result", run }));
+      else if (options.json) console.log(JSON.stringify(run));
       else printRunSummary(run, options.logDir);
       process.exitCode = exitStatus(run);
     } finally {
@@ -486,13 +550,43 @@ function terminalControls(
   };
 }
 
-function printProvider(options: {
+function printProvider(options: ProviderOptions): void {
+  const config = describePlannerConfig(
+    resolvePlannerConfig(providerOptions(options)),
+  );
+  console.log(
+    `${JSON.stringify(config.model)} · ${config.mode} · ${config.endpoint ?? "no network"} · ${config.readiness} · request ceiling USD ${config.requestCost ?? "unset"}`,
+  );
+}
+
+interface ProviderOptions {
   provider?: string;
   model?: string;
   baseUrl?: string;
-}): void {
-  const config = describePlannerConfig(resolvePlannerConfig(options));
-  console.log(
-    `${JSON.stringify(config.model)} · ${config.mode} · ${config.endpoint ?? "no network"} · ${config.readiness}`,
-  );
+  responseFormat?: string;
+  requestCost?: string;
+  maxOutputTokens?: string;
+  tokenLimitField?: string;
+  requestTimeoutMs?: string;
+}
+function providerOptions(options: ProviderOptions) {
+  return {
+    provider: options.provider,
+    model: options.model,
+    baseUrl: options.baseUrl,
+    responseFormat: options.responseFormat,
+    requestCost:
+      options.requestCost === undefined
+        ? undefined
+        : Number(options.requestCost),
+    maxOutputTokens:
+      options.maxOutputTokens === undefined
+        ? undefined
+        : Number(options.maxOutputTokens),
+    tokenLimitField: options.tokenLimitField,
+    requestTimeoutMs:
+      options.requestTimeoutMs === undefined
+        ? undefined
+        : Number(options.requestTimeoutMs),
+  };
 }

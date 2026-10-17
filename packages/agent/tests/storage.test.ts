@@ -85,4 +85,30 @@ describe("durable run events", () => {
       }),
     ).toThrow();
   });
+  it("reconstructs full attempt reservations without rounding drift or trusting a header total", async () => {
+    const { store } = await fixture();
+    await store.append({
+      version: 1,
+      type: "run_started",
+      timestamp: "now",
+      runId: header.id,
+      payload: { ...header, reservedCost: 99 },
+    });
+    for (const estimatedCost of [0.1, 0.2])
+      await store.append({
+        version: 1,
+        type: "crossing",
+        timestamp: "now",
+        runId: header.id,
+        payload: {
+          destination: "https://provider.example/v1",
+          requestBytes: 12,
+          payloadHash: "fixture",
+          attempt: 1,
+          estimatedCost,
+          accounting: "user-ceiling",
+        },
+      });
+    expect((await store.readRun(header.id))?.reservedCost).toBe(0.3);
+  });
 });

@@ -2,9 +2,9 @@
 
 > **Building a terminal TUI.** The existing CLI is the implementation base for research, page work
 > and find, with BYOK and local models. Follow [the phases](docs/BUILD_PLAN.md). The archived
-> extension design is preserved locally on `new`. Runtime safety fixes remain open; do not treat
-> the current baseline as unattended control of signed-in sites. Phase 2 adds snapshot-bound targets
-> and fixed permissions. Built-in non-mock planners stay disabled until Phase 4 supplies accounting.
+> extension design is preserved locally on `new`. Controlled fixture results do not establish
+> unattended control of signed-in sites. Phase 2 adds snapshot-bound targets
+> and fixed permissions. Phase 4 adds explicit local/BYOK selection and pre-send reservations; hosted inference testing is intentionally unverified.
 
 ## Current baseline
 
@@ -66,9 +66,9 @@ implementation plan addresses these gaps:
 
 These are historical audit findings. Phase 1 replaced the legacy scorer. Phase 2 replaces
 selector fallback and keyword-only action gates with snapshot-bound targets, fixed permissions
-and exact approvals. Native ARIA fixtures check the safe DOM role/name subset. Prompt/history,
+and exact approvals. Native ARIA fixtures check the safe DOM role/name subset.
 Phase 3 adds confined history, bounded transport, resumable hand-back, cancellation and explicit
-outcome verification. Actual model compatibility, full TUI and job acceptance remain in later phases.
+outcome verification. Phase 4 tests local model compatibility separately from scripted checks. [Phase 4 evidence](docs/evidence/phase4/completion/README.md) includes actual local inference and accounting limits. Full TUI and job acceptance remain in later phases.
 See [the audit](docs/MAIN_AUDIT.md), [safety limits](docs/SAFETY.md) and [phase evidence](docs/evidence/phase2/README.md).
 
 ## Running it
@@ -101,18 +101,22 @@ approval is once-only and defaults to denial. `run --json` is undecorated. The f
 
 | Provider | Setup |
 | --- | --- |
-| `mock` | No key. Scripted, for smoke tests only. Its scores mean nothing |
-| `openai` | `OPENAI_API_KEY`, and `OPENAI_BASE_URL` for any OpenAI-compatible server, including Ollama, LM Studio and `llama-server` |
-| `huggingface` | `HF_TOKEN`, through Hugging Face's OpenAI-compatible router |
-| `anthropic` | A placeholder that throws |
+| `mock` | No key. Scripted smoke only |
+| `local` | Explicit `CHROMECLAW_LOCAL_BASE_URL` and model; optional `CHROMECLAW_LOCAL_API_KEY` |
+| `openai`, `openai-compatible` | Explicit model/key/endpoint, positive `--max-cost` and declared `--request-cost` |
+| `huggingface`, `hf` | Selected HF key/endpoint and the same reservation requirements |
+| `anthropic` | Unavailable; refuses before Chrome opens |
 
-This table lists adapters in the source, not verified compatibility. The Phase 2 runtime admits
-only the built-in mock planner while its monetary budget is zero. BYOK and actual local model
-acceptance stay in Phase 4. No fallback or paid call is used to run the scripted fixture suites.
+`config --json` inspects selection without keys or network requests. `run --jsonl` streams durable
+events and a final result; SIGINT stops the runtime. Zero task cost permits configured local
+inference; it never means unlimited hosted spending. A local failure cannot select a hosted
+provider. Compatible means the implemented JSON-mode Chat Completions subset, not every model
+or server. Tested llama.cpp uses explicit `--response-format llama-schema`. Hosted inference testing is skipped; Ollama and LM Studio remain unverified. See
+[the Phase 4 contract](docs/PHASE4.md) for settings, limits and accounting assumptions.
 
-Copy `.env.example` to `.env` to set the provider, model, headless mode and step limit. The example
-file sets `CHROMECLAW_PROVIDER=openai`, so without a key either set it to `mock` or pass
-`--provider mock`.
+Copy `.env.example` to `.env`. It defaults to mock. Selecting a local model does not grant any
+browser origin; a controlled loopback page requires `--allow-loopback` and an explicit `--origin`.
+The full design-kit TUI and final README presentation remain in their planned phases.
 
 ## Layout
 

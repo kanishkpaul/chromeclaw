@@ -17,12 +17,16 @@ export type { PlannerConfig, ResolvedPlannerConfig } from "./config";
 export interface PlannerInput {
   signal?: AbortSignal | undefined;
   permissions?: TaskPermissions;
-  sensitiveValues?: readonly string[];
+  sensitiveValues?: readonly string[] | undefined;
   answers?: readonly string[];
   notes?: readonly { snapshotId: string; url: string; text: string }[];
   onCrossing?: (
     crossing: import("@chromeclaw/egress").Crossing,
-  ) => Promise<void>;
+  ) => Promise<void | boolean>;
+  onUsage?: (usage: {
+    promptTokens: number | null;
+    completionTokens: number | null;
+  }) => Promise<void>;
   task: string;
   observation: BrowserObservation;
   observationSummary: string;
@@ -33,6 +37,18 @@ export interface PlannerInput {
 export interface Planner {
   name: string;
   model: string;
+  configuration?:
+    | {
+        responseFormat: "json" | "llama-schema";
+        endpoint: string;
+        mode: "local" | "hosted";
+        requestCost: number | null;
+        maxOutputTokens: number;
+        tokenLimitField: "max_tokens" | "max_completion_tokens";
+        requestTimeoutMs: number;
+      }
+    | undefined;
+  sensitiveValues?: readonly string[] | undefined;
   plan(input: PlannerInput): Promise<BrowserAction>;
 }
 
@@ -44,6 +60,12 @@ export function createPlanner(options: PlannerConfig = {}): Planner {
     model: config.model,
     apiKey: config.apiKey,
     baseUrl: config.baseUrl,
+    responseFormat: config.responseFormat,
     providerName: config.provider,
+    mode: config.mode,
+    requestCost: config.mode === "local" ? 0 : config.requestCost,
+    maxOutputTokens: config.maxOutputTokens,
+    tokenLimitField: config.tokenLimitField,
+    timeoutMs: config.requestTimeoutMs,
   });
 }

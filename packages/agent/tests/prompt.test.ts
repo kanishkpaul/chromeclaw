@@ -71,4 +71,17 @@ describe("one confined prompt builder", () => {
       action: { type: "type", text: "[withheld]" },
     });
   });
+  it("keeps validated configuration identities resumable when an ordinary typed alias matches them", () => {
+    const privacy = new PrivacyFilter();
+    privacy.withhold("local");
+    expect(
+      privacy.record({
+        configuration: { mode: "local", endpoint: "http://localhost:1234/v1" },
+        task: "local",
+      }),
+    ).toEqual({
+      configuration: { mode: "local", endpoint: "http://localhost:1234/v1" },
+      task: "[withheld]",
+    });
+  });
 });

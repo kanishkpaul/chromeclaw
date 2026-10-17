@@ -1,0 +1,50 @@
+[
+  {
+    "suite": "actual-local-source",
+    "checks": 4
+  },
+  {
+    "suite": "actual-local-built",
+    "checks": 4
+  },
+  {
+    "suite": "models-source",
+    "checks": 16
+  },
+  {
+    "suite": "models-built",
+    "checks": 16
+  },
+  {
+    "suite": "baseline",
+    "checks": 3
+  },
+  {
+    "suite": "credentials",
+    "checks": 13
+  },
+  {
+    "suite": "safety-source",
+    "checks": 35
+  },
+  {
+    "suite": "safety-built",
+    "checks": 35
+  },
+  {
+    "suite": "runtime-source",
+    "checks": 28
+  },
+  {
+    "suite": "runtime-built",
+    "checks": 28
+  },
+  {
+    "suite": "config-source",
+    "checks": 5
+  },
+  {
+    "suite": "config-built",
+    "checks": 5
+  }
+]

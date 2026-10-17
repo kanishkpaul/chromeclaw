@@ -54,6 +54,11 @@ export interface AgentRunOptions {
   provider?: string | undefined;
   model?: string | undefined;
   baseUrl?: string | undefined;
+  responseFormat?: string | undefined;
+  requestCost?: number | undefined;
+  maxOutputTokens?: number | undefined;
+  tokenLimitField?: string | undefined;
+  requestTimeoutMs?: number | undefined;
   profileDir?: string | undefined;
   logDir?: string | undefined;
   screenshotsDir?: string | undefined;
@@ -68,6 +73,7 @@ export interface AgentRunOptions {
     finish: Extract<BrowserAction, { type: "finish" }>,
     run: AgentRun,
   ) => Promise<{ passed: boolean; detail: string }>;
+  onEvent?: ((event: RunLogEvent) => void | Promise<void>) | undefined;
   onState?: (run: AgentRun) => void | Promise<void>;
   onStep?:
     | ((step: AgentStep, run: AgentRun) => void | Promise<void>)
@@ -153,7 +159,8 @@ export class BrowserAgentRuntime {
         );
     if (!permissions) throw new Error("No task permissions.");
     let planner = options.planner;
-    const privacy = new PrivacyFilter(options.sensitiveValues);
+    let privacy = new PrivacyFilter(options.sensitiveValues);
+    let plannerTask = options.task;
     const store = new JsonlRunStore(options.logDir);
     const run: AgentRun = previous
       ? {
@@ -175,6 +182,7 @@ export class BrowserAgentRuntime {
           steps: [],
           answers: [],
         };
+    run.reservedCost ??= 0;
     delete run.pending;
     delete run.completedAt;
     delete run.finalAnswer;
@@ -192,16 +200,18 @@ export class BrowserAgentRuntime {
       deadline.signal,
       ...(options.signal ? [options.signal] : []),
     ]);
-    const emit = async (type: RunLogEvent["type"], payload: unknown) =>
-      store.append(
-        privacy.record({
-          version: 1,
-          type,
-          timestamp: new Date().toISOString(),
-          runId: run.id,
-          payload,
-        }),
-      );
+    const emit = async (type: RunLogEvent["type"], payload: unknown) => {
+      const event: RunLogEvent = privacy.record({
+        version: 1,
+        type,
+        timestamp: new Date().toISOString(),
+        runId: run.id,
+        payload,
+      });
+      await store.append(event);
+      if (options.onEvent && !signal.aborted)
+        await abortable(Promise.resolve(options.onEvent(event)), signal);
+    };
     const notify = async () => {
       if (options.onState)
         await abortable(
@@ -321,6 +331,52 @@ export class BrowserAgentRuntime {
         );
     };
     try {
+      let configurationError: unknown;
+      try {
+        if (
+          previous &&
+          previous.provider !== "mock" &&
+          !previous.configuration &&
+          !options.planner
+        )
+          throw new RuntimeFailure(
+            "Saved model run has no endpoint record. Start a new bounded task.",
+          );
+        if (
+          previous?.configuration?.mode === "hosted" &&
+          previous.configuration.requestCost === null
+        )
+          throw new RuntimeFailure(
+            "Saved hosted run has no request ceiling. Start a new bounded task.",
+          );
+        planner ??= createPlanner({
+          provider: previous?.configuration
+            ? previous.provider
+            : options.provider,
+          model: previous?.configuration ? previous.model : options.model,
+          baseUrl: previous?.configuration?.endpoint ?? options.baseUrl,
+          responseFormat:
+            previous?.configuration?.responseFormat ?? options.responseFormat,
+          requestCost:
+            previous?.configuration?.requestCost ?? options.requestCost,
+          maxOutputTokens:
+            previous?.configuration?.maxOutputTokens ?? options.maxOutputTokens,
+          tokenLimitField:
+            previous?.configuration?.tokenLimitField ?? options.tokenLimitField,
+          requestTimeoutMs:
+            previous?.configuration?.requestTimeoutMs ??
+            options.requestTimeoutMs,
+        });
+      } catch (error) {
+        configurationError = error;
+      }
+      privacy = new PrivacyFilter([
+        ...(options.sensitiveValues ?? []),
+        ...(planner?.sensitiveValues ?? []),
+      ]);
+      // Only declared secrets and provider keys can filter the user's fixed task. A model's
+      // later typed value must not erase instructions or requested outcomes from that task.
+      plannerTask = privacy.text(options.task);
       if (!previous)
         await emit(
           "run_started",
@@ -328,18 +384,28 @@ export class BrowserAgentRuntime {
             Object.entries(run).filter(([key]) => key !== "steps"),
           ),
         );
+      if (configurationError) throw configurationError;
+      if (!planner)
+        throw new RuntimeFailure("No validated planner configuration.");
       signal.throwIfAborted();
-      planner ??= createPlanner({
-        provider: options.provider,
-        model: options.model,
-        baseUrl: options.baseUrl,
-      });
       run.provider = planner.name;
       run.model = planner.model;
-      await emit("configuration", { provider: run.provider, model: run.model });
-      if (!options.planner && planner.name !== "mock")
+      if (planner.configuration)
+        run.configuration = { ...planner.configuration };
+      await emit("configuration", {
+        provider: run.provider,
+        model: run.model,
+        configuration: run.configuration,
+      });
+      if (
+        !options.planner &&
+        planner.configuration?.mode === "hosted" &&
+        (!planner.configuration.requestCost ||
+          permissions.maxCost <= 0 ||
+          !Number.isSafeInteger(Math.floor(permissions.maxCost * 1000000)))
+      )
         throw new RuntimeFailure(
-          "Paid-model accounting is unavailable in this phase.",
+          "Hosted inference requires a positive task cost budget and explicit request ceiling.",
         );
       session = await openBrowser({
         headless: settings.headless,
@@ -405,7 +471,7 @@ export class BrowserAgentRuntime {
           const parsed = BrowserActionSchema.safeParse(
             await abortable(
               planner.plan({
-                task: privacy.text(options.task),
+                task: plannerTask,
                 observation: privacy.record(lastObservation),
                 observationSummary: summarizeObservation(
                   privacy.record(lastObservation),
@@ -416,7 +482,22 @@ export class BrowserAgentRuntime {
                 signal,
                 answers: run.answers ?? [],
                 notes: privacy.record(notes),
-                onCrossing: (crossing) => emit("crossing", crossing),
+                onCrossing: async (crossing) => {
+                  if (crossing.estimatedCost === null && !options.planner)
+                    return false;
+                  const units =
+                    Math.round((run.reservedCost ?? 0) * 1000000) +
+                    Math.ceil((crossing.estimatedCost ?? 0) * 1000000);
+                  if (
+                    !Number.isSafeInteger(units) ||
+                    units > Math.floor(permissions.maxCost * 1000000)
+                  )
+                    return false;
+                  await emit("crossing", crossing);
+                  run.reservedCost = units / 1000000;
+                  return true;
+                },
+                onUsage: (usage) => emit("model_usage", usage),
               }),
               signal,
             ),
@@ -462,7 +543,7 @@ export class BrowserAgentRuntime {
             permissions,
             now: Date.now(),
             step: index,
-            spent: 0,
+            spent: run.reservedCost ?? 0,
           });
         let gate = assess();
         let approved = false;
@@ -831,10 +912,19 @@ export class BrowserAgentRuntime {
     } finally {
       signal.removeEventListener("abort", abortBrowser);
       clearTimeout(timer);
+      const cleanup = new AbortController();
       try {
-        await session?.close();
+        // A disconnected driver must not prevent the final failure/stop record indefinitely.
+        await Promise.race([
+          session?.close(),
+          delay(5000, undefined, { signal: cleanup.signal }).then(() => {
+            throw new Error("Browser cleanup deadline.");
+          }),
+        ]);
       } catch {
         closeFailure = true;
+      } finally {
+        cleanup.abort();
       }
       if (closeFailure) {
         (run.warnings ??= []).push("Browser cleanup failed.");

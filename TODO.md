@@ -22,9 +22,12 @@ This checklist tracks the current implementation branch. Phase 2 merged through 
 - [x] Require explicit completion checks backed by observed page evidence before declaring success.
 - [x] Add pause, resume, and cancel controls that preserve an accurate run status and trace.
 - [ ] Add a trace viewer pairing observations, actions, results, screenshots, timings, and approval decisions.
-- [ ] Add controlled evaluation tasks that exercise real model planners and verify resulting page state; retain mock tests as loop smoke tests.
+- [x] Add controlled evaluation tasks that exercise a real local model planner and verify resulting page state; retain mock tests as loop smoke tests. Hosted model testing is waived and unverified.
 
 Phase 2 evidence: [completion report](docs/evidence/phase2/completion/README.md). Phase 3 evidence:
 [runtime report](docs/evidence/phase3/README.md). History withholds typed values and registered
 sensitive content. Completion requires a trusted world predicate or exact extractive grounding;
 other outcomes remain uncertain. These controlled fixtures do not establish real-model quality.
+
+Phase 4 model/server-specific acceptance and accounting limits: [completion evidence](docs/evidence/phase4/completion/README.md).
+The full TUI, trace viewer, held-out testing and final README remain later phases.

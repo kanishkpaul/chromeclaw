@@ -1,0 +1,9 @@
+{
+  "command": "llama-server --model /Users/kanishk/.cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct-GGUF/snapshots/f982a07559d4a2f6c8744d840bf6fccab30eea96/Qwen3VL-8B-Instruct-Q4_K_M.gguf --alias chromeclaw-qwen3vl --host 127.0.0.1 --port 18184 --ctx-size 8192 --parallel 1 --offline --no-mmproj --reasoning off --temp 0",
+  "version": "version: 9780 (1191758c5)\nbuilt with AppleClang 21.0.0.21000099 for Darwin arm64\n",
+  "modelRepository": "Qwen/Qwen3-VL-8B-Instruct-GGUF",
+  "modelRevision": "f982a07559d4a2f6c8744d840bf6fccab30eea96",
+  "weights": "Qwen3VL-8B-Instruct-Q4_K_M.gguf",
+  "downloaded": false,
+  "hostedInferenceTested": false
+}

@@ -73,8 +73,23 @@ legacy traces are retained as historical data rather than converted into current
 `pnpm eval:configuration` builds the app and runs the p4-01 configuration slice against source.
 `node packages/agent/tests/config.browser.mjs` runs it through compiled packages. An explicitly
 configured local planner drives Chromium through synthetic loopback HTTP, with durable crossings
-and key-free traces. Invalid local selection, unsupported protocols and the execution lock refuse
+and key-free traces. Invalid local selection, unsupported protocols and absent hosted budgets refuse
 before a browser profile or model request exists. Reports and traces are written to
 `.chromeclaw/phase4-configuration` and uploaded by CI. This is not actual local inference. Hosted
-model testing is intentionally skipped at the owner's request; accounting and local-model
-acceptance remain open. See [PHASE4.md](PHASE4.md).
+model testing is intentionally skipped at the owner's request. Accounting and actual local
+acceptance are covered separately below. See [PHASE4.md](PHASE4.md).
+
+
+`pnpm eval:models` runs synthetic model transport/accounting and CLI outcome checks in Chromium.
+`node packages/agent/tests/models.browser.mjs` tests compiled packages. The fixture checks
+pre-send reservations, retry/parser exhaustion, reconstructed spend, invalid/over-limit/missing
+usage, stable task instructions after typing, no hosted fallback and every CLI outcome including
+SIGINT JSONL and paused resume. CI archives `.chromeclaw/phase4-models`.
+
+`pnpm eval:local` requires explicit `CHROMECLAW_TEST_LOCAL_URL` and
+`CHROMECLAW_TEST_LOCAL_MODEL`; it fails when they are absent. It runs actual inference through
+the production local factory for a known-answer read, independent form-save state, credential
+hand-back and compiled CLI read. Reports and traces go to `.chromeclaw/phase4-local-model`.
+This is a separate manual acceptance command, not a skipped CI test or a scripted model score.
+The implementation session uses installed offline llama.cpp and cached Qwen3-VL 8B weights.
+No model is automatically downloaded. Hosted inference remains intentionally untested.

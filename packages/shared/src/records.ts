@@ -152,6 +152,17 @@ export const StepRecordSchema = z
     durationMs: z.number().nonnegative().optional(),
   })
   .strict();
+export const PlannerRecordSchema = z
+  .object({
+    responseFormat: z.enum(["json", "llama-schema"]).default("json"),
+    endpoint: z.string(),
+    mode: z.enum(["local", "hosted"]),
+    requestCost: z.number().finite().nonnegative().nullable(),
+    maxOutputTokens: z.number().int().positive(),
+    tokenLimitField: z.enum(["max_tokens", "max_completion_tokens"]),
+    requestTimeoutMs: z.number().int().positive(),
+  })
+  .strict();
 export const RunHeaderSchema = z
   .object({
     id: RunIdSchema,
@@ -161,6 +172,8 @@ export const RunHeaderSchema = z
     completedAt: z.string().optional(),
     maxSteps: z.number().int().positive(),
     permissions: PermissionsSchema.optional(),
+    configuration: PlannerRecordSchema.optional(),
+    reservedCost: z.number().finite().nonnegative().optional(),
     provider: z.string(),
     model: z.string(),
     finalAnswer: z.string().optional(),

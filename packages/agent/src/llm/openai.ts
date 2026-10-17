@@ -1,7 +1,8 @@
 import { z } from "zod";
-import { postJson } from "@chromeclaw/egress";
+import { postJson, type HttpRequest } from "@chromeclaw/egress";
 import { BrowserActionSchema, type BrowserAction } from "@chromeclaw/shared";
 import { BROWSER_AGENT_SYSTEM_PROMPT, buildPlannerPrompt } from "../prompt";
+import { PLANNER_WIRE_SCHEMA } from "./schema";
 import type { Planner, PlannerInput } from "./index";
 
 interface OpenAIConfig {
@@ -10,10 +11,20 @@ interface OpenAIConfig {
   baseUrl?: string | undefined;
   providerName?: string | undefined;
   timeoutMs?: number;
+  mode?: "local" | "hosted";
+  responseFormat?: "json" | "llama-schema";
+  requestCost?: number | null;
+  maxOutputTokens?: number;
+  tokenLimitField?: "max_tokens" | "max_completion_tokens";
 }
 const ResponseSchema = z.object({
   choices: z
-    .array(z.object({ message: z.object({ content: z.string().min(1) }) }))
+    .array(
+      z.object({
+        message: z.object({ content: z.string().min(1) }),
+        finish_reason: z.string().nullable().optional(),
+      }),
+    )
     .min(1),
 });
 
@@ -26,9 +37,23 @@ export class PlannerTransportError extends Error {}
 export class OpenAICompatiblePlanner implements Planner {
   name: string;
   model: string;
+  readonly configuration;
+  readonly sensitiveValues;
   constructor(private config: OpenAIConfig) {
     this.name = config.providerName ?? "openai-compatible";
     this.model = config.model;
+    this.sensitiveValues = config.apiKey ? [config.apiKey] : [];
+    this.configuration = config.mode
+      ? {
+          responseFormat: config.responseFormat ?? "json",
+          endpoint: config.baseUrl ?? "https://api.openai.com/v1",
+          mode: config.mode,
+          requestCost: config.requestCost ?? null,
+          maxOutputTokens: config.maxOutputTokens ?? 1024,
+          tokenLimitField: config.tokenLimitField ?? "max_tokens",
+          requestTimeoutMs: config.timeoutMs ?? 60000,
+        }
+      : undefined;
   }
   async plan(input: PlannerInput): Promise<BrowserAction> {
     const base = new URL(this.config.baseUrl ?? "https://api.openai.com/v1");
@@ -41,6 +66,16 @@ export class OpenAICompatiblePlanner implements Planner {
       throw new Error(
         "A durable crossing recorder is required before any planner request.",
       );
+    const reservation: HttpRequest["reservation"] =
+      this.configuration && this.configuration.requestCost !== null
+        ? {
+            cost: Math.ceil(this.configuration.requestCost * 1000000) / 1000000,
+            accounting:
+              this.configuration.mode === "local"
+                ? "local-zero"
+                : "user-ceiling",
+          }
+        : undefined;
     const result = await postJson({
       url: `${base.href.replace(/\/$/, "")}/chat/completions`,
       approvedOrigin: base.origin,
@@ -48,10 +83,19 @@ export class OpenAICompatiblePlanner implements Planner {
       signal: input.signal,
       ...(this.config.timeoutMs ? { timeoutMs: this.config.timeoutMs } : {}),
       onCrossing: input.onCrossing,
+      ...(reservation ? { reservation } : {}),
       body: {
         model: this.model,
-        temperature: 0.1,
-        response_format: { type: "json_object" },
+        [this.config.tokenLimitField ?? "max_tokens"]:
+          this.config.maxOutputTokens ?? 1024,
+        n: 1,
+        stream: false,
+        response_format: {
+          type: "json_object",
+          ...(this.config.responseFormat === "llama-schema"
+            ? { schema: PLANNER_WIRE_SCHEMA }
+            : {}),
+        },
         messages: [
           { role: "system", content: BROWSER_AGENT_SYSTEM_PROMPT },
           {
@@ -71,6 +115,29 @@ export class OpenAICompatiblePlanner implements Planner {
       throw new PlannerTransportError(
         `Planner transport failed: ${result.code}${result.status ? ` (${result.status})` : ""}.`,
       );
+    const usage = z
+      .object({
+        usage: z
+          .object({
+            prompt_tokens: z.number().int().nonnegative(),
+            completion_tokens: z.number().int().nonnegative(),
+          })
+          .optional(),
+      })
+      .safeParse(result.value);
+    if (!usage.success)
+      throw new PlannerTransportError("Planner returned invalid token usage.");
+    if (
+      usage.data.usage &&
+      usage.data.usage.completion_tokens > (this.config.maxOutputTokens ?? 1024)
+    )
+      throw new PlannerTransportError(
+        "Planner exceeded the configured output token limit.",
+      );
+    await input.onUsage?.({
+      promptTokens: usage.data.usage?.prompt_tokens ?? null,
+      completionTokens: usage.data.usage?.completion_tokens ?? null,
+    });
     const response = ResponseSchema.safeParse(result.value);
     if (!response.success)
       throw new PlannerReplyError(
@@ -78,6 +145,10 @@ export class OpenAICompatiblePlanner implements Planner {
       );
     const first = response.data.choices[0];
     if (!first) throw new PlannerReplyError("Planner response has no choices.");
+    if (first.finish_reason === "length")
+      throw new PlannerReplyError(
+        "Planner output was truncated at its token limit.",
+      );
     return parsePlannerAction(first.message.content);
   }
 }

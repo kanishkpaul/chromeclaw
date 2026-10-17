@@ -157,3 +157,55 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
 
 - Session constraint: Kanishk requested skipping hosted testing. Hosted inference remains
   intentionally unverified. This does not waive local-model acceptance or authorize paid calls.
+
+## D-018 · 2026-10-17 · Reserve each inference attempt before sending
+
+- Decision: enable configured local inference at zero provider monetary cost. Hosted inference
+  requires a positive task USD budget and a user-declared USD ceiling per request attempt.
+  Reserve that full ceiling before every attempt, including transport and parser retries. Never
+  refund a reservation based on missing, failed or provider-reported usage. Reopen reconstructs
+  reservations from synced crossings and retains the original task allowance and endpoint.
+- Reason: token prices and compatible-server metering differ. A hardcoded price or guessed token
+  estimate cannot establish an invoice. The ceiling controls dispatch under the user's declared
+  tariff assumption; it is not a guarantee against a provider charging more than declared.
+  Provider-side billing limits remain necessary for an external hard invoice cap.
+- Bound every output explicitly. OpenAI uses max_completion_tokens; compatible/local defaults to
+  max_tokens with an explicit override. No automatic protocol, provider or endpoint fallback.
+  Record validated reported usage or explicit unknown usage. Refuse over-limit/invalid usage and
+  truncated output; do not turn transport/accounting errors into parser repair loops.
+- Scope: no new dependency, permission or top-level directory. Reuse installed offline llama.cpp
+  and cached Qwen weights for real local acceptance. Hosted inference testing remains waived by
+  the owner. Synthetic HTTP checks and actual inference reports stay separate.
+
+- CLI detail: expose the existing loopback browser-origin permission with `--allow-loopback`.
+  Model loopback selection does not imply browser-origin access. Both the flag and an explicit
+  allowed origin are required. Add undecorated JSONL durable events and a final result; neither
+  JSON mode accepts interactive approvals. Monetary reservations round upward to microdollars,
+  while total allowances round down. This is a client dispatch budget, not a provider invoice.
+
+- Integrated repairs: real Qwen output copied the old prompt's registry as a `fields` array.
+  Render that registry as prose and show valid action objects; keep strict parsing. Disable
+  Playwright's SIGINT handler because the CLI must persist/print its stopped result. Bound
+  browser cleanup to five seconds with an explicit warning rather than hanging final recording.
+  Preserve validated configuration metadata during content redaction so typed aliases cannot
+  corrupt a saved endpoint or mode.
+
+
+## D-019 · 2026-10-18 · Explicit llama.cpp grammar mode
+
+Actual Qwen JSON-mode form runs produced malformed actions despite local parse repair. Add an
+explicit `llama-schema` response format, derived from the existing Zod action contract, using the
+server's documented JSON grammar extension. Default JSON mode and strict reply parsing remain.
+Persist the chosen format on reopen; never fall back between protocols. The small converter
+covers only schema kinds already used by actions and adds no dependency. The driver records its
+verified write postcondition without returning the value, so the planner can recognize completed
+ordinary input from its history. Real-model outcomes still use independent fixture assertions.
+
+The native grammar carries shapes and discriminants, not expanded string-length/range rules.
+llama.cpp rejected the expanded grammar as too complex; the output token/byte caps and unchanged
+local Zod bounds remain the authority. No unsupported server parameter is silently retried.
+
+History strings are fenced directly rather than JSON-encoding already serialized action records
+a second time. Brief progress summaries and explicit hidden-value guidance help the planner
+advance after verified writes without disclosing ordinary input values. These are prompt aids;
+strict action parsing, permissions and independent outcome predicates remain authoritative.

@@ -144,9 +144,13 @@ try {
       /unavailable/,
     ],
     [
-      "execution-lock",
-      { provider: "local", model: "fixture", baseUrl: `${endpoint}/v1` },
-      /accounting is unavailable/,
+      "hosted-budget-required",
+      {
+        provider: "openai",
+        model: "fixture",
+        baseUrl: "https://api.openai.com/v1",
+      },
+      /key|cost budget/,
     ],
   ]) {
     const profileDir = path.join(profiles, name);
@@ -189,7 +193,7 @@ try {
     limitations: [
       "Synthetic loopback HTTP, not a local inference model.",
       "Hosted testing intentionally skipped by owner.",
-      "Non-mock production execution remains locked pending accounting.",
+      "Hosted inference requires an explicit request ceiling and positive task budget.",
     ],
   };
   await writeFile(
