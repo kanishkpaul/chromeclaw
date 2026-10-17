@@ -21,6 +21,7 @@ jobs:
       - run: pnpm eval:credentials
       - run: pnpm eval:safety
       - run: pnpm eval:runtime
+      - run: pnpm eval:configuration
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -30,5 +31,6 @@ jobs:
             .chromeclaw/credential-safety
             .chromeclaw/phase2-safety
             .chromeclaw/phase3-runtime
+            .chromeclaw/phase4-configuration
           include-hidden-files: true
           if-no-files-found: error

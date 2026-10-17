@@ -4,7 +4,12 @@ import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import pc from "picocolors";
 import { Command } from "commander";
-import { BrowserAgentRuntime, JsonlRunStore } from "@chromeclaw/agent";
+import {
+  BrowserAgentRuntime,
+  JsonlRunStore,
+  resolvePlannerConfig,
+  describePlannerConfig,
+} from "@chromeclaw/agent";
 import { runEvaluationCli } from "@chromeclaw/evals";
 import type { AgentRun, AgentStep } from "@chromeclaw/shared";
 
@@ -30,7 +35,9 @@ program
   .option("--json", "print a single undecorated run object")
   .argument("<task>", "browser task to run")
   .option("--headless", "run Chrome headless")
-  .option("--max-steps <number>", "maximum agent steps", "20")
+  .option("--max-steps <number>", "maximum agent steps")
+  .option("--timeout-ms <number>", "task time budget in milliseconds")
+  .option("--base-url <url>", "explicit provider API base URL")
   .option(
     "--origin <origins...>",
     "permitted HTTP(S) origins, fixed before page reads",
@@ -42,14 +49,9 @@ program
   )
   .option(
     "--provider <provider>",
-    "mock, openai, openai-compatible, local, huggingface, hf, anthropic",
-    process.env.CHROMECLAW_PROVIDER ?? "mock",
+    "mock, openai, openai-compatible, local, huggingface, hf",
   )
-  .option(
-    "--model <model>",
-    "model name",
-    process.env.CHROMECLAW_MODEL ?? "mock-browser-operator",
-  )
+  .option("--model <model>", "model name")
   .option(
     "--log-dir <path>",
     "directory for JSONL run logs",
@@ -62,6 +64,7 @@ program
       console.log("");
     }
 
+    if (!options.json) printProvider(options);
     const runtime = new BrowserAgentRuntime();
     const controls = terminalControls(
       runtime,
@@ -75,11 +78,16 @@ program
           origins: options.origin,
           write: Boolean(options.write),
           irreversible: options.allowCommit ? "confirm" : "deny",
+          ...(options.timeoutMs === undefined
+            ? {}
+            : { timeoutMs: Number(options.timeoutMs) }),
         },
-        headless: Boolean(options.headless),
-        maxSteps: Number(options.maxSteps),
+        headless: options.headless,
+        maxSteps:
+          options.maxSteps === undefined ? undefined : Number(options.maxSteps),
         provider: options.provider,
         model: options.model,
+        baseUrl: options.baseUrl,
         logDir: options.logDir,
         screenshotsDir: ".chromeclaw/screenshots",
         onStep: options.json ? undefined : (step) => printStep(step),
@@ -97,7 +105,9 @@ program
   .option("--allow-commit", "permit asking for consequential action approval")
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
-  .option("--max-steps <number>", "maximum agent steps", "20")
+  .option("--max-steps <number>", "maximum agent steps")
+  .option("--timeout-ms <number>", "task time budget in milliseconds")
+  .option("--base-url <url>", "explicit provider API base URL")
   .option(
     "--origin <origins...>",
     "permitted HTTP(S) origins, fixed before page reads",
@@ -107,17 +117,10 @@ program
     "--write",
     "allow ordinary editing; activations still require confirmation",
   )
-  .option(
-    "--provider <provider>",
-    "planner provider",
-    process.env.CHROMECLAW_PROVIDER ?? "mock",
-  )
-  .option(
-    "--model <model>",
-    "model name",
-    process.env.CHROMECLAW_MODEL ?? "mock-browser-operator",
-  )
+  .option("--provider <provider>", "planner provider")
+  .option("--model <model>", "model name")
   .action(async (options) => {
+    printProvider(options);
     printHeader(true);
     console.log(pc.dim("Interactive mode. Type a task or `exit` to quit.\n"));
     const rl = readline.createInterface({ input, output });
@@ -137,11 +140,18 @@ program
             origins: options.origin,
             write: Boolean(options.write),
             irreversible: options.allowCommit ? "confirm" : "deny",
+            ...(options.timeoutMs === undefined
+              ? {}
+              : { timeoutMs: Number(options.timeoutMs) }),
           },
-          headless: Boolean(options.headless),
-          maxSteps: Number(options.maxSteps),
+          headless: options.headless,
+          maxSteps:
+            options.maxSteps === undefined
+              ? undefined
+              : Number(options.maxSteps),
           provider: options.provider,
           model: options.model,
+          baseUrl: options.baseUrl,
           screenshotsDir: ".chromeclaw/screenshots",
           onStep: (step) => printStep(step),
         });
@@ -153,6 +163,19 @@ program
     }
 
     rl.close();
+  });
+
+program
+  .command("config")
+  .description("inspect provider selection without network requests or keys")
+  .option("--provider <provider>", "explicit provider")
+  .option("--model <model>", "explicit model")
+  .option("--base-url <url>", "explicit provider API base URL")
+  .option("--json", "print one undecorated configuration object")
+  .action((options) => {
+    const config = describePlannerConfig(resolvePlannerConfig(options));
+    if (options.json) console.log(JSON.stringify(config));
+    else printProvider(options);
   });
 
 program
@@ -175,7 +198,7 @@ program
     try {
       const run = await runtime.reopen(runId, {
         ...controls.options,
-        headless: Boolean(options.headless),
+        headless: options.headless,
         logDir: options.logDir,
       });
       if (options.json) console.log(JSON.stringify(run));
@@ -461,4 +484,15 @@ function terminalControls(
       if (!existing) rl?.close();
     },
   };
+}
+
+function printProvider(options: {
+  provider?: string;
+  model?: string;
+  baseUrl?: string;
+}): void {
+  const config = describePlannerConfig(resolvePlannerConfig(options));
+  console.log(
+    `${JSON.stringify(config.model)} · ${config.mode} · ${config.endpoint ?? "no network"} · ${config.readiness}`,
+  );
 }

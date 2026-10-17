@@ -139,3 +139,21 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
   explicitly rather than silently converted into current executable authority.
 - CLI detail: follow the preserved kit's gate grammar, default denial, no banner for one-shot/
   non-TTY output and undecorated JSON. These are basic terminal controls, not the Phase 5 TUI.
+
+## D-017 · 2026-10-17 · Phase 4 starts with explicit provider configuration
+
+- Decision: resolve provider/model/endpoint/key at one boundary. Options win over environment;
+  no key selects a provider implicitly. Non-mock models are explicit. Hosted endpoints require
+  HTTPS and a selected key; local requires an explicit exact loopback endpoint and never inherits
+  hosted credentials. `hf` is an alias, not a fallback. Anthropic refuses before opening Chrome.
+- Reason: a local failure must not send page data to the default hosted URL. Reject credentialed,
+  query and fragment endpoints rather than attempting to repair potentially private input.
+- Inspection: `config --json` describes selection without keys, network probes or capability claims.
+  Human metadata precedes browser startup. Preserve the existing zero-cost execution lock until
+  accounting and budget admission exist; a valid configuration does not authorize spending.
+- Scope: this first Phase 4 slice adds no dependency, permission or top-level directory. Actual
+  BYOK/local model acceptance and accounting remain open. Reject a hardcoded pricing table in this
+  configuration change because a static price cannot establish a present provider charge.
+
+- Session constraint: Kanishk requested skipping hosted testing. Hosted inference remains
+  intentionally unverified. This does not waive local-model acceptance or authorize paid calls.

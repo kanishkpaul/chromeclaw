@@ -1,0 +1,67 @@
+{
+  "suite": "phase4-configuration",
+  "source": false,
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "evidenceDir": "attempt-myf6Eo",
+  "checks": [
+    {
+      "id": "explicit-local-factory-drives-chromium-with-durable-crossings-and-no-key-in-trace",
+      "passed": true
+    },
+    {
+      "id": "invalid-local-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "invalid-model-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "unsupported-provider-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "execution-lock-refuses-before-browser-and-provider-request",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "browser",
+      "runId": "run_mvch8ke4_27w8j6p",
+      "status": "done",
+      "relativeLog": "runs/run_mvch8ke4_27w8j6p.jsonl"
+    },
+    {
+      "name": "invalid-local",
+      "runId": "run_mvch8mek_aw8a0fk",
+      "status": "failed",
+      "relativeLog": "invalid-local/run_mvch8mek_aw8a0fk.jsonl"
+    },
+    {
+      "name": "invalid-model",
+      "runId": "run_mvch8mf3_9bnhtl6",
+      "status": "failed",
+      "relativeLog": "invalid-model/run_mvch8mf3_9bnhtl6.jsonl"
+    },
+    {
+      "name": "unsupported-provider",
+      "runId": "run_mvch8mfk_b8knc2o",
+      "status": "failed",
+      "relativeLog": "unsupported-provider/run_mvch8mfk_b8knc2o.jsonl"
+    },
+    {
+      "name": "execution-lock",
+      "runId": "run_mvch8mg3_7g1ki0h",
+      "status": "failed",
+      "relativeLog": "execution-lock/run_mvch8mg3_7g1ki0h.jsonl"
+    }
+  ],
+  "modelRequests": 2,
+  "limitations": [
+    "Synthetic loopback HTTP, not a local inference model.",
+    "Hosted testing intentionally skipped by owner.",
+    "Non-mock production execution remains locked pending accounting."
+  ]
+}
