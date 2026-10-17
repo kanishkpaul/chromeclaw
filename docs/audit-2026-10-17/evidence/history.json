@@ -1,0 +1,296 @@
+{
+  "run": {
+    "id": "run_mvc76bx0_rl2s55c",
+    "task": "Inspect the fixture",
+    "status": "done",
+    "startedAt": "2026-10-17T09:31:49.332Z",
+    "maxSteps": 5,
+    "provider": "audit-script",
+    "model": "scripted-smoke-only",
+    "steps": [
+      {
+        "id": "step_mvc76c5g_hinjvyo",
+        "index": 0,
+        "phase": "ACT",
+        "status": "acting",
+        "action": {
+          "type": "navigate",
+          "url": "http://127.0.0.1:56298"
+        },
+        "observation": {
+          "url": "about:blank",
+          "title": "",
+          "visibleText": "",
+          "interactiveElements": [],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:49.626Z"
+        },
+        "observationSummary": "Navigated to http://127.0.0.1:56298/",
+        "startedAt": "2026-10-17T09:31:49.611Z",
+        "completedAt": "2026-10-17T09:31:49.636Z",
+        "durationMs": 25
+      },
+      {
+        "id": "step_mvc76c85_rx5q61y",
+        "index": 1,
+        "phase": "ACT",
+        "status": "acting",
+        "action": {
+          "type": "extract_text"
+        },
+        "observation": {
+          "url": "http://127.0.0.1:56298/",
+          "title": "Fixture",
+          "visibleText": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+          "interactiveElements": [
+            {
+              "id": "target-3",
+              "role": "button",
+              "text": "Choose",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.85
+            },
+            {
+              "id": "target-4",
+              "role": "button",
+              "text": "Choose",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.85
+            },
+            {
+              "id": "target-2",
+              "role": "button",
+              "text": "Confirm transfer",
+              "selector": "#primary",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.6
+            },
+            {
+              "id": "target-0",
+              "role": "input",
+              "text": "SYNTHETIC_CREDENTIAL_ONLY",
+              "selector": "#field",
+              "tagName": "input",
+              "isVisible": true,
+              "score": 43.375
+            },
+            {
+              "id": "target-1",
+              "role": "button",
+              "selector": "#hidden",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 36
+            }
+          ],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:49.733Z"
+        },
+        "observationSummary": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+        "startedAt": "2026-10-17T09:31:49.636Z",
+        "completedAt": "2026-10-17T09:31:49.733Z",
+        "durationMs": 97
+      },
+      {
+        "id": "step_mvc76c89_xkjn14s",
+        "index": 2,
+        "phase": "DONE",
+        "status": "done",
+        "action": {
+          "type": "finish",
+          "answer": "Finished"
+        },
+        "observation": {
+          "url": "http://127.0.0.1:56298/",
+          "title": "Fixture",
+          "visibleText": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+          "interactiveElements": [
+            {
+              "id": "target-3",
+              "role": "button",
+              "text": "Choose",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.85
+            },
+            {
+              "id": "target-4",
+              "role": "button",
+              "text": "Choose",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.85
+            },
+            {
+              "id": "target-2",
+              "role": "button",
+              "text": "Confirm transfer",
+              "selector": "#primary",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 43.6
+            },
+            {
+              "id": "target-0",
+              "role": "input",
+              "text": "SYNTHETIC_CREDENTIAL_ONLY",
+              "selector": "#field",
+              "tagName": "input",
+              "isVisible": true,
+              "score": 43.375
+            },
+            {
+              "id": "target-1",
+              "role": "button",
+              "selector": "#hidden",
+              "tagName": "button",
+              "isVisible": true,
+              "score": 36
+            }
+          ],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:49.737Z"
+        },
+        "observationSummary": "Finished",
+        "startedAt": "2026-10-17T09:31:49.734Z",
+        "completedAt": "2026-10-17T09:31:49.737Z",
+        "durationMs": 3
+      }
+    ],
+    "finalAnswer": "Finished",
+    "completedAt": "2026-10-17T09:31:49.882Z"
+  },
+  "inputs": [
+    {
+      "task": "Inspect the fixture",
+      "observation": {
+        "url": "about:blank",
+        "title": "",
+        "visibleText": "",
+        "interactiveElements": [],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:49.626Z"
+      },
+      "observationSummary": "Title: \nURL: about:blank\nVisible text: \nTop targets: ",
+      "recentSteps": "",
+      "maxSteps": 5
+    },
+    {
+      "task": "Inspect the fixture",
+      "observation": {
+        "url": "http://127.0.0.1:56298/",
+        "title": "Fixture",
+        "visibleText": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+        "interactiveElements": [
+          {
+            "id": "target-3",
+            "role": "button",
+            "text": "Choose",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.85
+          },
+          {
+            "id": "target-4",
+            "role": "button",
+            "text": "Choose",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.85
+          },
+          {
+            "id": "target-2",
+            "role": "button",
+            "text": "Confirm transfer",
+            "selector": "#primary",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.6
+          },
+          {
+            "id": "target-0",
+            "role": "input",
+            "text": "SYNTHETIC_CREDENTIAL_ONLY",
+            "selector": "#field",
+            "tagName": "input",
+            "isVisible": true,
+            "score": 43.375
+          },
+          {
+            "id": "target-1",
+            "role": "button",
+            "selector": "#hidden",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 36
+          }
+        ],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:49.733Z"
+      },
+      "observationSummary": "Title: Fixture\nURL: http://127.0.0.1:56298/\nVisible text: ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary c\n...[truncated]",
+      "recentSteps": "0. ACT navigate ",
+      "maxSteps": 5
+    },
+    {
+      "task": "Inspect the fixture",
+      "observation": {
+        "url": "http://127.0.0.1:56298/",
+        "title": "Fixture",
+        "visibleText": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+        "interactiveElements": [
+          {
+            "id": "target-3",
+            "role": "button",
+            "text": "Choose",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.85
+          },
+          {
+            "id": "target-4",
+            "role": "button",
+            "text": "Choose",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.85
+          },
+          {
+            "id": "target-2",
+            "role": "button",
+            "text": "Confirm transfer",
+            "selector": "#primary",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 43.6
+          },
+          {
+            "id": "target-0",
+            "role": "input",
+            "text": "SYNTHETIC_CREDENTIAL_ONLY",
+            "selector": "#field",
+            "tagName": "input",
+            "isVisible": true,
+            "score": 43.375
+          },
+          {
+            "id": "target-1",
+            "role": "button",
+            "selector": "#hidden",
+            "tagName": "button",
+            "isVisible": true,
+            "score": 36
+          }
+        ],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:49.737Z"
+      },
+      "observationSummary": "Title: Fixture\nURL: http://127.0.0.1:56298/\nVisible text: ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary c\n...[truncated]",
+      "recentSteps": "0. ACT navigate \n1. ACT extract_text ",
+      "maxSteps": 5
+    }
+  ]
+}
