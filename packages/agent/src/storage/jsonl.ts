@@ -25,6 +25,7 @@ const EventSchema = z
       "run_started",
       "configuration",
       "model_usage",
+      "source_opened",
       "run_suspended",
       "observation",
       "proposal",
@@ -48,6 +49,9 @@ const PayloadSchemas = {
       model: z.string(),
       configuration: PlannerRecordSchema.optional(),
     })
+    .strict(),
+  source_opened: z
+    .object({ passageId: z.string(), snapshotId: z.string(), url: z.string() })
     .strict(),
   model_usage: z
     .object({
@@ -206,7 +210,11 @@ export class JsonlRunStore {
       z.infer<typeof ObservationRecordSchema>
     >();
     for (const event of events) {
-      if (event.type !== "run_completed" && event.type !== "run_suspended")
+      if (
+        event.type !== "run_completed" &&
+        event.type !== "run_suspended" &&
+        event.type !== "source_opened"
+      )
         completed = false;
       if (event.type === "crossing") {
         const crossing = PayloadSchemas.crossing.parse(event.payload);

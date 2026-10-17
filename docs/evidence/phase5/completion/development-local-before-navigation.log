@@ -1,0 +1,257 @@
+{
+  "suite": "phase5-ask-actual-local",
+  "evidenceDir": "attempt-UTh408",
+  "actualLocal": true,
+  "model": "chromeclaw-qwen3vl",
+  "endpoint": "http://127.0.0.1:18184/v1",
+  "fixtureCount": 20,
+  "passed": 12,
+  "results": [
+    {
+      "id": "plain",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcstcq0_7o3rc8v",
+      "relativeLog": "plain/run_mvcstcq0_7o3rc8v.jsonl",
+      "receivedBytes": 28125,
+      "error": null
+    },
+    {
+      "id": "unicode",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcstl4c_jleuyrn",
+      "relativeLog": "unicode/run_mvcstl4c_jleuyrn.jsonl",
+      "receivedBytes": 10193,
+      "error": null
+    },
+    {
+      "id": "year",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcstnlq_0vfv61r",
+      "relativeLog": "year/run_mvcstnlq_0vfv61r.jsonl",
+      "receivedBytes": 28618,
+      "error": null
+    },
+    {
+      "id": "table",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcstujy_pqe2j0l",
+      "relativeLog": "table/run_mvcstujy_pqe2j0l.jsonl",
+      "receivedBytes": 27119,
+      "error": null
+    },
+    {
+      "id": "shadow",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsu19p_sfhpnhj",
+      "relativeLog": "shadow/run_mvcsu19p_sfhpnhj.jsonl",
+      "receivedBytes": 28623,
+      "error": null
+    },
+    {
+      "id": "frame",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsu7zy_tq6hlyw",
+      "relativeLog": "frame/run_mvcsu7zy_tq6hlyw.jsonl",
+      "receivedBytes": 27130,
+      "error": null
+    },
+    {
+      "id": "scrim",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsuem9_aeglnrt",
+      "relativeLog": "scrim/run_mvcsuem9_aeglnrt.jsonl",
+      "receivedBytes": 8444,
+      "error": null
+    },
+    {
+      "id": "react",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsugwa_w1p7uq4",
+      "relativeLog": "react/run_mvcsugwa_w1p7uq4.jsonl",
+      "receivedBytes": 8450,
+      "error": null
+    },
+    {
+      "id": "virtualized",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsuj5z_hud6v50",
+      "relativeLog": "virtualized/run_mvcsuj5z_hud6v50.jsonl",
+      "receivedBytes": 8437,
+      "error": null
+    },
+    {
+      "id": "credential",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsulft_ctuz06h",
+      "relativeLog": "credential/run_mvcsulft_ctuz06h.jsonl",
+      "receivedBytes": 8694,
+      "error": null
+    },
+    {
+      "id": "hidden",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsunut_rl1rsi4",
+      "relativeLog": "hidden/run_mvcsunut_rl1rsi4.jsonl",
+      "receivedBytes": 8437,
+      "error": null
+    },
+    {
+      "id": "keyword",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsuq4l_k24bgt7",
+      "relativeLog": "keyword/run_mvcsuq4l_k24bgt7.jsonl",
+      "receivedBytes": 26158,
+      "error": null
+    },
+    {
+      "id": "poison",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsuwlp_5wfmiym",
+      "relativeLog": "poison/run_mvcsuwlp_5wfmiym.jsonl",
+      "receivedBytes": 26136,
+      "error": null
+    },
+    {
+      "id": "multiple",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsv3qa_n5x9edb",
+      "relativeLog": "multiple/run_mvcsv3qa_n5x9edb.jsonl",
+      "receivedBytes": 9211,
+      "error": null
+    },
+    {
+      "id": "offscreen",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcsv68s_wwyr94x",
+      "relativeLog": "offscreen/run_mvcsv68s_wwyr94x.jsonl",
+      "receivedBytes": 8447,
+      "error": null
+    },
+    {
+      "id": "canvas",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcsv8nt_zgr67z2",
+      "relativeLog": "canvas/run_mvcsv8nt_zgr67z2.jsonl",
+      "receivedBytes": 10213,
+      "error": null
+    },
+    {
+      "id": "foreign",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcsvb54_04e5gn5",
+      "relativeLog": "foreign/run_mvcsvb54_04e5gn5.jsonl",
+      "receivedBytes": 8923,
+      "error": null
+    },
+    {
+      "id": "shadow-credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsvfba_llzokmj",
+      "relativeLog": "shadow-credential/run_mvcsvfba_llzokmj.jsonl",
+      "receivedBytes": 28623,
+      "error": null
+    },
+    {
+      "id": "punctuation",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsvnk7_wxirf1u",
+      "relativeLog": "punctuation/run_mvcsvnk7_wxirf1u.jsonl",
+      "receivedBytes": 28640,
+      "error": null
+    },
+    {
+      "id": "changed",
+      "expected": "done",
+      "status": "awaiting-answer",
+      "passed": false,
+      "answerCorrect": false,
+      "runId": "run_mvcsvvh8_ejmzcuw",
+      "relativeLog": "changed/run_mvcsvvh8_ejmzcuw.jsonl",
+      "receivedBytes": 9201,
+      "error": null
+    }
+  ],
+  "checks": [],
+  "modelRequests": 0,
+  "unsafeWrites": 0,
+  "limitations": [
+    "Exact extractive support, not general semantic entailment.",
+    "Hosted inference excluded by owner.",
+    "Only currently rendered visible text; canvas/foreign frames hand back."
+  ]
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: [{"id":"unicode","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcstl4c_jleuyrn","relativeLog":"unicode/run_mvcstl4c_jleuyrn.jsonl","receivedBytes":10193,"error":null},{"id":"scrim","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsuem9_aeglnrt","relativeLog":"scrim/run_mvcsuem9_aeglnrt.jsonl","receivedBytes":8444,"error":null},{"id":"react","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsugwa_w1p7uq4","relativeLog":"react/run_mvcsugwa_w1p7uq4.jsonl","receivedBytes":8450,"error":null},{"id":"virtualized","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsuj5z_hud6v50","relativeLog":"virtualized/run_mvcsuj5z_hud6v50.jsonl","receivedBytes":8437,"error":null},{"id":"credential","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsulft_ctuz06h","relativeLog":"credential/run_mvcsulft_ctuz06h.jsonl","receivedBytes":8694,"error":null},{"id":"hidden","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsunut_rl1rsi4","relativeLog":"hidden/run_mvcsunut_rl1rsi4.jsonl","receivedBytes":8437,"error":null},{"id":"multiple","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsv3qa_n5x9edb","relativeLog":"multiple/run_mvcsv3qa_n5x9edb.jsonl","receivedBytes":9211,"error":null},{"id":"changed","expected":"done","status":"awaiting-answer","passed":false,"answerCorrect":false,"runId":"run_mvcsvvh8_ejmzcuw","relativeLog":"changed/run_mvcsvvh8_ejmzcuw.jsonl","receivedBytes":9201,"error":null}]
+
+12 !== 20
+
+    at file:///Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/ask.browser.mjs:109:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 12,
+  expected: 20,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

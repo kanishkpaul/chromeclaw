@@ -95,7 +95,7 @@ pnpm eval                                     # the same fixtures, report and JS
 `--origin` fixes the permitted HTTP(S) origins before page reads. Default runs have no origins
 and no write permission. `--write` permits ordinary field editing; consequential activation
 still hands back in the current CLI. Basic controls use `run --interactive --allow-commit` and `resume <run-id> --interactive`;
-approval is once-only and defaults to denial. `run --json` is undecorated. The full TUI remains Phase 5. See [EVALS.md](docs/EVALS.md) for current checks.
+approval is once-only and defaults to denial. `run --json` is undecorated. The terminal TUI includes grounded read-only ask and source inspection. See [EVALS.md](docs/EVALS.md) for current checks.
 
 ## Planners
 
@@ -110,14 +110,15 @@ approval is once-only and defaults to denial. `run --json` is undecorated. The f
 `config --json` inspects selection without keys or network requests. `run --jsonl` streams durable
 events and a final result; SIGINT stops the runtime. Zero task cost permits configured local
 inference; it never means unlimited hosted spending. A local failure cannot select a hosted
-provider. Compatible means the implemented JSON-mode Chat Completions subset, not every model
-or server. Tested llama.cpp uses explicit `--response-format llama-schema`. Hosted inference testing is skipped; Ollama and LM Studio remain unverified. See
+provider. Compatible means the implemented JSON/SSE Chat Completions subset, not every model
+or server. Streaming progress shows byte counts; complete proposals are validated before use. Tested llama.cpp uses explicit `--response-format llama-schema`. Hosted inference testing is skipped; Ollama and LM Studio remain unverified. See
 [the Phase 4 contract](docs/PHASE4.md) for settings, limits and accounting assumptions.
 
 Copy `.env.example` to `.env`. It defaults to mock. Selecting a local model does not grant any
 browser origin; a controlled loopback page requires `--allow-loopback` and an explicit `--origin`.
-A first kit-based TUI slice is available as `tui` (`repl` alias); see [Phase 5](docs/PHASE5.md)
-for controls and remaining acceptance. Final README presentation remains Phase 9.
+The kit-based TUI is available as `tui` (`repl` alias). Use `/ask URL question` for read-only
+passage-grounded answers, `/passage ID` to inspect evidence and `/open ID` to open a cited page.
+See [Phase 5](docs/PHASE5.md) for controls, controlled acceptance and limits. Final README presentation remains Phase 9.
 
 ## Layout
 

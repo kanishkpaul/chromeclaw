@@ -101,4 +101,21 @@ model service. Independent form state checks denial, stale approval and exactly 
 The fixture includes answers, pause/continue, source/trace inspection, cancellation, EOF/reopen,
 buffered input after quit, terminal controls, resize and NO_COLOR. It retains asciicast output,
 reports and filtered JSONL in `.chromeclaw/phase5-terminal`; CI uploads those even on failure.
-This is terminal/driver evidence, not actual model inference or completion of Phase 5.
+The terminal suite also checks `/ask`, passage inspection, guarded source opening, long SSE
+cancellation and browser loss. Raw proposal tokens remain buffered; progress reports byte counts.
+
+`pnpm eval:ask` runs 20 independently labelled reading cases through real Chrome and a synthetic
+streaming model service. It includes actual React, frames/shadows, scrims, rendered virtualized
+items, hidden credentials and expected unreadable hand-backs. It also refuses forged citations
+and writes and checks source opening. For compiled parity run
+`pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs --built`.
+`pnpm eval:ask-local` runs the same controlled questions with explicit local endpoint/model env
+settings, native llama grammar and real inference. It refuses missing configuration. Reports and
+traces go to `.chromeclaw/phase5-ask` and `.chromeclaw/phase5-ask-local` respectively.
+
+`pnpm eval:session` measures owned-profile persistence and disposable authorized CDP attachment,
+including detachment ownership and browser disconnect during pending input. Personal profiles are
+not touched. CI archives synthetic ask/session/terminal evidence. `pnpm eval:tui-local` separately checks actual local inference through a real terminal and records
+`.chromeclaw/phase5-terminal-local`. Actual local runs are manual;
+hosted inference is explicitly waived. See [Phase 5 evidence](evidence/phase5/completion/README.md)
+for provenance and development failures. No held-out quality claim follows from these fixtures.

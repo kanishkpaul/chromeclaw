@@ -1,0 +1,29 @@
+{
+  "suite": "phase5-session-comparison",
+  "checks": [
+    {
+      "id": "owned-profile-persists-only-its-synthetic-session",
+      "passed": true
+    },
+    {
+      "id": "explicit-disposable-cdp-session-is-readable-and-disconnect-preserves-owner",
+      "passed": true
+    },
+    {
+      "id": "manual-browser-close-fails-truthfully-without-another-planner-call",
+      "passed": true,
+      "runId": "run_mvcxnxhb_ic3mmar"
+    }
+  ],
+  "timingsMs": {
+    "ownedLaunch": 580.439125,
+    "ownedReopen": 502.577583,
+    "explicitCdpAttach": 62.2234169999997
+  },
+  "personalProfileTouched": false,
+  "decision": "Keep owned profiles. CDP can expose all attached session contexts; navigation guards and cleanup ownership need separate scoping before production attachment.",
+  "limitations": [
+    "Disposable explicitly debuggable fixture only; ordinary personal Chrome was neither opened nor attached.",
+    "No bridge or personal-session integration claimed."
+  ]
+}

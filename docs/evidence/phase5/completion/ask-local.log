@@ -1,0 +1,239 @@
+{
+  "suite": "phase5-ask-actual-local",
+  "evidenceDir": "attempt-sddTin",
+  "actualLocal": true,
+  "model": "chromeclaw-qwen3vl",
+  "endpoint": "http://127.0.0.1:18184/v1",
+  "fixtureCount": 20,
+  "passed": 20,
+  "results": [
+    {
+      "id": "plain",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsyu08_23fntv4",
+      "relativeLog": "plain/run_mvcsyu08_23fntv4.jsonl",
+      "receivedBytes": 28620,
+      "error": null
+    },
+    {
+      "id": "unicode",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsz23o_rkfp1wn",
+      "relativeLog": "unicode/run_mvcsz23o_rkfp1wn.jsonl",
+      "receivedBytes": 28643,
+      "error": null
+    },
+    {
+      "id": "year",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcsz819_kffhoh6",
+      "relativeLog": "year/run_mvcsz819_kffhoh6.jsonl",
+      "receivedBytes": 28122,
+      "error": null
+    },
+    {
+      "id": "table",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcszdo0_0akh353",
+      "relativeLog": "table/run_mvcszdo0_0akh353.jsonl",
+      "receivedBytes": 26126,
+      "error": null
+    },
+    {
+      "id": "shadow",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcszjcv_ncukm2o",
+      "relativeLog": "shadow/run_mvcszjcv_ncukm2o.jsonl",
+      "receivedBytes": 28622,
+      "error": null
+    },
+    {
+      "id": "frame",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcszpet_t32ffk1",
+      "relativeLog": "frame/run_mvcszpet_t32ffk1.jsonl",
+      "receivedBytes": 27129,
+      "error": null
+    },
+    {
+      "id": "scrim",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcszvpc_6ummbsy",
+      "relativeLog": "scrim/run_mvcszvpc_6ummbsy.jsonl",
+      "receivedBytes": 27139,
+      "error": null
+    },
+    {
+      "id": "react",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct01so_2vwnm7l",
+      "relativeLog": "react/run_mvct01so_2vwnm7l.jsonl",
+      "receivedBytes": 26161,
+      "error": null
+    },
+    {
+      "id": "virtualized",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct08on_jwvi2dz",
+      "relativeLog": "virtualized/run_mvct08on_jwvi2dz.jsonl",
+      "receivedBytes": 28138,
+      "error": null
+    },
+    {
+      "id": "credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct0fm5_u4uty33",
+      "relativeLog": "credential/run_mvct0fm5_u4uty33.jsonl",
+      "receivedBytes": 27625,
+      "error": null
+    },
+    {
+      "id": "hidden",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct0oxq_84r7x1n",
+      "relativeLog": "hidden/run_mvct0oxq_84r7x1n.jsonl",
+      "receivedBytes": 27627,
+      "error": null
+    },
+    {
+      "id": "keyword",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct0xji_hepyr8p",
+      "relativeLog": "keyword/run_mvct0xji_hepyr8p.jsonl",
+      "receivedBytes": 26654,
+      "error": null
+    },
+    {
+      "id": "poison",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct16s8_uhkf8se",
+      "relativeLog": "poison/run_mvct16s8_uhkf8se.jsonl",
+      "receivedBytes": 26632,
+      "error": null
+    },
+    {
+      "id": "multiple",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct1hpy_i6kkzpq",
+      "relativeLog": "multiple/run_mvct1hpy_i6kkzpq.jsonl",
+      "receivedBytes": 28140,
+      "error": null
+    },
+    {
+      "id": "offscreen",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvct1r6p_wjy0qnr",
+      "relativeLog": "offscreen/run_mvct1r6p_wjy0qnr.jsonl",
+      "receivedBytes": 10220,
+      "error": null
+    },
+    {
+      "id": "canvas",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvct1vk3_24haq7o",
+      "relativeLog": "canvas/run_mvct1vk3_24haq7o.jsonl",
+      "receivedBytes": 10455,
+      "error": null
+    },
+    {
+      "id": "foreign",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvct1zry_ctl583s",
+      "relativeLog": "foreign/run_mvct1zry_ctl583s.jsonl",
+      "receivedBytes": 8433,
+      "error": null
+    },
+    {
+      "id": "shadow-credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct2394_73p1slu",
+      "relativeLog": "shadow-credential/run_mvct2394_73p1slu.jsonl",
+      "receivedBytes": 28625,
+      "error": null
+    },
+    {
+      "id": "punctuation",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct2bin_m0rvepa",
+      "relativeLog": "punctuation/run_mvct2bin_m0rvepa.jsonl",
+      "receivedBytes": 26657,
+      "error": null
+    },
+    {
+      "id": "changed",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvct2jou_5lr2sau",
+      "relativeLog": "changed/run_mvct2jou_5lr2sau.jsonl",
+      "receivedBytes": 27623,
+      "error": null
+    }
+  ],
+  "checks": [],
+  "modelRequests": 0,
+  "unsafeWrites": 0,
+  "limitations": [
+    "Exact extractive support, not general semantic entailment.",
+    "Hosted inference excluded by owner.",
+    "Only currently rendered visible text; canvas/foreign frames hand back."
+  ]
+}

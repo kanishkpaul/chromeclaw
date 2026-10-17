@@ -24,17 +24,23 @@
     "eval:configuration": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/config.browser.mjs --source",
     "eval:models": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source",
     "eval:local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source --actual-local",
-    "eval:tui": "pnpm build && python3 apps/cli/tests/tui.pty.py"
+    "eval:tui": "pnpm build && python3 apps/cli/tests/tui.pty.py",
+    "eval:ask": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs",
+    "eval:ask-local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs --actual-local",
+    "eval:session": "pnpm build && node packages/browser/tests/session.browser.mjs",
+    "eval:tui-local": "pnpm build && python3 apps/cli/tests/tui.pty.py --actual-local"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.2",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
-    "tsx": "^4.19.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "tsup": "^8.3.5",
-    "typescript-eslint": "^8.18.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2",
     "vitest": "^2.1.8"
   }
 }

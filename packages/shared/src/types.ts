@@ -1,6 +1,7 @@
 import type { z } from "zod";
 import type {
   RunRecordSchema,
+  PassageSchema,
   StepRecordSchema,
   StatusSchema,
 } from "./records";
@@ -28,7 +29,12 @@ export interface InteractiveElement {
   score: number;
 }
 
+export type Passage = z.infer<typeof PassageSchema>;
+
 export interface BrowserObservation {
+  passages?: Passage[];
+  unreadableRegions?: number;
+  omittedPassages?: boolean;
   snapshotId: string;
   documentId: string;
   omittedTargets?: number;

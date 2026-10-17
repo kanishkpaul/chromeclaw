@@ -1,0 +1,128 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+❯   Task + Enter · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · 
+  /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID ·
+   /quit
+❯  chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /ask http://127.0.0.1:57210/read Return the exact complete sentence giving the launch year with its captured passage citation.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":512,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:57210/read"} · 686 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 7469 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1279 bytes; not validated
+❯   ┊ receive   model proposal · 2039 bytes; not validated
+❯   ┊ receive   model proposal · 2801 bytes; not validated
+❯   ┊ receive   model proposal · 3554 bytes; not validated
+❯   ┊ receive   model proposal · 4301 bytes; not validated
+❯   ┊ receive   model proposal · 5053 bytes; not validated
+❯   ┊ receive   model proposal · 5819 bytes; not validated
+❯   ┊ receive   model proposal · 6571 bytes; not validated
+❯   ┊ receive   model proposal · 7318 bytes; not validated
+❯   ┊ receive   model proposal · 8065 bytes; not validated
+❯   ┊ receive   model proposal · 8812 bytes; not validated
+❯   ┊ receive   model proposal · 9559 bytes; not validated
+❯   ┊ receive   model proposal · 10306 bytes; not validated
+❯   ┊ receive   model proposal · 11053 bytes; not validated
+❯   ┊ receive   model proposal · 11801 bytes; not validated
+❯   ┊ receive   model proposal · 12549 bytes; not validated
+❯   ┊ receive   model proposal · 13296 bytes; not validated
+❯   ┊ receive   model proposal · 14043 bytes; not validated
+❯   ┊ receive   model proposal · 14790 bytes; not validated
+❯   ┊ receive   model proposal · 15549 bytes; not validated
+❯   ┊ receive   model proposal · 16311 bytes; not validated
+❯   ┊ receive   model proposal · 17064 bytes; not validated
+❯   ┊ receive   model proposal · 17811 bytes; not validated
+❯   ┊ receive   model proposal · 18566 bytes; not validated
+❯   ┊ receive   model proposal · 19320 bytes; not validated
+❯   ┊ receive   model proposal · 20067 bytes; not validated
+❯   ┊ receive   model proposal · 20814 bytes; not validated
+❯   ┊ receive   model proposal · 21561 bytes; not validated
+❯   ┊ receive   model proposal · 22308 bytes; not validated
+❯   ┊ receive   model proposal · 23055 bytes; not validated
+❯   ┊ receive   model proposal · 23802 bytes; not validated
+❯   ┊ receive   model proposal · 24550 bytes; not validated
+❯   ┊ receive   model proposal · 25297 bytes; not validated
+❯   ┊ receive   model proposal · 26045 bytes; not validated
+❯   ┊ receive   model proposal · 26792 bytes; not validated
+❯   ┊ receive   model proposal · 27539 bytes; not validated
+❯   ┊ receive   model proposal · 28287 bytes; not validated
+❯   ┊ receive   model proposal · 29606 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId"
+  ┊ :"718f5a4e-2621-47d8-ae1f-7ea485067b59","passageId":"718f5a4e-2621-47d8-ae1f-7ea485067b59:p1","q
+  ┊ uote":"The fixture launch year is 2042."}]} · 8376 ms
+❯   citations [{"snapshotId":"718f5a4e-2621-47d8-ae1f-7ea485067b59","passageId":"718f5a4e-2621-47d8-ae
+  citations 1f-7ea485067b59:p1","quote":"The fixture launch year is 2042."}]
+❯   result {"status":"done","answer":"The fixture launch year is 2042.","runId":"run_mvcxlxvj_qsp6kcm"
+  result }
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /passage 718f5a4e-2621-47d8-ae1f-7ea485067b59:p1
+  passage {"id":"718f5a4e-2621-47d8-ae1f-7ea485067b59:p1","snapshotId":"718f5a4e-2621-47d8-ae1f-7ea4
+  passage 85067b59","url":"http://127.0.0.1:57210/read","text":"The fixture launch year is 2042.","k
+  passage ind":"document"}
+❯ /trace
+  trace run_started {"id":"run_mvcxlxvj_qsp6kcm","task":"Return the exact complete sentence giving t
+  trace run_started he launch year with its captured passage citation.","askUrl":"http://127.0.0.1:5
+  trace run_started 7210/read","status":"observing","startedAt":"2026-10-17T21:51:47.647Z","maxSteps
+  trace run_started ":20,"permissions":{"origins":["http://127.0.0.1:57210"],"tools":["navigate","wa
+  trace run_started it","extract_text","summarize_page","ask_user","finish","fail"],"read":true,"wri
+  trace run_started te":false,"irreversible":"deny","allowLoopback":true,"maxSteps":20,"expiresAt":1
+  trace run_started 792274207646,"maxCost":0},"provider":"unresolved","model":"unresolved","answers"
+  trace run_started :[],"reservedCost":0}
+❯   trace configuration {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":tru
+  trace configuration e,"responseFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode
+  trace configuration ":"local","requestCost":0,"maxOutputTokens":512,"tokenLimitField":"max_tokens"
+  trace configuration ,"requestTimeoutMs":60000}}
+❯   trace gate {"stepId":"step_mvcxlycr_8q0vu0f","gate":{"decision":"allow","approved":false}}
+❯   trace act_started {"stepId":"step_mvcxlycr_8q0vu0f","action":{"type":"navigate","url":"http://127.
+  trace act_started 0.0.1:57210/read"}}
+❯   trace step {"id":"step_mvcxlycr_8q0vu0f","index":0,"phase":"ACT","status":"observing","action":{"t
+  trace step ype":"navigate","url":"http://127.0.0.1:57210/read"},"observationSummary":"Opened the e
+  trace step xplicitly requested ask page under fixed read permissions.","result":"Opened the explic
+  trace step itly requested ask page under fixed read permissions.","gate":{"decision":"allow","appr
+  trace step oved":false},"startedAt":"2026-10-17T21:51:47.648Z","completedAt":"2026-10-17T21:51:48.
+  trace step 334Z","durationMs":686}
+❯   trace observation {"snapshotId":"718f5a4e-2621-47d8-ae1f-7ea485067b59","documentId":"b73e2245-10b4
+  trace observation -479a-8f75-895856b92180","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"The fixture launch year is 2042.","kind":"documen
+  trace observation t","id":"718f5a4e-2621-47d8-ae1f-7ea485067b59:p1","snapshotId":"718f5a4e-2621-47
+  trace observation d8-ae1f-7ea485067b59","url":"http://127.0.0.1:57210/read"}],"unreadableRegions":
+  trace observation 0,"omittedPassages":false,"url":"http://127.0.0.1:57210/read","title":"Launch fa
+  trace observation ct","visibleText":"The fixture launch year is 2042.","accessibilityTreeSummary":
+  trace observation "Safe DOM target summary. Native AX field values are not captured.","timestamp":
+  trace observation "2026-10-17T21:51:48.393Z"}
+❯   trace crossing {"destination":"http://127.0.0.1:18184/v1/chat/completions","requestBytes":7469,"pa
+  trace crossing yloadHash":"bdf188b7571788b6c1f95247281e507bde58ad915c2d859ed6d6b7a8f099cd14","atte
+  trace crossing mpt":1,"estimatedCost":0,"accounting":"local-zero"}
+❯   trace model_usage {"promptTokens":1129,"completionTokens":115}
+❯   trace proposal {"stepId":"step_mvcxm4vf_w5slu11","action":{"type":"finish","answer":"The fixture l
+  trace proposal aunch year is 2042.","evidence":[{"snapshotId":"718f5a4e-2621-47d8-ae1f-7ea485067b5
+  trace proposal 9","passageId":"718f5a4e-2621-47d8-ae1f-7ea485067b59:p1","quote":"The fixture launc
+  trace proposal h year is 2042."}]}}
+❯   trace gate {"stepId":"step_mvcxm4vf_w5slu11","gate":{"decision":"allow","approved":false}}
+❯   trace step {"id":"step_mvcxm4vf_w5slu11","index":1,"phase":"DONE","status":"done","action":{"type"
+  trace step :"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId":"718f5a
+  trace step 4e-2621-47d8-ae1f-7ea485067b59","passageId":"718f5a4e-2621-47d8-ae1f-7ea485067b59:p1","
+  trace step quote":"The fixture launch year is 2042."}]},"beforeId":"718f5a4e-2621-47d8-ae1f-7ea485
+  trace step 067b59","observationSummary":"Snapshot-bound passage citations support the exact extrac
+  trace step tive answer.","result":"Snapshot-bound passage citations support the exact extractive a
+  trace step nswer.","gate":{"decision":"allow","approved":false},"startedAt":"2026-10-17T21:51:48.3
+  trace step 49Z","completedAt":"2026-10-17T21:51:56.725Z","durationMs":8376}
+❯   trace run_completed {"status":"done","completedAt":"2026-10-17T21:51:57.008Z","finalAnswer":"The f
+  trace run_completed ixture launch year is 2042."}
+❯ /open 718f5a4e-2621-47d8-ae1f-7ea485067b59:p1
+  opened source "http://127.0.0.1:57210/read"
+❯ /close-source
+  Source window closed.
+❯ /quit
+Closed. ⋔

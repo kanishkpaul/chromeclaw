@@ -5,3 +5,5 @@ export * from "./llm/index";
 export * from "./storage/jsonl";
 
 export { OpenAICompatiblePlanner, PlannerReplyError } from "./llm/openai";
+
+export { openCapturedSource } from "./sources";

@@ -37,7 +37,12 @@ import {
   type Planner,
 } from "./llm/index";
 import { PlannerReplyError, PlannerTransportError } from "./llm/openai";
-import { SafetyPolicy } from "./safety";
+import {
+  askPermissions,
+  verifyAsk,
+  askNavigationRefusal,
+} from "./abilities/ask";
+import { SafetyPolicy, type SafetyResult } from "./safety";
 import { JsonlRunStore, type RunLogEvent } from "./storage/jsonl";
 
 export type { ActionApproval } from "@chromeclaw/shared";
@@ -48,6 +53,9 @@ export type RuntimeReply = { runId: string; pendingId: string } & (
 );
 export interface AgentRunOptions {
   task: string;
+  askUrl?: string | undefined;
+  stream?: boolean | undefined;
+  onProgress?: ((progress: { receivedBytes: number }) => void) | undefined;
   permissions?: PermissionRequest;
   maxSteps?: number | undefined;
   headless?: boolean | undefined;
@@ -147,6 +155,11 @@ export class BrowserAgentRuntime {
       headless: options.headless,
     });
     const maxSteps = settings.maxSteps;
+    const askUrl = previous ? previous.askUrl : options.askUrl;
+    const isAsk = askUrl !== undefined;
+    const requested = isAsk
+      ? askPermissions(options.permissions ?? {})
+      : options.permissions;
     const permissions = previous?.permissions
       ? Object.freeze({
           ...previous.permissions,
@@ -154,7 +167,7 @@ export class BrowserAgentRuntime {
           tools: Object.freeze([...previous.permissions.tools]),
         })
       : createPermissions(
-          { ...options.permissions, maxSteps, timeoutMs: settings.timeoutMs },
+          { ...requested, maxSteps, timeoutMs: settings.timeoutMs },
           Date.now(),
         );
     if (!permissions) throw new Error("No task permissions.");
@@ -172,6 +185,7 @@ export class BrowserAgentRuntime {
       : {
           id: createId("run"),
           task: options.task,
+          ...(isAsk ? { askUrl } : {}),
           status: "observing",
           startedAt: new Date().toISOString(),
           maxSteps,
@@ -213,7 +227,7 @@ export class BrowserAgentRuntime {
         await abortable(Promise.resolve(options.onEvent(event)), signal);
     };
     const notify = async () => {
-      if (options.onState)
+      if (options.onState && !signal.aborted)
         await abortable(
           Promise.resolve(options.onState(privacy.record(run))),
           signal,
@@ -222,6 +236,13 @@ export class BrowserAgentRuntime {
     let session: BrowserSession | undefined;
     let inFlight = false;
     let closeFailure = false;
+    let browserDisconnected = false;
+    const disconnected = () => {
+      if (!signal.aborted) {
+        browserDisconnected = true;
+        controller.abort();
+      }
+    };
     const abortBrowser = () => {
       void session?.close().catch(() => {
         closeFailure = true;
@@ -355,6 +376,7 @@ export class BrowserAgentRuntime {
             : options.provider,
           model: previous?.configuration ? previous.model : options.model,
           baseUrl: previous?.configuration?.endpoint ?? options.baseUrl,
+          stream: previous?.configuration?.stream ?? options.stream,
           responseFormat:
             previous?.configuration?.responseFormat ?? options.responseFormat,
           requestCost:
@@ -385,6 +407,21 @@ export class BrowserAgentRuntime {
           ),
         );
       if (configurationError) throw configurationError;
+      if (isAsk) {
+        if (plannerTask.length > 5000)
+          throw new RuntimeFailure(
+            "Ask questions are limited to 5,000 characters.",
+          );
+        const url = new URL(askUrl);
+        const refusal = destinationRefusal(url.href, permissions);
+        if (refusal || url.search || url.hash)
+          throw new RuntimeFailure(
+            "Ask needs a permitted HTTP(S) page without query or fragment data.",
+          );
+        plannerTask = `${plannerTask}
+Read ${url.href}. This is a read-only ask task. Return the exact relevant captured passage as the answer with snapshotId, passageId and exact quote. If the answer is not readable, use ask_user; do not guess.`;
+      }
+
       if (!planner)
         throw new RuntimeFailure("No validated planner configuration.");
       signal.throwIfAborted();
@@ -412,18 +449,20 @@ export class BrowserAgentRuntime {
         profileDir: options.profileDir,
         screenshotsDir: options.screenshotsDir,
       });
+      session.context.on("close", disconnected);
       signal.throwIfAborted();
       const browser = session;
       const navigation = await guardNavigation(session, permissions);
       // Reopening never executes a persisted proposal. It loads the last permitted page only,
       // captures fresh handles and asks the user before another planner request.
       if (previous) {
-        const url = [...previous.steps]
-          .reverse()
-          .find(
-            (step) =>
-              step.observation && step.observation.url !== "about:blank",
-          )?.observation?.url;
+        const url =
+          [...previous.steps]
+            .reverse()
+            .find(
+              (step) =>
+                step.observation && step.observation.url !== "about:blank",
+            )?.observation?.url ?? previous.askUrl;
         if (
           url &&
           !destinationRefusal(url, permissions) &&
@@ -431,6 +470,42 @@ export class BrowserAgentRuntime {
           !new URL(url).hash
         )
           await navigate(session.page, url);
+      }
+      if (isAsk && !previous) {
+        stage = "navigate";
+        const action: BrowserAction = { type: "navigate", url: askUrl };
+        const gate = this.safety.assess(action, {
+          task: plannerTask,
+          permissions,
+          now: Date.now(),
+          step: 0,
+          spent: run.reservedCost ?? 0,
+        });
+        if (gate.decision !== "allow")
+          throw new RuntimeFailure(gate.reason ?? "Ask navigation refused.");
+        const stepId = createId("step");
+        activeStepId = stepId;
+        const recorded = { decision: gate.decision, approved: false };
+        await emit("gate", { stepId, gate: recorded });
+        await emit("act_started", { stepId, action });
+        signal.throwIfAborted();
+        inFlight = true;
+        await abortable(navigate(session.page, askUrl), signal);
+        inFlight = false;
+        if (navigation.refusal())
+          throw new RuntimeFailure("Ask navigation was refused.");
+        await saveStep(
+          makeStep(
+            0,
+            "ACT",
+            "observing",
+            action,
+            undefined,
+            "Opened the explicitly requested ask page under fixed read permissions.",
+            recorded,
+            stepId,
+          ),
+        );
       }
       for (let index = run.steps.length; index < maxSteps; index++) {
         signal.throwIfAborted();
@@ -449,7 +524,13 @@ export class BrowserAgentRuntime {
         run.status = "observing";
         lastObservation = await getPageSnapshot(session.page, {
           screenshotsDir: options.screenshotsDir,
+          readPassages: isAsk,
         });
+        if (isAsk)
+          lastObservation.visibleText =
+            lastObservation.passages
+              ?.map((passage) => passage.text)
+              .join("\n") ?? "";
         observations.set(lastObservation.snapshotId, lastObservation);
         await emit("observation", lastObservation);
         if (this.pauseRequested) {
@@ -472,6 +553,7 @@ export class BrowserAgentRuntime {
             await abortable(
               planner.plan({
                 task: plannerTask,
+                onProgress: options.onProgress,
                 observation: privacy.record(lastObservation),
                 observationSummary: summarizeObservation(
                   privacy.record(lastObservation),
@@ -536,15 +618,20 @@ export class BrowserAgentRuntime {
           index--;
           continue;
         }
-        const assess = () =>
-          this.safety.assess(action, {
-            task: options.task,
-            observation: lastObservation,
-            permissions,
-            now: Date.now(),
-            step: index,
-            spent: run.reservedCost ?? 0,
-          });
+        const askRefusal = isAsk
+          ? askNavigationRefusal(action, askUrl)
+          : undefined;
+        const assess = (): SafetyResult =>
+          askRefusal
+            ? { decision: "block", reason: askRefusal }
+            : this.safety.assess(action, {
+                task: options.task,
+                observation: lastObservation,
+                permissions,
+                now: Date.now(),
+                step: index,
+                spent: run.reservedCost ?? 0,
+              });
         let gate = assess();
         let approved = false;
         navigation.clear();
@@ -736,9 +823,11 @@ export class BrowserAgentRuntime {
           continue;
         }
         if (action.type === "finish") {
-          const verification = options.verify
-            ? await abortable(options.verify(session, action, run), signal)
-            : verifyExtractiveAnswer(action, observations);
+          const verification = isAsk
+            ? verifyAsk(action, observations)
+            : options.verify
+              ? await abortable(options.verify(session, action, run), signal)
+              : verifyExtractiveAnswer(action, observations);
           run.status = verification.passed ? "done" : "uncertain";
           run.finalAnswer = privacy.text(action.answer);
           if (!verification.passed) run.error = verification.detail;
@@ -877,17 +966,21 @@ export class BrowserAgentRuntime {
     } catch (error) {
       delete run.pending;
       run.status =
-        signal.aborted && !deadline.signal.aborted ? "stopped" : "failed";
-      run.error = signal.aborted
-        ? deadline.signal.aborted
-          ? "Task time budget exhausted."
-          : `Stopped by user.${inFlight ? " An act was already in flight; side effects may have occurred." : " No new act will be dispatched."}`
-        : error instanceof PlannerReplyError ||
-            error instanceof PlannerTransportError ||
-            error instanceof PlannerConfigError ||
-            error instanceof RuntimeFailure
-          ? error.message
-          : `Failure during ${stage}. Diagnostic details withheld.`;
+        signal.aborted && !deadline.signal.aborted && !browserDisconnected
+          ? "stopped"
+          : "failed";
+      run.error = browserDisconnected
+        ? `Browser disconnected. No further act will be dispatched.${inFlight ? " An act was in flight; side effects may have occurred." : ""}`
+        : signal.aborted
+          ? deadline.signal.aborted
+            ? "Task time budget exhausted."
+            : `Stopped by user.${inFlight ? " An act was already in flight; side effects may have occurred." : " No new act will be dispatched."}`
+          : error instanceof PlannerReplyError ||
+              error instanceof PlannerTransportError ||
+              error instanceof PlannerConfigError ||
+              error instanceof RuntimeFailure
+            ? error.message
+            : `Failure during ${stage}. Diagnostic details withheld.`;
       run.finalAnswer = run.error;
       try {
         await emit("error", {
@@ -911,6 +1004,7 @@ export class BrowserAgentRuntime {
       }
     } finally {
       signal.removeEventListener("abort", abortBrowser);
+      session?.context.off("close", disconnected);
       clearTimeout(timer);
       const cleanup = new AbortController();
       try {

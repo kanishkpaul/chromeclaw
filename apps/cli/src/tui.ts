@@ -3,12 +3,17 @@ import { stdin, stdout } from "node:process";
 import {
   BrowserAgentRuntime,
   JsonlRunStore,
+  openCapturedSource,
   resolvePlannerConfig,
   describePlannerConfig,
   type AgentRunOptions,
   type RuntimeReply,
 } from "@chromeclaw/agent";
-import type { AgentRun, AgentStep } from "@chromeclaw/shared";
+import {
+  ObservationRecordSchema,
+  type AgentRun,
+  type AgentStep,
+} from "@chromeclaw/shared";
 import { terminalRows, terminalText, terminalTheme } from "./terminal";
 
 interface TerminalOptions extends Omit<AgentRunOptions, "task"> {
@@ -42,6 +47,10 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
   let taskLines: string[] = [];
   let current: AgentRun | undefined;
   let running: Promise<void> | undefined;
+  let openingSource: Promise<void> | undefined;
+  let sourceOpening = false;
+  let sourceWindow: Awaited<ReturnType<typeof openCapturedSource>> | undefined;
+  let lastProgress = 0;
   let shownPending: string | undefined;
   const columns = () => stdout.columns || 80;
   const row = (
@@ -126,13 +135,35 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     if (!runtime.respond(reply))
       notice("That pending request is no longer active.");
   };
-  const execute = (task: string, resume = false) => {
+  const execute = (task: string, resume = false, askUrl?: string) => {
+    if (sourceOpening) {
+      notice("The source window is still opening.");
+      return;
+    }
+    if (sourceWindow?.ok) {
+      notice(
+        "Close the source window with /close-source before starting work.",
+      );
+      return;
+    }
     busy = true;
     current = undefined;
+    lastProgress = 0;
     shownPending = undefined;
     row(" ", `${identity.glyph} ${identity.agent}`, "response_border");
     const runOptions: Omit<AgentRunOptions, "task"> = {
       ...settings,
+      askUrl,
+      onProgress: ({ receivedBytes }) => {
+        if (receivedBytes - lastProgress >= 512 || lastProgress === 0) {
+          lastProgress = receivedBytes;
+          row(
+            "  ┊ ",
+            `receive   model proposal · ${receivedBytes} bytes; not validated`,
+            "ui_label",
+          );
+        }
+      },
       interactive: true,
       onState: state,
       onStep: step,
@@ -162,6 +193,9 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     )
       .then((run) => {
         current = run;
+        const finish = run.steps.at(-1)?.action;
+        if (finish?.type === "finish" && finish.evidence)
+          data("citations", finish.evidence);
         data("result", {
           status: run.status,
           answer: run.finalAnswer,
@@ -203,6 +237,35 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
         );
       return;
     }
+    if (view === "/passage" || view === "/open") {
+      const passages = saved.events
+        .filter((event) => event.type === "observation")
+        .flatMap(
+          (event) =>
+            ObservationRecordSchema.parse(event.payload).passages ?? [],
+        );
+      const passage = passages.find((passage) => passage.id === argument);
+      if (!passage)
+        return notice(
+          "Choose a passage ID from the answer citations or /sources.",
+        );
+      if (view === "/passage") {
+        data("passage", passage);
+        return;
+      }
+      if (busy)
+        return notice(
+          "Pause or finish the active task before opening a source window.",
+        );
+      if (sourceWindow?.ok) await sourceWindow.close();
+      sourceWindow = await openCapturedSource(current.id, argument, {
+        logDir: options.logDir,
+        headless: options.headless,
+      });
+      if (sourceWindow.ok) data("opened source", sourceWindow.url);
+      else notice(sourceWindow.reason);
+      return;
+    }
     const sources = saved.events.filter(
       (event) => event.type === "observation",
     );
@@ -231,7 +294,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
   };
   const help = () =>
     notice(
-      "Task + Enter · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
+      "Task + Enter · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
     );
   const handle = (line: string) => {
     if (closed) return;
@@ -273,6 +336,17 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
           answer: "Completed manually in Chrome.",
         });
     }
+    if (command === "/close-source") {
+      if (sourceWindow?.ok) {
+        const window = sourceWindow;
+        sourceWindow = undefined;
+        void window
+          .close()
+          .then(() => notice("Source window closed."))
+          .catch(() => notice("Source window cleanup failed."));
+      }
+      return;
+    }
     if (command === "/quit") {
       runtime.cancel();
       rl.close();
@@ -290,10 +364,29 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
         busy ? "Pause requested before another act." : "No active task.",
       );
     }
-    if (["/history", "/trace", "/sources", "/source"].includes(command)) {
-      void inspect(command, argument).catch(() =>
-        notice("Trace could not be read. Check the log directory."),
-      );
+    if (
+      [
+        "/history",
+        "/trace",
+        "/sources",
+        "/source",
+        "/passage",
+        "/open",
+      ].includes(command)
+    ) {
+      if (command === "/open") {
+        if (sourceOpening || busy)
+          return notice("Wait for the active task or source window.");
+        sourceOpening = true;
+        openingSource = inspect(command, argument)
+          .catch(() => notice("Source window could not be opened."))
+          .finally(() => {
+            sourceOpening = false;
+          });
+      } else
+        void inspect(command, argument).catch(() =>
+          notice("Trace could not be read. Check the log directory."),
+        );
       return;
     }
     if (command === "/settings") {
@@ -306,6 +399,15 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       return notice(
         "A task is active. Use its pending command, /pause or /cancel.",
       );
+    if (command === "/ask") {
+      const [url, ...question] = words;
+      if (!url || !question.length)
+        return notice(
+          "Use /ask URL followed by a question, within the permitted origins.",
+        );
+      execute(question.join(" "), false, url);
+      return;
+    }
     if (command === "/resume") {
       if (argument) execute(argument, true);
       else notice("Use /resume followed by a saved run ID.");
@@ -424,6 +526,8 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     status();
     await finished;
     await running;
+    await openingSource;
+    if (sourceWindow?.ok) await sourceWindow.close();
     stdout.write(`${identity.goodbye}\n`);
     return 0;
   } finally {

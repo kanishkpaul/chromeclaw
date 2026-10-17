@@ -15,6 +15,7 @@ export {
 export type { PlannerConfig, ResolvedPlannerConfig } from "./config";
 
 export interface PlannerInput {
+  onProgress?: ((progress: { receivedBytes: number }) => void) | undefined;
   signal?: AbortSignal | undefined;
   permissions?: TaskPermissions;
   sensitiveValues?: readonly string[] | undefined;
@@ -39,6 +40,7 @@ export interface Planner {
   model: string;
   configuration?:
     | {
+        stream: boolean;
         responseFormat: "json" | "llama-schema";
         endpoint: string;
         mode: "local" | "hosted";
@@ -61,6 +63,7 @@ export function createPlanner(options: PlannerConfig = {}): Planner {
     apiKey: config.apiKey,
     baseUrl: config.baseUrl,
     responseFormat: config.responseFormat,
+    stream: config.stream,
     providerName: config.provider,
     mode: config.mode,
     requestCost: config.mode === "local" ? 0 : config.requestCost,

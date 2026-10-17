@@ -32,7 +32,7 @@ approve; an action cannot carry its own approval. A consumed node cannot replay 
 The snapshot binds relevant form state without disclosing its values to a provider; a human
 callback must inspect that state in Chrome before approving. Scripted fixtures use synthetic
 values and controlled approvals. Without a callback the run hands back without acting. Phase 3 supplies durable awaiting-input states, basic terminal controls and restart recapture;
-the full TUI remains Phase 5.
+the terminal controls and grounded ask are documented in [PHASE5.md](PHASE5.md).
 
 The request gate permits one matching data-bearing request after approval. It checks redirects
 with `route.fetch({ maxRedirects: 0 })` because Playwright does not route each redirect hop. All
@@ -76,5 +76,12 @@ The Phase 5 scrollback TUI renders page/model/source content as escaped, prefixe
 pending-action control requires the current one-use pending ID; Enter/Esc deny. Input is handled
 at arrival, never queued into a future gate. EOF/Ctrl-C cancel through the existing runtime;
 reopen keeps the saved envelope and pauses after recapture. The [PTY/browser starter evidence](evidence/phase5/terminal-start/README.md)
-covers these presentation mechanics. It does not establish arbitrary PII filtering, a personal
-Chrome session boundary, actual model quality or completion of the full Phase 5 gate.
+covers the initial presentation mechanics; [completion evidence](evidence/phase5/completion/README.md)
+adds read-only ask, bounded SSE, long-stream cancellation and immediate browser-loss failure.
+Ask cannot widen existing permissions or navigate away from the selected page. It excludes form
+values and requires snapshot-bound exact extractive citations. Source display requires a cited
+passage, the original unexpired read/origin permissions and an explicit command. SSE partial
+content never reaches the terminal or dispatcher; counts are provisional, complete actions are
+validated once and credential echoes are checked after joining chunks. Reopening preserves the
+saved ability and transport settings. These checks do not establish arbitrary PII filtering,
+personal Chrome attachment, held-out model quality or isolation from arbitrary malicious JavaScript.

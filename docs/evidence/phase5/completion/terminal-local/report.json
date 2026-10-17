@@ -1,0 +1,19 @@
+{
+  "suite": "phase5-terminal-local",
+  "checks": [
+    {
+      "id": "actual-local-grounded-answer-live-progress-inspection-trace-and-guarded-source-opening",
+      "passed": true
+    }
+  ],
+  "savedCities": [],
+  "evidenceDir": "attempt-xwmj9prj",
+  "planner": "chromeclaw-qwen3vl",
+  "actualLocal": true,
+  "modelRequests": {},
+  "limitations": [
+    "Controlled actual local inference, not held-out quality.",
+    "Owned ChromeClaw profile only; disposable CDP comparison is in the separate session suite.",
+    "Raw proposal tokens stay buffered until validation; streaming progress is byte counts."
+  ]
+}

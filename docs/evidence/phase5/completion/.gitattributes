@@ -1,0 +1,5 @@
+# Preserve recorded terminal/log bytes, including meaningful prompt whitespace.
+*.log -text -whitespace
+**/*.txt -text -whitespace
+**/*.cast -text -whitespace
+**/*.jsonl -text -whitespace

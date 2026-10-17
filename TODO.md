@@ -30,4 +30,6 @@ sensitive content. Completion requires a trusted world predicate or exact extrac
 other outcomes remain uncertain. These controlled fixtures do not establish real-model quality.
 
 Phase 4 model/server-specific acceptance and accounting limits: [completion evidence](docs/evidence/phase4/completion/README.md).
-The full TUI, trace viewer, held-out testing and final README remain later phases.
+Phase 5 adds a local TUI trace/source inspector, passage-grounded ask and explicit source opening.
+The richer screenshot/timing trace viewer above remains open. Held-out testing and final README
+remain Phases 8 and 9. See [Phase 5 evidence](docs/evidence/phase5/completion/README.md).
