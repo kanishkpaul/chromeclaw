@@ -33,3 +33,7 @@ Phase 4 model/server-specific acceptance and accounting limits: [completion evid
 Phase 5 adds a local TUI trace/source inspector, passage-grounded ask and explicit source opening.
 The richer screenshot/timing trace viewer above remains open. Held-out testing and final README
 remain Phases 8 and 9. See [Phase 5 evidence](docs/evidence/phase5/completion/README.md).
+
+Phase 6 is in progress: experimental `/find` and `run --find` provide ranked current-capture
+references without act permission. Labelled model ranking and J2 acceptance remain open;
+see [Phase 6 scope](docs/PHASE6.md).

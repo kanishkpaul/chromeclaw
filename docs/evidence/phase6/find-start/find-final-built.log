@@ -1,0 +1,92 @@
+{
+  "suite": "phase6-find-contract",
+  "built": true,
+  "planner": "scripted-contract-only",
+  "actualModel": false,
+  "writes": 0,
+  "checks": [
+    {
+      "id": "reopen-retains-mode-and-pauses",
+      "passed": true,
+      "runId": "run_mvcyctv3_z8ff6df",
+      "log": "target/run_mvcyctv3_z8ff6df.jsonl"
+    },
+    {
+      "id": "target",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvcyctv3_z8ff6df",
+      "log": "target/run_mvcyctv3_z8ff6df.jsonl"
+    },
+    {
+      "id": "passage",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvcycvpz_pu8j2sh",
+      "log": "passage/run_mvcycvpz_pu8j2sh.jsonl"
+    },
+    {
+      "id": "mixed",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvcycwf9_duehnzm",
+      "log": "mixed/run_mvcycwf9_duehnzm.jsonl"
+    },
+    {
+      "id": "duplicates",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvcycx7u_bp8x784",
+      "log": "duplicates/run_mvcycx7u_bp8x784.jsonl"
+    },
+    {
+      "id": "invented",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvcycy15_s5gd4rj",
+      "log": "invented/run_mvcycy15_s5gd4rj.jsonl"
+    },
+    {
+      "id": "credential",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvcycyx7_0f9ob61",
+      "log": "credential/run_mvcycyx7_0f9ob61.jsonl"
+    },
+    {
+      "id": "stale",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvcyczro_sd75u2g",
+      "log": "stale/run_mvcyczro_sd75u2g.jsonl"
+    }
+  ],
+  "execution": "built-fGlz3x"
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: no-match: Failure during startup. Diagnostic details withheld.
++ actual - expected
+
++ 'failed'
+- 'uncertain'
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/find.browser.mjs:60:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'failed',
+  expected: 'uncertain',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

@@ -266,3 +266,17 @@ saved ability and pauses. The CLI declares its existing shared-package dependenc
 
 Phase 5 evidence-local attributes preserve raw transcript/log bytes and their prompt whitespace;
 production sources retain the normal whitespace checks.
+
+## D-022 · 2026-10-18 · Explicit find-on-page candidate contracts
+
+Start Phase 6 with an opt-in `find-01` route over the existing runtime. Share read-only page-scope
+construction in composition rather than making find import ask. Keep ranked references in the
+strict finish contract, not an action that can activate a control. Revalidate target handles,
+snapshot state and visible passages before displaying results; do not confuse reference validity
+with semantic relevance. No-match remains uncertain and ambiguity can request clarification.
+
+Do not invent a confidence threshold before measuring actual-model ranking on labelled development
+fixtures. The current route is experimental and viewport-only. Optional browser reveal is deferred;
+no highlight, scrolling, control activation or permission widening is needed to inspect these
+results in the TUI. No new dependency, top-level directory or browser permission is required.
+The four final plugin registries and J2 select/back/tab work remain pending. See PHASE6.md.

@@ -1,30 +1,4 @@
-import type {
-  BrowserAction,
-  BrowserObservation,
-  PermissionRequest,
-} from "@chromeclaw/shared";
-
-const readTools: BrowserAction["type"][] = [
-  "navigate",
-  "wait",
-  "extract_text",
-  "summarize_page",
-  "ask_user",
-  "finish",
-  "fail",
-];
-
-/** Ask can only narrow the user's powers; even an explicitly writable session stays read-only. */
-export function askPermissions(request: PermissionRequest): PermissionRequest {
-  return {
-    ...request,
-    write: false,
-    irreversible: "deny",
-    tools: readTools.filter(
-      (tool) => !request.tools || request.tools.includes(tool),
-    ),
-  };
-}
+import type { BrowserAction, BrowserObservation } from "@chromeclaw/shared";
 
 export function verifyAsk(
   finish: Extract<BrowserAction, { type: "finish" }>,
@@ -49,17 +23,4 @@ export function verifyAsk(
       ? "Snapshot-bound passage citations support the exact extractive answer."
       : "Ask requires an exact extractive answer with resolvable captured passage IDs.",
   };
-}
-
-export function askNavigationRefusal(
-  action: BrowserAction,
-  askUrl: string,
-): string | undefined {
-  if (action.type !== "navigate") return undefined;
-  try {
-    if (new URL(action.url).href === new URL(askUrl).href) return undefined;
-  } catch {
-    return "Ask received an invalid navigation URL.";
-  }
-  return "Ask cannot leave the user-selected page.";
 }

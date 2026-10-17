@@ -119,3 +119,11 @@ not touched. CI archives synthetic ask/session/terminal evidence. `pnpm eval:tui
 `.chromeclaw/phase5-terminal-local`. Actual local runs are manual;
 hosted inference is explicitly waived. See [Phase 5 evidence](evidence/phase5/completion/README.md)
 for provenance and development failures. No held-out quality claim follows from these fixtures.
+
+`pnpm eval:find` starts Phase 6 with fourteen scripted find contract checks in real Chrome;
+`pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs --built`
+checks compiled parity. The suite writes `.chromeclaw/phase6-find`, including failed-run reports,
+and CI archives it. It measures reference/freshness/permission behavior, not model relevance or
+top-1/top-3 accuracy. The PTY suite also covers `/find` and numbered passage inspection. Actual
+local-model ranking and the independent 20-task J3a set remain pending. See
+[starter evidence](evidence/phase6/find-start/README.md) and [Phase 6 scope](PHASE6.md).

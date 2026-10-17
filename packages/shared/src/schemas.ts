@@ -85,9 +85,42 @@ export const AskUserActionSchema = ThoughtSchema.extend({
   question: z.string().min(1),
 });
 
+// A result names captured data only; it carries no action or permission.
+export const PageMatchSchema = z.union([
+  z
+    .object({
+      snapshotId: z.string().min(1),
+      target: z.number().int().positive(),
+      reason: z.string().min(1).max(500),
+    })
+    .strict(),
+  z
+    .object({
+      snapshotId: z.string().min(1),
+      passageId: z.string().min(1),
+      reason: z.string().min(1).max(500),
+    })
+    .strict(),
+]);
+export const PageFindSchema = z.union([
+  z
+    .object({
+      outcome: z.literal("matches"),
+      matches: z.array(PageMatchSchema).min(1).max(3),
+    })
+    .strict(),
+  z
+    .object({
+      outcome: z.literal("no-match"),
+      reason: z.string().min(1).max(500),
+    })
+    .strict(),
+]);
+
 export const FinishActionSchema = ThoughtSchema.extend({
   type: z.literal("finish"),
   answer: z.string().min(1),
+  pageFind: PageFindSchema.optional(),
   evidence: z
     .array(
       z

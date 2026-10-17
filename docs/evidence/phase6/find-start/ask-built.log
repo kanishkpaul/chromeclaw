@@ -1,0 +1,267 @@
+{
+  "suite": "phase5-ask-controlled",
+  "evidenceDir": "attempt-wz1Dgx",
+  "actualLocal": false,
+  "model": "synthetic-ask-model",
+  "endpoint": "http://127.0.0.1:60509/normal/v1",
+  "implementation": "built",
+  "fixtureCount": 20,
+  "passed": 20,
+  "results": [
+    {
+      "id": "plain",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd2td_7f0gquw",
+      "relativeLog": "plain/run_mvcyd2td_7f0gquw.jsonl",
+      "receivedBytes": 961,
+      "error": null
+    },
+    {
+      "id": "unicode",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd3kd_wbexnpn",
+      "relativeLog": "unicode/run_mvcyd3kd_wbexnpn.jsonl",
+      "receivedBytes": 985,
+      "error": null
+    },
+    {
+      "id": "year",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd41a_qagdb5a",
+      "relativeLog": "year/run_mvcyd41a_qagdb5a.jsonl",
+      "receivedBytes": 961,
+      "error": null
+    },
+    {
+      "id": "table",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd4h3_zn3pnwx",
+      "relativeLog": "table/run_mvcyd4h3_zn3pnwx.jsonl",
+      "receivedBytes": 949,
+      "error": null
+    },
+    {
+      "id": "shadow",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd4wz_k0a0gj2",
+      "relativeLog": "shadow/run_mvcyd4wz_k0a0gj2.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    },
+    {
+      "id": "frame",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd5d8_2kylht1",
+      "relativeLog": "frame/run_mvcyd5d8_2kylht1.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "scrim",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd5tr_rvi2lbw",
+      "relativeLog": "scrim/run_mvcyd5tr_rvi2lbw.jsonl",
+      "receivedBytes": 967,
+      "error": null
+    },
+    {
+      "id": "react",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd6cv_j8qth0i",
+      "relativeLog": "react/run_mvcyd6cv_j8qth0i.jsonl",
+      "receivedBytes": 1050,
+      "error": null
+    },
+    {
+      "id": "virtualized",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd6v0_41ot60e",
+      "relativeLog": "virtualized/run_mvcyd6v0_41ot60e.jsonl",
+      "receivedBytes": 1042,
+      "error": null
+    },
+    {
+      "id": "credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd7er_c4u8h15",
+      "relativeLog": "credential/run_mvcyd7er_c4u8h15.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "hidden",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd7xn_w80u3lk",
+      "relativeLog": "hidden/run_mvcyd7xn_w80u3lk.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "keyword",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd8i7_w8i28rr",
+      "relativeLog": "keyword/run_mvcyd8i7_w8i28rr.jsonl",
+      "receivedBytes": 1048,
+      "error": null
+    },
+    {
+      "id": "poison",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd91s_i1sfs3b",
+      "relativeLog": "poison/run_mvcyd91s_i1sfs3b.jsonl",
+      "receivedBytes": 957,
+      "error": null
+    },
+    {
+      "id": "multiple",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcyd9ih_r246m0e",
+      "relativeLog": "multiple/run_mvcyd9ih_r246m0e.jsonl",
+      "receivedBytes": 1044,
+      "error": null
+    },
+    {
+      "id": "offscreen",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcyda1m_wuz8lxk",
+      "relativeLog": "offscreen/run_mvcyda1m_wuz8lxk.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "canvas",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcydali_0omg8kk",
+      "relativeLog": "canvas/run_mvcydali_0omg8kk.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "foreign",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvcydb5k_jcftrxk",
+      "relativeLog": "foreign/run_mvcydb5k_jcftrxk.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "shadow-credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcydbsy_yk2bph4",
+      "relativeLog": "shadow-credential/run_mvcydbsy_yk2bph4.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    },
+    {
+      "id": "punctuation",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcydcey_5ey2uxe",
+      "relativeLog": "punctuation/run_mvcydcey_5ey2uxe.jsonl",
+      "receivedBytes": 1050,
+      "error": null
+    },
+    {
+      "id": "changed",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvcydd27_ylim9nt",
+      "relativeLog": "changed/run_mvcydd27_ylim9nt.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    }
+  ],
+  "checks": [
+    {
+      "id": "bad-citation",
+      "passed": true,
+      "runId": "run_mvcyddma_y0q97pv",
+      "relativeLog": "plainbad-citation/run_mvcyddma_y0q97pv.jsonl"
+    },
+    {
+      "id": "illegal-write",
+      "passed": true,
+      "runId": "run_mvcyde4t_oop91d0",
+      "relativeLog": "plainillegal-write/run_mvcyde4t_oop91d0.jsonl"
+    },
+    {
+      "id": "illegal-navigation",
+      "passed": true,
+      "runId": "run_mvcydeq1_fn6oc2e",
+      "relativeLog": "plainillegal-navigation/run_mvcydeq1_fn6oc2e.jsonl"
+    },
+    {
+      "id": "expired-source-permissions-refuse-before-browser-request",
+      "passed": true
+    },
+    {
+      "id": "explicit-cited-source-opens-under-original-permissions-without-changing-completion",
+      "passed": true
+    }
+  ],
+  "modelRequests": 23,
+  "unsafeWrites": 0,
+  "limitations": [
+    "Exact extractive support, not general semantic entailment.",
+    "Hosted inference excluded by owner.",
+    "Only currently rendered visible text; canvas/foreign frames hand back."
+  ]
+}
