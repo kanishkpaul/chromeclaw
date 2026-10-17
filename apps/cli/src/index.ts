@@ -13,7 +13,7 @@ const logo = [
   "  / ____/ /_  _________  ____ ___  ___  / ____/ /___ __      __",
   " / /   / __ \\/ ___/ __ \\/ __ `__ \\/ _ \\/ /   / / __ `/ | /| / /",
   "/ /___/ / / / /  / /_/ / / / / / /  __/ /___/ / /_/ /| |/ |/ /",
-  "\\____/_/ /_/_/   \\____/_/ /_/ /_/\\___/\\____/_/\\__,_/ |__/|__/"
+  "\\____/_/ /_/_/   \\____/_/ /_/ /_/\\___/\\____/_/\\__,_/ |__/|__/",
 ].join("\n");
 
 const program = new Command();
@@ -29,12 +29,29 @@ program
   .option("--headless", "run Chrome headless")
   .option("--max-steps <number>", "maximum agent steps", "20")
   .option(
+    "--origin <origins...>",
+    "permitted HTTP(S) origins, fixed before page reads",
+    [],
+  )
+  .option(
+    "--write",
+    "allow ordinary editing; activations still require confirmation",
+  )
+  .option(
     "--provider <provider>",
     "mock, openai, openai-compatible, local, huggingface, hf, anthropic",
-    process.env.CHROMECLAW_PROVIDER ?? "mock"
+    process.env.CHROMECLAW_PROVIDER ?? "mock",
   )
-  .option("--model <model>", "model name", process.env.CHROMECLAW_MODEL ?? "mock-browser-operator")
-  .option("--log-dir <path>", "directory for JSONL run logs", ".chromeclaw/runs")
+  .option(
+    "--model <model>",
+    "model name",
+    process.env.CHROMECLAW_MODEL ?? "mock-browser-operator",
+  )
+  .option(
+    "--log-dir <path>",
+    "directory for JSONL run logs",
+    ".chromeclaw/runs",
+  )
   .action(async (task, options) => {
     printHeader();
     console.log(pc.dim("Task"));
@@ -44,13 +61,14 @@ program
     const runtime = new BrowserAgentRuntime();
     const run = await runtime.run({
       task,
+      permissions: { origins: options.origin, write: Boolean(options.write) },
       headless: Boolean(options.headless),
       maxSteps: Number(options.maxSteps),
       provider: options.provider,
       model: options.model,
       logDir: options.logDir,
       screenshotsDir: ".chromeclaw/screenshots",
-      onStep: (step) => printStep(step)
+      onStep: (step) => printStep(step),
     });
 
     printRunSummary(run, options.logDir);
@@ -61,8 +79,25 @@ program
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
   .option("--max-steps <number>", "maximum agent steps", "20")
-  .option("--provider <provider>", "planner provider", process.env.CHROMECLAW_PROVIDER ?? "mock")
-  .option("--model <model>", "model name", process.env.CHROMECLAW_MODEL ?? "mock-browser-operator")
+  .option(
+    "--origin <origins...>",
+    "permitted HTTP(S) origins, fixed before page reads",
+    [],
+  )
+  .option(
+    "--write",
+    "allow ordinary editing; activations still require confirmation",
+  )
+  .option(
+    "--provider <provider>",
+    "planner provider",
+    process.env.CHROMECLAW_PROVIDER ?? "mock",
+  )
+  .option(
+    "--model <model>",
+    "model name",
+    process.env.CHROMECLAW_MODEL ?? "mock-browser-operator",
+  )
   .action(async (options) => {
     printHeader();
     console.log(pc.dim("Interactive mode. Type a task or `exit` to quit.\n"));
@@ -76,12 +111,13 @@ program
       console.log("");
       const run = await runtime.run({
         task,
+        permissions: { origins: options.origin, write: Boolean(options.write) },
         headless: Boolean(options.headless),
         maxSteps: Number(options.maxSteps),
         provider: options.provider,
         model: options.model,
         screenshotsDir: ".chromeclaw/screenshots",
-        onStep: (step) => printStep(step)
+        onStep: (step) => printStep(step),
       });
       printRunSummary(run, ".chromeclaw/runs");
       console.log("");
@@ -93,7 +129,11 @@ program
 program
   .command("runs")
   .description("list recent ChromeClaw runs")
-  .option("--log-dir <path>", "directory for JSONL run logs", ".chromeclaw/runs")
+  .option(
+    "--log-dir <path>",
+    "directory for JSONL run logs",
+    ".chromeclaw/runs",
+  )
   .option("--limit <number>", "maximum runs to show", "10")
   .action(async (options) => {
     printHeader();
@@ -119,7 +159,11 @@ program
   .command("show")
   .argument("<run-id>", "run id to inspect")
   .description("show the full trace for one ChromeClaw run")
-  .option("--log-dir <path>", "directory for JSONL run logs", ".chromeclaw/runs")
+  .option(
+    "--log-dir <path>",
+    "directory for JSONL run logs",
+    ".chromeclaw/runs",
+  )
   .action(async (runId, options) => {
     printHeader();
     const store = new JsonlRunStore(options.logDir);
@@ -131,10 +175,14 @@ program
     }
 
     console.log(`${pc.bold("Task")} ${run.task}`);
-    console.log(`${pc.bold("Status")} ${formatStatus(run.status)}   ${pc.bold("Provider")} ${run.provider}/${run.model}`);
+    console.log(
+      `${pc.bold("Status")} ${formatStatus(run.status)}   ${pc.bold("Provider")} ${run.provider}/${run.model}`,
+    );
     console.log(`${pc.bold("Started")} ${formatTimestamp(run.startedAt)}`);
     if (run.completedAt) {
-      console.log(`${pc.bold("Completed")} ${formatTimestamp(run.completedAt)}`);
+      console.log(
+        `${pc.bold("Completed")} ${formatTimestamp(run.completedAt)}`,
+      );
     }
     console.log("");
 
@@ -150,9 +198,15 @@ program
   .description("run local browser fixtures with a scripted smoke planner")
   .option("--all", "run every controlled fixture (also the default)")
   .option("--headed", "show browser during eval")
-  .option("--inject-failure", "verify that the page-state oracle fails on a wrong value")
+  .option(
+    "--inject-failure",
+    "verify that the page-state oracle fails on a wrong value",
+  )
   .action(async (options) => {
-    await runEvaluationCli({ headed: Boolean(options.headed), injectFailure: Boolean(options.injectFailure) });
+    await runEvaluationCli({
+      headed: Boolean(options.headed),
+      injectFailure: Boolean(options.injectFailure),
+    });
   });
 
 program.parseAsync(process.argv).catch((error: unknown) => {
@@ -170,7 +224,9 @@ function printStep(step: AgentStep): void {
   const action = step.action ? step.action.type : step.status;
   const duration = step.durationMs ? `${step.durationMs}ms` : "--";
 
-  console.log(`${phase} ${pc.bold(`#${step.index}`)} ${pc.dim(action)} ${pc.dim(duration)}`);
+  console.log(
+    `${phase} ${pc.bold(`#${step.index}`)} ${pc.dim(action)} ${pc.dim(duration)}`,
+  );
   if (step.thoughtSummary) {
     console.log(`  ${pc.dim("reason")} ${step.thoughtSummary}`);
   }
@@ -178,7 +234,9 @@ function printStep(step: AgentStep): void {
     console.log(`  ${pc.dim("action")} ${summarizeAction(step.action)}`);
   }
   if (step.observation?.title || step.observation?.url) {
-    console.log(`  ${pc.dim("page")} ${step.observation.title} ${pc.dim(step.observation.url)}`);
+    console.log(
+      `  ${pc.dim("page")} ${step.observation.title} ${pc.dim(step.observation.url)}`,
+    );
   }
   if (step.error) {
     console.log(`  ${pc.red("error")} ${step.error}`);
@@ -188,7 +246,9 @@ function printStep(step: AgentStep): void {
 
 function printRunSummary(run: AgentRun, logDir: string): void {
   console.log(pc.bold("Final"));
-  console.log(`${formatStatus(run.status)} ${run.finalAnswer ?? run.error ?? "No answer"}`);
+  console.log(
+    `${formatStatus(run.status)} ${run.finalAnswer ?? run.error ?? "No answer"}`,
+  );
   console.log(pc.dim(`Run id: ${run.id}`));
   console.log(pc.dim(`Trace: ${logDir}/${run.id}.jsonl`));
 }
@@ -228,9 +288,9 @@ function summarizeAction(action: AgentStep["action"]): string {
     case "search_web":
       return action.query;
     case "click":
-      return action.selector ?? action.text ?? action.name ?? action.role ?? "target";
+      return `target ${action.target} from ${action.snapshotId}`;
     case "type":
-      return `${action.selector ?? action.target ?? "target"} <= ${truncate(action.text, 60)}`;
+      return `target ${action.target} <= ${truncate(action.text, 60)}`;
     case "press":
       return action.key;
     case "wait":
@@ -249,7 +309,9 @@ function summarizeAction(action: AgentStep["action"]): string {
 }
 
 function truncate(value: string, maxLength: number): string {
-  return value.length > maxLength ? `${value.slice(0, maxLength - 3)}...` : value;
+  return value.length > maxLength
+    ? `${value.slice(0, maxLength - 3)}...`
+    : value;
 }
 
 function formatTimestamp(value: string): string {
@@ -259,6 +321,6 @@ function formatTimestamp(value: string): string {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit"
+    second: "2-digit",
   });
 }

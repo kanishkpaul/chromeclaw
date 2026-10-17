@@ -3,7 +3,8 @@
 > **Building a terminal TUI.** The existing CLI is the implementation base for research, page work
 > and find, with BYOK and local models. Follow [the phases](docs/BUILD_PLAN.md). The archived
 > extension design is preserved locally on `new`. Runtime safety fixes remain open; do not treat
-> the current baseline as unattended control of signed-in sites.
+> the current baseline as unattended control of signed-in sites. Phase 2 adds snapshot-bound targets
+> and fixed permissions. Built-in non-mock planners stay disabled until Phase 4 supplies accounting.
 
 ## Current baseline
 
@@ -11,8 +12,10 @@ A terminal-first browser agent, built May 2026. You give it a task. It opens Chr
 Playwright, takes one action at a time, prints every step, and writes the run to a JSONL trace you
 can inspect later.
 
+The output below is historical. The command now requires an explicit permitted origin.
+
 ```text
-$ node apps/cli/dist/index.js run "Go to example.com and tell me the page title." --headless --provider mock
+$ node apps/cli/dist/index.js run "Go to example.com and tell me the page title." --headless --provider mock --origin https://example.com
 
 ACT #0 navigate 1033ms
   reason Open the target page first so I can inspect its title.
@@ -32,7 +35,7 @@ Trace: .chromeclaw/runs/run_muflu8i6_fylw6wp.jsonl
 
 Each step:
 
-1. **Observe:** visible text plus a ranked list of interactive elements.
+1. **Observe:** visible text plus a bounded numbered list of offered controls.
 2. **Plan:** ask the planner for one action as JSON, validated with Zod.
 3. **Check:** run a safety policy that allows, asks to confirm, or blocks.
 4. **Act:** through Playwright.
@@ -61,8 +64,11 @@ implementation plan addresses these gaps:
   9 of 10. Five of those passed because the search results page title repeats the query that
   contains the expected word. The one safety task, "log in to my bank", failed.
 
-The pinned findings are in [the main audit](docs/MAIN_AUDIT.md). Phase 1 replaces the legacy
-eval scorer with controlled browser fixtures; the other runtime fixes remain pending.
+These are historical audit findings. Phase 1 replaced the legacy scorer. Phase 2 replaces
+selector fallback and keyword-only action gates with snapshot-bound targets, fixed permissions
+and exact approvals. Native ARIA fixtures check the safe DOM role/name subset. Prompt/history,
+resumable hand-back, transport, outcome verification and actual model compatibility remain open.
+See [the audit](docs/MAIN_AUDIT.md), [safety limits](docs/SAFETY.md) and [phase evidence](docs/evidence/phase2/README.md).
 
 ## Running it
 
@@ -76,16 +82,18 @@ pnpm exec playwright install chromium    # only if Google Chrome is not installe
 ```
 
 ```bash
-node apps/cli/dist/index.js run "Open example.com and report the page title." --headless --provider mock
-node apps/cli/dist/index.js repl              # interactive session
+node apps/cli/dist/index.js run "Open example.com and report the page title." --headless --provider mock --origin https://example.com
+node apps/cli/dist/index.js repl --origin https://example.com  # bounded interactive session
 node apps/cli/dist/index.js runs              # recent runs
 node apps/cli/dist/index.js show <run-id>     # one run's full trace
 node apps/cli/dist/index.js eval --all        # all 3 controlled scripted smoke fixtures
 pnpm eval                                     # the same fixtures, report and JSONL in .chromeclaw/eval
 ```
 
-Last checked on 2026-10-13 on macOS with Node 24: it builds, typechecks and lints, all 15 tests pass,
-and the example above runs.
+`--origin` fixes the permitted HTTP(S) origins before page reads. Default runs have no origins
+and no write permission. `--write` permits ordinary field editing; consequential activation
+still hands back in the current CLI. Exact approval is available through the runtime callback;
+resumable terminal controls arrive in Phases 3/5. See [EVALS.md](docs/EVALS.md) for current checks.
 
 ## Planners
 
@@ -95,6 +103,10 @@ and the example above runs.
 | `openai` | `OPENAI_API_KEY`, and `OPENAI_BASE_URL` for any OpenAI-compatible server, including Ollama, LM Studio and `llama-server` |
 | `huggingface` | `HF_TOKEN`, through Hugging Face's OpenAI-compatible router |
 | `anthropic` | A placeholder that throws |
+
+This table lists adapters in the source, not verified compatibility. The Phase 2 runtime admits
+only the built-in mock planner while its monetary budget is zero. BYOK and actual local model
+acceptance stay in Phase 4. No fallback or paid call is used to run the scripted fixture suites.
 
 Copy `.env.example` to `.env` to set the provider, model, headless mode and step limit. The example
 file sets `CHROMECLAW_PROVIDER=openai`, so without a key either set it to `mock` or pass

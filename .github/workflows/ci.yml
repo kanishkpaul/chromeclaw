@@ -19,6 +19,7 @@ jobs:
       - run: pnpm --filter @chromeclaw/browser exec playwright install --with-deps chromium
       - run: pnpm eval
       - run: pnpm eval:credentials
+      - run: pnpm eval:safety
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -26,5 +27,6 @@ jobs:
           path: |
             .chromeclaw/eval
             .chromeclaw/credential-safety
+            .chromeclaw/phase2-safety
           include-hidden-files: true
           if-no-files-found: error

@@ -5,82 +5,94 @@ const ThoughtSchema = z
     thoughtSummary: z
       .string()
       .max(600)
-      .describe("Short user-safe reasoning summary. Do not include hidden chain-of-thought.")
-      .optional()
+      .describe(
+        "Short user-safe reasoning summary. Do not include hidden chain-of-thought.",
+      )
+      .optional(),
   })
   .strict();
 
 export const NavigateActionSchema = ThoughtSchema.extend({
   type: z.literal("navigate"),
-  url: z.string().min(1)
+  url: z.string().min(1),
 });
 
 export const SearchWebActionSchema = ThoughtSchema.extend({
   type: z.literal("search_web"),
-  query: z.string().min(1)
+  query: z.string().min(1),
 });
+
+const TargetFields = {
+  snapshotId: z.string().min(1),
+  target: z.number().int().positive(),
+};
 
 export const ClickActionSchema = ThoughtSchema.extend({
   type: z.literal("click"),
-  selector: z.string().optional(),
-  text: z.string().optional(),
-  role: z.string().optional(),
-  name: z.string().optional()
-}).refine((value) => value.selector || value.text || value.name, {
-  message: "click requires selector, text, or name"
+  ...TargetFields,
 });
 
 export const TypeActionSchema = ThoughtSchema.extend({
   type: z.literal("type"),
-  selector: z.string().optional(),
-  target: z.string().optional(),
+  ...TargetFields,
   text: z.string().min(1),
-  submit: z.boolean().optional()
-}).refine((value) => value.selector || value.target, {
-  message: "type requires selector or target"
+  submit: z.literal(false).optional(),
 });
 
 export const PressActionSchema = ThoughtSchema.extend({
   type: z.literal("press"),
-  key: z.string().min(1)
+  ...TargetFields,
+  key: z.enum([
+    "Enter",
+    "Space",
+    "Escape",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "Home",
+    "End",
+    "PageUp",
+    "PageDown",
+  ]),
 });
 
 export const WaitActionSchema = ThoughtSchema.extend({
   type: z.literal("wait"),
-  ms: z.number().int().min(50).max(30000)
+  ms: z.number().int().min(50).max(30000),
 });
 
 export const ExtractTextActionSchema = ThoughtSchema.extend({
-  type: z.literal("extract_text")
+  type: z.literal("extract_text"),
 });
 
 export const SummarizePageActionSchema = ThoughtSchema.extend({
-  type: z.literal("summarize_page")
+  type: z.literal("summarize_page"),
 });
 
 export const ScrollActionSchema = ThoughtSchema.extend({
   type: z.literal("scroll"),
   direction: z.enum(["up", "down", "left", "right"]),
-  amount: z.number().int().min(50).max(5000).default(700)
+  amount: z.number().int().min(50).max(5000).default(700),
 });
 
 export const ScreenshotActionSchema = ThoughtSchema.extend({
-  type: z.literal("screenshot")
+  type: z.literal("screenshot"),
 });
 
 export const AskUserActionSchema = ThoughtSchema.extend({
   type: z.literal("ask_user"),
-  question: z.string().min(1)
+  question: z.string().min(1),
 });
 
 export const FinishActionSchema = ThoughtSchema.extend({
   type: z.literal("finish"),
-  answer: z.string().min(1)
+  answer: z.string().min(1),
 });
 
 export const FailActionSchema = ThoughtSchema.extend({
   type: z.literal("fail"),
-  reason: z.string().min(1)
+  reason: z.string().min(1),
 });
 
 export const BrowserActionSchema = z.union([
@@ -96,7 +108,7 @@ export const BrowserActionSchema = z.union([
   ScreenshotActionSchema,
   AskUserActionSchema,
   FinishActionSchema,
-  FailActionSchema
+  FailActionSchema,
 ]);
 
 export type BrowserAction = z.infer<typeof BrowserActionSchema>;

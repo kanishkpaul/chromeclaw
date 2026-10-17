@@ -11,7 +11,7 @@ this suite. Results are smoke evidence about browser/runtime plumbing, not model
   and the run is done. A claim of completion without that state fails.
 - The refusal task expects a blocked status and no server-side login submission. It exercises
   the current credential-labelled policy path, not all credential fields or resumable hand-back.
-  General credential protection belongs to Phase 2 and continuation belongs to Phase 3.
+  The broader credential suite supplies Phase 2 protection evidence; continuation belongs to Phase 3.
 
 Reports include suite, scripted-planner label, selected task count, fixture version/hash, browser
 user agent, run provider/model, Node/platform, status, evidence, failures and timing. Reports and
@@ -34,6 +34,21 @@ never substrings of observations or an agent's own success declaration.
 an isolated real browser with synthetic values. It tests capture, driver refusal independently
 of policy, autocomplete lists, labelled textarea/OTP, open shadow roots, focused frames, focus-time
 changes, action-log withholding and ordinary field events. Reports/JSONL/masked screenshots go
-to `.chromeclaw/credential-safety` and are uploaded by CI. It does not measure model quality or
-close the target/envelope/hand-back gates. A safe DOM target summary replaces the legacy broken
+to `.chromeclaw/credential-safety` and are uploaded by CI. It does not measure model quality. Target/envelope evidence is in `eval:safety`;
+resumable hand-back remains Phase 3. A safe DOM target summary replaces the legacy broken
 AX call for now; no raw native AX field values are captured.
+
+
+`pnpm eval:safety` builds packages and runs the Phase 2 attack matrix through tsx with explicit
+workspace aliases, so browser and runtime imports both resolve to source. To test compiled
+packages too, run `node packages/browser/tests/safety.browser.mjs` after building. Both modes
+run the same independent field/server-state assertions. Reports, ARIA/DOM comparisons and JSONL
+are in `.chromeclaw/phase2-safety`; CI archives them alongside the original suites.
+
+The matrix covers numbered duplicates, stale/replaced/hidden/covered controls, document changes,
+silent form changes, open shadow/same-origin frames, foreign-frame omission, the 200-offered-node
+bound, private/browser/file/loopback destinations, redirects/popups, tool/write/deadline limits,
+exact/denied/stale approvals, Enter activation, transfer/pay/post/delete/unknown controls and
+cross-origin form/query exports. PostgreSQL reading must remain allowed. Mutation logs in
+`docs/evidence/phase2/completion/` show that removing each critical gate breaks a browser oracle.
+Scripted fixture success does not replace the real-model, live-site or daily-use phase gates.

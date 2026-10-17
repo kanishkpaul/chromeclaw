@@ -2,12 +2,16 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import type { BrowserContext, Page } from "playwright";
 import {
-  rankInteractiveElements,
   truncateEnd,
   type BrowserObservation,
-  type InteractiveElement
+  type InteractiveElement,
 } from "@chromeclaw/shared";
-import { resolveTarget, type TargetQuery } from "./targets";
+import {
+  captureTargets,
+  activateTarget,
+  resolveTarget,
+  type TargetQuery,
+} from "./targets";
 import { inspectField } from "./credentials";
 
 export interface BrowserOptions {
@@ -22,19 +26,28 @@ export interface BrowserSession {
   close: () => Promise<void>;
 }
 
-export async function openBrowser(options: BrowserOptions = {}): Promise<BrowserSession> {
+export async function openBrowser(
+  options: BrowserOptions = {},
+): Promise<BrowserSession> {
   const profileDir = path.resolve(options.profileDir ?? ".chromeclaw/profile");
   await mkdir(profileDir, { recursive: true });
   const { chromium } = await import(/* webpackIgnore: true */ "playwright");
 
-  const launchOptions = {
+  const launchOptions: NonNullable<
+    Parameters<typeof chromium.launchPersistentContext>[1]
+  > = {
     headless: options.headless ?? false,
-    viewport: { width: 1440, height: 1000 }
+    serviceWorkers: "block",
+    acceptDownloads: false,
+    viewport: { width: 1440, height: 1000 },
   };
 
   let context: BrowserContext;
   try {
-    context = await chromium.launchPersistentContext(profileDir, { ...launchOptions, channel: "chrome" });
+    context = await chromium.launchPersistentContext(profileDir, {
+      ...launchOptions,
+      channel: "chrome",
+    });
   } catch {
     context = await chromium.launchPersistentContext(profileDir, launchOptions);
   }
@@ -45,7 +58,7 @@ export async function openBrowser(options: BrowserOptions = {}): Promise<Browser
     page,
     close: async () => {
       await context.close();
-    }
+    },
   };
 }
 
@@ -57,40 +70,82 @@ export async function newPage(context: BrowserContext): Promise<Page> {
 
 export async function navigate(page: Page, url: string): Promise<void> {
   const normalized = normalizeUrl(url);
-  await page.goto(normalized, { waitUntil: "domcontentloaded", timeout: 30000 });
+  await page.goto(normalized, {
+    waitUntil: "domcontentloaded",
+    timeout: 30000,
+  });
 }
 
-export async function getPageSnapshot(page: Page, options: BrowserOptions = {}): Promise<BrowserObservation> {
-  const [visibleText, interactiveElements] = await Promise.all([
-    extractVisibleText(page),
-    collectInteractiveElements(page)
-  ]);
+export async function getPageSnapshot(
+  page: Page,
+  options: BrowserOptions = {},
+): Promise<BrowserObservation> {
+  try {
+    return await capturePage(page, options);
+  } catch (error) {
+    if (
+      !(error instanceof Error) ||
+      !/Execution context was destroyed|Cannot find context|detached/.test(
+        error.message,
+      )
+    )
+      throw error;
+    // A navigation can start between native activation and the next capture. Recapture once;
+    // this retries observation only and never repeats the possibly consequential action.
+    await page.waitForLoadState("domcontentloaded");
+    return capturePage(page, options);
+  }
+}
 
+async function capturePage(
+  page: Page,
+  options: BrowserOptions,
+): Promise<BrowserObservation> {
+  const visibleText = await extractVisibleText(page);
+  const capture = await captureTargets(page);
   return {
+    ...capture,
     url: page.url(),
     title: await page.title(),
     visibleText: truncateEnd(visibleText, 6000),
-    interactiveElements: rankInteractiveElements(interactiveElements, 40),
-    accessibilityTreeSummary: truncateEnd(safeAccessibilitySummary(interactiveElements), 4000),
-    screenshotPath: options.screenshotsDir ? await screenshot(page, options.screenshotsDir) : undefined,
-    timestamp: new Date().toISOString()
+    accessibilityTreeSummary: safeAccessibilitySummary(
+      capture.interactiveElements,
+    ),
+    screenshotPath: options.screenshotsDir
+      ? await screenshot(page, options.screenshotsDir)
+      : undefined,
+    timestamp: new Date().toISOString(),
   };
 }
 
-function safeAccessibilitySummary(targets: readonly InteractiveElement[]): string {
-  return ["Safe DOM target summary. Native AX field values are not captured.",
-    ...targets.map((target) => `${target.role ?? target.tagName}: ${target.name || target.text || "unnamed"}${target.isCredential ? " (credential, value withheld)" : ""}`)
+function safeAccessibilitySummary(
+  targets: readonly InteractiveElement[],
+): string {
+  return [
+    "Safe DOM target summary. Native AX field values are not captured.",
+    ...targets.map(
+      (target) =>
+        `${target.role ?? target.tagName}: ${target.name || target.text || "unnamed"}${target.isCredential ? " (credential, value withheld)" : ""}`,
+    ),
   ].join("\n");
 }
 
 export async function getAccessibilitySnapshot(page: Page): Promise<string> {
-  return safeAccessibilitySummary(await collectInteractiveElements(page));
+  return safeAccessibilitySummary(
+    (await captureTargets(page)).interactiveElements,
+  );
 }
 
-export async function clickTarget(page: Page, query: TargetQuery): Promise<string> {
-  const locator = await resolveTarget(page, query);
-  await locator.click({ timeout: 5000 });
-  return `Clicked ${query.selector ?? query.name ?? query.text ?? query.role ?? "target"}`;
+export async function clickTarget(
+  page: Page,
+  query: TargetQuery,
+): Promise<string | BrowserRefusal> {
+  return (await activateTarget(page, query))
+    ? `Activated target ${query.target}`
+    : {
+        refused: true,
+        reason: "Target is stale or unavailable. Capture the page again.",
+      };
 }
 
 export interface BrowserRefusal {
@@ -101,70 +156,126 @@ export interface BrowserRefusal {
 /** Refuses credentials independently of the planner and policy. Never submits implicitly. */
 export async function typeIntoTarget(
   page: Page,
-  query: TargetQuery & { value: string; submit?: boolean | undefined }
+  query: TargetQuery & { value: string; submit?: boolean | undefined },
 ): Promise<string | BrowserRefusal> {
-  if (query.submit) return { refused: true, reason: "Implicit submit is disabled. Request the submit control separately." };
-  // An unavailable model target is an expected refusal. Resolver errors can include raw selectors.
-  const locator = await resolveTarget(page, query).catch(() => undefined);
-  if (!locator) return { refused: true, reason: "The target could not be resolved safely." };
-  const element = await locator.elementHandle();
-  if (!element) return { refused: true, reason: "The target is no longer attached." };
+  if (query.submit)
+    return {
+      refused: true,
+      reason:
+        "Implicit submit is disabled. Request the submit control separately.",
+    };
+  const target = await resolveTarget(page, query);
+  if (!target)
+    return {
+      refused: true,
+      reason: "Target is stale or unavailable. Capture the page again.",
+    };
+  const element = target.element;
   try {
     const before = await element.evaluate(inspectField);
-    if (before.credential) return { refused: true, reason: "Credential entry is refused. Enter it yourself in Chrome." };
+    if (before.credential)
+      return {
+        refused: true,
+        reason: "Credential entry is refused. Enter it yourself in Chrome.",
+      };
     await element.focus();
-    const result = await element.evaluate(inspectField, query.value);
-    return result.written ? `Typed into ${query.selector ?? query.name ?? query.text ?? "target"}`
-      : { refused: true, reason: result.refusal ?? "The field could not be written." };
+    if (!(await resolveTarget(page, query)))
+      return {
+        refused: true,
+        reason: "Target changed during focus. Capture the page again.",
+      };
+    const result = await element.evaluate(inspectField, {
+      value: query.value,
+      state: target.state,
+    });
+    return result.written
+      ? `Typed into target ${query.target}`
+      : {
+          refused: true,
+          reason: result.refusal ?? "The field could not be written.",
+        };
   } catch {
-    // Focus handlers can detach the target, and browser validation can echo field contents.
-    return { refused: true, reason: "The target changed or could not be edited safely." };
-  } finally {
-    await element.dispose();
+    return {
+      refused: true,
+      reason: "The target changed or could not be edited safely.",
+    };
   }
 }
 
 /** Keyboard input cannot be used as a second path into a credential field. */
-export async function pressKey(page: Page, key: string): Promise<string | BrowserRefusal> {
-  for (const frame of page.frames()) {
-    const focused = await frame.locator(":focus").elementHandles();
-    try {
-      for (const element of focused) {
-        if ((await element.evaluate(inspectField)).credential) {
-          return { refused: true, reason: "Keyboard input into a credential field is refused. Continue in Chrome." };
-        }
-      }
-    } finally {
-      await Promise.all(focused.map((element) => element.dispose()));
-    }
+export async function pressKey(
+  page: Page,
+  key: string,
+  query?: TargetQuery,
+): Promise<string | BrowserRefusal> {
+  if (!query)
+    return {
+      refused: true,
+      reason: "Keyboard actions require an observed target.",
+    };
+  const target = await resolveTarget(page, query);
+  if (!target)
+    return {
+      refused: true,
+      reason: "Target is stale. Capture the page again.",
+    };
+  if (target.metadata.isCredential || !["Enter", "Space"].includes(key)) {
+    return {
+      refused: true,
+      reason:
+        "Credential input, character input, paste and implicit keyboard submission are refused.",
+    };
   }
-  // Characters, paste shortcuts and activation keys can write or submit. Until target-bound
-  // keyboard actions arrive, only these non-writing navigation keys are admitted.
-  if (!["Tab", "Shift+Tab", "Escape", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(key)) {
-    return { refused: true, reason: "This key needs a target-bound action. Character input, paste and keyboard submission are disabled." };
-  }
-  await page.keyboard.press(key);
-  return `Pressed ${key}`;
+  return (await activateTarget(page, query, key))
+    ? `Activated target ${query.target} with ${key}`
+    : {
+        refused: true,
+        reason: "Keyboard activation requires a current button or link.",
+      };
 }
 
-export async function screenshot(page: Page, screenshotsDir = ".chromeclaw/screenshots"): Promise<string | undefined> {
-  if (await hasCredentialFields(page) || page.frames().length > 1) return undefined;
+export async function screenshot(
+  page: Page,
+  screenshotsDir = ".chromeclaw/screenshots",
+): Promise<string | undefined> {
+  if ((await hasCredentialFields(page)) || page.frames().length > 1)
+    return undefined;
   await mkdir(screenshotsDir, { recursive: true });
   const filePath = path.resolve(screenshotsDir, `shot-${Date.now()}.png`);
-  await page.screenshot({ path: filePath, fullPage: false, mask: [page.locator("input,textarea,select,[contenteditable],iframe,frame")] });
+  await page.screenshot({
+    path: filePath,
+    fullPage: false,
+    mask: [
+      page.locator("input,textarea,select,[contenteditable],iframe,frame"),
+    ],
+  });
   return filePath;
 }
 
 export async function extractVisibleText(page: Page): Promise<string> {
   return page.evaluate(() => {
     if (!document.body) return "";
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+    );
     const parts: string[] = [];
     while (walker.nextNode()) {
       const parent = walker.currentNode.parentElement;
-      if (!parent || parent.closest("input,textarea,select,[contenteditable],script,style,noscript")) continue;
+      if (
+        !parent ||
+        parent.closest(
+          "input,textarea,select,[contenteditable],script,style,noscript",
+        )
+      )
+        continue;
       const style = getComputedStyle(parent);
-      if (!parent.getClientRects().length || style.visibility !== "visible" || style.opacity === "0") continue;
+      if (
+        !parent.getClientRects().length ||
+        style.visibility !== "visible" ||
+        style.opacity === "0"
+      )
+        continue;
       const text = walker.currentNode.textContent?.trim();
       if (text) parts.push(text);
     }
@@ -172,51 +283,31 @@ export async function extractVisibleText(page: Page): Promise<string> {
   });
 }
 
-export async function scroll(page: Page, direction: "up" | "down" | "left" | "right", amount: number): Promise<void> {
-  const deltaX = direction === "left" ? -amount : direction === "right" ? amount : 0;
-  const deltaY = direction === "up" ? -amount : direction === "down" ? amount : 0;
+export async function scroll(
+  page: Page,
+  direction: "up" | "down" | "left" | "right",
+  amount: number,
+): Promise<void> {
+  const deltaX =
+    direction === "left" ? -amount : direction === "right" ? amount : 0;
+  const deltaY =
+    direction === "up" ? -amount : direction === "down" ? amount : 0;
   await page.mouse.wheel(deltaX, deltaY);
 }
 
 async function hasCredentialFields(page: Page): Promise<boolean> {
-  const elements = await page.locator("input,textarea,[contenteditable]").elementHandles();
+  const elements = await page
+    .locator("input,textarea,[contenteditable]")
+    .elementHandles();
   try {
-    for (const element of elements) if ((await element.evaluate(inspectField)).credential) return true;
+    for (const element of elements)
+      if ((await element.evaluate(inspectField)).credential) return true;
     return false;
   } finally {
     await Promise.all(elements.map((element) => element.dispose()));
   }
 }
 
-async function collectInteractiveElements(page: Page): Promise<InteractiveElement[]> {
-  const elements = await page.locator("a,button,input,textarea,select,[role=button],[role=link],[contenteditable=true]").elementHandles();
-  try {
-    const targets: InteractiveElement[] = [];
-    for (const [index, element] of elements.slice(0, 120).entries()) {
-      const field = await element.evaluate(inspectField);
-      const target = await element.evaluate((node, position) => {
-        if (!(node instanceof Element)) throw new Error("Capture target is not an element.");
-        const rect = node.getBoundingClientRect();
-        const testId = node.getAttribute("data-testid");
-        const name = node.getAttribute("name");
-        const selector = node.id ? `#${CSS.escape(node.id)}` : testId ? `[data-testid="${CSS.escape(testId)}"]`
-          : name ? `[name="${CSS.escape(name)}"]` : undefined;
-        return {
-          id: `target-${position}`, role: node.getAttribute("role") || node.tagName.toLowerCase(),
-          selector, tagName: node.tagName.toLowerCase(),
-          href: node instanceof HTMLAnchorElement ? node.href : undefined,
-          isVisible: rect.width > 0 && rect.height > 0, score: 0
-        };
-      }, index);
-      targets.push({ ...target, name: field.label || undefined, text: field.text.slice(0, 160) || undefined, isCredential: field.credential });
-    }
-    return targets;
-  } finally {
-    await Promise.all(elements.map((element) => element.dispose()));
-  }
-}
-
 function normalizeUrl(url: string): string {
-  if (/^https?:\/\//i.test(url)) return url;
-  return `https://${url}`;
+  return new URL(url).href;
 }

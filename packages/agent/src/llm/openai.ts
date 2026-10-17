@@ -20,21 +20,33 @@ export class OpenAICompatiblePlanner implements Planner {
   constructor(config: OpenAIConfig) {
     this.model = config.model;
     this.apiKey = config.apiKey;
-    this.baseUrl = (config.baseUrl || "https://api.openai.com/v1").replace(/\/$/, "");
+    this.baseUrl = (config.baseUrl || "https://api.openai.com/v1").replace(
+      /\/$/,
+      "",
+    );
     this.name = config.providerName ?? "openai-compatible";
   }
 
   async plan(input: PlannerInput): Promise<BrowserAction> {
-    if (!this.apiKey && !this.baseUrl.includes("localhost") && !this.baseUrl.includes("127.0.0.1")) {
-      const credential = this.name === "huggingface" ? "HF_TOKEN or HUGGINGFACE_API_KEY" : "OPENAI_API_KEY";
-      throw new Error(`${credential} is required for hosted ${this.name} requests. Use CHROMECLAW_PROVIDER=mock for keyless mode.`);
+    if (
+      !this.apiKey &&
+      !this.baseUrl.includes("localhost") &&
+      !this.baseUrl.includes("127.0.0.1")
+    ) {
+      const credential =
+        this.name === "huggingface"
+          ? "HF_TOKEN or HUGGINGFACE_API_KEY"
+          : "OPENAI_API_KEY";
+      throw new Error(
+        `${credential} is required for hosted ${this.name} requests. Use CHROMECLAW_PROVIDER=mock for keyless mode.`,
+      );
     }
 
     const response = await fetch(`${this.baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        ...(this.apiKey ? { authorization: `Bearer ${this.apiKey}` } : {})
+        ...(this.apiKey ? { authorization: `Bearer ${this.apiKey}` } : {}),
       },
       body: JSON.stringify({
         model: this.model,
@@ -46,23 +58,29 @@ export class OpenAICompatiblePlanner implements Planner {
             role: "user",
             content: buildPlannerPrompt({
               task: input.task,
-              observationSummary: input.observationSummary,
+              observationSummary: `${input.observationSummary}\nSnapshot: ${input.observation.snapshotId}\nOffered numbered targets (use only these):\n${JSON.stringify(input.observation.interactiveElements)}`,
               recentSteps: input.recentSteps,
-              maxSteps: input.maxSteps
-            })
-          }
-        ]
-      })
+              maxSteps: input.maxSteps,
+            }),
+          },
+        ],
+      }),
     });
 
     if (!response.ok) {
-      throw new Error(`Planner request failed: ${response.status} ${await response.text()}`);
+      throw new Error(
+        `Planner request failed: ${response.status} ${await response.text()}`,
+      );
     }
 
-    const json = (await response.json()) as { choices?: Array<{ message?: { content?: string } }> };
+    const json = (await response.json()) as {
+      choices?: Array<{ message?: { content?: string } }>;
+    };
     const content = json.choices?.[0]?.message?.content;
     if (!content) throw new Error("Planner returned no content.");
-    return BrowserActionSchema.parse(normalizeModelActionPayload(parsePlannerJson(content)));
+    return BrowserActionSchema.parse(
+      normalizeModelActionPayload(parsePlannerJson(content)),
+    );
   }
 }
 
@@ -81,7 +99,9 @@ function parsePlannerJson(content: string): unknown {
       return JSON.parse(content.slice(firstBrace, lastBrace + 1));
     }
 
-    throw new Error(`Planner returned non-JSON content: ${content.slice(0, 400)}`);
+    throw new Error(
+      `Planner returned non-JSON content: ${content.slice(0, 400)}`,
+    );
   }
 }
 
@@ -89,48 +109,41 @@ export function normalizeModelActionPayload(value: unknown): unknown {
   if (!value || typeof value !== "object" || Array.isArray(value)) return value;
 
   const payload: LegacyActionPayload = { ...(value as LegacyActionPayload) };
-  const type = typeof payload.type === "string" ? payload.type : typeof payload.action === "string" ? payload.action : undefined;
+  const type =
+    typeof payload.type === "string"
+      ? payload.type
+      : typeof payload.action === "string"
+        ? payload.action
+        : undefined;
 
   if (!type) return payload;
 
-  const thoughtSummary = typeof payload.thoughtSummary === "string" ? payload.thoughtSummary : undefined;
+  const thoughtSummary =
+    typeof payload.thoughtSummary === "string"
+      ? payload.thoughtSummary
+      : undefined;
 
   switch (type) {
     case "navigate": {
-      const url = asString(payload.url) ?? asString(payload.target) ?? asString(payload.text);
+      const url =
+        asString(payload.url) ??
+        asString(payload.target) ??
+        asString(payload.text);
       return thoughtSummary ? { type, thoughtSummary, url } : { type, url };
     }
     case "search_web": {
-      const query = asString(payload.query) ?? asString(payload.target) ?? asString(payload.url) ?? asString(payload.text);
+      const query =
+        asString(payload.query) ??
+        asString(payload.target) ??
+        asString(payload.url) ??
+        asString(payload.text);
       return thoughtSummary ? { type, thoughtSummary, query } : { type, query };
     }
-    case "click": {
-      const selector = asString(payload.selector) ?? asString(payload.target) ?? asString(payload.url);
-      const next = {
-        type,
-        thoughtSummary,
-        selector,
-        text: asString(payload.text),
-        role: asString(payload.role),
-        name: asString(payload.name)
-      };
-      return removeUndefined(next);
-    }
-    case "type": {
-      const next = {
-        type,
-        thoughtSummary,
-        selector: asString(payload.selector),
-        target: asString(payload.target),
-        text: asString(payload.text),
-        submit: typeof payload.submit === "boolean" ? payload.submit : undefined
-      };
-      return removeUndefined(next);
-    }
-    case "press": {
-      const key = asString(payload.key) ?? asString(payload.target);
-      return thoughtSummary ? { type, thoughtSummary, key } : { type, key };
-    }
+    case "click":
+    case "type":
+    case "press":
+      // Legacy selector proposals must fail the strict schema, never regain fallback targeting.
+      return payload;
     case "wait": {
       const ms = asNumber(payload.ms) ?? asNumber(payload.target);
       return thoughtSummary ? { type, thoughtSummary, ms } : { type, ms };
@@ -145,21 +158,36 @@ export function normalizeModelActionPayload(value: unknown): unknown {
         type,
         thoughtSummary,
         direction: asString(payload.direction),
-        amount: asNumber(payload.amount)
+        amount: asNumber(payload.amount),
       };
       return removeUndefined(next);
     }
     case "ask_user": {
-      const question = asString(payload.question) ?? asString(payload.target) ?? asString(payload.text);
-      return thoughtSummary ? { type, thoughtSummary, question } : { type, question };
+      const question =
+        asString(payload.question) ??
+        asString(payload.target) ??
+        asString(payload.text);
+      return thoughtSummary
+        ? { type, thoughtSummary, question }
+        : { type, question };
     }
     case "finish": {
-      const answer = asString(payload.answer) ?? asString(payload.text) ?? asString(payload.target);
-      return thoughtSummary ? { type, thoughtSummary, answer } : { type, answer };
+      const answer =
+        asString(payload.answer) ??
+        asString(payload.text) ??
+        asString(payload.target);
+      return thoughtSummary
+        ? { type, thoughtSummary, answer }
+        : { type, answer };
     }
     case "fail": {
-      const reason = asString(payload.reason) ?? asString(payload.text) ?? asString(payload.target);
-      return thoughtSummary ? { type, thoughtSummary, reason } : { type, reason };
+      const reason =
+        asString(payload.reason) ??
+        asString(payload.text) ??
+        asString(payload.target);
+      return thoughtSummary
+        ? { type, thoughtSummary, reason }
+        : { type, reason };
     }
     default:
       return payload;
@@ -180,5 +208,9 @@ function asNumber(value: unknown): number | undefined {
 }
 
 function removeUndefined<T extends Record<string, unknown>>(value: T): T {
-  return Object.fromEntries(Object.entries(value).filter(([, currentValue]) => currentValue !== undefined)) as T;
+  return Object.fromEntries(
+    Object.entries(value).filter(
+      ([, currentValue]) => currentValue !== undefined,
+    ),
+  ) as T;
 }

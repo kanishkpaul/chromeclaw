@@ -67,3 +67,39 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
   port's real behavior; inspection of Blindfold alone is not acceptance evidence.
 - Revisit when: fresh target bindings and the immutable permission envelope land, then Phase 3
   adds resumable hand-back. This slice does not close the Phase 2 gate.
+
+## D-015 · 2026-10-17 · Bind Phase 2 acts to snapshots and fixed permissions
+
+- Decision: remove selector and label fallbacks from model actions. Offer at most 200 visible,
+  uncovered controls in document order, retain their node/document handles and report omissions.
+  A changed document, form value, control metadata or DOM invalidates the proposal. Recapture
+  without repeating the action. Same-origin frames and open shadow trees participate; foreign
+  frames are explicitly unreadable. Native ARIA comparison uses synthetic fixtures only because
+  raw AX serialization may contain field values.
+- Permissions: freeze copied user-origin/tool/read/write/irreversible permissions before capture.
+  Default to no origins and no writes. Loopback requires explicit harness scope. Enforce parsed
+  destinations on navigation, redirects and browser requests. Redirect responses are inspected with Playwright route fetch, automatic
+  redirects disabled, and refused before any next hop. Block popups, service workers,
+  WebSockets and cross-origin data-bearing requests. Do not infer origins from task/page prose.
+- Approval: adapt Blindfold's envelope immutability and control-based irreversible/action-state
+  approach at `2f04984`. Every activation requires exact approval, including unknown handlers and
+  links. The approved proposal names its snapshot, control and advertised destination; recheck
+  permissions and retained state afterward, consume the target once and authorize one matching
+  data-bearing request. No callback means hand-back without acting. Durable waiting, terminal
+  approval controls and restart/resume remain Phase 3/5 work.
+- Budgets: enforce finite positive step/time budgets at admission, including after approval.
+  Keep monetary spend at zero until actual provider accounting exists in Phase 4. Non-mock
+  built-in planners are disabled under that budget; trusted scripted fixture injection remains
+  available. This avoids claiming enforcement of a monetary limit without usage accounting.
+- Input: ordinary typing retains credential checks, native setters and events. Enter/Space only
+  activate an explicitly offered button/link through the same gate. Free keyboard input, paste,
+  implicit form submission and unsupported navigation keys refuse. Native DOM activation can be
+  rejected by sites requiring trusted input; measure that in later real-site integration.
+- Rejected: copying Blindfold's extension executor, approval crypto ecosystem or whole framework;
+  keyword-only commit detection; permitting unknown handlers on the assumption they are benign;
+  model-generated selectors and approvals that silently widen origins or write permission.
+- Limits: these are finite fixture-tested boundaries, not a sandbox for arbitrary malicious site
+  JavaScript. GET without parameters is treated as a read request; mislabeled endpoints may have
+  side effects. Credential detection, arbitrary pixels and generic PII retain D-014's limits.
+  Prompt confinement, general redaction, recovery/outcome verification and durable continuation
+  keep their Phase 3 tasks. No dependency, top-level directory or Chrome permission is added.

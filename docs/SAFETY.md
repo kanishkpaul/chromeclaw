@@ -1,34 +1,66 @@
-# Safety status and retained protections
+# Safety boundaries and retained protections
 
-Phase 2 adds independent credential guards at capture and driver boundaries. The broader runtime
-still uses legacy regex policy, free-form selectors and no fixed task envelope. Do not use this
-intermediate state as unattended control of signed-in sites. The credential suite is specific
-regression evidence, not proof of general agent safety.
+Phase 2 binds model proposals to captured nodes and fixed task permissions. It has controlled
+browser evidence, not a proof of safety on arbitrary signed-in sites. Use the runtime's trusted
+permission options; page text and model replies cannot grant origins, tools, writes or approval.
 
-| Existing intent | Current mechanism and gap | Replacement and evidence |
+| Existing intent | Current enforcement | Regression evidence |
 |---|---|---|
-| Hand back for credentials/login | p2-01 suppresses field values and refuses credential writes, focus-time changes and keyboard bypasses; refusal still terminates the run | Remaining Phase 2 target bindings; Phase 3 fresh-capture continuation |
-| Refuse CAPTCHA, paywall and security bypass | Task/page/action regexes can both overblock and miss context | Phase 2 task scope and gate regressions; hand-back stays mandatory |
-| Confirm sending, purchases and destructive changes | Keyword scan cannot read the actual resolved control | Phase 2 observed-control and irreversible-action gates, including keyboard submission |
-| Restrict browser/file/local destinations | URL regexes are incomplete and there is no task-origin envelope | Phase 2 parsed scheme/origin/redirect checks and fixed permissions |
-| Inspectable run trace | Typed action values/reasons are withheld; arbitrary user/page prose is not a PII scrubber, and context/durability gaps remain | Phase 3 safe structured events, egress and durable reads |
-| Treat model/page text as data | Prompts interpolate text without confinement | Phase 2 fixed powers and Phase 3 one fenced prompt builder and egress |
+| Hand back for credentials/login | Safe labels and parsed autocomplete tokens; values omitted before capture; independent driver and atomic setter refusal; screenshots withheld on credential/framed pages | Password/current/new/OTP, textarea, shadow/frame, focus changes/replacement, direct setter, trace and screenshot cases |
+| Refuse CAPTCHA/paywall/security bypass | User bypass intent and observed barrier controls refuse; ordinary page/task keywords alone do not block reading | Explicit bypass refusal and successful read-only PostgreSQL fixture |
+| Confirm sending/purchases/destructive changes | Every activation needs write permission plus one exact approval, including unknown buttons and links; Enter/Space activate only the numbered button/link | Transfer/pay/post/delete/unknown, denial, exact commit, Enter, stale approval and replay cases |
+| Restrict destinations and data movement | Parsed HTTP(S) origins, private-address/DNS checks, request interception, no automatic redirects/popups/service workers/WebSockets; cross-origin forms and query/hash exports refuse | Zero requests to redirect/foreign endpoint, form/query attacks, browser/file/private/unscoped-loopback cases |
+| Never invent a target | Snapshot number resolves to retained element/document/frame handles; geometry, occlusion, metadata and form state rechecked; stale proposals recapture without replay | Duplicates, replacement, label/selector drift, hidden/covered, document change, silent form change and stale approval cases |
+| Keep task powers fixed | Copied/frozen tools/origins/read/write/irreversible/step/time/cost permissions exist before page reads; rechecked after approval | Tool/write/budget refusal, expired browser requests and envelope immutability checks |
+| Inspectable trace | Run permissions and step gate/approval decisions recorded; typed text/thought withheld | Runtime JSONL and synthetic-secret checks; durable trace recovery is Phase 3 |
+| Page/model content remains data | Actions parse strictly; no selectors, coordinates, approval field or permission-widening method | Strict action schema plus fixed-permission browser attacks; prompt fencing and one egress are Phase 3 |
 
-Preserve these protection goals as their mechanisms change. Each replacement must name the old
-behavior, its false-positive cases, the bypass fixture and the new enforcement point. Hosted and
-local models use identical gates. A provider or page cannot approve an action, grant origins or
-turn off credential refusal. Existing tests are retained or replaced with stronger regressions;
-a label in this table is not evidence that the protection currently works.
+## Target and approval contract
 
+Capture offers at most 200 visible, uncovered, enabled controls in document order and reports
+omissions. It includes semantic DOM roles, safe names, bounds, credential metadata and frame
+identity. Same-origin frames and open shadow roots participate; foreign frames are explicitly
+unreadable. The DOM role/name subset is compared with Playwright's supported native ARIA snapshot
+on synthetic noncredential fixtures. Production capture never serializes raw AX values. This is
+not a complete implementation of every accessible-name rule or custom widget.
 
-Credential checks use type/password, parsed autocomplete tokens and label signals. No credential
-setting grants an override. Raw AX field values are not read into the observation. Screenshots
-on known credential/framed pages are withheld; other screenshots mask form controls. This is not
-canvas/image secret detection. Ordinary editing uses a native setter with input/change events;
-React/live-site behavior is not established by the fixture alone. Native AX comparison, semantic
-roles, stale-target bindings, origin/commit gates and hand-back/resume still have open gates.
+Approvals identify one action, snapshot, target name and advertised destination. DOM mutations,
+ordinary form-value changes, navigation and expiry invalidate them. Relevant ordinary values stay
+inside browser handles and are never returned in observations. Every remaining control activation
+confirms because a label cannot prove a handler harmless. Only a trusted runtime callback can
+approve; an action cannot carry its own approval. A consumed node cannot replay its approval.
+The snapshot binds relevant form state without disclosing its values to a provider; a human
+callback must inspect that state in Chrome before approving. Scripted fixtures use synthetic
+values and controlled approvals. Without a callback the run hands back without acting. Durable awaiting-input states, terminal
+approval controls and restart/resume remain in Phases 3 and 5.
 
-A generic text field with no credential type, autocomplete or recognizable label cannot be
-identified as a credential sink from metadata alone. Field values are still omitted from capture,
-but this is not a proof against deliberately mislabelled custom widgets. Fresh target admission
-and adversarial fixtures remain open Phase 2 work; the full phase is not marked complete.
+The request gate permits one matching data-bearing request after approval. It checks redirects
+with `route.fetch({ maxRedirects: 0 })` because Playwright does not route each redirect hop. All
+HTTP redirects currently refuse and require a new permitted navigation. Attachment downloads
+hand back. The read/write permission is enforced on browser requests as well as proposals.
+
+## Deliberate limits
+
+- GET/HEAD requests without query parameters are treated as reads. A server can attach side
+  effects to those requests; URL parsing cannot infer that. This is not a sandbox for arbitrary
+  malicious JavaScript, same-origin request handlers or every browser background protocol.
+- DNS addresses are checked before requests, but are not pinned across a malicious DNS rebinding.
+  No rebinding guarantee or real-site browser-network isolation claim is made.
+- Credential classification uses type/password, autocomplete tokens and recognized English
+  labels. A deliberately mislabelled generic field can evade classification. Ordinary values
+  are omitted from observations, but arbitrary page/user prose is not a generic PII scrubber.
+- Screenshots on known credential/framed pages are withheld; other screenshots mask controls.
+  Canvas/image secrets and arbitrary pixels are not detected. Raw screenshots are not exported
+  automatically beyond their local path.
+- Native DOM activation is untrusted input. Some real applications may reject it. React/custom
+  widget and signed-in-site compatibility have not been established by these fixtures.
+- Zero monetary spend is enforced by disabling built-in non-mock planners until provider
+  accounting exists in Phase 4. Trusted scripted fixture planners use the same browser gates.
+  Time/step limits stop admission of new acts; aborting in-flight requests is Phase 3 work.
+- General prompt confinement, one application egress, outcome verification, retry limits,
+  cross-step provenance/redaction and resumable credential hand-back retain their Phase 3 tasks.
+
+Preserve each old protection goal when these mechanisms change. Mutation checks remove the
+credential, target-state, origin, tool, write, request-approval, request-expiry and redirect gates
+one at a time; the associated browser assertion must fail. Negative controls are separate from
+normal runs with zero unsafe fixture acts. See [the Phase 2 evidence](evidence/phase2/README.md).

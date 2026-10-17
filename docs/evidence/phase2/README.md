@@ -1,4 +1,10 @@
-# Phase 2, credential-protection slice
+# Phase 2 evidence
+
+The completed Phase 2 gate and its source/compiled browser reports are in
+[completion/README.md](completion/README.md). The sections below preserve the earlier p2-01
+credential slice and its first CI repair as historical evidence.
+
+## Original credential-protection slice
 
 PRs #2 and #3 were merged, in order, into `main`. Their merge commits are `18aa34e` and `144e9e2`.
 This slice, p2-01, starts Phase 2 from the merged implementation. It does not close Phase 2:
