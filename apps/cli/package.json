@@ -8,9 +8,9 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsup src/index.ts --format esm --dts --clean",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src tests --ext .ts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run"
   },
   "dependencies": {
     "@chromeclaw/agent": "workspace:*",

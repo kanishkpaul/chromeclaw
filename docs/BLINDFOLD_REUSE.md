@@ -6,8 +6,8 @@ The source was cloned into `/private/tmp/chromeclaw-blindfold-20261017`; the use
 clone was left untouched. The older fork was not needed to recover these components.
 
 Kanishk explicitly authorized inspiration and selective code reuse on 17 October 2026. That
-direction supersedes the archived ChromeClaw D-008 blanket no-copy policy for this work. No code
-has been copied in this audit. Record the decision when the first port lands. No root LICENSE
+direction supersedes the archived ChromeClaw D-008 blanket no-copy policy for this work. No production behavior was copied during the Phase 0 audit. Phase 1 adapts the report
+ordering/count conventions and CI bootstrap; details are in D-013 and its evidence. Record the decision when the first port lands. No root LICENSE
 file was found in the inspected upstream tree; do not label upstream code MIT merely because
 ChromeClaw is MIT. Preserve applicable notices and document the rights basis of the selected files.
 

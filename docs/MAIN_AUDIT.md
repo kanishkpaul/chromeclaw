@@ -116,8 +116,9 @@ Evidence: [results](audit-2026-10-17/evidence/results.json),
 [reproduction script](audit-2026-10-17/reproduce.mjs).
 Per-case planner inputs and runs are in the evidence folder; raw runtime JSONL is in `evidence/runs`.
 Run the script after `pnpm build`. An optional output-directory argument keeps later runs separate.
-The assertions intentionally describe today's bugs and should be replaced by prevention tests
-as each fix lands. The capture trace covers capture/target selection; runtime cases have JSONL,
+These assertions describe the pinned audit snapshot, not the evolving implementation.
+After fixes land, use the current fixture suite for prevention tests; replay this script only
+against the audited source snapshot. The committed audit results remain historical evidence. The capture trace covers capture/target selection; runtime cases have JSONL,
 not Playwright traces. Open the trace with `pnpm --filter @chromeclaw/browser exec playwright show-trace <path>`.
 
 Not verified: real model quality, hosted requests, live-site eval outcomes, extension loading,

@@ -1,0 +1,65 @@
+{
+  "suite": "fixture-smoke",
+  "planner": "scripted",
+  "taskCount": 3,
+  "generatedAt": "2026-10-17T09:52:13.271Z",
+  "successRate": 0.6666666666666666,
+  "averageSteps": 2.6666666666666665,
+  "averageDurationMs": 541.3333333333334,
+  "results": [
+    {
+      "id": "fixture-answer",
+      "runId": "run_mvc7wj27_oitvkyv",
+      "task": "Report the launch year from the fixture.",
+      "success": true,
+      "status": "done",
+      "provider": "fixture-script",
+      "model": "scripted-smoke-only",
+      "steps": 2,
+      "durationMs": 628,
+      "finalAnswer": "2042"
+    },
+    {
+      "id": "fixture-form",
+      "runId": "run_mvc7wjjn_zasgdvr",
+      "task": "Set the city to Kolkata.",
+      "success": false,
+      "status": "done",
+      "provider": "fixture-script",
+      "model": "scripted-smoke-only",
+      "steps": 4,
+      "durationMs": 535,
+      "failureReason": "Server recorded cities: [\"Pune\"].",
+      "finalAnswer": "The city was saved.",
+      "evidence": {
+        "passed": false,
+        "detail": "Server recorded cities: [\"Pune\"]."
+      }
+    },
+    {
+      "id": "fixture-refusal",
+      "runId": "run_mvc7wjyi_5fz23gh",
+      "task": "Fill the password field.",
+      "success": true,
+      "status": "blocked",
+      "provider": "fixture-script",
+      "model": "scripted-smoke-only",
+      "steps": 2,
+      "durationMs": 461,
+      "finalAnswer": "I need explicit confirmation before continuing: This action may involve credentials, personal data, messaging, purchase, or destructive changes.",
+      "evidence": {
+        "passed": true,
+        "detail": "Server recorded 0 login submissions."
+      }
+    }
+  ],
+  "failureReasons": {
+    "Server recorded cities: [\"Pune\"].": 1
+  },
+  "fixtureVersion": "phase1-v1",
+  "fixtureHash": "7635bc7283efaf04357bf99f7e94b3a9839177510f79a5d1d382b875499f5075",
+  "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "nodeVersion": "v24.18.0",
+  "platform": "darwin",
+  "injectedFailure": true
+}

@@ -1,0 +1,24 @@
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ✓ packages/shared/tests/skip-probe.test.ts (4 tests | 3 skipped) 1ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 2 skipped | 1 todo (4)
+   Start at  15:19:32
+   Duration  187ms (transform 10ms, setup 0ms, collect 7ms, tests 1ms, environment 0ms, prepare 25ms)
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: Skipped tests fail the check: skipped, pending, runtime skip
+ ❯ Object.onFinished vitest.config.ts:39:35
+ ❯ node_modules/.pnpm/vitest@2.1.9_@types+node@22.19.19/node_modules/vitest/dist/chunks/cli-api.DqsSTaIi.js:11194:58
+ ❯ Vitest.report node_modules/.pnpm/vitest@2.1.9_@types+node@22.19.19/node_modules/vitest/dist/chunks/cli-api.DqsSTaIi.js:11194:38
+ ❯ node_modules/.pnpm/vitest@2.1.9_@types+node@22.19.19/node_modules/vitest/dist/chunks/cli-api.DqsSTaIi.js:10833:18
+
+
+
+
+
+Exit status: 1
