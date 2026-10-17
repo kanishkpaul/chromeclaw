@@ -181,6 +181,7 @@ export const RunHeaderSchema = z
     id: RunIdSchema,
     task: z.string(),
     askUrl: z.string().optional(),
+    findUrl: z.string().optional(),
     status: StatusSchema,
     startedAt: z.string(),
     completedAt: z.string().optional(),

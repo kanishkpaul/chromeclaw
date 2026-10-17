@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { verifyAsk } from "../src/abilities/ask";
 import {
-  askNavigationRefusal,
-  askPermissions,
-  verifyAsk,
-} from "../src/abilities/ask";
+  readOnlyPagePermissions,
+  pageNavigationRefusal,
+} from "../src/page-scope";
 import type { BrowserObservation, PermissionRequest } from "@chromeclaw/shared";
 
 describe("read-only ask contract", () => {
@@ -14,7 +14,7 @@ describe("read-only ask contract", () => {
       origins: ["https://example.com"],
       tools: ["type", "finish"],
     };
-    expect(askPermissions(request)).toMatchObject({
+    expect(readOnlyPagePermissions(request)).toMatchObject({
       read: false,
       write: false,
       irreversible: "deny",
@@ -24,19 +24,19 @@ describe("read-only ask contract", () => {
   });
   it("keeps navigation on the selected page even when another origin is permitted", () => {
     expect(
-      askNavigationRefusal(
+      pageNavigationRefusal(
         { type: "navigate", url: "https://example.com/" },
         "https://example.com",
       ),
     ).toBeUndefined();
     expect(
-      askNavigationRefusal(
+      pageNavigationRefusal(
         { type: "navigate", url: "https://example.com/other" },
         "https://example.com",
       ),
     ).toBeTruthy();
     expect(
-      askNavigationRefusal(
+      pageNavigationRefusal(
         { type: "navigate", url: "javascript:alert(1)" },
         "https://example.com",
       ),

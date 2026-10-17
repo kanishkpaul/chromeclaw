@@ -85,3 +85,9 @@ content never reaches the terminal or dispatcher; counts are provisional, comple
 validated once and credential echoes are checked after joining chunks. Reopening preserves the
 saved ability and transport settings. These checks do not establish arbitrary PII filtering,
 personal Chrome attachment, held-out model quality or isolation from arbitrary malicious JavaScript.
+
+Phase 6's experimental find-on-page mode uses the same narrowed read-only page scope as ask.
+Structured results name offered noncredential controls or passages without activation. Current
+snapshot/target checks plus passage recapture refuse stale results. A match validates a reference,
+not semantic relevance; an absent-match assertion stays uncertain. No automatic scroll, highlight
+or click is enabled. See [PHASE6.md](PHASE6.md) for the unfinished acceptance gate.

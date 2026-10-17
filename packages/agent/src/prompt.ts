@@ -15,7 +15,8 @@ ${BrowserActionSchema.options.map((schema) => `${schema.shape.type.value}: ${Obj
 Return actual property values, never a fields array or an action wrapper.
 Examples of response shape: {"type":"navigate","url":"https://example.com"} and {"type":"click","target":1,"snapshotId":"copy-current-snapshot-id"}.
 Target is a positive integer. URL/query/text/question/answer/reason/snapshotId are strings. wait.ms is 50..30000; scroll.direction is up/down/left/right and amount is 50..5000. press.key may be Enter or Space on a numbered button/link; other input refuses. type.submit cannot be true.
-finish.evidence, when used, is an array of {snapshotId,quote,passageId?}; read-only ask requires the offered passageId. quotes must be exact captured passages. Never fabricate evidence.`;
+finish.evidence, when used, is an array of {snapshotId,quote,passageId?}; read-only ask requires the offered passageId. quotes must be exact captured passages. Never fabricate evidence.
+finish.pageFind is only for an explicit find-on-page task: {outcome:"matches",matches:[{snapshotId,target,reason} or {snapshotId,passageId,reason}]} (1..3 strongest first), or {outcome:"no-match",reason}. Reasons are brief strings; references come from this capture. Do not invent confidence scores or activate the matches.`;
 
 function fence(provenance: string, value: unknown): string {
   // Adapted from Blindfold's single confinement builder. Escape every angle bracket, rather

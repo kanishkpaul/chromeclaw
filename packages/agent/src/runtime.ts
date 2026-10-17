@@ -1,5 +1,6 @@
 import { setTimeout as delay } from "node:timers/promises";
 import {
+  capturePassages,
   clickTarget,
   guardNavigation,
   resolveTarget,
@@ -37,11 +38,9 @@ import {
   type Planner,
 } from "./llm/index";
 import { PlannerReplyError, PlannerTransportError } from "./llm/openai";
-import {
-  askPermissions,
-  verifyAsk,
-  askNavigationRefusal,
-} from "./abilities/ask";
+import { verifyAsk } from "./abilities/ask";
+import { readOnlyPagePermissions, pageNavigationRefusal } from "./page-scope";
+import { verifyPageFind } from "./abilities/find";
 import { SafetyPolicy, type SafetyResult } from "./safety";
 import { JsonlRunStore, type RunLogEvent } from "./storage/jsonl";
 
@@ -54,6 +53,7 @@ export type RuntimeReply = { runId: string; pendingId: string } & (
 export interface AgentRunOptions {
   task: string;
   askUrl?: string | undefined;
+  findUrl?: string | undefined;
   stream?: boolean | undefined;
   onProgress?: ((progress: { receivedBytes: number }) => void) | undefined;
   permissions?: PermissionRequest;
@@ -156,9 +156,15 @@ export class BrowserAgentRuntime {
     });
     const maxSteps = settings.maxSteps;
     const askUrl = previous ? previous.askUrl : options.askUrl;
+    const findUrl = previous ? previous.findUrl : options.findUrl;
+    if (askUrl !== undefined && findUrl !== undefined)
+      throw new Error("Choose either ask or find on a page.");
+    const pageUrl = askUrl ?? findUrl;
+    const isFind = findUrl !== undefined;
     const isAsk = askUrl !== undefined;
-    const requested = isAsk
-      ? askPermissions(options.permissions ?? {})
+    const isReadOnlyPage = pageUrl !== undefined;
+    const requested = isReadOnlyPage
+      ? readOnlyPagePermissions(options.permissions ?? {})
       : options.permissions;
     const permissions = previous?.permissions
       ? Object.freeze({
@@ -186,6 +192,7 @@ export class BrowserAgentRuntime {
           id: createId("run"),
           task: options.task,
           ...(isAsk ? { askUrl } : {}),
+          ...(isFind ? { findUrl } : {}),
           status: "observing",
           startedAt: new Date().toISOString(),
           maxSteps,
@@ -407,18 +414,22 @@ export class BrowserAgentRuntime {
           ),
         );
       if (configurationError) throw configurationError;
-      if (isAsk) {
+      if (isReadOnlyPage) {
         if (plannerTask.length > 5000)
           throw new RuntimeFailure(
-            "Ask questions are limited to 5,000 characters.",
+            "Page requests are limited to 5,000 characters.",
           );
-        const url = new URL(askUrl);
+        const url = new URL(pageUrl);
         const refusal = destinationRefusal(url.href, permissions);
         if (refusal || url.search || url.hash)
           throw new RuntimeFailure(
-            "Ask needs a permitted HTTP(S) page without query or fragment data.",
+            "A read-only page request needs a permitted HTTP(S) page without query or fragment data.",
           );
-        plannerTask = `${plannerTask}
+        if (isFind)
+          plannerTask = `${plannerTask}
+Find on ${url.href} without clicking, typing, navigating away or scrolling. Rank up to three offered visible noncredential targets or passages. Finish with pageFind: {outcome:"matches",matches:[{snapshotId,target,reason} or {snapshotId,passageId,reason}]}, strongest first, plus a brief answer. Copy IDs from the current snapshot. If ambiguous, ask_user for clarification. If absent from the captured viewport, finish with pageFind: {outcome:"no-match",reason}. Do not claim absence from the whole page. No confidence score is calibrated.`;
+        else
+          plannerTask = `${plannerTask}
 Read ${url.href}. This is a read-only ask task. Return the exact relevant captured passage as the answer with snapshotId, passageId and exact quote. If the answer is not readable, use ask_user; do not guess.`;
       }
 
@@ -462,7 +473,9 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
             .find(
               (step) =>
                 step.observation && step.observation.url !== "about:blank",
-            )?.observation?.url ?? previous.askUrl;
+            )?.observation?.url ??
+          previous.askUrl ??
+          previous.findUrl;
         if (
           url &&
           !destinationRefusal(url, permissions) &&
@@ -471,9 +484,9 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         )
           await navigate(session.page, url);
       }
-      if (isAsk && !previous) {
+      if (isReadOnlyPage && !previous) {
         stage = "navigate";
-        const action: BrowserAction = { type: "navigate", url: askUrl };
+        const action: BrowserAction = { type: "navigate", url: pageUrl };
         const gate = this.safety.assess(action, {
           task: plannerTask,
           permissions,
@@ -482,7 +495,9 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           spent: run.reservedCost ?? 0,
         });
         if (gate.decision !== "allow")
-          throw new RuntimeFailure(gate.reason ?? "Ask navigation refused.");
+          throw new RuntimeFailure(
+            gate.reason ?? "Read-only page navigation refused.",
+          );
         const stepId = createId("step");
         activeStepId = stepId;
         const recorded = { decision: gate.decision, approved: false };
@@ -490,10 +505,10 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         await emit("act_started", { stepId, action });
         signal.throwIfAborted();
         inFlight = true;
-        await abortable(navigate(session.page, askUrl), signal);
+        await abortable(navigate(session.page, pageUrl), signal);
         inFlight = false;
         if (navigation.refusal())
-          throw new RuntimeFailure("Ask navigation was refused.");
+          throw new RuntimeFailure("Read-only page navigation was refused.");
         await saveStep(
           makeStep(
             0,
@@ -501,7 +516,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
             "observing",
             action,
             undefined,
-            "Opened the explicitly requested ask page under fixed read permissions.",
+            "Opened the explicitly requested read-only page under fixed read permissions.",
             recorded,
             stepId,
           ),
@@ -524,9 +539,9 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         run.status = "observing";
         lastObservation = await getPageSnapshot(session.page, {
           screenshotsDir: options.screenshotsDir,
-          readPassages: isAsk,
+          readPassages: isReadOnlyPage,
         });
-        if (isAsk)
+        if (isReadOnlyPage)
           lastObservation.visibleText =
             lastObservation.passages
               ?.map((passage) => passage.text)
@@ -618,8 +633,8 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           index--;
           continue;
         }
-        const askRefusal = isAsk
-          ? askNavigationRefusal(action, askUrl)
+        const askRefusal = isReadOnlyPage
+          ? pageNavigationRefusal(action, pageUrl)
           : undefined;
         const assess = (): SafetyResult =>
           askRefusal
@@ -823,11 +838,40 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           continue;
         }
         if (action.type === "finish") {
-          const verification = isAsk
-            ? verifyAsk(action, observations)
-            : options.verify
-              ? await abortable(options.verify(session, action, run), signal)
-              : verifyExtractiveAnswer(action, observations);
+          const finishObservation = lastObservation;
+          const verification = isFind
+            ? await verifyPageFind(action, lastObservation, {
+                snapshotIsCurrent: async () => {
+                  if (
+                    !(await snapshotIsCurrent(
+                      browser.page,
+                      finishObservation.snapshotId,
+                    ))
+                  )
+                    return false;
+                  const fresh = await capturePassages(
+                    browser.page,
+                    finishObservation.snapshotId,
+                  );
+                  return (
+                    JSON.stringify(fresh.passages) ===
+                    JSON.stringify(finishObservation.passages)
+                  );
+                },
+                targetIsCurrent: async (target) =>
+                  Boolean(
+                    await resolveTarget(browser.page, {
+                      snapshotId: finishObservation.snapshotId,
+                      target,
+                    }),
+                  ),
+              })
+            : isAsk
+              ? verifyAsk(action, observations)
+              : options.verify
+                ? await abortable(options.verify(session, action, run), signal)
+                : verifyExtractiveAnswer(action, observations);
+          signal.throwIfAborted();
           run.status = verification.passed ? "done" : "uncertain";
           run.finalAnswer = privacy.text(action.answer);
           if (!verification.passed) run.error = verification.detail;

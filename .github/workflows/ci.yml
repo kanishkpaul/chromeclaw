@@ -25,6 +25,8 @@ jobs:
       - run: pnpm eval:models
       - run: pnpm eval:ask
       - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs --built
+      - run: pnpm eval:find
+      - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs --built
       - run: pnpm eval:session
       - run: pnpm eval:tui
       - uses: actions/upload-artifact@v4
@@ -41,5 +43,6 @@ jobs:
             .chromeclaw/phase5-terminal
             .chromeclaw/phase5-ask
             .chromeclaw/phase5-session
+            .chromeclaw/phase6-find
           include-hidden-files: true
           if-no-files-found: error

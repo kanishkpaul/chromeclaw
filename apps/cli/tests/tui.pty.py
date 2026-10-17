@@ -96,6 +96,9 @@ class Fixture(BaseHTTPRequestHandler):
             action = {'type': 'ask_user', 'question': 'Close the synthetic browser to test disconnection.'}
         elif scenario == 'injection-fixture':
             action = {'type': 'ask_user', 'question': INJECTION}
+        elif scenario == 'find-page-fixture':
+            passage = next(p for p in page['passages'] if p['text'] == ANSWER)
+            action = {'type': 'finish', 'answer': 'Launch-year passage', 'pageFind': {'outcome': 'matches', 'matches': [{'snapshotId': page['snapshotId'], 'passageId': passage['id'], 'reason': 'Names the launch year'}]}}
         elif scenario == 'ask-fixture' and counts[scenario] == 2:
             action = {'type': 'ask_user', 'question': 'Which city should I use?'}
         elif scenario in ['form-fixture', 'approved-fixture', 'restart-fixture'] and page['url'].endswith('/form'):
@@ -314,6 +317,18 @@ try:
         start = terminal.send('/close-source')
         terminal.wait('Source window closed.', start)
         record('read-only-ask-passage-citation-inspection-and-explicit-source-opening')
+        start = terminal.send('/find ' + endpoint + '/read find-page-fixture Locate the launch-year passage without acting.')
+        terminal.wait('match 1', start)
+        terminal.wait('"status":"done"', start)
+        find_logs = [f for f in terminal.log_dir.glob('*.jsonl') if json.loads(f.read_text().splitlines()[0])['payload'].get('findUrl')]
+        assert len(find_logs) == 1
+        events = [json.loads(line) for line in find_logs[0].read_text().splitlines()]
+        header = events[0]['payload']
+        assert header['permissions']['write'] is False
+        assert not set(['click', 'type', 'press', 'scroll']) & set(header['permissions']['tools'])
+        observation = next(e['payload'] for e in events if e['type'] == 'observation')
+        assert any(p['text'] == ANSWER for p in observation['passages'])
+        record('find-shows-ranked-snapshot-bound-passage-with-no-activation-permission')
         start = terminal.send('long-stream-fixture')
         terminal.wait('not validated', start)
         terminal.send('/cancel')

@@ -135,7 +135,12 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     if (!runtime.respond(reply))
       notice("That pending request is no longer active.");
   };
-  const execute = (task: string, resume = false, askUrl?: string) => {
+  const execute = (
+    task: string,
+    resume = false,
+    askUrl?: string,
+    findUrl?: string,
+  ) => {
     if (sourceOpening) {
       notice("The source window is still opening.");
       return;
@@ -154,6 +159,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     const runOptions: Omit<AgentRunOptions, "task"> = {
       ...settings,
       askUrl,
+      findUrl,
       onProgress: ({ receivedBytes }) => {
         if (receivedBytes - lastProgress >= 512 || lastProgress === 0) {
           lastProgress = receivedBytes;
@@ -196,6 +202,26 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
         const finish = run.steps.at(-1)?.action;
         if (finish?.type === "finish" && finish.evidence)
           data("citations", finish.evidence);
+        if (run.findUrl && finish?.type === "finish" && finish.pageFind) {
+          if (run.status === "done" && finish.pageFind.outcome === "matches")
+            finish.pageFind.matches.forEach((match, index) => {
+              const observation = run.steps.at(-1)?.observation;
+              const label =
+                "target" in match
+                  ? observation?.interactiveElements.find(
+                      (node) => node.number === match.target,
+                    )?.name
+                  : observation?.passages?.find(
+                      (passage) => passage.id === match.passageId,
+                    )?.text;
+              data(`match ${index + 1}`, { ...match, label });
+            });
+          else
+            notice(
+              run.error ??
+                "No validated matches. Narrow the description or capture again.",
+            );
+        }
         data("result", {
           status: run.status,
           answer: run.finalAnswer,
@@ -294,7 +320,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
   };
   const help = () =>
     notice(
-      "Task + Enter · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
+      "Task + Enter · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
     );
   const handle = (line: string) => {
     if (closed) return;
@@ -399,13 +425,18 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       return notice(
         "A task is active. Use its pending command, /pause or /cancel.",
       );
-    if (command === "/ask") {
+    if (command === "/ask" || command === "/find") {
       const [url, ...question] = words;
       if (!url || !question.length)
         return notice(
-          "Use /ask URL followed by a question, within the permitted origins.",
+          `Use ${command} URL followed by a question or description, within the permitted origins.`,
         );
-      execute(question.join(" "), false, url);
+      execute(
+        question.join(" "),
+        false,
+        command === "/ask" ? url : undefined,
+        command === "/find" ? url : undefined,
+      );
       return;
     }
     if (command === "/resume") {

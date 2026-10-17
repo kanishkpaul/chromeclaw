@@ -28,6 +28,7 @@ program
   .option("--json", "print a single undecorated run object")
   .option("--jsonl", "stream durable events and one final result")
   .argument("<task>", "browser task to run")
+  .option("--find <url>", "experimental read-only ranked matches on this page")
   .option("--ask <url>", "read-only passage-grounded question at this page")
   .option("--stream", "receive bounded SSE model replies")
   .option("--headless", "run Chrome headless")
@@ -91,6 +92,7 @@ program
         ...controls.options,
         task,
         askUrl: options.ask,
+        findUrl: options.find,
         permissions: {
           allowLoopback: Boolean(options.allowLoopback),
           maxCost: Number(
@@ -370,6 +372,16 @@ function printRunSummary(run: AgentRun, logDir: string): void {
   console.log(
     `${formatStatus(run.status)} ${run.finalAnswer ?? run.error ?? "No answer"}`,
   );
+  const finish = run.steps.at(-1)?.action;
+  if (
+    run.findUrl &&
+    run.status === "done" &&
+    finish?.type === "finish" &&
+    finish.pageFind?.outcome === "matches"
+  )
+    finish.pageFind.matches.forEach((match, index) =>
+      console.log(`  ${index + 1}. ${JSON.stringify(match)}`),
+    );
   console.log(pc.dim(`Run id: ${run.id}`));
   console.log(pc.dim(`Trace: ${logDir}/${run.id}.jsonl`));
 }

@@ -1,0 +1,342 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · synthetic-tui-model · local · http://127.0.0.1:59691/v1
+❯   Task + Enter · /find URL description · /ask URL question · /passage ID · /open ID · /close-source 
+  · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue 
+  · /cancel · /resume ID · /quit
+❯  synthetic-tui-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /compose
+  Compose multiple lines. /send submits; /discard clears.
+· ask-fixture
+· Read the launch fact.
+· /send
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4139 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 85 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4502 bytes
+❯   question "Which city should I use?"
+❯   Reply with /answer followed by your answer.
+❯  synthetic-tui-model │ local │ awaiting-answer │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /answer Kolkata
+  ┊ ask_user  {"type":"ask_user","question":"Which city should I use?"} · 113 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4751 bytes
+❯   ┊ finish    {"type":"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId"
+  ┊ :"f6f78bcf-0e2c-427f-8023-f783e484ed64","quote":"The fixture launch year is 2042."}]} · 24 ms
+❯   citations [{"snapshotId":"f6f78bcf-0e2c-427f-8023-f783e484ed64","quote":"The fixture launch year i
+  citations s 2042."}]
+❯   result {"status":"done","answer":"The fixture launch year is 2042.","runId":"run_mvcycf5l_aruhi7i"
+  result }
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /settings
+  settings {"provider":"local","model":"synthetic-tui-model","mode":"local","endpoint":"http://127.0
+  settings .0.1:59691/v1","keyConfigured":false,"stream":true,"responseFormat":"json","requestCost":
+  settings 0,"maxOutputTokens":1024,"readiness":"configured"}
+❯   permissions {"origins":["http://127.0.0.1:59691"],"allowLoopback":true,"write":true,"irreversible"
+  permissions :"confirm","maxCost":0,"timeoutMs":300000}
+❯ /sources
+  source 1 {"snapshot":"2b280de3-281b-4a1a-a823-3fd2aaebb03c","url":"about:blank"}
+❯   source 2 {"snapshot":"4ab75479-88b2-4f9b-bc88-9ac0c137f395","url":"http://127.0.0.1:59691/read"}
+❯   source 3 {"snapshot":"596188c9-b65e-48af-8e7d-2235cae13ff6","url":"http://127.0.0.1:59691/read"}
+❯   source 4 {"snapshot":"f6f78bcf-0e2c-427f-8023-f783e484ed64","url":"http://127.0.0.1:59691/read"}
+❯ /source 1
+  source {"snapshotId":"2b280de3-281b-4a1a-a823-3fd2aaebb03c","documentId":"6400b3ce-2cdc-42a2-814f-
+  source 6ae9c2803ccc","interactiveElements":[],"omittedTargets":0,"unreadableFrames":0,"url":"about
+  source :blank","title":"","visibleText":"","accessibilityTreeSummary":"Safe DOM target summary. Na
+  source tive AX field values are not captured.","timestamp":"2026-10-17T22:12:23.638Z"}
+❯ /history
+  ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 85 ms
+❯   ┊ ask_user  {"type":"ask_user","question":"Which city should I use?"} · 113 ms
+❯   ┊ finish    {"type":"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId"
+  ┊ :"f6f78bcf-0e2c-427f-8023-f783e484ed64","quote":"The fixture launch year is 2042."}]} · 24 ms
+❯ /trace
+  trace run_started {"id":"run_mvcycf5l_aruhi7i","task":"ask-fixture\nRead the launch fact.","status
+  trace run_started ":"observing","startedAt":"2026-10-17T22:12:23.097Z","maxSteps":20,"permissions"
+  trace run_started :{"origins":["http://127.0.0.1:59691"],"tools":["navigate","click","type","press
+  trace run_started ","wait","extract_text","summarize_page","scroll","screenshot","ask_user","finis
+  trace run_started h","fail"],"read":true,"write":true,"irreversible":"confirm","allowLoopback":tru
+  trace run_started e,"maxSteps":20,"expiresAt":1792275443097,"maxCost":0},"provider":"unresolved","
+  trace run_started model":"unresolved","answers":[],"reservedCost":0}
+❯   trace configuration {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":tr
+  trace configuration ue,"responseFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"loca
+  trace configuration l","requestCost":0,"maxOutputTokens":1024,"tokenLimitField":"max_tokens","requ
+  trace configuration estTimeoutMs":60000}}
+❯   trace observation {"snapshotId":"2b280de3-281b-4a1a-a823-3fd2aaebb03c","documentId":"6400b3ce-2cdc
+  trace observation -42a2-814f-6ae9c2803ccc","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"url":"about:blank","title":"","visibleText":"","accessibilityTreeSumm
+  trace observation ary":"Safe DOM target summary. Native AX field values are not captured.","timest
+  trace observation amp":"2026-10-17T22:12:23.638Z"}
+❯   trace crossing {"destination":"http://127.0.0.1:59691/v1/chat/completions","requestBytes":4139,"pa
+  trace crossing yloadHash":"abf85b7684c995dfb93733b0e6f9bc74078a2cfb9e41cc33ab6f355cff56ad21","atte
+  trace crossing mpt":1,"estimatedCost":0,"accounting":"local-zero"}
+❯   trace model_usage {"promptTokens":8,"completionTokens":8}
+❯   trace proposal {"stepId":"step_mvcycflb_gf3rngg","action":{"type":"navigate","url":"http://127.0.0
+  trace proposal .1:59691/read"}}
+❯   trace gate {"stepId":"step_mvcycflb_gf3rngg","gate":{"decision":"allow","approved":false}}
+❯   trace act_started {"stepId":"step_mvcycflb_gf3rngg","action":{"type":"navigate","url":"http://127.
+  trace act_started 0.0.1:59691/read"}}
+❯   trace observation {"snapshotId":"4ab75479-88b2-4f9b-bc88-9ac0c137f395","documentId":"9c660aca-923c
+  trace observation -48f5-8973-75b7a754dd26","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"url":"http://127.0.0.1:59691/read","title":"Launch fact","visibleText
+  trace observation ":"The fixture launch year is 2042.","accessibilityTreeSummary":"Safe DOM target
+  trace observation  summary. Native AX field values are not captured.","timestamp":"2026-10-17T22:1
+  trace observation 2:23.702Z"}
+❯   trace step {"id":"step_mvcycflb_gf3rngg","index":0,"phase":"ACT","status":"observing","action":{"t
+  trace step ype":"navigate","url":"http://127.0.0.1:59691/read"},"beforeId":"2b280de3-281b-4a1a-a82
+  trace step 3-3fd2aaebb03c","observationSummary":"Navigated to http://127.0.0.1:59691/read","result
+  trace step ":"Navigated to http://127.0.0.1:59691/read","gate":{"decision":"allow","approved":fals
+  trace step e},"startedAt":"2026-10-17T22:12:23.624Z","completedAt":"2026-10-17T22:12:23.709Z","dur
+  trace step ationMs":85,"afterId":"4ab75479-88b2-4f9b-bc88-9ac0c137f395"}
+❯   trace observation {"snapshotId":"596188c9-b65e-48af-8e7d-2235cae13ff6","documentId":"75e4bbe2-e4d9
+  trace observation -4465-ae42-85c38eb97cb7","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"url":"http://127.0.0.1:59691/read","title":"Launch fact","visibleText
+  trace observation ":"The fixture launch year is 2042.","accessibilityTreeSummary":"Safe DOM target
+  trace observation  summary. Native AX field values are not captured.","timestamp":"2026-10-17T22:1
+  trace observation 2:23.716Z"}
+❯   trace crossing {"destination":"http://127.0.0.1:59691/v1/chat/completions","requestBytes":4502,"pa
+  trace crossing yloadHash":"5b96c4f45090c43af4d42bf1e6021cdd0f800a206488fe315703fab6dcacc170","atte
+  trace crossing mpt":1,"estimatedCost":0,"accounting":"local-zero"}
+❯   trace model_usage {"promptTokens":8,"completionTokens":8}
+❯   trace proposal {"stepId":"step_mvcycfn4_sp5qc3y","action":{"type":"ask_user","question":"Which cit
+  trace proposal y should I use?"}}
+❯   trace gate {"stepId":"step_mvcycfn4_sp5qc3y","gate":{"decision":"allow","approved":false}}
+❯   trace state {"status":"awaiting-answer","pending":{"id":"pending_mvcycfnc_tdzo6cz","kind":"answer"
+  trace state ,"question":"Which city should I use?","credentialHandback":false}}
+❯   trace user_response {"pendingId":"pending_mvcycfnc_tdzo6cz","kind":"answer","answer":"Kolkata"}
+❯   trace state {"status":"observing"}
+❯   trace step {"id":"step_mvcycfn4_sp5qc3y","index":1,"phase":"ACT","status":"observing","action":{"t
+  trace step ype":"ask_user","question":"Which city should I use?"},"beforeId":"596188c9-b65e-48af-8
+  trace step e7d-2235cae13ff6","observationSummary":"User answer recorded.","result":"User answer re
+  trace step corded.","gate":{"decision":"allow","approved":false},"startedAt":"2026-10-17T22:12:23.
+  trace step 713Z","completedAt":"2026-10-17T22:12:23.826Z","durationMs":113}
+❯   trace observation {"snapshotId":"f6f78bcf-0e2c-427f-8023-f783e484ed64","documentId":"0635482b-26a3
+  trace observation -497d-92cc-b1948ec56812","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"url":"http://127.0.0.1:59691/read","title":"Launch fact","visibleText
+  trace observation ":"The fixture launch year is 2042.","accessibilityTreeSummary":"Safe DOM target
+  trace observation  summary. Native AX field values are not captured.","timestamp":"2026-10-17T22:1
+  trace observation 2:23.833Z"}
+❯   trace crossing {"destination":"http://127.0.0.1:59691/v1/chat/completions","requestBytes":4751,"pa
+  trace crossing yloadHash":"c7e3bea77006b625fadfeda8929e170a2c706247daa0c5b8e95d34beaa1cc62b","atte
+  trace crossing mpt":1,"estimatedCost":0,"accounting":"local-zero"}
+❯   trace model_usage {"promptTokens":8,"completionTokens":8}
+❯   trace proposal {"stepId":"step_mvcycfqe_xvdidoi","action":{"type":"finish","answer":"The fixture l
+  trace proposal aunch year is 2042.","evidence":[{"snapshotId":"f6f78bcf-0e2c-427f-8023-f783e484ed6
+  trace proposal 4","quote":"The fixture launch year is 2042."}]}}
+❯   trace gate {"stepId":"step_mvcycfqe_xvdidoi","gate":{"decision":"allow","approved":false}}
+❯   trace step {"id":"step_mvcycfqe_xvdidoi","index":2,"phase":"DONE","status":"done","action":{"type"
+  trace step :"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId":"f6f78b
+  trace step cf-0e2c-427f-8023-f783e484ed64","quote":"The fixture launch year is 2042."}]},"beforeId
+  trace step ":"f6f78bcf-0e2c-427f-8023-f783e484ed64","observationSummary":"Exact extractive answer 
+  trace step has captured evidence.","result":"Exact extractive answer has captured evidence.","gate
+  trace step ":{"decision":"allow","approved":false},"startedAt":"2026-10-17T22:12:23.830Z","complet
+  trace step edAt":"2026-10-17T22:12:23.854Z","durationMs":24}
+❯   trace run_completed {"status":"done","completedAt":"2026-10-17T22:12:24.002Z","finalAnswer":"The f
+  trace run_completed ixture launch year is 2042."}
+❯ pause-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4117 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 104 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4480 bytes
+❯ /pause
+  Pause requested before another act.
+❯   ┊ wait      {"type":"wait","ms":1500} · 1567 ms
+❯   Paused. Take over in Chrome if needed. /continue recaptures before acting.
+❯  synthetic-tui-model │ local │ paused │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /continue
+  ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4723 bytes
+❯   ┊ finish    {"type":"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId"
+  ┊ :"a9e20a8c-dcb7-418b-a4a3-89d71fb100d0","quote":"The fixture launch year is 2042."}]} · 34 ms
+❯   citations [{"snapshotId":"a9e20a8c-dcb7-418b-a4a3-89d71fb100d0","quote":"The fixture launch year i
+  citations s 2042."}]
+❯   result {"status":"done","answer":"The fixture launch year is 2042.","runId":"run_mvcycg70_6qxlij8"
+  result }
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /ask http://127.0.0.1:59691/read ask-page-fixture Return the launch fact.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 775 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4891 bytes
+❯   ┊ receive   model proposal · 963 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"The fixture launch year is 2042.","evidence":[{"snapshotId"
+  ┊ :"413bb0b2-c483-46e8-82b7-c4df2040bc2f","passageId":"413bb0b2-c483-46e8-82b7-c4df2040bc2f:p1","q
+  ┊ uote":"The fixture launch year is 2042."}]} · 66 ms
+❯   citations [{"snapshotId":"413bb0b2-c483-46e8-82b7-c4df2040bc2f","passageId":"413bb0b2-c483-46e8-82
+  citations b7-c4df2040bc2f:p1","quote":"The fixture launch year is 2042."}]
+❯   result {"status":"done","answer":"The fixture launch year is 2042.","runId":"run_mvcyci6x_hg9eql7"
+  result }
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /passage 413bb0b2-c483-46e8-82b7-c4df2040bc2f:p1
+  passage {"id":"413bb0b2-c483-46e8-82b7-c4df2040bc2f:p1","snapshotId":"413bb0b2-c483-46e8-82b7-c4df
+  passage 2040bc2f","url":"http://127.0.0.1:59691/read","text":"The fixture launch year is 2042.","k
+  passage ind":"document"}
+❯ /open 413bb0b2-c483-46e8-82b7-c4df2040bc2f:p1
+  opened source "http://127.0.0.1:59691/read"
+❯ /close-source
+  Source window closed.
+❯ /find http://127.0.0.1:59691/read find-page-fixture Locate the launch-year passage without acting.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 774 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 5258 bytes
+❯   ┊ receive   model proposal · 435 bytes; not validated
+❯   ┊ receive   model proposal · 981 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Launch-year passage","pageFind":{"outcome":"matches","match
+  ┊ es":[{"snapshotId":"1121aab8-6d53-452a-8cc1-180e80733ada","passageId":"1121aab8-6d53-452a-8cc1-1
+  ┊ 80e80733ada:p1","reason":"Names the launch year"}]}} · 99 ms
+❯   match 1 {"snapshotId":"1121aab8-6d53-452a-8cc1-180e80733ada","passageId":"1121aab8-6d53-452a-8cc1-
+  match 1 180e80733ada:p1","reason":"Names the launch year","label":"The fixture launch year is 2042
+  match 1 ."}
+❯   result {"status":"done","answer":"Launch-year passage","runId":"run_mvcyck17_anb1xde"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ long-stream-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4123 bytes
+❯   ┊ receive   model proposal · 1072 bytes; not validated
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯   result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mvcycl2p_moru9b4"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ stopped │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ disconnect-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4122 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 132 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4485 bytes
+❯   question "Close the synthetic browser to test disconnection."
+❯   Reply with /answer followed by your answer.
+❯  synthetic-tui-model │ local │ awaiting-answer │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯   result {"status":"failed","answer":"Browser disconnected. No further act will be dispatched.","err
+  result or":"Browser disconnected. No further act will be dispatched.","runId":"run_mvcyclsw_wni6lm
+  result 7"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ failed │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ form-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4116 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/form"} · 163 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4878 bytes
+❯   ┊ type      target 1; value withheld · 150 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 5318 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"4e60496c-078e-43ca-b744-430fdadfc228","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:59691/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvcycnin_cz5p1iu · /deny or Esc denies · Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+  ┊ click     {"type":"click","snapshotId":"4e60496c-078e-43ca-b744-430fdadfc228","target":2} · 173 
+  ┊ ms
+❯   error "The exact action was denied."
+❯   result {"status":"blocked","answer":"The exact action was denied.","runId":"run_mvcycmnc_js5nqvm"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ blocked │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ approved-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4120 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/form"} · 138 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4882 bytes
+❯   ┊ type      target 1; value withheld · 75 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 5322 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"45abf864-2a82-400b-ac34-a4f92547675e","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:59691/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvcycoun_ahjfts4 · /deny or Esc denies · Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvcycnin_cz5p1iu
+  Copy the current pending ID to approve exactly once, or /deny.
+❯ /approve pending_mvcycoun_ahjfts4
+  ┊ click     {"type":"click","snapshotId":"45abf864-2a82-400b-ac34-a4f92547675e","target":2} · 354 
+  ┊ ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 5211 bytes
+❯   ┊ finish    {"type":"finish","answer":"The city was saved.","evidence":[{"snapshotId":"48f99f9a-e6
+  ┊ 6d-4185-9a06-8eec69a30450","quote":"The city was saved."}]} · 50 ms
+❯   citations [{"snapshotId":"48f99f9a-e66d-4185-9a06-8eec69a30450","quote":"The city was saved."}]
+❯   result {"status":"done","answer":"The city was saved.","runId":"run_mvcycnx5_1gv9y8v"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ injection-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4121 bytes
+❯   ┊ receive   model proposal · 340 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:59691/read"} · 87 ms
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4484 bytes
+❯   question "INJECT_MARK\u001b[2J\rFAKE_GATE\u001b]52;c;stolen\u0007\u202e"
+❯   Reply with /answer followed by your answer.
+❯  synthetic-tui-model │ local │ awaiting-answer │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯   result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mvcycpci_84vny0g"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ stopped │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ slow-fixture
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model","configuration":{"stream":true,"respons
+  provider eFormat":"json","endpoint":"http://127.0.0.1:59691/v1","mode":"local","requestCost":0,"ma
+  provider xOutputTokens":1024,"tokenLimitField":"max_tokens","requestTimeoutMs":60000}}
+❯   ┊ send      "http://127.0.0.1:59691/v1/chat/completions" · 4116 bytes
+❯   Stopping the task; the session will remain open.
+❯   result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mvcycq59_ne8ft24"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ stopped │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /quit
+Closed. ⋔
