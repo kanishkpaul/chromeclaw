@@ -1,0 +1,79 @@
+{
+  "auditedCommit": "50355b976c833f9bd9df3e0b8148d80a53205e00",
+  "browser": "155.0.8059.80",
+  "method": "Local fixtures and injected scripted planners. No model-quality measurement.",
+  "findings": [
+    {
+      "id": "credential-read",
+      "reproduced": true,
+      "valuePresentInObservation": true
+    },
+    {
+      "id": "hidden-target",
+      "reproduced": true,
+      "hiddenControlMarkedVisible": true
+    },
+    {
+      "id": "accessibility",
+      "reproduced": true,
+      "message": "Accessibility snapshot unavailable in this Playwright runtime."
+    },
+    {
+      "id": "duplicate-target",
+      "reproduced": true,
+      "firstDuplicateClickedWithoutDisambiguation": true
+    },
+    {
+      "id": "credential-write",
+      "reproduced": true,
+      "status": "done"
+    },
+    {
+      "id": "ungated-commit",
+      "reproduced": true,
+      "independentlyRecordedCommits": 1
+    },
+    {
+      "id": "ask-user",
+      "reproduced": true,
+      "plannerCalledAgainWithoutUserAnswer": true
+    },
+    {
+      "id": "confirmation",
+      "reproduced": true,
+      "harmlessTaskBlockedBeforeTargetResolution": true,
+      "completedAt": "2026-10-17T09:31:49.331Z"
+    },
+    {
+      "id": "history",
+      "reproduced": true,
+      "extractionResultMissingFromNextPlannerContext": true
+    },
+    {
+      "id": "false-finish",
+      "reproduced": true,
+      "status": "done",
+      "page": "about:blank"
+    },
+    {
+      "id": "planner-error",
+      "reproduced": true,
+      "callsBeforeTermination": 1
+    },
+    {
+      "id": "blocked-score",
+      "reproduced": true,
+      "blockedRunScoredAsSuccess": true
+    },
+    {
+      "id": "query-echo-score",
+      "reproduced": true,
+      "searchTitleAloneScoredAsSuccess": true
+    },
+    {
+      "id": "credential-prompt",
+      "reproduced": true,
+      "syntheticCredentialPresentInHostedPlannerSummaryOnShortPage": true
+    }
+  ]
+}

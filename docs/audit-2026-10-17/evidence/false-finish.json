@@ -1,0 +1,53 @@
+{
+  "run": {
+    "id": "run_mvc76cca_42mldcr",
+    "task": "Inspect the fixture",
+    "status": "done",
+    "startedAt": "2026-10-17T09:31:49.882Z",
+    "maxSteps": 5,
+    "provider": "audit-script",
+    "model": "scripted-smoke-only",
+    "steps": [
+      {
+        "id": "step_mvc76ckf_w1njjj6",
+        "index": 0,
+        "phase": "DONE",
+        "status": "done",
+        "action": {
+          "type": "finish",
+          "answer": "All requested page changes completed"
+        },
+        "observation": {
+          "url": "about:blank",
+          "title": "",
+          "visibleText": "",
+          "interactiveElements": [],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:50.175Z"
+        },
+        "observationSummary": "All requested page changes completed",
+        "startedAt": "2026-10-17T09:31:50.159Z",
+        "completedAt": "2026-10-17T09:31:50.175Z",
+        "durationMs": 16
+      }
+    ],
+    "finalAnswer": "All requested page changes completed",
+    "completedAt": "2026-10-17T09:31:50.303Z"
+  },
+  "inputs": [
+    {
+      "task": "Inspect the fixture",
+      "observation": {
+        "url": "about:blank",
+        "title": "",
+        "visibleText": "",
+        "interactiveElements": [],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:50.175Z"
+      },
+      "observationSummary": "Title: \nURL: about:blank\nVisible text: \nTop targets: ",
+      "recentSteps": "",
+      "maxSteps": 5
+    }
+  ]
+}

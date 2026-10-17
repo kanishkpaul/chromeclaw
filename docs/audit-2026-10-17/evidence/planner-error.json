@@ -1,0 +1,50 @@
+{
+  "run": {
+    "id": "run_mvc76cnz_3r2ct3r",
+    "task": "Inspect the fixture",
+    "status": "failed",
+    "startedAt": "2026-10-17T09:31:50.303Z",
+    "maxSteps": 5,
+    "provider": "audit-script",
+    "model": "scripted-smoke-only",
+    "steps": [
+      {
+        "id": "step_mvc76cwf_69xv143",
+        "index": 0,
+        "phase": "ERROR",
+        "status": "failed",
+        "observation": {
+          "url": "about:blank",
+          "title": "",
+          "visibleText": "",
+          "interactiveElements": [],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:50.606Z"
+        },
+        "error": "synthetic malformed reply",
+        "startedAt": "2026-10-17T09:31:50.607Z",
+        "completedAt": "2026-10-17T09:31:50.607Z",
+        "durationMs": 0
+      }
+    ],
+    "error": "synthetic malformed reply",
+    "finalAnswer": "synthetic malformed reply",
+    "completedAt": "2026-10-17T09:31:50.737Z"
+  },
+  "inputs": [
+    {
+      "task": "Inspect the fixture",
+      "observation": {
+        "url": "about:blank",
+        "title": "",
+        "visibleText": "",
+        "interactiveElements": [],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:50.606Z"
+      },
+      "observationSummary": "Title: \nURL: about:blank\nVisible text: \nTop targets: ",
+      "recentSteps": "",
+      "maxSteps": 5
+    }
+  ]
+}

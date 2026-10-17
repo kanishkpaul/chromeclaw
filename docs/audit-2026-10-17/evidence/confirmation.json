@@ -1,0 +1,54 @@
+{
+  "run": {
+    "id": "run_mvc76blg_vo3byjg",
+    "task": "Read postgres documentation",
+    "status": "blocked",
+    "startedAt": "2026-10-17T09:31:48.916Z",
+    "maxSteps": 5,
+    "provider": "audit-script",
+    "model": "scripted-smoke-only",
+    "steps": [
+      {
+        "id": "step_mvc76btn_jznbrpd",
+        "index": 0,
+        "phase": "ERROR",
+        "status": "blocked",
+        "action": {
+          "type": "click",
+          "selector": "#primary"
+        },
+        "observation": {
+          "url": "about:blank",
+          "title": "",
+          "visibleText": "",
+          "interactiveElements": [],
+          "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+          "timestamp": "2026-10-17T09:31:49.211Z"
+        },
+        "observationSummary": "Title: \nURL: about:blank\nVisible text: \nTop targets: ",
+        "error": "This action may involve credentials, personal data, messaging, purchase, or destructive changes.",
+        "startedAt": "2026-10-17T09:31:49.194Z",
+        "completedAt": "2026-10-17T09:31:49.211Z",
+        "durationMs": 17
+      }
+    ],
+    "finalAnswer": "I need explicit confirmation before continuing: This action may involve credentials, personal data, messaging, purchase, or destructive changes.",
+    "completedAt": "2026-10-17T09:31:49.331Z"
+  },
+  "inputs": [
+    {
+      "task": "Read postgres documentation",
+      "observation": {
+        "url": "about:blank",
+        "title": "",
+        "visibleText": "",
+        "interactiveElements": [],
+        "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+        "timestamp": "2026-10-17T09:31:49.211Z"
+      },
+      "observationSummary": "Title: \nURL: about:blank\nVisible text: \nTop targets: ",
+      "recentSteps": "",
+      "maxSteps": 5
+    }
+  ]
+}

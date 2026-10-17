@@ -1,0 +1,51 @@
+{
+  "url": "http://127.0.0.1:56298/",
+  "title": "Fixture",
+  "visibleText": "ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content ordinary content EVIDENCE_AFTER_SUMMARY\n\n  Confirm transfer Choose Choose",
+  "interactiveElements": [
+    {
+      "id": "target-3",
+      "role": "button",
+      "text": "Choose",
+      "tagName": "button",
+      "isVisible": true,
+      "score": 43.85
+    },
+    {
+      "id": "target-4",
+      "role": "button",
+      "text": "Choose",
+      "tagName": "button",
+      "isVisible": true,
+      "score": 43.85
+    },
+    {
+      "id": "target-2",
+      "role": "button",
+      "text": "Confirm transfer",
+      "selector": "#primary",
+      "tagName": "button",
+      "isVisible": true,
+      "score": 43.6
+    },
+    {
+      "id": "target-0",
+      "role": "input",
+      "text": "SYNTHETIC_CREDENTIAL_ONLY",
+      "selector": "#field",
+      "tagName": "input",
+      "isVisible": true,
+      "score": 43.375
+    },
+    {
+      "id": "target-1",
+      "role": "button",
+      "selector": "#hidden",
+      "tagName": "button",
+      "isVisible": true,
+      "score": 36
+    }
+  ],
+  "accessibilityTreeSummary": "Accessibility snapshot unavailable in this Playwright runtime.",
+  "timestamp": "2026-10-17T09:31:45.549Z"
+}
