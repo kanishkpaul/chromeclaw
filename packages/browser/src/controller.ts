@@ -8,6 +8,7 @@ import {
   type InteractiveElement
 } from "@chromeclaw/shared";
 import { resolveTarget, type TargetQuery } from "./targets";
+import { inspectField } from "./credentials";
 
 export interface BrowserOptions {
   headless?: boolean | undefined;
@@ -60,10 +61,9 @@ export async function navigate(page: Page, url: string): Promise<void> {
 }
 
 export async function getPageSnapshot(page: Page, options: BrowserOptions = {}): Promise<BrowserObservation> {
-  const [visibleText, interactiveElements, accessibilityTreeSummary] = await Promise.all([
+  const [visibleText, interactiveElements] = await Promise.all([
     extractVisibleText(page),
-    collectInteractiveElements(page),
-    getAccessibilitySnapshot(page)
+    collectInteractiveElements(page)
   ]);
 
   return {
@@ -71,22 +71,20 @@ export async function getPageSnapshot(page: Page, options: BrowserOptions = {}):
     title: await page.title(),
     visibleText: truncateEnd(visibleText, 6000),
     interactiveElements: rankInteractiveElements(interactiveElements, 40),
-    accessibilityTreeSummary: truncateEnd(accessibilityTreeSummary, 4000),
+    accessibilityTreeSummary: truncateEnd(safeAccessibilitySummary(interactiveElements), 4000),
     screenshotPath: options.screenshotsDir ? await screenshot(page, options.screenshotsDir) : undefined,
     timestamp: new Date().toISOString()
   };
 }
 
+function safeAccessibilitySummary(targets: readonly InteractiveElement[]): string {
+  return ["Safe DOM target summary. Native AX field values are not captured.",
+    ...targets.map((target) => `${target.role ?? target.tagName}: ${target.name || target.text || "unnamed"}${target.isCredential ? " (credential, value withheld)" : ""}`)
+  ].join("\n");
+}
+
 export async function getAccessibilitySnapshot(page: Page): Promise<string> {
-  try {
-    const accessibility = (page as unknown as { accessibility?: { snapshot: (options: { interestingOnly: boolean }) => Promise<AxNode | null> } })
-      .accessibility;
-    if (!accessibility) return "Accessibility snapshot unavailable in this Playwright runtime.";
-    const snapshot = await accessibility.snapshot({ interestingOnly: true });
-    return summarizeAxNode(snapshot, 0).join("\n");
-  } catch (error) {
-    return `Accessibility snapshot unavailable: ${error instanceof Error ? error.message : String(error)}`;
-  }
+  return safeAccessibilitySummary(await collectInteractiveElements(page));
 }
 
 export async function clickTarget(page: Page, query: TargetQuery): Promise<string> {
@@ -95,31 +93,83 @@ export async function clickTarget(page: Page, query: TargetQuery): Promise<strin
   return `Clicked ${query.selector ?? query.name ?? query.text ?? query.role ?? "target"}`;
 }
 
+export interface BrowserRefusal {
+  refused: true;
+  reason: string;
+}
+
+/** Refuses credentials independently of the planner and policy. Never submits implicitly. */
 export async function typeIntoTarget(
   page: Page,
   query: TargetQuery & { value: string; submit?: boolean | undefined }
-): Promise<string> {
-  const locator = await resolveTarget(page, query);
-  await locator.fill(query.value, { timeout: 5000 });
-  if (query.submit) {
-    await locator.press("Enter");
+): Promise<string | BrowserRefusal> {
+  if (query.submit) return { refused: true, reason: "Implicit submit is disabled. Request the submit control separately." };
+  // An unavailable model target is an expected refusal. Resolver errors can include raw selectors.
+  const locator = await resolveTarget(page, query).catch(() => undefined);
+  if (!locator) return { refused: true, reason: "The target could not be resolved safely." };
+  const element = await locator.elementHandle();
+  if (!element) return { refused: true, reason: "The target is no longer attached." };
+  try {
+    const before = await element.evaluate(inspectField);
+    if (before.credential) return { refused: true, reason: "Credential entry is refused. Enter it yourself in Chrome." };
+    await element.focus();
+    const result = await element.evaluate(inspectField, query.value);
+    return result.written ? `Typed into ${query.selector ?? query.name ?? query.text ?? "target"}`
+      : { refused: true, reason: result.refusal ?? "The field could not be written." };
+  } catch {
+    // Focus handlers can detach the target, and browser validation can echo field contents.
+    return { refused: true, reason: "The target changed or could not be edited safely." };
+  } finally {
+    await element.dispose();
   }
-  return `Typed into ${query.selector ?? query.name ?? query.text ?? "target"}`;
 }
 
-export async function screenshot(page: Page, screenshotsDir = ".chromeclaw/screenshots"): Promise<string> {
+/** Keyboard input cannot be used as a second path into a credential field. */
+export async function pressKey(page: Page, key: string): Promise<string | BrowserRefusal> {
+  for (const frame of page.frames()) {
+    const focused = await frame.locator(":focus").elementHandles();
+    try {
+      for (const element of focused) {
+        if ((await element.evaluate(inspectField)).credential) {
+          return { refused: true, reason: "Keyboard input into a credential field is refused. Continue in Chrome." };
+        }
+      }
+    } finally {
+      await Promise.all(focused.map((element) => element.dispose()));
+    }
+  }
+  // Characters, paste shortcuts and activation keys can write or submit. Until target-bound
+  // keyboard actions arrive, only these non-writing navigation keys are admitted.
+  if (!["Tab", "Shift+Tab", "Escape", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(key)) {
+    return { refused: true, reason: "This key needs a target-bound action. Character input, paste and keyboard submission are disabled." };
+  }
+  await page.keyboard.press(key);
+  return `Pressed ${key}`;
+}
+
+export async function screenshot(page: Page, screenshotsDir = ".chromeclaw/screenshots"): Promise<string | undefined> {
+  if (await hasCredentialFields(page) || page.frames().length > 1) return undefined;
   await mkdir(screenshotsDir, { recursive: true });
   const filePath = path.resolve(screenshotsDir, `shot-${Date.now()}.png`);
-  await page.screenshot({ path: filePath, fullPage: false });
+  await page.screenshot({ path: filePath, fullPage: false, mask: [page.locator("input,textarea,select,[contenteditable],iframe,frame")] });
   return filePath;
 }
 
 export async function extractVisibleText(page: Page): Promise<string> {
-  try {
-    return await page.locator("body").innerText({ timeout: 5000 });
-  } catch {
-    return "";
-  }
+  return page.evaluate(() => {
+    if (!document.body) return "";
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const parts: string[] = [];
+    while (walker.nextNode()) {
+      const parent = walker.currentNode.parentElement;
+      if (!parent || parent.closest("input,textarea,select,[contenteditable],script,style,noscript")) continue;
+      const style = getComputedStyle(parent);
+      if (!parent.getClientRects().length || style.visibility !== "visible" || style.opacity === "0") continue;
+      const text = walker.currentNode.textContent?.trim();
+      if (text) parts.push(text);
+    }
+    return parts.join("\n");
+  });
 }
 
 export async function scroll(page: Page, direction: "up" | "down" | "left" | "right", amount: number): Promise<void> {
@@ -128,50 +178,42 @@ export async function scroll(page: Page, direction: "up" | "down" | "left" | "ri
   await page.mouse.wheel(deltaX, deltaY);
 }
 
-async function collectInteractiveElements(page: Page): Promise<InteractiveElement[]> {
+async function hasCredentialFields(page: Page): Promise<boolean> {
+  const elements = await page.locator("input,textarea,[contenteditable]").elementHandles();
   try {
-    return await page.locator("a,button,input,textarea,select,[role=button],[role=link],[contenteditable=true]").evaluateAll(
-      (nodes) =>
-        nodes.slice(0, 120).map((node, index) => {
-          const element = node as HTMLElement;
-          const rect = element.getBoundingClientRect();
-          const input = element as HTMLInputElement;
-          const text = (element.innerText || input.value || element.getAttribute("aria-label") || "").trim();
-          const id = element.id ? `#${element.id}` : "";
-          const selector = id || element.getAttribute("data-testid") || element.getAttribute("name") || undefined;
-          return {
-            id: `target-${index}`,
-            role: element.getAttribute("role") || element.tagName.toLowerCase(),
-            name: element.getAttribute("aria-label") || element.getAttribute("name") || undefined,
-            text: text.slice(0, 160) || undefined,
-            selector: selector
-              ? selector.startsWith("#")
-                ? selector
-                : `[data-testid="${selector}"], [name="${selector}"]`
-              : undefined,
-            tagName: element.tagName.toLowerCase(),
-            href: element instanceof HTMLAnchorElement ? element.href : undefined,
-            isVisible: rect.width > 0 && rect.height > 0,
-            score: 0
-          };
-        })
-    );
-  } catch {
-    return [];
+    for (const element of elements) if ((await element.evaluate(inspectField)).credential) return true;
+    return false;
+  } finally {
+    await Promise.all(elements.map((element) => element.dispose()));
   }
 }
 
-interface AxNode {
-  role: string;
-  name?: string;
-  children?: AxNode[];
-}
-
-function summarizeAxNode(node: AxNode | null, depth: number): string[] {
-  if (!node || depth > 3) return [];
-  const current = `${"  ".repeat(depth)}- ${node.role}${node.name ? `: ${node.name}` : ""}`;
-  const children = (node.children ?? []).flatMap((child) => summarizeAxNode(child, depth + 1));
-  return [current, ...children].slice(0, 80);
+async function collectInteractiveElements(page: Page): Promise<InteractiveElement[]> {
+  const elements = await page.locator("a,button,input,textarea,select,[role=button],[role=link],[contenteditable=true]").elementHandles();
+  try {
+    const targets: InteractiveElement[] = [];
+    for (const [index, element] of elements.slice(0, 120).entries()) {
+      const field = await element.evaluate(inspectField);
+      const target = await element.evaluate((node, position) => {
+        if (!(node instanceof Element)) throw new Error("Capture target is not an element.");
+        const rect = node.getBoundingClientRect();
+        const testId = node.getAttribute("data-testid");
+        const name = node.getAttribute("name");
+        const selector = node.id ? `#${CSS.escape(node.id)}` : testId ? `[data-testid="${CSS.escape(testId)}"]`
+          : name ? `[name="${CSS.escape(name)}"]` : undefined;
+        return {
+          id: `target-${position}`, role: node.getAttribute("role") || node.tagName.toLowerCase(),
+          selector, tagName: node.tagName.toLowerCase(),
+          href: node instanceof HTMLAnchorElement ? node.href : undefined,
+          isVisible: rect.width > 0 && rect.height > 0, score: 0
+        };
+      }, index);
+      targets.push({ ...target, name: field.label || undefined, text: field.text.slice(0, 160) || undefined, isCredential: field.credential });
+    }
+    return targets;
+  } finally {
+    await Promise.all(elements.map((element) => element.dispose()));
+  }
 }
 
 function normalizeUrl(url: string): string {

@@ -41,3 +41,29 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
 - Rejected: keeping the ten legacy tasks as a capability score, or treating scripted smoke as a
   model benchmark. Phase 8 owns live testing; Phase 9 owns the final README presentation.
 - Revisit when: model-backed fixtures are available in Phase 4, or Phase 3 removes legacy egress.
+
+## D-014 · 2026-10-17 · Credential defense is enforced at capture and write time
+
+- Decision: start Phase 2 with a credential-protection slice, `p2-01`. Adapt the field metadata,
+  autocomplete and label rules from Blindfold `browser/src/content/extract.ts` and
+  `core/src/credentials/index.ts` at `2f04984`. Keep the app's own types and browser driver.
+- Why: a planner or action-policy miss must not permit a credential write. Type/password,
+  autocomplete token lists and semantic labels suppress values before they enter observations;
+  the driver independently refuses writes and rechecks after focus handlers. The check and
+  native setter run in one document turn. Keep the native setter and input/change events for
+  ordinary fields, and refuse hidden, covered, detached, disabled and read-only writes.
+- Traces: withhold typed action values and their thought summaries. This is not arbitrary PII
+  detection: user requests and ordinary page text may still contain sensitive information. Full
+  structured trace/egress handling remains in Phase 3.
+- Keyboard: temporarily admit only non-writing navigation keys, and refuse every key while a
+  credential field is focused. Character entry, paste and keyboard/implicit submission wait for
+  target-bound admission in the remaining Phase 2 work. No setting enables credential entry.
+- Capture: use a safe DOM target summary rather than reading raw AX field values. Withhold
+  screenshots on known credential/framed pages and mask form controls in other screenshots.
+  This does not claim general visual-secret detection or canvas coverage. Native AX comparison,
+  complete semantic capture and fresh numbered bindings remain in the next target-grounding task.
+- Rejected: relying on model promises, label-only policy checks, or calling Playwright fill after
+  a separate credential check that focus handlers can invalidate. Browser fixtures must test the
+  port's real behavior; inspection of Blindfold alone is not acceptance evidence.
+- Revisit when: fresh target bindings and the immutable permission envelope land, then Phase 3
+  adds resumable hand-back. This slice does not close the Phase 2 gate.

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SafetyPolicy } from "../src/index";
+import type { BrowserObservation } from "@chromeclaw/shared";
 
 describe("SafetyPolicy", () => {
   const policy = new SafetyPolicy();
@@ -15,6 +16,17 @@ describe("SafetyPolicy", () => {
       { task: "log in to my bank account" }
     );
     expect(result.decision).toBe("confirm");
+  });
+
+  it("refuses a credential-marked field even when the task and selector sound benign", () => {
+    const observation: BrowserObservation = {
+      url: "https://example.com", title: "Form", visibleText: "Field", accessibilityTreeSummary: "withheld",
+      timestamp: "2026-10-17T00:00:00.000Z",
+      interactiveElements: [{ id: "target-0", selector: "#f", name: "Field", isVisible: true, isCredential: true, score: 0 }]
+    };
+    expect(policy.assess({ type: "type", selector: "#f", text: "synthetic" }, {
+      task: "Fill the field", observation
+    }).decision).toBe("block");
   });
 
   it("allows benign navigation", () => {

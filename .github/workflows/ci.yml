@@ -18,10 +18,13 @@ jobs:
       - run: pnpm check
       - run: pnpm --filter @chromeclaw/browser exec playwright install --with-deps chromium
       - run: pnpm eval
+      - run: pnpm eval:credentials
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: fixture-evidence
-          path: .chromeclaw/eval
+          path: |
+            .chromeclaw/eval
+            .chromeclaw/credential-safety
           include-hidden-files: true
           if-no-files-found: error

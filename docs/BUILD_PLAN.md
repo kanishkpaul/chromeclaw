@@ -21,11 +21,10 @@ merges; agents do not merge their own PRs.
 
 ## Progress
 
-Phase 0 is complete. Phase 1 is implemented and its local gate passed: 24 tests, three browser
-fixtures, a wrong-city negative control, skip/todo rejection and a forbidden-sender mutation.
-See [the evidence](evidence/phase1/README.md). Hosted CI verification remains pending until the
-implementation PR runs. Phases 2 through 9 are pending; no runtime safety or model readiness is
-inferred from the scripted baseline.
+Phases 0 and 1 are merged into main through PRs #2 and #3. Phase 1 passed its 24 tests and three
+browser fixtures locally and in hosted CI. See [the evidence](evidence/phase1/README.md).
+Phase 2 is in progress. Its first slice, p2-01, protects credential capture/write boundaries;
+fresh numbered targets and the fixed task envelope remain pending. Phases 3 through 9 are pending.
 
 ## p1-01: Trustworthy checks and fixture baseline
 
@@ -43,6 +42,19 @@ Done when: `pnpm check` passes, all controlled browser fixtures pass, a skipped/
 nonzero exit, and deliberately saving the wrong city produces a failed eval and nonzero process
 status. Attach commands, raw report and JSONL. CI configuration being present does not prove the
 hosted CI job ran.
+
+## p2-01: Credential capture and driver protection
+
+Port the relevant Blindfold credential metadata and refusal behavior into the existing driver,
+with autocomplete token lists, safe labels and no field values in capture. Recheck at write time,
+including focus-time changes. Block paste/keyboard and implicit-submit bypasses; withhold typed
+values in action logs. Ordinary noncredential editing must still emit input/change events.
+
+Done when: unit checks and the credential browser suite pass, synthetic stored values and
+attempted write values stay out of runtime JSONL, credential/framed screenshots are withheld,
+and password/OTP, textarea, shadow/frame, focus replacement and ordinary-edit cases have evidence.
+The slice does not implement fresh target numbering, fixed permissions, general PII redaction or
+resumable hand-back. These remain explicit acceptance gaps in the rest of Phase 2 and Phase 3.
 
 ## live-01: Live testing, second-last
 

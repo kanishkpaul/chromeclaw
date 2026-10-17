@@ -20,6 +20,7 @@ export interface InteractiveElement {
   tagName?: string | undefined;
   href?: string | undefined;
   isVisible: boolean;
+  isCredential: boolean;
   score: number;
 }
 

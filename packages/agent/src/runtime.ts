@@ -4,6 +4,8 @@ import {
   getPageSnapshot,
   navigate,
   openBrowser,
+  pressKey,
+  type BrowserRefusal,
   screenshot,
   scroll,
   typeIntoTarget,
@@ -107,20 +109,27 @@ export class BrowserAgentRuntime {
 
         run.status = action.type === "wait" ? "waiting" : "acting";
         const result = await this.executeAction(session, action, options);
-        const status = action.type === "finish" ? "done" : action.type === "fail" ? "failed" : run.status;
+        const refused = typeof result !== "string";
+        const status = refused ? "blocked" : action.type === "finish" ? "done" : action.type === "fail" ? "failed" : run.status;
+        if (refused) {
+          run.status = "blocked";
+          run.finalAnswer = result.reason;
+        }
         const step = makeStep({
           index,
-          phase: action.type === "finish" ? "DONE" : "ACT",
+          phase: refused ? "ERROR" : action.type === "finish" ? "DONE" : "ACT",
           status,
           action,
           observation: lastObservation,
-          observationSummary: result || observationSummary,
+          observationSummary: refused ? observationSummary : result || observationSummary,
+          error: refused ? result.reason : undefined,
           thoughtSummary: action.thoughtSummary,
           startedAt: stepStarted
         });
         run.steps.push(step);
         await emitStep(store, options, step, run);
 
+        if (refused) break;
         if (action.type === "finish") {
           run.status = "done";
           run.finalAnswer = action.answer;
@@ -162,7 +171,7 @@ export class BrowserAgentRuntime {
     return run;
   }
 
-  private async executeAction(session: BrowserSession, action: BrowserAction, options: AgentRunOptions): Promise<string> {
+  private async executeAction(session: BrowserSession, action: BrowserAction, options: AgentRunOptions): Promise<string | BrowserRefusal> {
     switch (action.type) {
       case "navigate":
         await navigate(session.page, action.url);
@@ -181,8 +190,7 @@ export class BrowserAgentRuntime {
           submit: action.submit
         });
       case "press":
-        await session.page.keyboard.press(action.key);
-        return `Pressed ${action.key}`;
+        return pressKey(session.page, action.key);
       case "wait":
         await session.page.waitForTimeout(action.ms);
         return `Waited ${action.ms}ms`;
@@ -193,8 +201,10 @@ export class BrowserAgentRuntime {
       case "scroll":
         await scroll(session.page, action.direction, action.amount);
         return `Scrolled ${action.direction} by ${action.amount}px`;
-      case "screenshot":
-        return `Screenshot saved to ${await screenshot(session.page, options.screenshotsDir)}`;
+      case "screenshot": {
+        const file = await screenshot(session.page, options.screenshotsDir);
+        return file ? `Screenshot saved to ${file}` : "Screenshot withheld on a credential or framed page.";
+      }
       case "ask_user":
         return `Needs user input: ${action.question}`;
       case "finish":
@@ -217,13 +227,16 @@ function makeStep(input: {
   error?: string | undefined;
 }): AgentStep {
   const completed = Date.now();
+  const action = input.action?.type === "type" ? {
+    ...input.action, text: "[withheld]", thoughtSummary: undefined
+  } : input.action;
   return {
     id: createId("step"),
     index: input.index,
     phase: input.phase,
     status: input.status,
-    thoughtSummary: input.thoughtSummary,
-    action: input.action,
+    thoughtSummary: input.action?.type === "type" ? undefined : input.thoughtSummary,
+    action,
     observation: input.observation,
     observationSummary: input.observationSummary,
     error: input.error,

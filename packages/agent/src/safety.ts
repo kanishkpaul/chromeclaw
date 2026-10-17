@@ -19,6 +19,10 @@ const confirmationPatterns = [
 
 export class SafetyPolicy {
   assess(action: BrowserAction, context: { task: string; observation?: BrowserObservation }): SafetyResult {
+    if (action.type === "type" && context.observation?.interactiveElements.some((target) =>
+      target.isCredential && (action.selector ? target.selector === action.selector : target.name === action.target))) {
+      return { decision: "block", reason: "Credential entry is refused. Enter it yourself in Chrome." };
+    }
     const text = `${context.task} ${context.observation?.url ?? ""} ${context.observation?.title ?? ""} ${JSON.stringify(action)}`;
 
     if (blockedIntentPatterns.some((pattern) => pattern.test(text))) {

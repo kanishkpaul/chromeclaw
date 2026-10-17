@@ -28,3 +28,12 @@ Legacy ten-task live/mock scores are retired and incomparable to these checks. T
 remain in `docs/MAIN_AUDIT.md`. Phase 4 adds real BYOK/local model reports; Phase 8 adds held-out
 live testing. Report these separately from scripted fixtures. Score the world or a known fact,
 never substrings of observations or an agent's own success declaration.
+
+
+`pnpm eval:credentials` builds packages and runs the Phase 2 credential regression suite against
+an isolated real browser with synthetic values. It tests capture, driver refusal independently
+of policy, autocomplete lists, labelled textarea/OTP, open shadow roots, focused frames, focus-time
+changes, action-log withholding and ordinary field events. Reports/JSONL/masked screenshots go
+to `.chromeclaw/credential-safety` and are uploaded by CI. It does not measure model quality or
+close the target/envelope/hand-back gates. A safe DOM target summary replaces the legacy broken
+AX call for now; no raw native AX field values are captured.
