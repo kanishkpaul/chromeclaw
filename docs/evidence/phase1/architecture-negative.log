@@ -1,0 +1,38 @@
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ❯ packages/shared/tests/architecture.test.ts (2 tests | 1 failed) 28ms
+   × current package boundaries > keeps production imports inward and does not add a second network sender 27ms
+     → expected [ Array(1) ] to deeply equal []
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  15:19:33
+   Duration  392ms (transform 12ms, setup 0ms, collect 178ms, tests 28ms, environment 0ms, prepare 30ms)
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/shared/tests/architecture.test.ts > current package boundaries > keeps production imports inward and does not add a second network sender
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- Array []
++ Array [
++   "Network I/O outside the legacy egress boundary: packages/browser/src/network-probe.ts",
++ ]
+
+ ❯ packages/shared/tests/architecture.test.ts:49:20
+     47|       return sourceFiles(directory).flatMap((file) => violations(readF…
+     48|     });
+     49|     expect(errors).toEqual([]);
+       |                    ^
+     50|   });
+     51|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+Exit status: 1

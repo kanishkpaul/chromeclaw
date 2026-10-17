@@ -23,3 +23,21 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
 - Revisit when: Kanishk changes the product direction, or a measured browser limitation requires
   a narrowly scoped integration decision. It does not authorize a second frontend by default.
 - Status: product direction adopted; implementation and compatibility remain pending in the plans.
+
+## D-013 · 2026-10-17 · Controlled checks precede features and live testing
+
+- Decision: add `.github/workflows/ci.yml` for checks and isolated browser fixtures. This is the
+  only new top-level directory in Phase 1. Use existing dependencies; add no model service or key.
+- Why: the previous eval oracle could pass a search-title echo or a blocked task. A failed world
+  state must fail the command and CI before later fixes can be measured.
+- Boundaries: enforce today's package direction and freeze the one legacy network sender in
+  `packages/agent/src/llm/openai.ts` until Phase 3 replaces it with egress. No additional sender
+  may be added under this temporary exception. Future core/plugin invariants join checks as those
+  packages are introduced; tests must not claim coverage of packages that do not exist.
+- Reuse: adapt the explicit corpus count and sorted report ordering from Blindfold's
+  `eval/src/report-json.ts`, and the minimal checkout/setup/check/artifact pattern from its
+  `.github/workflows/ci.yml`, pinned to `2f04984`. Do not transplant its model downloads, Puppeteer
+  harness, extension identity or permissive live-site substring checks.
+- Rejected: keeping the ten legacy tasks as a capability score, or treating scripted smoke as a
+  model benchmark. Phase 8 owns live testing; Phase 9 owns the final README presentation.
+- Revisit when: model-backed fixtures are available in Phase 4, or Phase 3 removes legacy egress.

@@ -1,7 +1,7 @@
 # Bug-fix plan
 
 This plan applies to executable main at `50355b9`. Findings and reproductions are in
-[MAIN_AUDIT.md](MAIN_AUDIT.md). Every task below is pending. Keep changes on task branches,
+[MAIN_AUDIT.md](MAIN_AUDIT.md). Task progress and phase gates are tracked in [BUILD_PLAN.md](BUILD_PLAN.md). Keep changes on task branches,
 attach real-browser evidence and let Kanishk decide what merges. ChromeClaw lives fully in the
 terminal as a TUI. BYOK hosted models and local models are required paths for every job.
 
@@ -36,7 +36,7 @@ underlying protection. Local models receive the same gates as BYOK hosted models
 
 ## Order and dependencies
 
-`fix-00 → fix-01 → fix-02 → fix-03 → fix-04 → fix-05 → fix-06 → fix-07 → fix-08 → fix-09`
+`fix-00 → fix-01 → fix-02 → fix-03 → fix-04 → fix-05 → fix-06 → fix-08 → fix-07 → fix-09`
 
 This is delivery order, not a claim that every task depends on every previous file. In particular,
 write the outcome assertions in fix-00 before interpreting later measurements. Do not broaden
@@ -59,8 +59,8 @@ README, test configuration and CI.
   its side-panel requirements. Document the safety inventory and old-to-new regression mapping.
 
 Done when: a deliberately wrong answer with a matching search title fails; blocked comparison
-fails; the explicit login hand-back task passes only the expected hand-back; a broken fixture
-fails CI; a real browser run and raw report are attached. Archive legacy scores as incomparable.
+fails; the explicit credential-refusal smoke passes only a blocked status plus no submission;
+resumable hand-back stays in fix-05; a broken fixture fails CI; a real browser run and raw report are attached. Archive legacy scores as incomparable.
 
 ### fix-01: Prevent credential capture and entry
 

@@ -4,7 +4,9 @@ ChromeClaw lives fully in the terminal as a TUI. J1 is research. J2 is work on a
 finding from a vague description, on the page (J3a), in history (J3b), or on the web (J3c).
 The job definitions come from local `new` at `2a8b4c1`; executable main at `50355b9` is the base.
 
-This plan is proposed and every task is pending. It follows [BUG_FIX_PLAN.md](BUG_FIX_PLAN.md).
+This plan defines feature tasks after the bug fixes. [BUILD_PLAN.md](BUILD_PLAN.md) is the phase
+controller: Phase 0 was planning, Phase 8 is live testing and Phase 9 is the final README. It maps
+these tasks and [BUG_FIX_PLAN.md](BUG_FIX_PLAN.md) into delivery gates.
 The owner's terminal direction on 17 October 2026 replaces this plan's earlier extension path.
 The archived `new:docs/BUILD_PLAN.md` supplies ideas and evidence requirements, not a requirement
 for a side panel, extension frontend, omnibox, Chrome built-in model or service-worker lifecycle.

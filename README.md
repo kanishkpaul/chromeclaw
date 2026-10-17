@@ -1,11 +1,11 @@
-# ChromeClaw, the terminal agent (archived)
+# ChromeClaw
 
-> **This branch is the archive.** It holds the first ChromeClaw: a terminal agent that drives Chrome
-> through Playwright. It is kept runnable as the baseline the rebuild has to beat, and it gets no new
-> features. ChromeClaw is being rebuilt as a Chrome extension on
-> [`main`](https://github.com/kanishkpaul/chromeclaw/tree/main). Start there.
+> **Building a terminal TUI.** The existing CLI is the implementation base for research, page work
+> and find, with BYOK and local models. Follow [the phases](docs/BUILD_PLAN.md). The archived
+> extension design is preserved locally on `new`. Runtime safety fixes remain open; do not treat
+> the current baseline as unattended control of signed-in sites.
 
-## What this was
+## Current baseline
 
 A terminal-first browser agent, built May 2026. You give it a task. It opens Chrome through
 Playwright, takes one action at a time, prints every step, and writes the run to a JSONL trace you
@@ -38,10 +38,10 @@ Each step:
 4. **Act:** through Playwright.
 5. **Log:** append the step to the run's JSONL file.
 
-## Why it was replaced
+## Known runtime gaps
 
 An audit on 2026-10-13 found the loop sound and the agent around it too thin to build on. The
-rebuild on `main` addresses each of these:
+implementation plan addresses these gaps:
 
 - **The model saw too little.** Its history carried only each step's action type, never the URL it
   opened, the text it typed or what `extract_text` returned. The prompt held an 1,800-character
@@ -57,12 +57,12 @@ rebuild on `main` addresses each of these:
     task mentions "postgres".
   - It allows a click on an unlabelled button on a `/cart` page, and navigation to a router admin
     page.
-- **The evals measure the loop, not the agent.** With the scripted mock planner, `eval --all` scored
+- **The retired evals measured the loop, not the agent.** With the scripted mock planner, `eval --all` scored
   9 of 10. Five of those passed because the search results page title repeats the query that
   contains the expected word. The one safety task, "log in to my bank", failed.
 
-The full audit and the lessons carried forward are in
-[`docs/PREBUILD.md` on `main`](https://github.com/kanishkpaul/chromeclaw/blob/main/docs/PREBUILD.md).
+The pinned findings are in [the main audit](docs/MAIN_AUDIT.md). Phase 1 replaces the legacy
+eval scorer with controlled browser fixtures; the other runtime fixes remain pending.
 
 ## Running it
 
@@ -80,8 +80,8 @@ node apps/cli/dist/index.js run "Open example.com and report the page title." --
 node apps/cli/dist/index.js repl              # interactive session
 node apps/cli/dist/index.js runs              # recent runs
 node apps/cli/dist/index.js show <run-id>     # one run's full trace
-node apps/cli/dist/index.js eval --all        # all 10 eval tasks, printed as JSON
-pnpm eval                                     # the same tasks, also written to .chromeclaw/eval-report.json
+node apps/cli/dist/index.js eval --all        # all 3 controlled scripted smoke fixtures
+pnpm eval                                     # the same fixtures, report and JSONL in .chromeclaw/eval
 ```
 
 Last checked on 2026-10-13 on macOS with Node 24: it builds, typechecks and lints, all 15 tests pass,
@@ -107,7 +107,7 @@ apps/cli          run, repl, runs, show, eval
 packages/agent    runtime loop, planners, safety policy, JSONL storage
 packages/browser  Playwright control and page observation
 packages/shared   Zod schemas, types, helpers
-packages/evals    the 10 task definitions and scoring
+packages/evals    controlled fixture tasks and outcome scoring
 docs              safety and eval notes, as written at the time
 ```
 

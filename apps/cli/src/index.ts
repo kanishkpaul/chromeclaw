@@ -5,7 +5,7 @@ import { stdin as input, stdout as output } from "node:process";
 import pc from "picocolors";
 import { Command } from "commander";
 import { BrowserAgentRuntime, JsonlRunStore } from "@chromeclaw/agent";
-import { buildReport, evalTasks, scoreRun } from "@chromeclaw/evals";
+import { runEvaluationCli } from "@chromeclaw/evals";
 import type { AgentRun, AgentStep } from "@chromeclaw/shared";
 
 const logo = [
@@ -147,32 +147,12 @@ program
 
 program
   .command("eval")
-  .option("--all", "run all benchmark tasks")
+  .description("run local browser fixtures with a scripted smoke planner")
+  .option("--all", "run every controlled fixture (also the default)")
   .option("--headed", "show browser during eval")
+  .option("--inject-failure", "verify that the page-state oracle fails on a wrong value")
   .action(async (options) => {
-    printHeader();
-    const runtime = new BrowserAgentRuntime();
-    const selected = options.all ? evalTasks : evalTasks.slice(0, 3);
-    const results = [];
-
-    for (const task of selected) {
-      console.log(`${pc.bold("EVAL")} ${task.id}`);
-      console.log(`${pc.dim(task.task)}`);
-      const run = await runtime.run({
-        task: task.task,
-        maxSteps: task.maxSteps,
-        headless: !options.headed,
-        provider: process.env.CHROMECLAW_PROVIDER ?? "mock",
-        logDir: ".chromeclaw/eval-runs",
-        screenshotsDir: ".chromeclaw/screenshots",
-        onStep: (step) => printStep(step)
-      });
-      const result = scoreRun(task, run);
-      results.push(result);
-      console.log(`${pc.dim("Result")} ${result.success ? pc.green("PASS") : pc.red("FAIL")}  ${result.steps} steps\n`);
-    }
-
-    console.log(JSON.stringify(buildReport(results), null, 2));
+    await runEvaluationCli({ headed: Boolean(options.headed), injectFailure: Boolean(options.injectFailure) });
   });
 
 program.parseAsync(process.argv).catch((error: unknown) => {
