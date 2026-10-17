@@ -21,7 +21,9 @@
     "eval:credentials": "pnpm build:packages && node packages/browser/tests/credentials.browser.mjs",
     "eval:safety": "pnpm build:packages && tsx --tsconfig tsconfig.base.json packages/browser/tests/safety.browser.mjs --source",
     "eval:runtime": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/runtime.browser.mjs --source",
-    "eval:configuration": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/config.browser.mjs --source"
+    "eval:configuration": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/config.browser.mjs --source",
+    "eval:models": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source",
+    "eval:local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source --actual-local"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

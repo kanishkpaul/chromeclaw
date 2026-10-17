@@ -5,6 +5,11 @@ export interface PlannerConfig {
   model?: string | undefined;
   apiKey?: string | undefined;
   baseUrl?: string | undefined;
+  responseFormat?: string | undefined;
+  requestCost?: number | undefined;
+  maxOutputTokens?: number | undefined;
+  tokenLimitField?: string | undefined;
+  requestTimeoutMs?: number | undefined;
 }
 const IdentitySchema = z
   .string()
@@ -31,6 +36,11 @@ export type ResolvedPlannerConfig =
       mode: "local" | "hosted";
       baseUrl: string;
       apiKey?: string;
+      responseFormat: "json" | "llama-schema";
+      requestCost: number | null;
+      maxOutputTokens: number;
+      tokenLimitField: "max_tokens" | "max_completion_tokens";
+      requestTimeoutMs: number;
     };
 
 /** Messages name invalid settings without echoing keys, URLs or untrusted input. */
@@ -117,7 +127,38 @@ export function resolvePlannerConfig(
     throw new PlannerConfigError(
       "Set a key for the explicitly selected hosted provider.",
     );
+  const limits = z
+    .object({
+      responseFormat: z.enum(["json", "llama-schema"]),
+      requestCost: z.number().finite().positive().nullable(),
+      maxOutputTokens: z.coerce.number().int().positive().max(32768),
+      tokenLimitField: z.enum(["max_tokens", "max_completion_tokens"]),
+      requestTimeoutMs: z.coerce.number().int().positive().max(2147483647),
+    })
+    .safeParse({
+      responseFormat:
+        options.responseFormat ?? env.CHROMECLAW_RESPONSE_FORMAT ?? "json",
+      requestCost: local
+        ? null
+        : (options.requestCost ??
+          (env.CHROMECLAW_REQUEST_COST === undefined
+            ? null
+            : Number(env.CHROMECLAW_REQUEST_COST))),
+      maxOutputTokens:
+        options.maxOutputTokens ?? env.CHROMECLAW_MAX_OUTPUT_TOKENS ?? 1024,
+      tokenLimitField:
+        options.tokenLimitField ??
+        env.CHROMECLAW_TOKEN_LIMIT_FIELD ??
+        (provider.data === "openai" ? "max_completion_tokens" : "max_tokens"),
+      requestTimeoutMs:
+        options.requestTimeoutMs ?? env.CHROMECLAW_REQUEST_TIMEOUT_MS ?? 60000,
+    });
+  if (!limits.success)
+    throw new PlannerConfigError(
+      "Invalid request ceiling, output limit, token-limit field or request timeout.",
+    );
   return {
+    ...limits.data,
     provider: provider.data,
     model: model.data,
     mode: local ? "local" : "hosted",
@@ -134,7 +175,18 @@ export function describePlannerConfig(config: ResolvedPlannerConfig) {
     mode: config.mode,
     endpoint: config.provider === "mock" ? null : config.baseUrl,
     keyConfigured: config.provider !== "mock" && Boolean(config.apiKey),
-    readiness: config.provider === "mock" ? "ready" : "accounting-required",
+    responseFormat: config.provider === "mock" ? null : config.responseFormat,
+    requestCost:
+      config.provider === "mock" || config.mode === "local"
+        ? 0
+        : config.requestCost,
+    maxOutputTokens: config.provider === "mock" ? null : config.maxOutputTokens,
+    readiness:
+      config.provider === "mock" ||
+      config.mode === "local" ||
+      config.requestCost !== null
+        ? "configured"
+        : "request-ceiling-required",
   };
 }
 

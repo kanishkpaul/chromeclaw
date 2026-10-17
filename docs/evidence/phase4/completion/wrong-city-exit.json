@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "apps/cli/dist/index.js",
+    "eval",
+    "--inject-failure"
+  ],
+  "expectedExit": 1,
+  "actualExit": 1
+}

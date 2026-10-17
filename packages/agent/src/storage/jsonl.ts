@@ -7,6 +7,7 @@ import {
   GateRecordSchema,
   ObservationRecordSchema,
   PendingRecordSchema,
+  PlannerRecordSchema,
   RunHeaderSchema,
   RunIdSchema,
   RunRecordSchema,
@@ -23,6 +24,7 @@ const EventSchema = z
     type: z.enum([
       "run_started",
       "configuration",
+      "model_usage",
       "run_suspended",
       "observation",
       "proposal",
@@ -40,7 +42,19 @@ const EventSchema = z
   .strict();
 const PayloadSchemas = {
   run_started: RunHeaderSchema,
-  configuration: z.object({ provider: z.string(), model: z.string() }).strict(),
+  configuration: z
+    .object({
+      provider: z.string(),
+      model: z.string(),
+      configuration: PlannerRecordSchema.optional(),
+    })
+    .strict(),
+  model_usage: z
+    .object({
+      promptTokens: z.number().int().nonnegative().nullable(),
+      completionTokens: z.number().int().nonnegative().nullable(),
+    })
+    .strict(),
   run_suspended: z
     .object({
       status: z.enum(["awaiting-answer", "awaiting-approval", "paused"]),
@@ -75,8 +89,8 @@ const PayloadSchemas = {
       requestBytes: z.number().nonnegative(),
       payloadHash: z.string(),
       attempt: z.number().int().positive(),
-      estimatedCost: z.null(),
-      accounting: z.literal("not-estimated"),
+      estimatedCost: z.number().finite().nonnegative().nullable(),
+      accounting: z.enum(["not-estimated", "local-zero", "user-ceiling"]),
     })
     .strict(),
   error: z
@@ -185,6 +199,7 @@ export class JsonlRunStore {
       ...RunHeaderSchema.parse(header.payload),
       steps: [],
     };
+    run.reservedCost = 0;
     let completed = false;
     const observations = new Map<
       string,
@@ -193,6 +208,13 @@ export class JsonlRunStore {
     for (const event of events) {
       if (event.type !== "run_completed" && event.type !== "run_suspended")
         completed = false;
+      if (event.type === "crossing") {
+        const crossing = PayloadSchemas.crossing.parse(event.payload);
+        run.reservedCost =
+          (Math.round((run.reservedCost ?? 0) * 1000000) +
+            Math.ceil((crossing.estimatedCost ?? 0) * 1000000)) /
+          1000000;
+      }
       if (event.type === "configuration")
         Object.assign(run, PayloadSchemas.configuration.parse(event.payload));
       if (event.type === "run_suspended") {

@@ -49,6 +49,7 @@ export class PrivacyFilter {
       "payloadHash",
       "accounting",
       "permissions",
+      "configuration",
     ]);
     const visit = (item: unknown, key: string): unknown => {
       if (identities.has(key)) return item;

@@ -125,7 +125,7 @@ describe("fixed task permissions", () => {
       "block",
     );
     expect(assess(click, { spent: 1 }).decision).toBe("block");
-    expect(() => createPermissions({ maxCost: 1 }, 0)).toThrow();
+    expect(createPermissions({ maxCost: 1 }, 0).maxCost).toBe(1);
   });
 
   it("never lets approval widen origins or move cross-origin data through URLs", () => {

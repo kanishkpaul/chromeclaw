@@ -88,7 +88,7 @@ describe("provider CLI boundary", () => {
       provider: "local",
       mode: "local",
       keyConfigured: false,
-      readiness: "accounting-required",
+      readiness: "configured",
     });
     expect(result.stdout).not.toContain("DO_NOT_SEND_HOSTED_KEY");
     expect(result.stdout).not.toContain("\u001b");

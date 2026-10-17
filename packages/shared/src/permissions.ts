@@ -9,8 +9,7 @@ export interface TaskPermissions {
   readonly allowLoopback: boolean;
   readonly maxSteps: number;
   readonly expiresAt: number;
-  // Planner calls have no spend estimate yet. Zero forbids every paid request until Phase 4
-  // supplies enforceable accounting; it must never mean an unlimited monetary allowance.
+  // Zero allows local inference only. Hosted attempts reserve their full declared ceiling.
   readonly maxCost: number;
 }
 
@@ -50,10 +49,6 @@ export function createPermissions(
   const maxCost = request.maxCost ?? 0;
   if (!Number.isFinite(maxCost) || maxCost < 0)
     throw new Error("Task cost budget must be finite and nonnegative.");
-  if (maxCost !== 0)
-    throw new Error(
-      "Paid-model accounting is unavailable. The cost budget must remain zero.",
-    );
   const envelope: TaskPermissions = {
     origins: Object.freeze(
       (request.origins ?? []).map((origin) => {

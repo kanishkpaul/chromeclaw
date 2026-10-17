@@ -124,7 +124,7 @@ describe("provider configuration", () => {
     expect(JSON.stringify(publicConfig)).not.toContain("SYNTHETIC_KEY");
     expect(publicConfig).toMatchObject({
       keyConfigured: true,
-      readiness: "accounting-required",
+      readiness: "request-ceiling-required",
     });
   });
 
@@ -152,5 +152,48 @@ describe("provider configuration", () => {
       timeoutMs: 120000,
       headless: false,
     });
+  });
+});
+
+describe("request accounting configuration", () => {
+  it("keeps unknown hosted cost explicit and selects a token-limit field without fallback", () => {
+    expect(
+      describePlannerConfig(resolvePlannerConfig(hosted, {})),
+    ).toMatchObject({
+      requestCost: null,
+      readiness: "request-ceiling-required",
+    });
+    const config = resolvePlannerConfig(
+      { ...hosted, requestCost: 0.01, maxOutputTokens: 256 },
+      {},
+    );
+    expect(config).toMatchObject({
+      requestCost: 0.01,
+      maxOutputTokens: 256,
+      tokenLimitField: "max_completion_tokens",
+    });
+    expect(describePlannerConfig(config).readiness).toBe("configured");
+    expect(
+      resolvePlannerConfig(
+        {
+          provider: "local",
+          model: "fixture",
+          baseUrl: "http://127.0.0.1:1234/v1",
+        },
+        {},
+      ),
+    ).toMatchObject({ mode: "local", tokenLimitField: "max_tokens" });
+    for (const overrides of [
+      { requestCost: NaN },
+      { requestCost: 0 },
+      { maxOutputTokens: 0 },
+      { maxOutputTokens: Infinity },
+      { tokenLimitField: "guess" },
+      { responseFormat: "guess" },
+      { requestTimeoutMs: 0 },
+    ])
+      expect(() =>
+        resolvePlannerConfig({ ...hosted, ...overrides }, {}),
+      ).toThrow();
   });
 });

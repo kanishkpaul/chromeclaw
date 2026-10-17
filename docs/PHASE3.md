@@ -1,8 +1,7 @@
 # Phase 3 runtime contract
 
 Phase 3 covers fix-04, fix-05, fix-06 and fix-08. Its evidence uses synthetic browser fixtures and
-an isolated HTTP server, not a paid provider or an actual local model. Real model acceptance
-remains Phase 4. The full terminal TUI remains Phase 5; live testing and the final README remain
+an isolated HTTP server, not a paid provider or an actual local model. Phase 4 supersedes the execution lock and adds real local-model acceptance; see [PHASE4.md](PHASE4.md). The full terminal TUI remains Phase 5; live testing and the final README remain
 Phases 8 and 9.
 
 ## Prompt and application transport

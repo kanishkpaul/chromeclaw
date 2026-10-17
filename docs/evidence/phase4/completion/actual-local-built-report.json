@@ -1,0 +1,70 @@
+{
+  "suite": "phase4-actual-local",
+  "source": false,
+  "actualLocal": true,
+  "responseFormat": "llama-schema",
+  "model": "chromeclaw-qwen3vl",
+  "endpoint": "http://127.0.0.1:18184/v1",
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "evidenceDir": "attempt-Ko4liC",
+  "checks": [
+    {
+      "id": "actual-local-factory-browser-read-exact-known-answer",
+      "passed": true
+    },
+    {
+      "id": "actual-local-form-world-state-exactly-one-approved-save",
+      "passed": true
+    },
+    {
+      "id": "actual-local-credential-handback-with-zero-login-submissions",
+      "passed": true
+    },
+    {
+      "id": "cli-read-exit-0-done-json",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "read",
+      "runId": "run_mvcr8tks_5ijeixc",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "read/run_mvcr8tks_5ijeixc.jsonl"
+    },
+    {
+      "name": "form",
+      "runId": "run_mvcr9277_cpl3flf",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "form/run_mvcr9277_cpl3flf.jsonl"
+    },
+    {
+      "name": "credential",
+      "runId": "run_mvcr9mka_s19rosg",
+      "status": "awaiting-answer",
+      "reservedCost": 0,
+      "relativeLog": "credential/run_mvcr9mka_s19rosg.jsonl"
+    },
+    {
+      "name": "cli-read",
+      "runId": "run_mvcr9t0x_hoxaohc",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "cli-read/run_mvcr9t0x_hoxaohc.jsonl"
+    }
+  ],
+  "syntheticRequests": [],
+  "providerAttempts": 10,
+  "savedCities": [
+    "Kolkata"
+  ],
+  "loginSubmissions": 0,
+  "limitations": [
+    "Hosted inference intentionally skipped by owner.",
+    "Client reservations are not verified provider invoices.",
+    "One cached Qwen model through llama.cpp; Ollama and LM Studio are unverified."
+  ]
+}

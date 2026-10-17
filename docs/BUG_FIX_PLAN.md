@@ -196,6 +196,11 @@ configured BYOK hosted adapter and one actual local model server, reported separ
 HTTP transport tests do not count as model compatibility. If either real endpoint is unavailable,
 keep its acceptance check open; do not use credentials or make paid calls merely to edit this plan.
 
+Phase 4 implementation and controlled acceptance: [completion evidence](evidence/phase4/completion/README.md).
+Hosted inference acceptance is explicitly waived by Kanishk for this session and remains
+unverified; synthetic HTTP results do not establish hosted compatibility. Actual local results
+are model/server/protocol specific. The original endpoint criterion above is retained for clarity.
+
 ### fix-08: Make traces and storage explain failures
 
 Addresses B14 and B15. Owns JSONL persistence, trace schema and error/cleanup lifecycle.
@@ -223,6 +228,11 @@ pass, attack fixtures record zero unsafe acts, and all six perturbations have re
 scripted smoke and real-model results separately. Run at least one configured real adapter on a
 bounded fixture set with the owner's chosen endpoint/budget before claiming model-backed
 readiness. If unavailable, keep that gate open and say so. Live held-out tasks remain separate.
+
+The Phase 4 controlled gate is recorded in [completion evidence](evidence/phase4/completion/README.md).
+It preserves inherited perturbation/attack fixtures and reports actual local inference separately.
+Historical Phase 2 gate mutations are linked rather than presented as newly rerun mutations.
+Hosted testing is waived; this is not a general model-quality or live-site release claim.
 
 ## Scope after this plan
 

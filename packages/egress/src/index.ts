@@ -6,8 +6,8 @@ export interface Crossing {
   requestBytes: number;
   payloadHash: string;
   attempt: number;
-  estimatedCost: null;
-  accounting: "not-estimated";
+  estimatedCost: number | null;
+  accounting: "not-estimated" | "local-zero" | "user-ceiling";
 }
 export interface HttpRequest {
   url: string;
@@ -18,7 +18,8 @@ export interface HttpRequest {
   timeoutMs?: number;
   requestLimit?: number;
   responseLimit?: number;
-  onCrossing: (crossing: Crossing) => Promise<void>;
+  reservation?: { cost: number; accounting: "local-zero" | "user-ceiling" };
+  onCrossing: (crossing: Crossing) => Promise<void | boolean>;
 }
 export type HttpResult =
   | { ok: true; value: unknown; attempts: number }
@@ -34,7 +35,8 @@ export type HttpResult =
         | "network"
         | "malformed-json"
         | "audit-failed"
-        | "credential-echo";
+        | "credential-echo"
+        | "budget-exhausted";
       status?: number;
       attempts: number;
     };
@@ -62,6 +64,15 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
   if (
     request.apiKey &&
     (body.includes(request.apiKey) || url.href.includes(request.apiKey))
+  )
+    return { ok: false, code: "invalid-request", attempts: 0 };
+  if (
+    request.reservation &&
+    (!Number.isFinite(request.reservation.cost) ||
+      request.reservation.cost < 0 ||
+      (request.reservation.accounting === "local-zero"
+        ? request.reservation.cost !== 0
+        : request.reservation.cost <= 0))
   )
     return { ok: false, code: "invalid-request", attempts: 0 };
   const timeout = request.timeoutMs ?? 15000;
@@ -95,8 +106,8 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
           requestBytes: Buffer.byteLength(body),
           payloadHash: createHash("sha256").update(body).digest("hex"),
           attempt: attempt + 1,
-          estimatedCost: null,
-          accounting: "not-estimated",
+          estimatedCost: request.reservation?.cost ?? null,
+          accounting: request.reservation?.accounting ?? "not-estimated",
         });
         let abortRecord: () => void = () => undefined;
         const interrupted = new Promise<never>((_resolve, reject) => {
@@ -105,7 +116,8 @@ export async function postJson(request: HttpRequest): Promise<HttpResult> {
         });
         try {
           if (signal.aborted) abortRecord();
-          await Promise.race([recording, interrupted]);
+          if ((await Promise.race([recording, interrupted])) === false)
+            return { ok: false, code: "budget-exhausted", attempts };
         } finally {
           signal.removeEventListener("abort", abortRecord);
         }

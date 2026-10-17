@@ -1,0 +1,67 @@
+{
+  "suite": "phase4-configuration",
+  "source": false,
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "evidenceDir": "attempt-Gk8AWT",
+  "checks": [
+    {
+      "id": "explicit-local-factory-drives-chromium-with-durable-crossings-and-no-key-in-trace",
+      "passed": true
+    },
+    {
+      "id": "invalid-local-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "invalid-model-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "unsupported-provider-refuses-before-browser-and-provider-request",
+      "passed": true
+    },
+    {
+      "id": "hosted-budget-required-refuses-before-browser-and-provider-request",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "browser",
+      "runId": "run_mvcrdc6s_2agscx6",
+      "status": "done",
+      "relativeLog": "runs/run_mvcrdc6s_2agscx6.jsonl"
+    },
+    {
+      "name": "invalid-local",
+      "runId": "run_mvcrdd08_1afub0n",
+      "status": "failed",
+      "relativeLog": "invalid-local/run_mvcrdd08_1afub0n.jsonl"
+    },
+    {
+      "name": "invalid-model",
+      "runId": "run_mvcrdd0m_qf4g3uq",
+      "status": "failed",
+      "relativeLog": "invalid-model/run_mvcrdd0m_qf4g3uq.jsonl"
+    },
+    {
+      "name": "unsupported-provider",
+      "runId": "run_mvcrdd11_0snz48y",
+      "status": "failed",
+      "relativeLog": "unsupported-provider/run_mvcrdd11_0snz48y.jsonl"
+    },
+    {
+      "name": "hosted-budget-required",
+      "runId": "run_mvcrdd1f_7hqnstn",
+      "status": "failed",
+      "relativeLog": "hosted-budget-required/run_mvcrdd1f_7hqnstn.jsonl"
+    }
+  ],
+  "modelRequests": 2,
+  "limitations": [
+    "Synthetic loopback HTTP, not a local inference model.",
+    "Hosted testing intentionally skipped by owner.",
+    "Hosted inference requires an explicit request ceiling and positive task budget."
+  ]
+}

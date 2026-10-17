@@ -65,5 +65,5 @@ The four final plugin registries and pure-core package are still not claimed as 
 `agent/llm/config.ts` parses explicit provider/model/endpoint/key selection and task timing settings.
 The factory consumes its resolved union; possessing a key cannot choose a provider. Local has
 separate environment names and an explicit loopback endpoint. Configuration inspection describes
-selection without a network probe or credential output. Non-mock production execution remains
-locked while accounting is unfinished. See [PHASE4.md](PHASE4.md).
+selection without a network probe or credential output. Runtime reservations admit configured local/hosted execution before every send; saved metadata
+and cumulative reservations survive reopen. Provider usage stays distinct from reserved cost. See [PHASE4.md](PHASE4.md).

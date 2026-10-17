@@ -29,9 +29,12 @@ It implements credential protection, fresh numbered targets, immutable task perm
 origin/data-flow gates and exact approvals. The acceptance report and negative controls are in
 [Phase 2 evidence](evidence/phase2/README.md). Phase 2 is merged through PR #4 at `4190094`. Phase 3 meets its controlled local gate with 39 tests, 3 baseline fixtures, 13 credential groups,
 35 safety groups and 28 runtime groups. Source and compiled runtime/safety suites pass. See
-[the evidence](evidence/phase3/README.md) and [the runtime contract](PHASE3.md). Phase 3 merged through PR #5 at `7a3c017` after hosted CI passed. Phase 4 has started with
-explicit provider configuration; accounting and actual local-model acceptance remain open. Hosted
-model testing is intentionally skipped at Kanishk's request. See [PHASE4.md](PHASE4.md).
+[the evidence](evidence/phase3/README.md) and [the runtime contract](PHASE3.md). Phase 3 merged through PR #5 at `7a3c017` after hosted CI passed. Phase 4 configuration merged through PR #6 at `b22254a`. Its completion slice adds
+durable per-attempt reservations, usage records, explicit local grammar support and JSONL outcomes.
+Phase 4 is complete against the controlled gate with the explicit hosted-testing waiver.
+The gate and endpoint limitations are recorded in
+[Phase 4 completion evidence](evidence/phase4/completion/README.md). Hosted model testing is
+intentionally waived at Kanishk's request; it remains unverified. See [PHASE4.md](PHASE4.md).
 Phases 5 through 9 remain pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
@@ -124,6 +127,23 @@ endpoint, attacker hostnames and key-free output. Integrated Chromium fixtures e
 constructed from local configuration under the existing gates; they are synthetic HTTP tests,
 not actual local-model acceptance. Source and compiled suites pass. Phase 4 stays open for
 accounting and actual local inference. Hosted testing is intentionally skipped for this session.
+
+## p4-02: Account for requests and verify an actual local model
+
+Complete fix-07/fix-09's Phase 4 implementation with immutable per-task monetary allowances,
+explicit user-declared per-attempt ceilings and synced reservation admission before every HTTP
+attempt. Keep usage separate from reservations; preserve spend/configuration on reopen, reject
+invalid/over-limit usage and never retry a local failure through a hosted endpoint. Expose bounded
+output/protocol settings and clean JSON/JSONL process outcomes. Do not claim an invoice guarantee.
+
+Done when: checks and inherited controlled suites pass in their documented source/compiled modes;
+transport retries, parser repair, exhausted-budget reopen and invalid/missing usage have pre-send
+accounting evidence. Actual local inference must read an exact grounded fact, save exactly one
+correct form value under approval, hand back credentials without submission and complete a
+compiled CLI read. Keep independent assertions unchanged after development failures. Report model,
+server, protocol, parameters and raw traces. Kanishk explicitly waived hosted inference testing;
+this waives that endpoint check only, not local inference or browser safety. Hosted compatibility
+remains unverified. Broader model quality, held-out sites and daily-use gates remain later phases.
 
 ## live-01: Live testing, second-last
 

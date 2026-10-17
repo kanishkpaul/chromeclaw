@@ -188,3 +188,53 @@ describe("bounded application egress", () => {
     });
   });
 });
+
+describe("pre-send request reservations", () => {
+  it("asks admission for each retry and never sends a refused attempt", async () => {
+    const site = await fixture();
+    const crossings: Crossing[] = [];
+    const result = await postJson({
+      url: `${site.origin}/retry`,
+      approvedOrigin: site.origin,
+      body: {},
+      reservation: { cost: 0.1, accounting: "user-ceiling" },
+      onCrossing: async (crossing) => {
+        crossings.push(crossing);
+        return crossings.length === 1;
+      },
+    });
+    expect(result).toEqual({
+      ok: false,
+      code: "budget-exhausted",
+      attempts: 1,
+    });
+    expect(site.paths).toHaveLength(1);
+    expect(crossings).toHaveLength(2);
+    expect(
+      crossings.every(
+        (crossing) =>
+          crossing.estimatedCost === 0.1 &&
+          crossing.accounting === "user-ceiling",
+      ),
+    ).toBe(true);
+  });
+
+  it("rejects invalid declared cost instead of inventing a zero-cost hosted send", async () => {
+    const site = await fixture();
+    for (const cost of [-1, 0, NaN, Infinity]) {
+      const result = await postJson({
+        url: `${site.origin}/ok`,
+        approvedOrigin: site.origin,
+        body: {},
+        reservation: { cost, accounting: "user-ceiling" },
+        onCrossing: async () => undefined,
+      });
+      expect(result).toEqual({
+        ok: false,
+        code: "invalid-request",
+        attempts: 0,
+      });
+    }
+    expect(site.paths).toHaveLength(0);
+  });
+});
