@@ -140,17 +140,23 @@ export async function clickTarget(
   page: Page,
   query: TargetQuery,
 ): Promise<string | BrowserRefusal> {
-  return (await activateTarget(page, query))
+  const outcome = await activateTarget(page, query);
+  return outcome === "acted"
     ? `Activated target ${query.target}`
     : {
         refused: true,
-        reason: "Target is stale or unavailable. Capture the page again.",
+        ...(outcome === "uncertain" ? { uncertain: true } : {}),
+        reason:
+          outcome === "uncertain"
+            ? "Activation acknowledgment is uncertain. Do not repeat this control. Ask the user."
+            : "Target is stale or unavailable. Capture the page again.",
       };
 }
 
 export interface BrowserRefusal {
   refused: true;
   reason: string;
+  uncertain?: boolean;
 }
 
 /** Refuses credentials independently of the planner and policy. Never submits implicitly. */
@@ -188,6 +194,15 @@ export async function typeIntoTarget(
       value: query.value,
       state: target.state,
     });
+    if (
+      result.written &&
+      !(await element.evaluate(inspectField, { verify: query.value })).verified
+    )
+      return {
+        refused: true,
+        reason:
+          "No change after an ordinary field write. Capture the page again.",
+      };
     return result.written
       ? `Typed into target ${query.target}`
       : {
@@ -226,11 +241,16 @@ export async function pressKey(
         "Credential input, character input, paste and implicit keyboard submission are refused.",
     };
   }
-  return (await activateTarget(page, query, key))
+  const outcome = await activateTarget(page, query, key);
+  return outcome === "acted"
     ? `Activated target ${query.target} with ${key}`
     : {
         refused: true,
-        reason: "Keyboard activation requires a current button or link.",
+        ...(outcome === "uncertain" ? { uncertain: true } : {}),
+        reason:
+          outcome === "uncertain"
+            ? "Activation acknowledgment is uncertain. Do not repeat this control."
+            : "Keyboard activation requires a current button or link. Capture the page again.",
       };
 }
 

@@ -103,3 +103,39 @@ older entries remain preserved at `new:docs/DECISIONS.md`; do not rewrite that a
   side effects. Credential detection, arbitrary pixels and generic PII retain D-014's limits.
   Prompt confinement, general redaction, recovery/outcome verification and durable continuation
   keep their Phase 3 tasks. No dependency, top-level directory or Chrome permission is added.
+
+## D-016 · 2026-10-17 · Phase 3 owns transport, continuation and truthful outcomes
+
+- Decision: add `packages/egress` as the only application HTTP sender. It owns byte limits,
+  deadlines, abort and bounded retries. Agent adapters build the provider payload through one
+  confined prompt builder and validate replies strictly. Browser request routing remains separate.
+  Use existing dependencies; this is a package inside the existing top-level `packages/` directory.
+- Reuse: adapt Blindfold's fence escaping/control-token treatment and explicit step outcomes from
+  `core/src/confine` and `core/src/agent/step` at `2f04984`. Do not copy its full agent, rollback,
+  signatures or cancellation implementation. An ambiguous act is not a successful rollback.
+- Lifecycle: pending answer/approval/pause is durable and distinct from completion. Bind responses
+  to one pending ID and consume them once. Reopening always recaptures and pauses; it cannot revive
+  old node handles or widen the original permissions. Cancellation stops new acts and closes the
+  browser to interrupt in-flight driver work; it does not claim to undo an act already dispatched.
+- Verification: completion requires a trusted task outcome predicate or an exact extractive answer
+  with valid captured evidence. Unverifiable outcomes require judgment and are uncertain. A model's
+  finish proposal alone never proves success. Never retry a possible commit automatically.
+- Traces: persist validated event records and reconstruct runs rather than appending mutable run
+  copies. Recover complete lines, report a corrupt tail, reject traversal/symlinks and preserve
+  startup/cleanup/storage failures. Typed values, registered sensitive strings and URL parameters
+  are scrubbed before logs, callbacks and HTTP payloads. This is not arbitrary PII classification.
+- Rejected: transport fetches in adapters, raw body diagnostics, whole-prompt truncation, throwing
+  away unknown model keys, counting hand-back as done, restoring persisted approval as authority,
+  promise races that pretend to cancel browser side effects, and unbounded retry loops.
+
+- Phase 3 detail: pending segments use `run_suspended`, not a completion timestamp. Credential
+  questions/replies hand back to Chrome and retain only an acknowledgment. Explicit sensitive
+  strings are filtered; automatic typed aliases shorter than four characters are not global
+  prose filters, while their action values are always withheld. Registered IDs and permissions
+  remain stable. Known configured provider-key echoes refuse before becoming a proposal.
+- Accounting detail: crossings record `estimatedCost: null` and `accounting: not-estimated`.
+  Built-in non-mock planners remain off until Phase 4. Trusted injected fixture code is not an
+  attested pricing boundary. Unsupported unversioned legacy logs are preserved and reported
+  explicitly rather than silently converted into current executable authority.
+- CLI detail: follow the preserved kit's gate grammar, default denial, no banner for one-shot/
+  non-TTY output and undecorated JSON. These are basic terminal controls, not the Phase 5 TUI.

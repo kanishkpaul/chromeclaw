@@ -12,8 +12,8 @@ permission options; page text and model replies cannot grant origins, tools, wri
 | Restrict destinations and data movement | Parsed HTTP(S) origins, private-address/DNS checks, request interception, no automatic redirects/popups/service workers/WebSockets; cross-origin forms and query/hash exports refuse | Zero requests to redirect/foreign endpoint, form/query attacks, browser/file/private/unscoped-loopback cases |
 | Never invent a target | Snapshot number resolves to retained element/document/frame handles; geometry, occlusion, metadata and form state rechecked; stale proposals recapture without replay | Duplicates, replacement, label/selector drift, hidden/covered, document change, silent form change and stale approval cases |
 | Keep task powers fixed | Copied/frozen tools/origins/read/write/irreversible/step/time/cost permissions exist before page reads; rechecked after approval | Tool/write/budget refusal, expired browser requests and envelope immutability checks |
-| Inspectable trace | Run permissions and step gate/approval decisions recorded; typed text/thought withheld | Runtime JSONL and synthetic-secret checks; durable trace recovery is Phase 3 |
-| Page/model content remains data | Actions parse strictly; no selectors, coordinates, approval field or permission-widening method | Strict action schema plus fixed-permission browser attacks; prompt fencing and one egress are Phase 3 |
+| Inspectable trace | Versioned event records with observation references; typed values and registered sensitive strings filtered; known key echoes refuse | Versioned JSONL, registered-value filtering, SIGKILL/new-process and corrupt-tail checks |
+| Page/model content remains data | Actions parse strictly; no selectors, coordinates, approval field or permission-widening method | Strict action schema plus fixed-permission browser attacks; Phase 3 prompt/HTTP fixture and architecture guards |
 
 ## Target and approval contract
 
@@ -31,8 +31,8 @@ confirms because a label cannot prove a handler harmless. Only a trusted runtime
 approve; an action cannot carry its own approval. A consumed node cannot replay its approval.
 The snapshot binds relevant form state without disclosing its values to a provider; a human
 callback must inspect that state in Chrome before approving. Scripted fixtures use synthetic
-values and controlled approvals. Without a callback the run hands back without acting. Durable awaiting-input states, terminal
-approval controls and restart/resume remain in Phases 3 and 5.
+values and controlled approvals. Without a callback the run hands back without acting. Phase 3 supplies durable awaiting-input states, basic terminal controls and restart recapture;
+the full TUI remains Phase 5.
 
 The request gate permits one matching data-bearing request after approval. It checks redirects
 with `route.fetch({ maxRedirects: 0 })` because Playwright does not route each redirect hop. All
@@ -56,9 +56,12 @@ hand back. The read/write permission is enforced on browser requests as well as 
   widget and signed-in-site compatibility have not been established by these fixtures.
 - Zero monetary spend is enforced by disabling built-in non-mock planners until provider
   accounting exists in Phase 4. Trusted scripted fixture planners use the same browser gates.
-  Time/step limits stop admission of new acts; aborting in-flight requests is Phase 3 work.
-- General prompt confinement, one application egress, outcome verification, retry limits,
-  cross-step provenance/redaction and resumable credential hand-back retain their Phase 3 tasks.
+  Time/step limits stop new acts; Phase 3 propagates cancellation to requests, waits and browser
+  closure. It reports possible in-flight effects and does not claim rollback.
+- Phase 3 adds one confined prompt builder, one application egress, bounded retries, explicit
+  outcomes, durable human input and credential continuation. Its filter covers declared sensitive
+  strings, typed aliases and URL parameters, not arbitrary private prose or encoded secrets.
+  Read [PHASE3.md](PHASE3.md) for contracts and [the evidence](evidence/phase3/README.md).
 
 Preserve each old protection goal when these mechanisms change. Mutation checks remove the
 credential, target-state, origin, tool, write, request-approval, request-expiry and redirect gates

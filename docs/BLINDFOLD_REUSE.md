@@ -76,3 +76,11 @@ node handles and a trusted in-process approval callback, with expiry rechecked a
 It confirms all activations because unknown English labels cannot prove reversibility. It does
 not inherit Blindfold's extension executor, signed-approval transport or full test-suite claims.
 The integrated browser attack and mutation reports are in `evidence/phase2/completion/`.
+
+
+Phase 3 adapts `core/src/confine/index.ts`'s single fence builder, escaping and role-token
+neutralization, plus explicit step outcomes and cancellation intent from `core/src/agent/step.ts`
+and `core/src/killswitch/index.ts`, pinned to `2f04984`. It uses AbortSignal, native node handles,
+exact outcome predicates and its own event store. It never treats a returned rollback plan as
+proof of restored browser state. ChromeClaw's source/compiled runtime fixtures verify the port;
+the full upstream Blindfold suite was not run.

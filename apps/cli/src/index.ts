@@ -25,6 +25,9 @@ program
 
 program
   .command("run")
+  .option("--interactive", "wait for answers and exact one-action approvals")
+  .option("--allow-commit", "permit asking for consequential action approval")
+  .option("--json", "print a single undecorated run object")
   .argument("<task>", "browser task to run")
   .option("--headless", "run Chrome headless")
   .option("--max-steps <number>", "maximum agent steps", "20")
@@ -53,29 +56,45 @@ program
     ".chromeclaw/runs",
   )
   .action(async (task, options) => {
-    printHeader();
-    console.log(pc.dim("Task"));
-    console.log(task);
-    console.log("");
+    if (!options.json) {
+      console.log(pc.dim("Task"));
+      console.log(task);
+      console.log("");
+    }
 
     const runtime = new BrowserAgentRuntime();
-    const run = await runtime.run({
-      task,
-      permissions: { origins: options.origin, write: Boolean(options.write) },
-      headless: Boolean(options.headless),
-      maxSteps: Number(options.maxSteps),
-      provider: options.provider,
-      model: options.model,
-      logDir: options.logDir,
-      screenshotsDir: ".chromeclaw/screenshots",
-      onStep: (step) => printStep(step),
-    });
-
-    printRunSummary(run, options.logDir);
+    const controls = terminalControls(
+      runtime,
+      Boolean(options.interactive) && !options.json,
+    );
+    try {
+      const run = await runtime.run({
+        ...controls.options,
+        task,
+        permissions: {
+          origins: options.origin,
+          write: Boolean(options.write),
+          irreversible: options.allowCommit ? "confirm" : "deny",
+        },
+        headless: Boolean(options.headless),
+        maxSteps: Number(options.maxSteps),
+        provider: options.provider,
+        model: options.model,
+        logDir: options.logDir,
+        screenshotsDir: ".chromeclaw/screenshots",
+        onStep: options.json ? undefined : (step) => printStep(step),
+      });
+      if (options.json) console.log(JSON.stringify(run));
+      else printRunSummary(run, options.logDir);
+      process.exitCode = exitStatus(run);
+    } finally {
+      controls.close();
+    }
   });
 
 program
   .command("repl")
+  .option("--allow-commit", "permit asking for consequential action approval")
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
   .option("--max-steps <number>", "maximum agent steps", "20")
@@ -99,7 +118,7 @@ program
     process.env.CHROMECLAW_MODEL ?? "mock-browser-operator",
   )
   .action(async (options) => {
-    printHeader();
+    printHeader(true);
     console.log(pc.dim("Interactive mode. Type a task or `exit` to quit.\n"));
     const rl = readline.createInterface({ input, output });
     const runtime = new BrowserAgentRuntime();
@@ -109,21 +128,62 @@ program
       if (!task || ["exit", "quit"].includes(task.trim().toLowerCase())) break;
 
       console.log("");
-      const run = await runtime.run({
-        task,
-        permissions: { origins: options.origin, write: Boolean(options.write) },
-        headless: Boolean(options.headless),
-        maxSteps: Number(options.maxSteps),
-        provider: options.provider,
-        model: options.model,
-        screenshotsDir: ".chromeclaw/screenshots",
-        onStep: (step) => printStep(step),
-      });
-      printRunSummary(run, ".chromeclaw/runs");
+      const controls = terminalControls(runtime, true, rl);
+      try {
+        const run = await runtime.run({
+          ...controls.options,
+          task,
+          permissions: {
+            origins: options.origin,
+            write: Boolean(options.write),
+            irreversible: options.allowCommit ? "confirm" : "deny",
+          },
+          headless: Boolean(options.headless),
+          maxSteps: Number(options.maxSteps),
+          provider: options.provider,
+          model: options.model,
+          screenshotsDir: ".chromeclaw/screenshots",
+          onStep: (step) => printStep(step),
+        });
+        printRunSummary(run, ".chromeclaw/runs");
+      } finally {
+        controls.close();
+      }
       console.log("");
     }
 
     rl.close();
+  });
+
+program
+  .command("resume")
+  .argument("<run-id>", "saved run to recapture and pause before continuing")
+  .option("--headless", "run Chrome headless")
+  .option("--interactive", "wait for an explicit resume decision")
+  .option("--json", "print one undecorated run object")
+  .option(
+    "--log-dir <path>",
+    "directory for JSONL run logs",
+    ".chromeclaw/runs",
+  )
+  .action(async (runId, options) => {
+    const runtime = new BrowserAgentRuntime();
+    const controls = terminalControls(
+      runtime,
+      Boolean(options.interactive) && !options.json,
+    );
+    try {
+      const run = await runtime.reopen(runId, {
+        ...controls.options,
+        headless: Boolean(options.headless),
+        logDir: options.logDir,
+      });
+      if (options.json) console.log(JSON.stringify(run));
+      else printRunSummary(run, options.logDir);
+      process.exitCode = exitStatus(run);
+    } finally {
+      controls.close();
+    }
   });
 
 program
@@ -214,7 +274,8 @@ program.parseAsync(process.argv).catch((error: unknown) => {
   process.exit(1);
 });
 
-function printHeader(): void {
+function printHeader(interactive = false): void {
+  if (!interactive || !output.isTTY) return;
   console.log(pc.cyan(logo));
   console.log(pc.dim("Terminal-first browser control, traces, and evals.\n"));
 }
@@ -323,4 +384,81 @@ function formatTimestamp(value: string): string {
     minute: "2-digit",
     second: "2-digit",
   });
+}
+
+function exitStatus(run: AgentRun): number {
+  return run.status === "done"
+    ? 0
+    : run.status === "stopped"
+      ? 130
+      : ["awaiting-answer", "awaiting-approval", "paused"].includes(run.status)
+        ? 2
+        : run.status === "uncertain"
+          ? 3
+          : 1;
+}
+
+function terminalControls(
+  runtime: BrowserAgentRuntime,
+  enabled: boolean,
+  existing?: readline.Interface,
+) {
+  const rl =
+    enabled && input.isTTY
+      ? (existing ?? readline.createInterface({ input, output }))
+      : undefined;
+  const abort = new AbortController();
+  const stop = () => {
+    abort.abort();
+    runtime.cancel();
+  };
+  const command = (line: string) => {
+    if (line.trim() === "/pause") runtime.pause();
+  };
+  process.on("SIGINT", stop);
+  rl?.on("line", command);
+  const question = async (text: string) =>
+    rl ? rl.question(`${text} `, { signal: abort.signal }) : "";
+  const options = {
+    signal: abort.signal,
+    interactive: Boolean(rl),
+    ...(rl
+      ? {
+          answer: async (text: string) =>
+            question(`Answer ${JSON.stringify(text)}:`),
+          approve: async (
+            proposal: import("@chromeclaw/agent").ActionApproval,
+          ) => {
+            console.log(`╭─ approve once?
+│ ${proposal.action.type} ${JSON.stringify(proposal.targetName)}
+│ destination ${JSON.stringify(proposal.destination)}
+│ ${JSON.stringify(proposal.reason)}
+╰─ Inspect Chrome. Type yes to approve; Enter denies.`);
+            return (await question("Approve?")) === "yes";
+          },
+          onState: async (run: AgentRun) => {
+            if (run.pending?.kind !== "pause") return;
+            if (
+              (await question(
+                "Paused after fresh capture. Type resume to continue:",
+              )) === "resume"
+            )
+              runtime.respond({
+                runId: run.id,
+                pendingId: run.pending.id,
+                kind: "pause",
+              });
+            else stop();
+          },
+        }
+      : {}),
+  };
+  return {
+    options,
+    close() {
+      process.off("SIGINT", stop);
+      rl?.off("line", command);
+      if (!existing) rl?.close();
+    },
+  };
 }

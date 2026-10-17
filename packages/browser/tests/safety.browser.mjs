@@ -323,6 +323,7 @@ try {
         ...settings.permissions,
       },
       approve: settings.approve,
+      verify: async () => ({ passed: ["approved", "enter-approved"].includes(name) ? commits === 1 : commits === 0, detail: "Independent safety fixture server counter." }),
       onStep(step) {
         statuses.push({ phase: step.phase, status: step.status });
       },
@@ -356,7 +357,7 @@ try {
     return run;
   }
   let run = await runCase("no-approval");
-  assert.equal(run.status, "blocked");
+  assert.equal(run.status, "awaiting-approval");
   assert.equal(commits, 0);
   record("transfer-cannot-commit-without-approval");
   run = await runCase("denied", { approve: async () => false });
@@ -441,12 +442,12 @@ try {
     ["delete", "Delete"],
   ]) {
     run = await runCase(name, { path: `/${name}`, target });
-    assert.equal(run.status, "blocked");
+    assert.equal(run.status, "awaiting-approval");
     assert.equal(commits, 0);
     record(`${name}-control-requires-confirmation`);
   }
   run = await runCase("unknown-handler", { target: "Continue" });
-  assert.equal(run.status, "blocked");
+  assert.equal(run.status, "awaiting-approval");
   assert.equal(commits, 0);
   record("unknown-handler-requires-confirmation");
   run = await runCase("postgresql-read", {
@@ -516,7 +517,7 @@ try {
     limitations: [
       "No real models or signed-in sites.",
       "No arbitrary malicious-JavaScript proof or visual secret detection.",
-      "Durable pause/resume is Phase 3.",
+      "Lifecycle continuation is verified separately in the Phase 3 suite.",
     ],
   };
   await writeFile(

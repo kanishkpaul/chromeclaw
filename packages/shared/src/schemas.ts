@@ -88,6 +88,7 @@ export const AskUserActionSchema = ThoughtSchema.extend({
 export const FinishActionSchema = ThoughtSchema.extend({
   type: z.literal("finish"),
   answer: z.string().min(1),
+  evidence: z.array(z.object({ snapshotId: z.string().min(1), quote: z.string().min(1).max(2000) }).strict()).max(8).optional(),
 });
 
 export const FailActionSchema = ThoughtSchema.extend({

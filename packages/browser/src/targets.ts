@@ -408,9 +408,9 @@ export async function activateTarget(
   page: Page,
   query: TargetQuery,
   key?: string,
-): Promise<boolean> {
+): Promise<"acted" | "stale" | "uncertain"> {
   const target = await resolveTarget(page, query);
-  if (!target) return false;
+  if (!target) return "stale";
   // Replaying the same approval cannot act twice, even if the page does not change.
   captures.get(page)?.targets.delete(query.target);
   try {
@@ -439,10 +439,10 @@ export async function activateTarget(
     // Native activation returns before a form navigation. Wait for the advertised destination
     // so the runtime does not clear its one-request ticket while that request is still pending.
     if (navigation) await navigation;
-    return result?.acted ?? false;
+    return result?.acted ? "acted" : "stale";
   } catch {
     // Navigation can destroy the evaluation before acknowledgment. Never retry.
-    return false;
+    return "uncertain";
   } finally {
     await target.element.dispose();
   }

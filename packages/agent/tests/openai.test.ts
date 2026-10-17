@@ -1,26 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { normalizeModelActionPayload } from "../src/llm/openai";
-import { BrowserActionSchema } from "@chromeclaw/shared";
+import { parsePlannerAction } from "../src/llm/openai";
 
-describe("normalizeModelActionPayload", () => {
-  it("converts legacy navigate output into the current schema", () => {
-    const payload = normalizeModelActionPayload({
-      action: "navigate",
-      url: "https://example.com",
-    });
-
-    expect(BrowserActionSchema.parse(payload)).toEqual({
-      type: "navigate",
-      url: "https://example.com",
-    });
-  });
-
-  it("rejects legacy selector clicks instead of restoring fallback targeting", () => {
-    const payload = normalizeModelActionPayload({
-      action: "click",
-      target: "button[name=submit]",
-    });
-
-    expect(BrowserActionSchema.safeParse(payload).success).toBe(false);
+describe("strict planner actions", () => {
+  it("accepts only a JSON object or one enclosing JSON fence", () => {
+    expect(
+      parsePlannerAction(
+        '```json\n{"type":"navigate","url":"https://example.com"}\n```',
+      ).type,
+    ).toBe("navigate");
+    for (const content of [
+      'prose {"type":"finish","answer":"done"}',
+      '{"type":"finish","answer":"done","permission":"all"}',
+      '{"action":"navigate","target":"https://example.com"}',
+      '{"type":"click","selector":"#save"}',
+    ])
+      expect(() => parsePlannerAction(content)).toThrow();
   });
 });

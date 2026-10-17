@@ -67,7 +67,8 @@ implementation plan addresses these gaps:
 These are historical audit findings. Phase 1 replaced the legacy scorer. Phase 2 replaces
 selector fallback and keyword-only action gates with snapshot-bound targets, fixed permissions
 and exact approvals. Native ARIA fixtures check the safe DOM role/name subset. Prompt/history,
-resumable hand-back, transport, outcome verification and actual model compatibility remain open.
+Phase 3 adds confined history, bounded transport, resumable hand-back, cancellation and explicit
+outcome verification. Actual model compatibility, full TUI and job acceptance remain in later phases.
 See [the audit](docs/MAIN_AUDIT.md), [safety limits](docs/SAFETY.md) and [phase evidence](docs/evidence/phase2/README.md).
 
 ## Running it
@@ -86,14 +87,15 @@ node apps/cli/dist/index.js run "Open example.com and report the page title." --
 node apps/cli/dist/index.js repl --origin https://example.com  # bounded interactive session
 node apps/cli/dist/index.js runs              # recent runs
 node apps/cli/dist/index.js show <run-id>     # one run's full trace
+node apps/cli/dist/index.js resume <run-id> --interactive  # recapture, then ask before planning
 node apps/cli/dist/index.js eval --all        # all 3 controlled scripted smoke fixtures
 pnpm eval                                     # the same fixtures, report and JSONL in .chromeclaw/eval
 ```
 
 `--origin` fixes the permitted HTTP(S) origins before page reads. Default runs have no origins
 and no write permission. `--write` permits ordinary field editing; consequential activation
-still hands back in the current CLI. Exact approval is available through the runtime callback;
-resumable terminal controls arrive in Phases 3/5. See [EVALS.md](docs/EVALS.md) for current checks.
+still hands back in the current CLI. Basic controls use `run --interactive --allow-commit` and `resume <run-id> --interactive`;
+approval is once-only and defaults to denial. `run --json` is undecorated. The full TUI remains Phase 5. See [EVALS.md](docs/EVALS.md) for current checks.
 
 ## Planners
 
@@ -118,7 +120,8 @@ file sets `CHROMECLAW_PROVIDER=openai`, so without a key either set it to `mock`
 apps/cli          run, repl, runs, show, eval
 packages/agent    runtime loop, planners, safety policy, JSONL storage
 packages/browser  Playwright control and page observation
-packages/shared   Zod schemas, types, helpers
+packages/shared   Zod schemas, types, permissions and privacy
+packages/egress   bounded application HTTP and crossing records
 packages/evals    controlled fixture tasks and outcome scoring
 docs              safety and eval notes, as written at the time
 ```

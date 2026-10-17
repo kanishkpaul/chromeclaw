@@ -4,6 +4,7 @@ export interface FieldInspection {
   text: string;
   written: boolean;
   refusal?: string;
+  verified?: boolean;
 }
 
 export interface FieldState {
@@ -21,7 +22,8 @@ export function inspectField(
     | string
     | void
     | { value: string; state: FieldState }
-    | { capture: true; state: FieldState },
+    | { capture: true; state: FieldState }
+    | { verify: string },
 ): FieldInspection {
   const value =
     typeof input === "string"
@@ -136,6 +138,18 @@ export function inspectField(
             )
           : element.value;
     input.state.values.set(element, signature);
+  }
+  if (typeof input === "object" && "verify" in input) {
+    return {
+      ...inspection,
+      verified:
+        !credential &&
+        (nativeInput
+          ? element.value === input.verify
+          : element instanceof HTMLElement &&
+            element.isContentEditable &&
+            element.textContent === input.verify),
+    };
   }
   if (value === undefined) return inspection;
   if (!element.isConnected || !editable)

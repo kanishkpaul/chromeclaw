@@ -1,16 +1,10 @@
-import type { BrowserAction } from "./schemas";
-import type { TaskPermissions } from "./permissions";
-
-export type AgentStatus =
-  | "idle"
-  | "observing"
-  | "planning"
-  | "acting"
-  | "waiting"
-  | "done"
-  | "blocked"
-  | "failed"
-  | "stopped";
+import type { z } from "zod";
+import type {
+  RunRecordSchema,
+  StepRecordSchema,
+  StatusSchema,
+} from "./records";
+export type AgentStatus = z.infer<typeof StatusSchema>;
 
 export interface InteractiveElement {
   id: string;
@@ -48,40 +42,8 @@ export interface BrowserObservation {
   timestamp: string;
 }
 
-export interface AgentStep {
-  id: string;
-  index: number;
-  phase: "OBSERVE" | "PLAN" | "ACT" | "ERROR" | "RECOVER" | "DONE";
-  status: AgentStatus;
-  gate?: {
-    decision: "allow" | "block" | "confirm";
-    approved: boolean;
-    reason?: string | undefined;
-  };
-  thoughtSummary?: string | undefined;
-  action?: BrowserAction | undefined;
-  observation?: BrowserObservation | undefined;
-  observationSummary?: string | undefined;
-  error?: string | undefined;
-  startedAt: string;
-  completedAt?: string | undefined;
-  durationMs?: number | undefined;
-}
-
-export interface AgentRun {
-  id: string;
-  task: string;
-  status: AgentStatus;
-  startedAt: string;
-  completedAt?: string | undefined;
-  maxSteps: number;
-  permissions?: TaskPermissions;
-  provider: string;
-  model: string;
-  steps: AgentStep[];
-  finalAnswer?: string | undefined;
-  error?: string | undefined;
-}
+export type AgentStep = z.infer<typeof StepRecordSchema>;
+export type AgentRun = z.infer<typeof RunRecordSchema>;
 
 export interface RunMetrics {
   steps: number;

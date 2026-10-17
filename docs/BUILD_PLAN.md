@@ -27,9 +27,13 @@ Phase 2 is complete against its controlled browser gate: 28 tests, 3 baseline fi
 13 credential groups, 35 safety groups in source/compiled modes and 8 failing gate mutations.
 It implements credential protection, fresh numbered targets, immutable task permissions,
 origin/data-flow gates and exact approvals. The acceptance report and negative controls are in
-[Phase 2 evidence](evidence/phase2/README.md). Phases 3 through 9 are pending. Credential
-continuation, generic PII/egress handling and durable approvals remain Phase 3 work, as scoped
-below; controlled scripted fixtures do not establish model quality or signed-in-site readiness.
+[Phase 2 evidence](evidence/phase2/README.md). Phase 2 is merged through PR #4 at `4190094`. Phase 3 meets its controlled local gate with 39 tests, 3 baseline fixtures, 13 credential groups,
+35 safety groups and 28 runtime groups. Source and compiled runtime/safety suites pass. See
+[the evidence](evidence/phase3/README.md) and [the runtime contract](PHASE3.md). Phase 3 remains
+on its task branch for review; this does not claim it is merged. Phases 4 through 9 remain pending.
+Credential continuation and durable input states are covered; arbitrary PII classification is
+outside the implementation. Controlled scripted fixtures do not establish model quality or
+signed-in-site readiness.
 
 ## p1-01: Trustworthy checks and fixture baseline
 
@@ -59,7 +63,8 @@ Done when: unit checks and the credential browser suite pass, synthetic stored v
 attempted write values stay out of runtime JSONL, credential/framed screenshots are withheld,
 and password/OTP, textarea, shadow/frame, focus replacement and ordinary-edit cases have evidence.
 This slice did not implement fresh numbering or fixed permissions; p2-02 supplies those.
-General PII/egress handling and resumable hand-back remain explicit Phase 3 acceptance gaps.
+Phase 3 supplies egress, explicit sensitive-value handling and resumable hand-back; it does not
+claim arbitrary PII classification.
 
 ## p2-02: Observed targets and fixed task permissions
 
@@ -74,7 +79,7 @@ irreversible policy and step/time/cost limits. Parse schemes/hosts; gate redirec
 browser requests. Deny cross-origin form/query/hash exports even between permitted origins.
 Every activation, including an unknown control or Enter/Space on a button, needs exact approval.
 Recheck state and permissions after approval, consume the target once and never let approval
-widen the envelope. Missing callback hands back; durable waiting/resume stays in Phase 3.
+widen the envelope. Missing callback hands back. Phase 3 adds durable waiting/resume to this gate.
 
 Done when: `pnpm check`, the three baseline fixtures, 13 credential groups and the safety browser
 matrix pass; the fixture servers record zero unsafe acts and zero requests at denied destinations.
@@ -82,6 +87,27 @@ Disabling each critical gate must break a browser assertion, and source files mu
 byte-for-byte. Attach source/built runs, gate mutations and native ARIA/DOM comparison. Real
 BYOK/local models, signed-in sites, arbitrary malicious-JavaScript isolation and DNS rebinding
 are not established by this gate. See D-015 and SAFETY.md for conservative behavior and limits.
+
+## p3-01: Prompt, lifecycle, outcome and trace boundaries
+
+Implements fix-04, fix-05, fix-06 and fix-08. Keep one application egress, fenced/provenanced model
+inputs and retained extraction notes. Validate strict replies, bound transport/parser retries,
+request/response sizes and deadlines, and record crossings before send. Keep human answers and
+exact one-use approvals as durable states. Reopening recaptures and pauses under the original
+permissions; cancellation stops new acts without claiming to undo in-flight effects.
+
+Verify completion with a trusted world predicate or exact captured answer evidence. Stop on
+ambiguous commits, require judgment for unverifiable outcomes and bound repeated failed proposals.
+Persist validated event records, recover complete lines after interruption, distinguish I/O from
+missing/corrupt records, refuse traversal/symlinks and report startup/cleanup/storage failures.
+
+Done when: checks and all inherited browser suites pass; a browser task uses the loopback HTTP
+adapter, retains an extracted fact after navigation and records its crossing before send. Answer,
+approval/denial/stale/replay, credential hand-back, pause/reopen, HTTP/action cancellation, false
+completion, a six-step form, bounded failed proposals, parse repair, 429, modal/session-expiry
+and ambiguous-commit cases have reports. A killed writer/new-process reader and corrupt tail
+retain readable trace evidence; startup/cleanup/storage failures stay truthful. Source and
+compiled runs both pass. See [PHASE3.md](PHASE3.md) for precise semantics and unverified limits.
 
 ## live-01: Live testing, second-last
 

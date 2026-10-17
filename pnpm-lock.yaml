@@ -66,6 +66,9 @@ importers:
       '@chromeclaw/browser':
         specifier: workspace:*
         version: link:../browser
+      '@chromeclaw/egress':
+        specifier: workspace:*
+        version: link:../egress
       '@chromeclaw/shared':
         specifier: workspace:*
         version: link:../shared
@@ -88,6 +91,15 @@ importers:
       playwright:
         specifier: ^1.49.1
         version: 1.60.0
+    devDependencies:
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.19.19)
+
+  packages/egress:
     devDependencies:
       typescript:
         specifier: ^5.7.2
