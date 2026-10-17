@@ -3,6 +3,7 @@ import "dotenv/config";
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import pc from "picocolors";
+import { runTerminal } from "./tui";
 import { Command } from "commander";
 import {
   BrowserAgentRuntime,
@@ -12,14 +13,6 @@ import {
 } from "@chromeclaw/agent";
 import { runEvaluationCli } from "@chromeclaw/evals";
 import type { AgentRun, AgentStep } from "@chromeclaw/shared";
-
-const logo = [
-  "   ________                              ________",
-  "  / ____/ /_  _________  ____ ___  ___  / ____/ /___ __      __",
-  " / /   / __ \\/ ___/ __ \\/ __ `__ \\/ _ \\/ /   / / __ `/ | /| / /",
-  "/ /___/ / / / /  / /_/ / / / / / /  __/ /___/ / /_/ /| |/ |/ /",
-  "\\____/_/ /_/_/   \\____/_/ /_/ /_/\\___/\\____/_/\\__,_/ |__/|__/",
-].join("\n");
 
 const program = new Command();
 
@@ -131,7 +124,8 @@ program
   });
 
 program
-  .command("repl")
+  .command("tui")
+  .alias("repl")
   .option("--allow-commit", "permit asking for consequential action approval")
   .description("start an interactive ChromeClaw session")
   .option("--headless", "run Chrome headless")
@@ -162,52 +156,35 @@ program
   )
   .option("--provider <provider>", "planner provider")
   .option("--model <model>", "model name")
+  .option(
+    "--log-dir <path>",
+    "directory for JSONL run logs",
+    ".chromeclaw/runs",
+  )
+  .option("--theme <mode>", "auto, dark or light", "auto")
+  .option("--color <mode>", "auto, always or never", "auto")
   .action(async (options) => {
-    printProvider(options);
-    printHeader(true);
-    console.log(pc.dim("Interactive mode. Type a task or `exit` to quit.\n"));
-    const rl = readline.createInterface({ input, output });
-    const runtime = new BrowserAgentRuntime();
-
-    while (true) {
-      const task = await rl.question(pc.cyan("chromeclaw> "));
-      if (!task || ["exit", "quit"].includes(task.trim().toLowerCase())) break;
-
-      console.log("");
-      const controls = terminalControls(runtime, true, rl);
-      try {
-        const run = await runtime.run({
-          ...controls.options,
-          task,
-          permissions: {
-            allowLoopback: Boolean(options.allowLoopback),
-            maxCost: Number(
-              options.maxCost ?? process.env.CHROMECLAW_MAX_COST ?? 0,
-            ),
-            origins: options.origin,
-            write: Boolean(options.write),
-            irreversible: options.allowCommit ? "confirm" : "deny",
-            ...(options.timeoutMs === undefined
-              ? {}
-              : { timeoutMs: Number(options.timeoutMs) }),
-          },
-          headless: options.headless,
-          maxSteps:
-            options.maxSteps === undefined
-              ? undefined
-              : Number(options.maxSteps),
-          ...providerOptions(options),
-          screenshotsDir: ".chromeclaw/screenshots",
-          onStep: (step) => printStep(step),
-        });
-        printRunSummary(run, ".chromeclaw/runs");
-      } finally {
-        controls.close();
-      }
-      console.log("");
-    }
-
-    rl.close();
+    process.exitCode = await runTerminal({
+      ...providerOptions(options),
+      headless: options.headless,
+      maxSteps:
+        options.maxSteps === undefined ? undefined : Number(options.maxSteps),
+      logDir: options.logDir,
+      theme: options.theme,
+      color: options.color,
+      permissions: {
+        origins: options.origin,
+        allowLoopback: Boolean(options.allowLoopback),
+        write: Boolean(options.write),
+        irreversible: options.allowCommit ? "confirm" : "deny",
+        maxCost: Number(
+          options.maxCost ?? process.env.CHROMECLAW_MAX_COST ?? 0,
+        ),
+        ...(options.timeoutMs === undefined
+          ? {}
+          : { timeoutMs: Number(options.timeoutMs) }),
+      },
+    });
   });
 
 program
@@ -283,7 +260,6 @@ program
   )
   .option("--limit <number>", "maximum runs to show", "10")
   .action(async (options) => {
-    printHeader();
     const store = new JsonlRunStore(options.logDir);
     const runs = (await store.listRuns()).slice(0, Number(options.limit));
 
@@ -312,7 +288,6 @@ program
     ".chromeclaw/runs",
   )
   .action(async (runId, options) => {
-    printHeader();
     const store = new JsonlRunStore(options.logDir);
     const run = await store.readRun(runId);
     if (!run) {
@@ -360,12 +335,6 @@ program.parseAsync(process.argv).catch((error: unknown) => {
   console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
 });
-
-function printHeader(interactive = false): void {
-  if (!interactive || !output.isTTY) return;
-  console.log(pc.cyan(logo));
-  console.log(pc.dim("Terminal-first browser control, traces, and evals.\n"));
-}
 
 function printStep(step: AgentStep): void {
   const phase = formatPhase(step.phase);

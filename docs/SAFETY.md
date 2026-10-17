@@ -70,3 +70,11 @@ Preserve each old protection goal when these mechanisms change. Mutation checks 
 credential, target-state, origin, tool, write, request-approval, request-expiry and redirect gates
 one at a time; the associated browser assertion must fail. Negative controls are separate from
 normal runs with zero unsafe fixture acts. See [the Phase 2 evidence](evidence/phase2/README.md).
+
+
+The Phase 5 scrollback TUI renders page/model/source content as escaped, prefixed rows. Its
+pending-action control requires the current one-use pending ID; Enter/Esc deny. Input is handled
+at arrival, never queued into a future gate. EOF/Ctrl-C cancel through the existing runtime;
+reopen keeps the saved envelope and pauses after recapture. The [PTY/browser starter evidence](evidence/phase5/terminal-start/README.md)
+covers these presentation mechanics. It does not establish arbitrary PII filtering, a personal
+Chrome session boundary, actual model quality or completion of the full Phase 5 gate.

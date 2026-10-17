@@ -116,7 +116,8 @@ or server. Tested llama.cpp uses explicit `--response-format llama-schema`. Host
 
 Copy `.env.example` to `.env`. It defaults to mock. Selecting a local model does not grant any
 browser origin; a controlled loopback page requires `--allow-loopback` and an explicit `--origin`.
-The full design-kit TUI and final README presentation remain in their planned phases.
+A first kit-based TUI slice is available as `tui` (`repl` alias); see [Phase 5](docs/PHASE5.md)
+for controls and remaining acceptance. Final README presentation remains Phase 9.
 
 ## Layout
 

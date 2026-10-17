@@ -1,0 +1,53 @@
+⋔ ChromeClaw
+ ChromeClaw 0.1.0 · synthetic-tui-model · local · http://127
+ .0.0.1:61833/v1
+❯   Task + Enter · /compose then /send · /settings · /history
+  · /trace · /sources · /source N · /pause · /continue · /ca
+  ncel · /resume ID · /quit
+❯  synthetic-tui-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /model future-model
+  settings {"provider":"local","model":"future-model","mode"
+  settings :"local","endpoint":"http://127.0.0.1:61833/v1","
+  settings keyConfigured":false,"responseFormat":"json","req
+  settings uestCost":0,"maxOutputTokens":1024,"readiness":"c
+  settings onfigured"}
+❯ /resume run_mvcs57a9_0eznlbl
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-tui-model"
+  provider ,"configuration":{"responseFormat":"json","endpoi
+  provider nt":"http://127.0.0.1:61833/v1","mode":"local","r
+  provider equestCost":0,"maxOutputTokens":1024,"tokenLimitF
+  provider ield":"max_tokens","requestTimeoutMs":60000}}
+❯   Paused. Take over in Chrome if needed. /continue recapture
+  s before acting.
+❯  synthetic-tui-model │ local │ paused │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /approve pending_mvcs57rd_slky32g
+  A task is active. Use its pending command, /pause or /canc
+  el.
+❯ /continue
+  ┊ send      "http://127.0.0.1:61833/v1/chat/completions" ·
+  ┊  5076 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"b193797d-2ee9-4a93-
+  │ action b9ed-596ed33f1954","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:61833/saved"
+❯   │ reason "Activate button \"Save\". Its handler may commit
+  │ reason  a change."
+❯ ╰─ /approve pending_mvcs58qe_p9z2j69 · /deny or Esc denies ·
+╰─  Enter denies
+❯  synthetic-tui-model │ local │ awaiting-approval │ reserved
+ USD 0
+❯ ────────────────────────────────────────────────────────────
+❯   ┊ click     {"type":"click","snapshotId":"b193797d-2ee9-4a
+  ┊ 93-b9ed-596ed33f1954","target":2} · 269 ms
+❯   error "The exact action was denied."
+❯   result {"status":"blocked","answer":"The exact action was
+  result denied.","runId":"run_mvcs57a9_0eznlbl"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-tui-model │ local │ blocked │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────
+❯ /quit
+Closed. ⋔

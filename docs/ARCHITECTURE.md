@@ -13,7 +13,7 @@ orders migration; [DECISIONS.md](DECISIONS.md) records the terminal product dire
 | browser | Persistent browser sessions, observation and browser input | shared |
 | agent | Runtime, providers, pure admission and durable JSONL events | browser, shared, egress |
 | evals | Controlled fixture server, scripted smoke and independent outcome scoring | agent, shared |
-| apps/cli | Human commands, REPL and eval entry point | agent, evals, shared |
+| apps/cli | Human commands, terminal TUI and eval entry point | agent, evals, shared |
 
 Root Vitest aliases resolve packages to source. `pnpm check` builds, typechecks, lints and tests.
 Architecture tests check the current dependency direction, keep Chrome APIs out of Node packages
@@ -67,3 +67,13 @@ The factory consumes its resolved union; possessing a key cannot choose a provid
 separate environment names and an explicit loopback endpoint. Configuration inspection describes
 selection without a network probe or credential output. Runtime reservations admit configured local/hosted execution before every send; saved metadata
 and cumulative reservations survive reopen. Provider usage stays distinct from reserved cost. See [PHASE4.md](PHASE4.md).
+
+
+## Phase 5 terminal adapter
+
+`apps/cli/src/tui.ts` presents durable runtime states and uses the existing one-use reply API.
+It does not implement another agent loop or browser driver. `terminal.ts` reads installed kit
+identity/palette data and escapes content before drawing. Settings changes affect future tasks;
+reopened runs retain and display their saved model configuration. Source/trace inspection reads
+filtered local events. The initial scrollback interface is a Phase 5 slice, not the finished
+passage/ability/plugin layout. See [PHASE5.md](PHASE5.md) and D-020.

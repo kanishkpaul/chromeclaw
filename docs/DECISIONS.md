@@ -209,3 +209,29 @@ History strings are fenced directly rather than JSON-encoding already serialized
 a second time. Brief progress summaries and explicit hidden-value guidance help the planner
 advance after verified writes without disclosing ordinary input values. These are prompt aids;
 strict action parsing, permissions and independent outcome predicates remain authoritative.
+
+
+## D-020 · 2026-10-18 · Terminal scrollback over the existing runtime
+
+Install design-kit 0.1.0 through its workflow with the Ember skin. Keep upstream fingerprints
+in `design/kit.json`, rewrite only project-owned `design/README.md`, and preserve unused-file
+deletions on updates. `design/` is the only new top-level directory. TypeScript imports installed
+JSON identity/palette data directly; no second hand-maintained palette, Rust application, web
+frontend, browser bridge or new npm dependency is introduced. Shared kit changes remain upstream.
+
+Replace the old REPL with a native readline scrollback TUI (`tui`, with `repl` as its alias).
+The existing runtime owns actions, durable checkpoints and one-use pending IDs. Presentation
+accepts commands at arrival rather than queuing them across future gates. Enter/Esc deny; approval
+requires the displayed pending ID. There is no task-wide approval option. EOF and Ctrl-C cancel
+without claiming rollback. Restart still recaptures and pauses under saved permissions.
+
+Escape terminal controls and directional overrides before rendering content. Repeat a data-row
+prefix on wrapped lines; never interpret page/model text as terminal output or commands. Only the
+presentation adapter emits ANSI. Respect explicit theme/color preferences, NO_COLOR and width.
+Do not persist readline input history or expose key-entry commands. Settings changes apply to
+future tasks; active permissions cannot be widened. Source/trace views read filtered durable data.
+
+The first slice uses ChromeClaw-owned profiles. Authorized-session attachment is still unmeasured,
+not an excuse to attach to a personal default profile. Token streaming and the 20-task `ask`
+acceptance remain open. PTY/browser integration tests use Python 3's standard library (test-only)
+and synthetic loopback model responses; they do not establish actual model quality.
