@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "stage": 6,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "60165eb",
+  "scope": "Compiled TUI in a PTY, disposable Chrome profiles, anonymous public pages and one loopback form fixture with synthetic data. No hosted inference, real keys, login, credential entry, posting or purchase. Public-site activations are denied, never approved. Scripted replies measure terminal mechanics only.",
+  "lanes": {
+    "scripted": "Loopback emulator selected as an explicit local endpoint; frozen replies; no model-quality score.",
+    "actualLocal": "Cached Qwen3-VL-8B-Instruct Q4_K_M, llama-server offline on 127.0.0.1:18184, 16,384 context, temperature 0, reasoning off."
+  },
+  "cases": [
+    {
+      "id": "scripted-deny-public-submit",
+      "lane": "scripted",
+      "url": "https://httpbin.org/forms/post",
+      "task": "Type STAGE6-UNSENT in the Delivery instructions field, then propose the submit control so the operator can refuse it.",
+      "criteria": [
+        "The approval card shows the pending ID that durable state records.",
+        "/approve with a different ID is refused and the run stays pending.",
+        "Enter denies the first submit proposal and Esc denies a second one.",
+        "No activation act starts and no observation URL leaves /forms/post."
+      ]
+    },
+    {
+      "id": "scripted-long-output-and-narrow-resize",
+      "lane": "scripted",
+      "url": "https://httpbin.org/html",
+      "task": "Quote the complete Moby-Dick paragraph with its captured passage citation.",
+      "expected": "Independent fetch of the paragraph text, whitespace-normalized, recorded before the run.",
+      "criteria": [
+        "The terminal rows, with prefixes removed and joined, reproduce the full answer at width 100.",
+        "After TIOCSWINSZ plus SIGWINCH to 48 columns, the status bar uses the narrow form and no new row exceeds 48 columns.",
+        "/source 1 either displays the complete observation or states that it was shortened; silent truncation fails.",
+        "A resize applied by TIOCSWINSZ alone is recorded separately to test the earlier harnesses' resize method."
+      ]
+    },
+    {
+      "id": "scripted-compose-interrupt-and-eof",
+      "lane": "scripted",
+      "url": "https://httpbin.org/robots.txt",
+      "task": "Compose a two-line read request, /discard it, compose again and /send it; Ctrl-C during the model request; then EOF.",
+      "criteria": [
+        "/discard starts no run; /send starts exactly one run with both lines.",
+        "Ctrl-C stops that run with no proposal or act after its crossing, and the session prompt returns.",
+        "EOF exits with status 0 and no owned Chrome process remains."
+      ]
+    },
+    {
+      "id": "local-ask-held-out-public-page",
+      "lane": "actualLocal",
+      "url": "https://info.cern.ch/hypertext/WWW/TheProject.html",
+      "task": "Quote the sentence that says what the WorldWideWeb (W3) is, with its captured passage citation.",
+      "expected": "The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.",
+      "criteria": [
+        "Run status done with a runtime-verified citation.",
+        "The whitespace-normalized answer contains the expected sentence."
+      ]
+    },
+    {
+      "id": "local-find-held-out-public-link",
+      "lane": "actualLocal",
+      "url": "https://info.cern.ch/hypertext/WWW/TheProject.html",
+      "task": "Find the link to the list of people involved in the project.",
+      "expected": { "name": "People", "href": "https://info.cern.ch/hypertext/WWW/People.html" },
+      "criteria": [
+        "The first validated match names the offered link whose label is People.",
+        "No activation or navigation follows the match."
+      ]
+    },
+    {
+      "id": "local-inspect-sources-and-open-cited-passage",
+      "lane": "actualLocal",
+      "after": "local-ask-held-out-public-page",
+      "task": "/history, /sources, /source 1, /passage ID, /open ID, /close-source, /trace and /settings on the completed ask.",
+      "criteria": [
+        "Each command renders without an error row.",
+        "The opened source window URL equals the cited observation URL; it closes on /close-source.",
+        "Skipped when the ask did not produce a citation; that skip is reported, not passed."
+      ]
+    },
+    {
+      "id": "local-edit-and-approved-save-on-loopback-fixture",
+      "lane": "actualLocal",
+      "url": "Loopback fixture form served by the harness",
+      "task": "Set the Note field to STAGE6-LOCAL-NOTE and save once. Return the confirmation sentence with captured evidence.",
+      "criteria": [
+        "The harness server records exactly one save, with exactly the expected value.",
+        "The save happened only after /approve with the displayed pending ID.",
+        "A repeated write or second save proposal is recorded as a model miss even if the server state is right."
+      ]
+    }
+  ],
+  "classification": ["product defect", "harness mistake", "model miss", "site drift or access barrier", "permission or scope refusal"]
+}

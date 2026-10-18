@@ -3,12 +3,17 @@ import type { BrowserAction, BrowserObservation } from "@chromeclaw/shared";
 // Measured on the Phase 6 development set; freeze before Phase 8 held-out evaluation.
 export const FIND_CONFIDENCE_THRESHOLD = 0.98;
 
-/** Verify binding and freshness, not semantic relevance or a model's claim of absence. */
+/**
+ * Verify binding and freshness of the cited references, not semantic relevance or a model's
+ * claim of absence. Freshness is per reference (D-032): unrelated page activity such as timers
+ * or scroll spies does not invalidate a read-only result, but any change to a cited control or
+ * passage does. Find never acts, so this never admits an activation.
+ */
 export async function verifyPageFind(
   finish: Extract<BrowserAction, { type: "finish" }>,
   observation: BrowserObservation,
   current: {
-    snapshotIsCurrent: () => Promise<boolean>;
+    passagesAreCurrent: (passageIds: string[]) => Promise<boolean>;
     targetIsCurrent: (target: number) => Promise<boolean>;
     description?: string;
   },
@@ -16,7 +21,13 @@ export async function verifyPageFind(
   const result = finish.pageFind;
   const refuse = (detail: string) => ({ passed: false, detail });
   if (!result) return refuse("Find needs a structured pageFind result.");
-  if (!(await current.snapshotIsCurrent()))
+  const citedPassages =
+    result.outcome === "matches"
+      ? result.matches.flatMap((match) =>
+          "passageId" in match ? [match.passageId] : [],
+        )
+      : [];
+  if (!(await current.passagesAreCurrent(citedPassages)))
     return refuse(
       "Find results are stale. Capture again before choosing a result.",
     );
@@ -63,7 +74,14 @@ export async function verifyPageFind(
           other.role === node.role &&
           !other.isCredential,
       );
-      if (peers.length > 1) {
+      // Same-label links that all lead to one destination name the same thing, such as a
+      // sidebar and an index entry; either answer is equivalent. Buttons and links whose
+      // destinations differ, even by fragment, still need a position (D-033).
+      const isOneDestination =
+        node.role === "link" &&
+        node.destination !== undefined &&
+        peers.every((peer) => peer.destination === node.destination);
+      if (peers.length > 1 && !isOneDestination) {
         // Identical offered labels do not establish which one the person intended. Support an
         // explicit ordinal in trusted input; other context disambiguation still needs hand-back.
         const ordinals = [
@@ -94,8 +112,11 @@ export async function verifyPageFind(
       return refuse("Find passage was not offered in this snapshot.");
   }
   // Target checks can cross browser turns; catch changes during those checks as well.
-  if (!(await current.snapshotIsCurrent()))
+  if (!(await current.passagesAreCurrent(citedPassages)))
     return refuse("Find results changed during validation.");
+  for (const match of result.matches)
+    if ("target" in match && !(await current.targetIsCurrent(match.target)))
+      return refuse("Find results changed during validation.");
   return {
     passed: true,
     detail:

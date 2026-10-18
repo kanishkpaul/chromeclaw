@@ -1,0 +1,19 @@
+{"suite":"live-01-find-freshness","built":false,"checks":[{"id":"static-target","role":"control-completes","passed":true,"status":"done","error":null},{"id":"static-passage","role":"control-completes","passed":true,"status":"done","error":null},{"id":"unrelated-clock-target","role":"reproduction","passed":false,"status":"done","error":null},{"id":"unrelated-clock-passage","role":"reproduction","passed":false,"status":"done","error":null},{"id":"cited-link-relabelled","role":"control-refuses","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-retargeted","role":"control-refuses","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-replaced","role":"control-refuses","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-covered","role":"control-refuses","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-passage-changed","role":"control-refuses","passed":true,"status":"uncertain","error":"Find results are stale. Capture again before choosing a result."}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.every((check) => check.passed))
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/find-freshness.browser.mjs:147:8) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

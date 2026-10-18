@@ -1,0 +1,432 @@
+[
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "find-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "The model reported no match in the captured viewport; absence is unverified.",
+    "classification": "site drift and viewport limit: example.com link target changed after Day 1 labels were frozen; absence in the viewport stays uncertain"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "find-node",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find results are stale. Capture again before choosing a result.",
+    "classification": "conservative design limit: any DOM mutation after capture invalidates the snapshot (D-015), and nodejs.org/api mutates after load; reproduced in the scripted lane, so not a model miss"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "find-python",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "The model reported no match in the captured viewport; absence is unverified.",
+    "classification": "viewport or frozen-label limit recorded on Day 1; unchanged"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "read-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "awaiting-answer",
+    "error": null,
+    "classification": "site drift: the frozen heading request has no h1 on the current page"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "research-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-day1",
+    "case": "web-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 1,
+    "retest": "dummy-research",
+    "case": "assisted-standard-titles",
+    "originalPassed": true,
+    "retestPassed": false,
+    "status": "awaiting-answer",
+    "error": null,
+    "classification": "model miss: invalid claim references in both rounds; the scripted lane passes after the D-031 preformatted fix"
+  },
+  {
+    "round": 1,
+    "retest": "scripted-stage6",
+    "case": "scripted-long-output-and-narrow-resize",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": null,
+    "error": null,
+    "classification": "capture bound: one passage holds at most 2,000 characters; omission is reported"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "edit-unsent",
+    "originalPassed": true,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Three identical unsuccessful proposals. Stopped recovery.",
+    "classification": "model miss: repeated an already-verified write three times; original 8K run passed"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "find-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "site drift and viewport limit: example.com link target changed after Day 1 labels were frozen; absence in the viewport stays uncertain"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "find-node",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find results are stale. Capture again before choosing a result.",
+    "classification": "conservative design limit: any DOM mutation after capture invalidates the snapshot (D-015), and nodejs.org/api mutates after load; reproduced in the scripted lane, so not a model miss"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "find-python",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "viewport or frozen-label limit recorded on Day 1; unchanged"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "read-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "site drift: the frozen heading request has no h1 on the current page"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "read-mdn",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Planner transport failed: timeout.",
+    "classification": "capacity: local request timed out on a large page"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "research-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 1,
+    "retest": "local-day1",
+    "case": "web-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 1,
+    "retest": "local-day2",
+    "case": "edit-unsent-textarea",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Three identical unsuccessful proposals. Stopped recovery.",
+    "classification": "model miss: same repeated-write pattern as Stage 2"
+  },
+  {
+    "round": 1,
+    "retest": "local-day2",
+    "case": "find-iana-reservation",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find target is unavailable, credential-bearing or stale.",
+    "classification": "model miss at 16K: chose an unavailable or stale target; the scripted lane passes on the same page"
+  },
+  {
+    "round": 1,
+    "retest": "local-research",
+    "case": "assisted-standard-titles",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Invalid claim references or missing qualifications.",
+    "classification": "model miss: invalid claim references in both rounds; the scripted lane passes after the D-031 preformatted fix"
+  },
+  {
+    "round": 1,
+    "retest": "terminal-stage3",
+    "case": "actual-local-assisted-research-through-tui",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": null,
+    "classification": "model miss: uncertain research answer, unchanged from Stage 3"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "find-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "The model reported no match in the captured viewport; absence is unverified.",
+    "classification": "site drift and viewport limit: example.com link target changed after Day 1 labels were frozen; absence in the viewport stays uncertain"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "find-node",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find results are stale. Capture again before choosing a result.",
+    "classification": "conservative design limit: any DOM mutation after capture invalidates the snapshot (D-015), and nodejs.org/api mutates after load; reproduced in the scripted lane, so not a model miss"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "find-python",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "The model reported no match in the captured viewport; absence is unverified.",
+    "classification": "viewport or frozen-label limit recorded on Day 1; unchanged"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "read-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "awaiting-answer",
+    "error": null,
+    "classification": "site drift: the frozen heading request has no h1 on the current page"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "research-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 2,
+    "retest": "dummy-day1",
+    "case": "web-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 2,
+    "retest": "scripted-stage6",
+    "case": "scripted-deny-public-submit",
+    "originalPassed": true,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "harness mistake: no result recorded because the deny scenario raised; see scripted_deny_public_submit and the harness-fixed rerun (2/3)"
+  },
+  {
+    "round": 2,
+    "retest": "scripted-stage6",
+    "case": "scripted-long-output-and-narrow-resize",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": null,
+    "error": null,
+    "classification": "capture bound: one passage holds at most 2,000 characters; omission is reported"
+  },
+  {
+    "round": 2,
+    "retest": "scripted-stage6",
+    "case": "scripted_deny_public_submit",
+    "originalPassed": null,
+    "retestPassed": false,
+    "status": null,
+    "error": "AssertionError('deny-public-submit: expected state not reached; inspect the recording.')",
+    "classification": "harness mistake: deny case sent its second task before the TUI settled (fixed; rerun 2/3)"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "edit-unsent",
+    "originalPassed": true,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Three identical unsuccessful proposals. Stopped recovery.",
+    "classification": "model miss: repeated an already-verified write three times; original 8K run passed"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "find-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "site drift and viewport limit: example.com link target changed after Day 1 labels were frozen; absence in the viewport stays uncertain"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "find-node",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find results are stale. Capture again before choosing a result.",
+    "classification": "conservative design limit: any DOM mutation after capture invalidates the snapshot (D-015), and nodejs.org/api mutates after load; reproduced in the scripted lane, so not a model miss"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "find-python",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "viewport or frozen-label limit recorded on Day 1; unchanged"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "read-example",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "site drift: the frozen heading request has no h1 on the current page"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "read-mdn",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Planner transport failed: timeout.",
+    "classification": "capacity: local request timed out on a large page"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "research-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 2,
+    "retest": "local-day1",
+    "case": "web-python",
+    "originalPassed": false,
+    "retestPassed": null,
+    "status": null,
+    "error": null,
+    "classification": "excluded: public search previously met an access barrier"
+  },
+  {
+    "round": 2,
+    "retest": "local-day2",
+    "case": "edit-unsent-textarea",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Three identical unsuccessful proposals. Stopped recovery.",
+    "classification": "model miss: same repeated-write pattern as Stage 2"
+  },
+  {
+    "round": 2,
+    "retest": "local-day2",
+    "case": "find-iana-reservation",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Find target is unavailable, credential-bearing or stale.",
+    "classification": "model miss at 16K: chose an unavailable or stale target; the scripted lane passes on the same page"
+  },
+  {
+    "round": 2,
+    "retest": "local-research",
+    "case": "assisted-httpbin-inventory",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": "Answer must exactly join the cited claim texts.",
+    "classification": "model variance: passed in round 1, answer did not join cited claims in round 2"
+  },
+  {
+    "round": 2,
+    "retest": "local-research",
+    "case": "assisted-rfc-url",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "failed",
+    "error": "Planner transport failed: timeout.",
+    "classification": "model variance and capacity: passed in round 1, timed out in round 2"
+  },
+  {
+    "round": 2,
+    "retest": "local-research",
+    "case": "assisted-standard-titles",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "done",
+    "error": null,
+    "classification": "model miss: invalid claim references in both rounds; the scripted lane passes after the D-031 preformatted fix"
+  },
+  {
+    "round": 2,
+    "retest": "terminal-stage3",
+    "case": "actual-local-assisted-research-through-tui",
+    "originalPassed": false,
+    "retestPassed": false,
+    "status": "uncertain",
+    "error": null,
+    "classification": "model miss: uncertain research answer, unchanged from Stage 3"
+  }
+]

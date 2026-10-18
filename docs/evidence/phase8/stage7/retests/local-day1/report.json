@@ -1,0 +1,292 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "session": 1,
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 10,
+  "completed": 10,
+  "passed": 4,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-example",
+      "mode": "ask",
+      "passed": false,
+      "status": "done",
+      "answer": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 14781,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2403,
+          "completionTokens": 198
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzm9nd_0y1rzib",
+      "log": "read-example/run_mvdzm9nd_0y1rzib.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "The Python Tutorial",
+      "ranked": [
+        null
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 45897,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 6008,
+          "completionTokens": 170
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzml1z_g1k73iy",
+      "log": "read-python/run_mvdzml1z_g1k73iy.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Planner transport failed: timeout.",
+      "answer": "Planner transport failed: timeout.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 177823,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 15302,
+          "completionTokens": 61
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdznkgw_9x7qxur",
+      "log": "read-mdn/run_mvdznkgw_9x7qxur.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link 'Learn more' (target 1) directs to https://iana.org/help/example-domains, which explains more about this example domain.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 45945,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2616,
+          "completionTokens": 115
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzrdoq_1obn8w8",
+      "log": "find-example/run_mvdzrdoq_1obn8w8.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The tutorial for someone starting to learn Python is likely found in the 'Beginner's Guide' link (target #28).",
+      "ranked": [
+        "https://wiki.python.org/moin/BeginnersGuide"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 56344,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 8173,
+          "completionTokens": 114
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzsd52_dppzdyt",
+      "log": "find-python/run_mvdzsd52_dppzdyt.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Find results are stale. Capture again before choosing a result.",
+      "answer": "The file system API link is available at target number 25, labeled \"File system\", with destination https://nodejs.org/api/fs.html. This matches the task requirement to find the file system API link without clicking.",
+      "ranked": [
+        "https://nodejs.org/api/fs.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 86453,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 10708,
+          "completionTokens": 147
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdztkma_mou126o",
+      "log": "find-node/run_mvdztkma_mou126o.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No control to purchase an airplane ticket is offered on this page.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 15830,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2552,
+          "completionTokens": 60
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzvfbw_rxtuq1a",
+      "log": "find-absent/run_mvdzvfbw_rxtuq1a.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent",
+      "mode": "work",
+      "passed": false,
+      "status": "failed",
+      "error": "Three identical unsuccessful proposals. Stopped recovery.",
+      "answer": "Three identical unsuccessful proposals. Stopped recovery.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 48557,
+      "steps": 6,
+      "usage": [
+        {
+          "promptTokens": 1224,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 2152,
+          "completionTokens": 53
+        },
+        {
+          "promptTokens": 2257,
+          "completionTokens": 56
+        },
+        {
+          "promptTokens": 2345,
+          "completionTokens": 57
+        },
+        {
+          "promptTokens": 2419,
+          "completionTokens": 53
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzvrjq_rztxyx5",
+      "log": "edit-unsent/run_mvdzvrjq_rztxyx5.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-example",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://example.com/",
+      "ranked": [],
+      "urls": [
+        "https://example.com/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 1008,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzwt0k_bh6h3tq",
+      "log": "history-example/run_mvdzwt0k_bh6h3tq.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-python",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://docs.python.org/3/tutorial/",
+      "ranked": [],
+      "urls": [
+        "https://docs.python.org/3/tutorial/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 1386,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzwtsl_zvrib07",
+      "log": "history-python/run_mvdzwtsl_zvrib07.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

@@ -8,6 +8,7 @@ from pathlib import Path
 import pty
 import select
 import shutil
+import signal
 import struct
 import subprocess
 import sys
@@ -171,6 +172,9 @@ try:
     os.write(master, b'/sources\n')
     drain(1)
     fcntl.ioctl(master, termios.TIOCSWINSZ, struct.pack('HHHH', 28, 60, 0, 0))
+    # The TUI does not own this PTY as its controlling terminal, so the kernel sends no SIGWINCH.
+    os.kill(process.pid, signal.SIGWINCH)
+    recording.append([round(time.monotonic() - started, 4), 'r', '60x28'])
     os.write(master, b'/trace\n')
     drain(1)
     os.write(master, b'/quit\n')

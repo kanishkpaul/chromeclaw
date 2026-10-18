@@ -20,6 +20,8 @@ interface BoundTarget {
   state: JSHandle<DocumentState>;
   metadata: InteractiveElement;
   fingerprint: string;
+  /** The fingerprint without bounds: what a read-only reference names, wherever it moved. */
+  identity: string;
 }
 interface Capture {
   id: string;
@@ -356,6 +358,7 @@ export async function captureTargets(page: Page) {
         state,
         metadata: target,
         fingerprint: control.fingerprint,
+        identity: identityOf(control.metadata),
       });
     }
   }
@@ -366,6 +369,50 @@ export async function captureTargets(page: Page) {
     omittedTargets: capture.omittedTargets,
     unreadableFrames: capture.unreadableFrames,
   };
+}
+
+const identityOf = (metadata: { bounds: unknown }) =>
+  JSON.stringify({ ...metadata, bounds: undefined });
+
+/**
+ * Whether a read-only reference still names the same captured control: the retained connected
+ * node with its name, role, destination and attributes, visible, enabled and uncovered. Unlike
+ * resolveTarget it ignores unrelated page mutations and layout movement, so callers must never
+ * use it to admit an action; activation keeps whole-snapshot binding (D-015, D-032).
+ */
+export async function referenceIsCurrent(
+  page: Page,
+  query: TargetQuery,
+): Promise<boolean> {
+  const capture = captures.get(page);
+  const target =
+    capture?.id === query.snapshotId && capture.url === page.url()
+      ? capture.targets.get(query.target)
+      : undefined;
+  if (!target) return false;
+  try {
+    if (!(await target.element.evaluate((node) => node.isConnected)))
+      return false;
+    const control = await target.element.evaluate(inspectControl);
+    const field = await target.element.evaluate(inspectField);
+    if (
+      !control?.metadata.isVisible ||
+      control.metadata.isOccluded ||
+      control.metadata.isDisabled ||
+      field.credential ||
+      (field.label || field.text || "") !== target.metadata.name ||
+      identityOf(control.metadata) !== target.identity
+    )
+      return false;
+    const { x, y, width, height } = control.metadata.bounds;
+    return await frameIsVisible(target.frame, {
+      x: x + width / 2,
+      y: y + height / 2,
+    });
+  } catch {
+    // A discarded document means the reference no longer exists.
+    return false;
+  }
 }
 
 /** A URL proposal needs the same page-state binding as a numbered-control proposal. */

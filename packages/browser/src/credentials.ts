@@ -104,8 +104,9 @@ export function inspectField(
       .slice(1 + references.length)
       .join(" ")
       .trim() ||
-    element.getAttribute("placeholder") ||
-    element.getAttribute("name") ||
+    // These attributes only describe form fields. On a link, name is a legacy fragment anchor.
+    ((editable || element instanceof HTMLSelectElement) &&
+      (element.getAttribute("placeholder") || element.getAttribute("name"))) ||
     "";
   const tokens = (element.getAttribute("autocomplete") ?? "")
     .toLowerCase()

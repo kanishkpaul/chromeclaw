@@ -1,0 +1,61 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+❯   Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯  chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /ask https://info.cern.ch/hypertext/WWW/TheProject.html Quote the sentence that says what the WorldWideWeb (W3) is, with its captured passage citation.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ navigate  {"type":"navigate","url":"https://info.cern.ch/hypertext/WWW/TheProject.html"} · 1844 
+  ┊ ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 31328 bytes
+❯   ┊ finish    {"type":"finish","answer":"The WorldWideWeb (W3) is a wide-area hypermedia information
+  ┊  retrieval initiative aiming to give universal access to a large universe of documents.","eviden
+  ┊ ce":[{"snapshotId":"07fe5982-b86c-47a5-993f-7d3fbb073873","passageId":"07fe5982-b86c-47a5-993f-7
+  ┊ d3fbb073873:p2","quote":"The WorldWideWeb (W3) is a wide-area"}]} · 37498 ms
+❯   error "Ask requires an exact extractive answer with resolvable captured passage IDs."
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"07fe5982-b86c-47a5-993f-7d3fbb073873","passageId":"07fe5982-b86c-47a5-99
+  citations 3f-7d3fbb073873:p2","quote":"The WorldWideWeb (W3) is a wide-area"}]
+❯   result {"status":"uncertain","answer":"The WorldWideWeb (W3) is a wide-area hypermedia information
+  result  retrieval initiative aiming to give universal access to a large universe of documents.","e
+  result rror":"Ask requires an exact extractive answer with resolvable captured passage IDs.","runI
+  result d":"run_mvdwakoj_rwcf6bi"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ uncertain │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /find https://info.cern.ch/hypertext/WWW/TheProject.html Find the link to the list of people involved in the project.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ navigate  {"type":"navigate","url":"https://info.cern.ch/hypertext/WWW/TheProject.html"} · 986 m
+  ┊ s
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 31843 bytes
+❯   ┊ finish    {"type":"finish","answer":"The link to the list of people involved in the project is f
+  ┊ ound at target 21, labeled 'People', which directly corresponds to the requested information.","
+  ┊ pageFind":{"outcome":"matches","confidence":1,"matches":[{"snapshotId":"6169932d-cc49-4edd-b5ca-
+  ┊ c05889649684","target":21,"reason":"The target is explicitly labeled 'People' and matches the ta
+  ┊ sk requirement to find a list of people involved in the project."}]}} · 36304 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   match 1 {"snapshotId":"6169932d-cc49-4edd-b5ca-c05889649684","target":21,"reason":"The target is e
+  match 1 xplicitly labeled 'People' and matches the task requirement to find a list of people invol
+  match 1 ved in the project.","label":"14"}
+❯   result {"status":"done","answer":"The link to the list of people involved in the project is found 
+  result at target 21, labeled 'People', which directly corresponds to the requested information.","
+  result error":"Browser cleanup failed.","runId":"run_mvdwbkjo_j1101ea"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /quit
+Closed. ⋔

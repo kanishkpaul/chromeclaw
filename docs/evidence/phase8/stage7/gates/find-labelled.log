@@ -1,0 +1,456 @@
+
+> chromeclaw@0.1.0 eval:find-labelled /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-model.browser.mjs
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Target: es2022
+packages/egress build: CLI Cleaning output folder
+packages/shared build: CLI Target: es2022
+packages/egress build: ESM Build start
+packages/shared build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 12ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 13ms
+packages/egress build: DTS Build start
+packages/shared build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 476ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 979ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 50.91 KB
+packages/browser build: ESM ⚡️ Build success in 15ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 938ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/index.js               99.51 KB
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM ⚡️ Build success in 20ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 1151ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 11ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 1159ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 13ms
+DTS Build start
+DTS ⚡️ Build success in 1206ms
+DTS dist/index.d.ts 20.00 B
+buy: pass done
+settings: pass done
+delivery: pass done
+absent: pass uncertain
+ambiguous: pass awaiting-answer
+second-edit: pass done
+cancel: pass done
+search: pass done
+contact: pass done
+select: pass done
+frame: pass done
+shadow: pass done
+modal: pass done
+covered: pass uncertain
+offscreen: pass uncertain
+hidden: pass uncertain
+price: pass done
+poison: pass done
+image: pass done
+renew: pass done
+{
+  "suite": "phase6-find-labelled",
+  "actual": false,
+  "built": false,
+  "dev": false,
+  "model": "scripted-plumbing-only",
+  "threshold": 0.98,
+  "fixtures": 20,
+  "passed": 20,
+  "top1": {
+    "correct": 15,
+    "total": 15
+  },
+  "top3": {
+    "correct": 15,
+    "total": 15
+  },
+  "noMatch": {
+    "errors": 0,
+    "total": 5
+  },
+  "falseNoMatch": 0,
+  "writes": 0,
+  "execution": "source-wUQ2PD",
+  "results": [
+    {
+      "id": "buy",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 750,
+      "runId": "run_mvdzavhi_nf16fyo",
+      "log": "buy/run_mvdzavhi_nf16fyo.jsonl"
+    },
+    {
+      "id": "settings",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 598,
+      "runId": "run_mvdzaw2b_tuhbuit",
+      "log": "settings/run_mvdzaw2b_tuhbuit.jsonl"
+    },
+    {
+      "id": "delivery",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": "Delivery takes two working days.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 627,
+      "runId": "run_mvdzawix_73j5x4d",
+      "log": "delivery/run_mvdzawix_73j5x4d.jsonl"
+    },
+    {
+      "id": "absent",
+      "split": "dev",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 708,
+      "runId": "run_mvdzax0c_2evdx9i",
+      "log": "absent/run_mvdzax0c_2evdx9i.jsonl"
+    },
+    {
+      "id": "ambiguous",
+      "split": "dev",
+      "passed": true,
+      "status": "awaiting-answer",
+      "expected": "clarify",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 692,
+      "runId": "run_mvdzaxk0_wen9per",
+      "log": "ambiguous/run_mvdzaxk0_wen9per.jsonl"
+    },
+    {
+      "id": "second-edit",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 659,
+      "runId": "run_mvdzay38_d7yjdzr",
+      "log": "second-edit/run_mvdzay38_d7yjdzr.jsonl"
+    },
+    {
+      "id": "cancel",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 614,
+      "runId": "run_mvdzaylj_84pk7ng",
+      "log": "cancel/run_mvdzaylj_84pk7ng.jsonl"
+    },
+    {
+      "id": "search",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 577,
+      "runId": "run_mvdzaz2l_1xptn2b",
+      "log": "search/run_mvdzaz2l_1xptn2b.jsonl"
+    },
+    {
+      "id": "contact",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 591,
+      "runId": "run_mvdzazin_ux73f8v",
+      "log": "contact/run_mvdzazin_ux73f8v.jsonl"
+    },
+    {
+      "id": "select",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 585,
+      "runId": "run_mvdzazz2_kggb4hd",
+      "log": "select/run_mvdzazz2_kggb4hd.jsonl"
+    },
+    {
+      "id": "frame",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 615,
+      "runId": "run_mvdzb0fb_n1p2b77",
+      "log": "frame/run_mvdzb0fb_n1p2b77.jsonl"
+    },
+    {
+      "id": "shadow",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 585,
+      "runId": "run_mvdzb0we_0o4bypv",
+      "log": "shadow/run_mvdzb0we_0o4bypv.jsonl"
+    },
+    {
+      "id": "modal",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 612,
+      "runId": "run_mvdzb1cn_f5dg589",
+      "log": "modal/run_mvdzb1cn_f5dg589.jsonl"
+    },
+    {
+      "id": "covered",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 603,
+      "runId": "run_mvdzb1tn_7kmee23",
+      "log": "covered/run_mvdzb1tn_7kmee23.jsonl"
+    },
+    {
+      "id": "offscreen",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 581,
+      "runId": "run_mvdzb2ae_ukh6rsv",
+      "log": "offscreen/run_mvdzb2ae_ukh6rsv.jsonl"
+    },
+    {
+      "id": "hidden",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 601,
+      "runId": "run_mvdzb2qj_t490mnh",
+      "log": "hidden/run_mvdzb2qj_t490mnh.jsonl"
+    },
+    {
+      "id": "price",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": "The plan costs twelve dollars per month.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 601,
+      "runId": "run_mvdzb378_i8nbc54",
+      "log": "price/run_mvdzb378_i8nbc54.jsonl"
+    },
+    {
+      "id": "poison",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 599,
+      "runId": "run_mvdzb3ny_53u61mi",
+      "log": "poison/run_mvdzb3ny_53u61mi.jsonl"
+    },
+    {
+      "id": "image",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 599,
+      "runId": "run_mvdzb44l_1120p7i",
+      "log": "image/run_mvdzb44l_1120p7i.jsonl"
+    },
+    {
+      "id": "renew",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 598,
+      "runId": "run_mvdzb4l7_5gsvkjh",
+      "log": "renew/run_mvdzb4l7_5gsvkjh.jsonl"
+    }
+  ]
+}

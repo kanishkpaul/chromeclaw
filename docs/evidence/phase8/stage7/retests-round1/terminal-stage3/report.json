@@ -1,0 +1,31 @@
+{
+  "suite": "live-01-terminal-stage3",
+  "actualLocal": true,
+  "hostedInference": false,
+  "lane": "assisted live sources; controlled candidate index, not public search",
+  "indexRequests": [
+    {
+      "path": "/index",
+      "queryMatches": true
+    }
+  ],
+  "model": "chromeclaw-qwen3vl",
+  "site": "https://httpbin.org/robots.txt",
+  "sources": [
+    "https://httpbin.org/robots.txt",
+    "https://httpbin.org/html"
+  ],
+  "checks": [
+    {
+      "id": "actual-local-assisted-research-through-tui",
+      "passed": false,
+      "status": "uncertain"
+    },
+    {
+      "id": "source-trace-inspection-resize-and-clean-exit",
+      "passed": true,
+      "exitCode": 0
+    }
+  ],
+  "latencyMs": 86524
+}

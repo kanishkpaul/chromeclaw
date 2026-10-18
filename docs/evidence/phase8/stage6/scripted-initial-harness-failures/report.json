@@ -1,0 +1,84 @@
+{
+  "suite": "live-01-stage6-terminal",
+  "lane": "scripted",
+  "actualLocal": false,
+  "hostedInference": false,
+  "model": "synthetic-stage6-model",
+  "manifestSha256": "41461f0eef53bf711421f45e6c0afb21aa2b4e752c0f720d7f85418e6a62cd8f",
+  "results": [
+    {
+      "id": "scripted-deny-public-submit",
+      "lane": "scripted",
+      "passed": false,
+      "criteria": {
+        "cardShowsDurablePendingId": true,
+        "wrongIdRefusedAndStillPending": true,
+        "enterAndEscDenied": false,
+        "noActivationOrNavigationAway": false
+      },
+      "runId": "run_mvdw3628_6lyvki2",
+      "acts": [
+        "navigate",
+        "type"
+      ],
+      "observationUrls": [
+        "about:blank",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post"
+      ],
+      "gates": [
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "block",
+          "reason": "The exact action was denied.",
+          "approved": false
+        }
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "scripted-long-output-and-narrow-resize",
+      "lane": "scripted",
+      "passed": false,
+      "criteria": {
+        "doneWithRuntimeCitation": true,
+        "rowsReproduceFullAnswer": false,
+        "narrowStatusAfterSignal": false,
+        "rowsWithinNarrowWidth": true,
+        "sourceCompleteOrMarkedShortened": true
+      },
+      "runId": "run_mvdw3cra_gzox1p8",
+      "answerChars": 2000,
+      "ioctlOnlyWidestRow": 95,
+      "ioctlOnlyReachedNode": false,
+      "sourceDurableChars": 4804,
+      "sourceDisplayedChars": 4804
+    },
+    {
+      "id": "scripted-compose-interrupt-and-eof",
+      "lane": "scripted",
+      "passed": true,
+      "criteria": {
+        "discardStartsNoRun": true,
+        "sendStartsOneRunWithBothLines": true,
+        "ctrlCStopsWithoutLaterAct": true,
+        "promptReturnsAfterInterrupt": true,
+        "eofExitsCleanlyWithoutOwnedChrome": true
+      },
+      "runId": "run_mvdw3jcl_ynk44mu",
+      "exitCode": 0,
+      "leftoverChrome": []
+    }
+  ],
+  "leftoverOwnedChrome": [],
+  "latencyMs": 21625
+}
