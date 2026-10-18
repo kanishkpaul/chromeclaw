@@ -1,6 +1,8 @@
 # Phase 8: live testing
 
-Status: Stages 1–7 recorded; the gate awaits Kanishk's review before Phase 9.
+Status: complete. On 2026-10-18 Kanishk accepted the seven-stage gate, including the D-032 and
+D-033 find follow-ups, and asked to merge PRs #15–#21. The open limits in the Stage 7 evidence
+remain recorded limitations, not passes.
 Kanishk clarified on 2026-10-18 that Days 1–7 mean seven stages of live testing, not seven
 calendar days. Stages can run back-to-back. Live testing means operating ChromeClaw
 ourselves on real tasks and reviewing the resulting evidence.
