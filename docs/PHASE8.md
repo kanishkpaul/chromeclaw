@@ -1,6 +1,6 @@
 # Phase 8: live testing
 
-Status: Stages 1–3 recorded; Stages 4–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
+Status: Stages 1–4 recorded; Stages 5–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
 seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
 means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
 Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
@@ -64,6 +64,14 @@ HTTP server, dummy bearer key, synthetic usage and declared reservation ceilings
 configuration still refuses loopback URLs for hosted providers. This tests the shared wire and
 accounting path; it does not establish TLS, vendor authentication, billing, rate limits or hosted
 model quality. Mock replies deliberately use frozen labels and carry no model-quality score.
+
+Stage 4 uses `pnpm eval:live-recovery` for dummy-provider recovery on actual public pages.
+Run `node packages/agent/tests/live-recovery.browser.mjs --actual-local` with the explicit local
+endpoint/model variables for actual inference. An endpoint without the flag refuses rather than
+silently counting an emulator run. `python3 apps/cli/tests/live.pty.py --stage4` records terminal
+pause, cancel, reopen, resume and cancellation during a second local request. Reopen reloads a
+permitted page and pauses; it does not promise to preserve unsaved form edits or replay them.
+See [Stage 4 evidence](evidence/phase8/stage4/README.md), including original harness failures.
 
 ## Scoring and review
 

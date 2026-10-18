@@ -1,0 +1,16 @@
+/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-recovery/dummy-WiUKsY
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Inspect preserved recovery report.
+    at file:///Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-recovery.browser.mjs:307:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

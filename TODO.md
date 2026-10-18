@@ -51,7 +51,9 @@ inference. Original failed attempts and controlled regressions remain evidence. 
 that Days 1–7 are seven back-to-back testing stages, not calendar days. The seven-stage gate is
 open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).
 
-Stages 1–3 are recorded. Stage 3 fixes duplicate ranked source URLs after a failing reproduction.
+Stages 1–4 are recorded. Stage 3 fixes duplicate ranked source URLs after a failing reproduction.
 Public search encountered a barrier; actual-local assisted synthesis and TUI misses remain
-explicit limits rather than passing capability claims. Stages 4–7 are pending. See
+explicit limits rather than passing capability claims. Stage 4 records pause/cancel/reopen,
+retained permissions and budgets, and an unsent edit with no replay. Stages 5–7 are pending. See
 [Stage 3 evidence](docs/evidence/phase8/stage3/README.md).
+See [Stage 4 evidence](docs/evidence/phase8/stage4/README.md) for recovery results and limits.

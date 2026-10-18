@@ -193,3 +193,10 @@ retrieval as public-search quality or negative zero-inference cases as model ans
 `live-research-regression.browser.mjs --live-source` is a manual real-source engineering retest,
 not inference or a CI network dependency. The [Stage 3 report](evidence/phase8/stage3/README.md)
 retains the pre-fix failures and frozen local/TUI misses.
+
+Stage 4's `eval:live-recovery` runs dummy BYOK against public pages; append `--actual-local` to
+the underlying script with explicit endpoint/model variables for the two actual-inference cases.
+`python3 apps/cli/tests/live.pty.py --stage4` records pause/cancel/reopen/continue and cancellation
+during local planning. The [Stage 4 report](evidence/phase8/stage4/README.md) separates recovery
+mechanics, narrow extractive model results, controlled lifecycle gates and harness corrections.
+These public-site commands remain manual; existing lifecycle fixtures are deterministic gates.
