@@ -1,0 +1,50 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+❯   Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯  chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ Open http://127.0.0.1:56231/form. Set the Note field to STAGE6-LOCAL-NOTE and save once. Return the confirmation sentence with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11568 bytes
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:56231/form"} · 2907 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12232 bytes
+❯   ┊ type      target 1; value withheld · 3840 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12574 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"26b25968-4157-438a-ab05-157a24ef0515","target":2}
+❯   │ target "Save note"
+❯   │ destination "http://127.0.0.1:56231/save"
+❯   │ reason "Activate button \"Save note\". Its handler may commit a change."
+❯ ╰─ /approve pending_mve3g5vm_afbneu8 · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mve3g5vm_afbneu8
+  ┊ click     {"type":"click","snapshotId":"26b25968-4157-438a-ab05-157a24ef0515","target":2} · 4076
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12416 bytes
+❯   ┊ extract_text {"thoughtSummary":"The previous action successfully saved the note, and the current
+  ┊  page confirms the save. Extracting the confirmation text ensures captured evidence for the task
+  ┊ .","type":"extract_text"} · 3071 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12663 bytes
+❯   ┊ finish    {"type":"finish","answer":"Note saved for review.","pageFind":{"outcome":"matches","ma
+  ┊ tches":[{"snapshotId":"4010b60a-7599-4480-ae4f-534187011a99","target":1,"reason":"Exact confirma
+  ┊ tion text captured from the page."}]},"evidence":[{"snapshotId":"4010b60a-7599-4480-ae4f-5341870
+  ┊ 11a99","quote":"Note saved for review."}]} · 7340 ms
+❯   citations [{"snapshotId":"4010b60a-7599-4480-ae4f-534187011a99","quote":"Note saved for review."}]
+❯   result {"status":"done","answer":"Note saved for review.","runId":"run_mve3fxf7_qvife8t"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /quit
+Closed. ⋔

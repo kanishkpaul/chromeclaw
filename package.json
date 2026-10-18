@@ -48,7 +48,9 @@
     "eval:live-recovery": "pnpm build && node packages/agent/tests/live-recovery.browser.mjs",
     "eval:live-byok": "pnpm build && node packages/agent/tests/live-byok.browser.mjs",
     "eval:live-terminal-stage6": "pnpm build && python3 apps/cli/tests/stage6.pty.py",
-    "eval:live-cleanup": "pnpm build && node packages/agent/tests/live-cleanup.browser.mjs"
+    "eval:live-cleanup": "pnpm build && node packages/agent/tests/live-cleanup.browser.mjs",
+    "eval:find-freshness": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-freshness.browser.mjs && node packages/agent/tests/find-freshness.browser.mjs --built",
+    "eval:find-duplicates": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-duplicates.browser.mjs && node packages/agent/tests/find-duplicates.browser.mjs --built"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

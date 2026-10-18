@@ -1,0 +1,19 @@
+{"suite":"live-01-find-duplicates","built":false,"checks":[{"id":"same-destination-links","expected":"done","status":"uncertain","error":"Several controls share this label. Clarify a position (first, second or third) before choosing.","passed":false},{"id":"different-destination-links","expected":"uncertain","status":"uncertain","error":"Several controls share this label. Clarify a position (first, second or third) before choosing.","passed":true},{"id":"different-destination-links-with-position","expected":"done","status":"done","error":null,"passed":true},{"id":"same-label-buttons","expected":"uncertain","status":"uncertain","error":"Several controls share this label. Clarify a position (first, second or third) before choosing.","passed":true}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.every((check) => check.passed))
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/find-duplicates.browser.mjs:127:8) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

@@ -6,6 +6,7 @@ import {
   guardNavigation,
   resolveTarget,
   snapshotIsCurrent,
+  referenceIsCurrent,
   extractVisibleText,
   getPageSnapshot,
   navigate,
@@ -1058,30 +1059,29 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
             : isFind
               ? await verifyPageFind(action, lastObservation, {
                   description: `${options.task}\n${(run.answers ?? []).join("\n")}`,
-                  snapshotIsCurrent: async () => {
-                    if (
-                      !(await snapshotIsCurrent(
-                        browser.page,
-                        finishObservation.snapshotId,
-                      ))
-                    )
+                  passagesAreCurrent: async (passageIds) => {
+                    if (browser.page.url() !== finishObservation.url)
                       return false;
                     const fresh = await capturePassages(
                       browser.page,
                       finishObservation.snapshotId,
                     );
-                    return (
-                      JSON.stringify(fresh.passages) ===
-                      JSON.stringify(finishObservation.passages)
+                    const textOf = (
+                      passages: typeof fresh.passages | undefined,
+                      id: string,
+                    ) => passages?.find((passage) => passage.id === id)?.text;
+                    return passageIds.every(
+                      (id) =>
+                        textOf(fresh.passages, id) !== undefined &&
+                        textOf(fresh.passages, id) ===
+                          textOf(finishObservation.passages, id),
                     );
                   },
-                  targetIsCurrent: async (target) =>
-                    Boolean(
-                      await resolveTarget(browser.page, {
-                        snapshotId: finishObservation.snapshotId,
-                        target,
-                      }),
-                    ),
+                  targetIsCurrent: (target) =>
+                    referenceIsCurrent(browser.page, {
+                      snapshotId: finishObservation.snapshotId,
+                      target,
+                    }),
                 })
               : isAsk
                 ? verifyAsk(action, observations)

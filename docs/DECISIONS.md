@@ -505,3 +505,38 @@ into 2,000-character passages. Research claims must equal a complete passage, so
 title was no longer quotable. Preformatted nodes now keep one trimmed passage each, as before
 D-030. Ordinary prose still merges across inline elements. A controlled regression failed before
 this change and passes after it. No dependency, permission, directory or plugin boundary is added.
+
+## D-032 · 2026-10-18 · Per-reference freshness for read-only find
+
+Kanishk chose option B in [FIND_FRESHNESS.md](FIND_FRESHNESS.md). Read-only find no longer
+requires the whole document to be unchanged. A result passes freshness only if:
+- the page URL is unchanged;
+- each cited passage recaptures to the same text at the same ID;
+- each cited control is the same retained, connected node, with its name, role, destination,
+  attributes and form destination unchanged, visible, enabled and uncovered.
+
+Layout movement and unrelated mutations are ignored. This amends D-015 for find only. Ask has no
+freshness callback, and every activation, write and navigation keeps whole-snapshot binding and
+exact approval. `referenceIsCurrent` must never admit an action.
+
+The Phase 8 `find-node` case on nodejs.org failed as stale in every lane, and a loopback
+reproduction refused all nine cases before this change. Afterwards, static, clock and
+layout-shift cases complete, while relabel, retarget, replace, cover and cited-passage changes
+still refuse. Residual risk: uncited nearby text can change a result's meaning. Relevance stays
+model-proposed and is labelled as such.
+
+Live retest: `find-node` no longer fails as stale in either lane. It now stops at the separate
+duplicate-label rule, because nodejs.org offers two "File system" links, both to `fs.html`, and
+find asks for a position. That rule is unchanged here. The CERN find and the other Stage 6
+local cases still pass 4/4. No dependency, permission, directory or plugin boundary is added.
+
+## D-033 · 2026-10-18 · Same-destination links are not ambiguous to find
+
+Kanishk asked to relax find's duplicate-label rule only when every same-named, same-role link
+has the same destination. After D-032, nodejs.org `find-node` stopped at that rule: the page
+offers two "File system" links, sidebar and index, both to `fs.html`. A unit test and a loopback
+browser check failed before the change. Find now accepts a link whose same-label, same-role peers
+all share its exact destination URL. A destination differing only by fragment counts as
+different. Buttons, links to differing destinations and other controls still need a position.
+The live retest then passed `find-node` in the scripted and local lanes. This changes no
+permission, activation or approval rule.

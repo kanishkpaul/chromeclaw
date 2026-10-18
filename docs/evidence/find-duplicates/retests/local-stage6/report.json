@@ -1,0 +1,94 @@
+{
+  "suite": "live-01-stage6-terminal",
+  "lane": "actualLocal",
+  "actualLocal": true,
+  "hostedInference": false,
+  "model": "chromeclaw-qwen3vl",
+  "manifestSha256": "41461f0eef53bf711421f45e6c0afb21aa2b4e752c0f720d7f85418e6a62cd8f",
+  "results": [
+    {
+      "id": "local-ask-held-out-public-page",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "doneWithRuntimeCitation": true,
+        "answerContainsFrozenSentence": true
+      },
+      "runId": "run_mve3dpxo_1cnuxiz",
+      "status": "done",
+      "answer": "The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.",
+      "error": null
+    },
+    {
+      "id": "local-inspect-sources-and-open-cited-passage",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "commandsRenderWithoutErrorRows": true,
+        "openedUrlEqualsCitedObservation": true,
+        "sourceWindowClosed": true
+      },
+      "runId": "run_mve3dpxo_1cnuxiz",
+      "citedUrl": "https://info.cern.ch/hypertext/WWW/TheProject.html",
+      "opened": [
+        "\"https://info.cern.ch/hypertext/WWW/TheProject.html\""
+      ]
+    },
+    {
+      "id": "local-find-held-out-public-link",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "doneWithValidatedMatch": true,
+        "firstMatchIsPeopleLink": true,
+        "noActivationOrLaterNavigation": true
+      },
+      "runId": "run_mve3ex9w_s35ho62",
+      "status": "done",
+      "firstMatch": {
+        "snapshotId": "15c60df1-32c4-44af-b5ed-8ce836dc7181",
+        "target": 21,
+        "reason": "The 'People' link (target #21) directly points to the list of people involved in the project as stated in the text passage."
+      },
+      "element": {
+        "name": "People",
+        "role": "link",
+        "href": null,
+        "destination": "https://info.cern.ch/hypertext/WWW/People.html"
+      },
+      "error": null
+    },
+    {
+      "id": "local-edit-and-approved-save-on-loopback-fixture",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "serverRecordsExactlyOneCorrectSave": true,
+        "saveOnlyAfterExactApproval": true,
+        "noRepeatedWriteOrSecondSave": true
+      },
+      "runId": "run_mve3fxf7_qvife8t",
+      "status": "done",
+      "answer": "Note saved for review.",
+      "error": null,
+      "saves": [
+        {
+          "note": "STAGE6-LOCAL-NOTE"
+        }
+      ],
+      "approvals": [
+        "pending_mve3g5vm_afbneu8"
+      ],
+      "denials": [],
+      "interventions": [],
+      "acts": [
+        "navigate",
+        "type",
+        "click",
+        "extract_text"
+      ]
+    }
+  ],
+  "leftoverOwnedChrome": [],
+  "latencyMs": 149340
+}

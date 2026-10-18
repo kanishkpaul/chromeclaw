@@ -1,0 +1,120 @@
+{
+  "suite": "phase6-find-contract",
+  "built": true,
+  "planner": "scripted-contract-only",
+  "actualModel": false,
+  "writes": 0,
+  "checks": [
+    {
+      "id": "reopen-retains-mode-and-pauses",
+      "passed": true,
+      "runId": "run_mve3a8w6_ug5d71h",
+      "log": "target/run_mve3a8w6_ug5d71h.jsonl"
+    },
+    {
+      "id": "target",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mve3a8w6_ug5d71h",
+      "log": "target/run_mve3a8w6_ug5d71h.jsonl"
+    },
+    {
+      "id": "passage",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mve3a9oa_ofd91x4",
+      "log": "passage/run_mve3a9oa_ofd91x4.jsonl"
+    },
+    {
+      "id": "mixed",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mve3a9zu_0cv3tpq",
+      "log": "mixed/run_mve3a9zu_0cv3tpq.jsonl"
+    },
+    {
+      "id": "duplicates",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mve3aabi_s5rem3j",
+      "log": "duplicates/run_mve3aabi_s5rem3j.jsonl"
+    },
+    {
+      "id": "invented",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mve3aani_yc6hyek",
+      "log": "invented/run_mve3aani_yc6hyek.jsonl"
+    },
+    {
+      "id": "credential",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mve3aazi_i5n21hm",
+      "log": "credential/run_mve3aazi_i5n21hm.jsonl"
+    },
+    {
+      "id": "stale",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mve3abbl_xezmhxk",
+      "log": "stale/run_mve3abbl_xezmhxk.jsonl"
+    },
+    {
+      "id": "no-match",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mve3ac2b_910hfch",
+      "log": "no-match/run_mve3ac2b_910hfch.jsonl"
+    },
+    {
+      "id": "clarify",
+      "passed": true,
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "runId": "run_mve3acdz_fc6k39k",
+      "log": "clarify/run_mve3acdz_fc6k39k.jsonl"
+    },
+    {
+      "id": "click",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mve3acq2_xmzcwm3",
+      "log": "click/run_mve3acq2_xmzcwm3.jsonl"
+    },
+    {
+      "id": "type",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mve3ad1x_ywwdn8w",
+      "log": "type/run_mve3ad1x_ywwdn8w.jsonl"
+    },
+    {
+      "id": "navigate",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mve3addp_6mdpv2i",
+      "log": "navigate/run_mve3addp_6mdpv2i.jsonl"
+    },
+    {
+      "id": "scroll",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mve3adpl_00d0mow",
+      "log": "scroll/run_mve3adpl_00d0mow.jsonl"
+    }
+  ],
+  "execution": "built-ldmXsn"
+}
