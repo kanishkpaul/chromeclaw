@@ -1,0 +1,19 @@
+{"suite":"live-01-cleanup","source":true,"trials":[{"status":"done","warnings":["Browser cleanup failed."],"updatersBeforeFinish":6,"afterPlannerMs":5724},{"status":"done","warnings":["Browser cleanup failed."],"updatersBeforeFinish":6,"afterPlannerMs":5481},{"status":"done","warnings":["Browser cleanup failed."],"updatersBeforeFinish":6,"afterPlannerMs":5437}],"checks":[{"id":"long-task-cleanup-reports-no-failure","passed":false},{"id":"updater-woke-in-at-least-one-trial","passed":true}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.every((check) => check.passed))
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-cleanup.browser.mjs:108:8) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

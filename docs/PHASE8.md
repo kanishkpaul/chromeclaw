@@ -1,8 +1,9 @@
 # Phase 8: live testing
 
-Status: Stages 1–6 recorded; Stage 7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
-seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
-means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
+Status: Stages 1–7 recorded; the gate awaits Kanishk's review before Phase 9.
+Kanishk clarified on 2026-10-18 that Days 1–7 mean seven stages of live testing, not seven
+calendar days. Stages can run back-to-back. Live testing means operating ChromeClaw
+ourselves on real tasks and reviewing the resulting evidence.
 Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
 Day 1 report language; archived evidence and frozen task bytes remain unchanged.
 
@@ -89,6 +90,13 @@ and fixed (D-030). `TIOCSWINSZ` without SIGWINCH never reached Node, so earlier 
 not exercise a resize. A recurring 5-second browser-cleanup warning in actual-local TUI runs
 remains open for Stage 7. See [Stage 6 evidence](evidence/phase8/stage6/README.md).
 
+Stage 7 retests every earlier lane against its frozen manifest, without public-search cases that
+met a barrier. `pnpm eval:live-cleanup` reproduces the long-task cleanup warning: branded Chrome's
+updater helpers delay process exit after the driver disconnects. Separate disconnect and exit
+bounds fix it (D-031). The round-1 retest also caught a D-030 regression on RFC `<pre>` titles,
+fixed and retested in round 2. Open limits include whole-snapshot freshness on pages that mutate
+after load and repeated local-model edits. See [Stage 7 evidence](evidence/phase8/stage7/README.md).
+
 ## Scoring and review
 
 Read trials require a runtime-verified citation and the frozen expected text. Find trials compare
@@ -119,7 +127,7 @@ separately. A task used to develop a fix or revised label is no longer held out.
 | 4 | Interruptions and recovery | Pause/cancel/reopen during real browser tasks, original permissions and budgets retained, no replayed side effects |
 | 5 | BYOK protocol and failure handling | Dummy credentials/provider with real browser tasks; malformed replies, retries, usage, cancellation and no hosted fallback; no model-quality claim |
 | 6 | Terminal workflows | End-to-end tasks through the TUI, sources/trace inspection, long output, resize and explicit control; recordings and independent outcomes; recorded |
-| 7 | Final regression and retest | Each observed product defect reproduced before its fix, affected gates rerun, live retests, model-specific results/limits and process cleanup |
+| 7 | Final regression and retest | Each observed product defect reproduced before its fix, affected gates rerun, live retests, model-specific results/limits and process cleanup; recorded |
 
 Complete and review the seven stages with task, scope, model, outcome, interventions, failure
 classification and regression links. Synthetic history and mock BYOK remain explicit owner

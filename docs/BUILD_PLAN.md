@@ -50,8 +50,8 @@ source/compiled fixture tasks, actual-local research/web results, seeded history
 terminal/JSON evidence and durable recovery-budget checks. Hosted inference stays waived; the
 owner authorized synthetic recollections rather than personal-history testing. Live Chrome
 history synchronization and broad semantic support are not claimed. See [PHASE7.md](PHASE7.md)
-and [completion evidence](evidence/phase7/completion/README.md). Phase 8 has started with a
-bounded Stage 1 public-site pilot and dummy BYOK emulation; its seven-stage gate remains open.
+and [completion evidence](evidence/phase7/completion/README.md). Phase 8's seven
+stages are recorded; Kanishk reviews that gate before Phase 9 starts.
 See [PHASE8.md](PHASE8.md). Phase 9 remains pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or

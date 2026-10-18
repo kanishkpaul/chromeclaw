@@ -482,3 +482,26 @@ truthfulness; multi-passage answers, which would weaken the exact single-citatio
 full accessible-name implementation, which remains outside this slice. `pre-line` keeps its source
 spaces rather than collapsing them, a conservative mismatch with rendering. No dependency,
 permission, directory or plugin boundary is added.
+
+## D-031 · 2026-10-18 · Separate browser disconnect and exit bounds; per-node preformatted passages
+
+"Browser cleanup failed." appeared on most actual-local runs from Stages 2, 3 and 6 but never
+on short scripted runs. With a 35-second scripted planner, a loopback reproduction failed 3/3.
+Branded Chrome started GoogleUpdater helpers during the task. The driver disconnected within
+about 50 ms, but Chrome's main process exited only after the helpers finished, past the single
+5-second deadline. Cleanup now bounds driver disconnect at 5 seconds, then process exit at 45
+seconds, and records which bound failed. The cleanup event now carries the close error rather
+than discarding it.
+
+Rejected: resolving cleanup at disconnect. It removed the warning, but Chrome kept writing the
+profile, so credentials, readers and live-regression suites failed with `ENOTEMPTY` on profile
+removal, and a next task could reuse a profile still held open. Also rejected: switching to
+bundled Chromium, which changes the work surface, and a longer single deadline, which would
+hide a hung driver. Cost: when the updater wakes, a long branded-Chrome task can take about
+10–27 seconds longer to report completion.
+
+Stage 7's retest also found that D-030's block merge folded RFC HTML's inline `<pre>` headings
+into 2,000-character passages. Research claims must equal a complete passage, so the RFC 2606
+title was no longer quotable. Preformatted nodes now keep one trimmed passage each, as before
+D-030. Ordinary prose still merges across inline elements. A controlled regression failed before
+this change and passes after it. No dependency, permission, directory or plugin boundary is added.

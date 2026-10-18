@@ -1,0 +1,87 @@
+{
+  "suite": "live-01-stage4",
+  "actualLocal": false,
+  "hostedInference": false,
+  "fixtureSha256": "f97c25852a883df5e32b26142492b4ae4ae03f701ad3714ad01dfa9e0f77127a",
+  "model": "dummy-recovery",
+  "results": [
+    {
+      "id": "pause-after-proposal-reopen-and-resume",
+      "passed": true,
+      "initial": "paused",
+      "reopened": "paused",
+      "resumed": "done",
+      "reservedCost": 0.002,
+      "latencyMs": 2873
+    },
+    {
+      "id": "cancel-after-proposal-reopen-and-resume",
+      "passed": true,
+      "initial": "stopped",
+      "reopened": "paused",
+      "resumed": "done",
+      "reservedCost": 0.002,
+      "latencyMs": 1911
+    },
+    {
+      "id": "reopen-retains-exhausted-spend-budget",
+      "passed": true,
+      "initial": "paused",
+      "reopened": "paused",
+      "resumed": "failed",
+      "reservedCost": 0.001,
+      "latencyMs": 1984
+    },
+    {
+      "id": "unsent-edit-is-not-replayed-on-reopen",
+      "passed": true,
+      "initial": "paused",
+      "reopened": "paused",
+      "independentUnsentValueChecked": true,
+      "replayedTypeActions": 0,
+      "latencyMs": 1617
+    }
+  ],
+  "requests": [
+    {
+      "caseId": "pause-after-proposal-reopen-and-resume",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "pause-after-proposal-reopen-and-resume",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "cancel-after-proposal-reopen-and-resume",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "cancel-after-proposal-reopen-and-resume",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "reopen-retains-exhausted-spend-budget",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "unsent-edit-is-not-replayed-on-reopen",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "unsent-edit-is-not-replayed-on-reopen",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "unsent-edit-is-not-replayed-on-reopen",
+      "model": "dummy-recovery",
+      "authorization": "dummy-only"
+    }
+  ]
+}

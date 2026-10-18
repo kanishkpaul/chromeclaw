@@ -164,3 +164,9 @@ Exact single-passage verification and the 2,000/6,000-character bounds are uncha
 and `name` attributes label only form fields; credential classification, which already applies only to
 form fields, still sees them. Controlled source/compiled regressions and the credential, safety
 and work-safety suites cover these changes. A complete accessible-name implementation is not claimed.
+
+Stage 7 keeps cleanup truthful without stalling on a hung driver. Disconnect has a 5-second
+bound. After disconnect, the runtime waits up to 45 seconds for the Chrome process to exit and
+release the profile, then records which bound failed. Returning at disconnect was rejected
+because Chrome was still writing the profile. Preformatted text keeps one passage per node, so
+the complete-passage research verifier still matches RFC-style titles; prose merging is unchanged.

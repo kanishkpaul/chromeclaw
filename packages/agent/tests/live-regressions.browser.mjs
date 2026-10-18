@@ -24,7 +24,9 @@ const LONG_PARAGRAPH = "Stage six long paragraph sentence. ".repeat(72).trim();
 // naming <A NAME=14> links "14". Preformatted text must keep its exact line breaks.
 const STRUCTURE_PAGE =
   '<title>Structure</title><p>The fixture sentence has an <a href="/structure#x">inline\n link</a> inside\n it.</p>' +
-  '<p><a name="14" href="/structure#people">People</a></p><pre>Line one\n  Line two</pre>';
+  '<p><a name="14" href="/structure#people">People</a></p><pre>Line one\n  Line two</pre>' +
+  // Stage 7: RFC HTML styles its title as an inline heading inside <pre>; it must stay a passage.
+  '<pre>RFC 0000    <h1 style="display:inline">Inline Preformatted Title</h1>    June 1999\nBody</pre>';
 let forbidden = 0;
 const foreign = createServer((_request, response) => {
   forbidden++;
@@ -161,6 +163,10 @@ try {
     passed: structure?.linkNames.includes("People") === true,
   });
   checks.push({
+    id: "inline-heading-inside-preformatted-text-stays-one-passage",
+    passed: structure?.passages.includes("Inline Preformatted Title") === true,
+  });
+  checks.push({
     id: "preformatted-passage-keeps-line-breaks",
     passed:
       structured.status === "done" &&
@@ -244,4 +250,4 @@ try {
   );
   console.log(JSON.stringify(report));
 }
-assert.ok(checks.length === 8 && checks.every((check) => check.passed));
+assert.ok(checks.length === 9 && checks.every((check) => check.passed));

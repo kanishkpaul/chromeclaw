@@ -132,6 +132,9 @@ class Terminal:
         fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 40, width, 0, 0))
         env = {k: v for k, v in os.environ.items() if not k.startswith('CHROMECLAW_') and k not in ['OPENAI_API_KEY', 'HF_TOKEN', 'HUGGINGFACE_API_KEY', 'OPENAI_BASE_URL']}
         env.update(TERM='xterm-256color', NO_COLOR='1', DOTENV_CONFIG_PATH='/nonexistent-chromeclaw-env')
+        if os.environ.get('STAGE_PW_DEBUG'):
+            # Diagnostic only: one Playwright API log per terminal process, never scored.
+            env.update(DEBUG='pw:api,pw:browser,pw:protocol', DEBUG_FILE=str(ARTIFACTS / (name + '-playwright.log')))
         endpoint = LOCAL_URL if ACTUAL else LOOPBACK + '/v1'
         command = ['node', str(ROOT / 'apps/cli/dist/index.js'), 'tui', '--provider', 'local', '--model', MODEL, '--base-url', endpoint,
                    '--no-stream', '--max-output-tokens', '1200', '--request-timeout-ms', '90000', '--timeout-ms', '300000',
@@ -270,6 +273,8 @@ def scripted_deny_public_submit():
             else:
                 terminal.key(b'\x1b')
             terminal.wait(lambda: terminal.completion(run_id), 30)
+            # The durable record lands before the TUI settles; its result row ends the busy state.
+            terminal.wait(lambda: run_id in ''.join(terminal.rows(0, '  result ')), 30)
             runs.append(run_id)
         events = [event for run_id in runs for event in terminal.run_records(run_id)]
         gates = [event['payload']['gate'] for event in events if event['type'] == 'gate']

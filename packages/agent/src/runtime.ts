@@ -261,6 +261,7 @@ export class BrowserAgentRuntime {
     let session: BrowserSession | undefined;
     let inFlight = false;
     let closeFailure = false;
+    let closeReason = "The browser closed with an error after an abort.";
     let browserDisconnected = false;
     const disconnected = () => {
       if (!signal.aborted) {
@@ -1305,16 +1306,33 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
       session?.context.off("close", disconnected);
       clearTimeout(timer);
       const cleanup = new AbortController();
+      const within = (ms: number, message: string) =>
+        delay(ms, undefined, { signal: cleanup.signal }).then(() => {
+          throw new Error(message);
+        });
+      let isDriverGone = !session;
+      session?.context.once("close", () => {
+        isDriverGone = true;
+      });
+      const closing = session?.close();
       try {
-        // A disconnected driver must not prevent the final failure/stop record indefinitely.
+        // A hung driver must not prevent the final failure/stop record indefinitely. After a
+        // disconnect, branded Chrome can still wait for GoogleUpdater helpers before exiting and
+        // releasing the profile (17-27 s in Stage 7), so exit has its own longer bound.
         await Promise.race([
-          session?.close(),
-          delay(5000, undefined, { signal: cleanup.signal }).then(() => {
-            throw new Error("Browser cleanup deadline.");
-          }),
-        ]);
-      } catch {
+          closing,
+          within(5000, "Browser disconnect deadline."),
+        ]).catch((error: unknown) => {
+          if (!isDriverGone) throw error;
+          return Promise.race([
+            closing,
+            within(45000, "Browser process exit deadline."),
+          ]);
+        });
+      } catch (error) {
         closeFailure = true;
+        closeReason =
+          error instanceof Error ? error.message : "Unknown close error.";
       } finally {
         cleanup.abort();
       }
@@ -1332,7 +1350,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         if (closeFailure)
           await emit("error", {
             stage: "cleanup",
-            message: "Browser cleanup failed.",
+            message: `Browser cleanup failed. ${closeReason}`,
           });
         if (suspended)
           await emit("run_suspended", {

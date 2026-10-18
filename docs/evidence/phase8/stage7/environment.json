@@ -1,0 +1,28 @@
+{
+  "foregroundAtStart": [
+    "Finder",
+    "Claude"
+  ],
+  "initialMemoryAvailablePercent": 81,
+  "stoppedUnneededWorkloads": [],
+  "preserved": [
+    "Claude desktop app and Claude Code sessions",
+    "claude-mem worker",
+    "context7 MCP",
+    "macOS services"
+  ],
+  "modelSha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+  "modelServer": "/opt/homebrew/bin/llama-server 9780 --alias chromeclaw-qwen3vl --host 127.0.0.1 --port 18184 --offline --ctx-size 16384 --cache-ram 256 --parallel 1 --reasoning off --temp 0",
+  "modelServerPid": 56116,
+  "modelServerStoppedWith": "SIGTERM to the exact owned PID; confirmed exited",
+  "contextNote": "Day 1 and Stage 2 originals used an 8,192-token server; every Stage 7 retest used 16,384.",
+  "downloads": false,
+  "actualHostedInference": false,
+  "hostedSpendUsd": 0,
+  "leftoverChromeOrModelProcesses": [],
+  "finalMemoryAvailablePercent": 78,
+  "foregroundAtEnd": [
+    "Finder",
+    "Claude"
+  ]
+}

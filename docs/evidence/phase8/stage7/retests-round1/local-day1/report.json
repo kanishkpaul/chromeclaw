@@ -1,0 +1,285 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "session": 1,
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 10,
+  "completed": 10,
+  "passed": 4,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-example",
+      "mode": "ask",
+      "passed": false,
+      "status": "done",
+      "answer": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 12861,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2488,
+          "completionTokens": 147
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyjow8_u8th3uj",
+      "log": "read-example/run_mvdyjow8_u8th3uj.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "The Python Tutorial",
+      "ranked": [
+        null
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 45145,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 5843,
+          "completionTokens": 165
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyjytj_kfftv0c",
+      "log": "read-python/run_mvdyjytj_kfftv0c.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Planner transport failed: timeout.",
+      "answer": "Planner transport failed: timeout.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 91557,
+      "steps": 2,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdykxnk_wnqcks9",
+      "log": "read-mdn/run_mvdykxnk_wnqcks9.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link 'Learn more' (target 1) explains more about this example domain.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 19009,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2616,
+          "completionTokens": 101
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdymwau_d6nw0yw",
+      "log": "find-example/run_mvdymwau_d6nw0yw.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link for the tutorial intended for someone starting to learn Python is the 'Beginner's Guide' at target #28. It is visible and matches the task requirement.",
+      "ranked": [
+        "https://wiki.python.org/moin/BeginnersGuide"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 51995,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 8096,
+          "completionTokens": 129
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdynayx_76rt1yi",
+      "log": "find-python/run_mvdynayx_76rt1yi.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Find results are stale. Capture again before choosing a result.",
+      "answer": "The file system API is located at https://nodejs.org/api/fs.html.",
+      "ranked": [
+        "https://nodejs.org/api/fs.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 68447,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 10942,
+          "completionTokens": 99
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyof38_fer3cyb",
+      "log": "find-node/run_mvdyof38_fer3cyb.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No control to purchase an airplane ticket is offered on this page.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 12789,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2586,
+          "completionTokens": 60
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdypvwj_erpggm2",
+      "log": "find-absent/run_mvdypvwj_erpggm2.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent",
+      "mode": "work",
+      "passed": false,
+      "status": "failed",
+      "error": "Three identical unsuccessful proposals. Stopped recovery.",
+      "answer": "Three identical unsuccessful proposals. Stopped recovery.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 44508,
+      "steps": 6,
+      "usage": [
+        {
+          "promptTokens": 1221,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 2152,
+          "completionTokens": 53
+        },
+        {
+          "promptTokens": 2257,
+          "completionTokens": 56
+        },
+        {
+          "promptTokens": 2336,
+          "completionTokens": 54
+        },
+        {
+          "promptTokens": 2422,
+          "completionTokens": 55
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyq5rv_lsexc0v",
+      "log": "edit-unsent/run_mvdyq5rv_lsexc0v.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-example",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://example.com/",
+      "ranked": [],
+      "urls": [
+        "https://example.com/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 770,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyr44a_vpk3unl",
+      "log": "history-example/run_mvdyr44a_vpk3unl.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-python",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://docs.python.org/3/tutorial/",
+      "ranked": [],
+      "urls": [
+        "https://docs.python.org/3/tutorial/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 564,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdyr4pn_8ucxbn7",
+      "log": "history-python/run_mvdyr4pn_8ucxbn7.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

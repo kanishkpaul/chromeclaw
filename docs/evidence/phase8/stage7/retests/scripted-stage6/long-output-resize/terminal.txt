@@ -1,0 +1,246 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · synthetic-stage6-model · local · http://127.0.0.1:51072/v1
+❯   Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯  synthetic-stage6-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /ask https://httpbin.org/html stage6-long Quote the complete Moby-Dick paragraph with its captured passage citation.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-stage6-model","configuration":{"stream":false,"res
+  provider ponseFormat":"json","endpoint":"http://127.0.0.1:51072/v1","mode":"local","requestCost":0
+  provider ,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ navigate  {"type":"navigate","url":"https://httpbin.org/html"} · 1500 ms
+❯   ┊ send      "http://127.0.0.1:51072/v1/chat/completions" · 10258 bytes
+❯   ┊ finish    {"type":"finish","answer":"Availing himself of the mild, summer-cool weather that now 
+  ┊ reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be 
+  ┊ anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable forge t
+  ┊ o the hold again, after concluding his contributory work for Ahab's leg, but still retained it o
+  ┊ n deck, fast lashed to ringbolts by the foremast; being now almost incessantly invoked by the he
+  ┊ adsmen, and harpooneers, and bowsmen to do some little job for them; altering, or repairing, or 
+  ┊ new shaping their various weapons and boat furniture. Often he would be surrounded by an eager c
+  ┊ ircle, all waiting to be served; holding boat-spades, pike-heads, harpoons, and lances, and jeal
+  ┊ ously watching his every sooty movement, as he toiled. Nevertheless, this old man's was a patien
+  ┊ t hammer wielded by a patient arm. No murmur, no impatience, no petulance did come from him. Sil
+  ┊ ent, slow, and solemn; bowing over still further his chronically broken back, he toiled away, as
+  ┊  if toil were life itself, and the heavy beating of his hammer the heavy beating of his heart. A
+  ┊ nd so it was.—Most miserable! A peculiar walk in this old man, a certain slight but painful appe
+  ┊ aring yawing in his gait, had at an early period of the voyage excited the curiosity of the mari
+  ┊ ners. And to the importunity of their persisted questionings he had finally given in; and so it 
+  ┊ came to pass that every one now knew the shameful story of his wretched fate. Belated, and not i
+  ┊ nnocently, one bitter winter's midnight, on the road running between two country towns, the blac
+  ┊ ksmith half-stupidly felt the deadly numbness stealing over him, and sought refuge in a leaning,
+  ┊  dilapidated barn. The issue was, the loss of the extremities of both feet. Out of this revelati
+  ┊ on, part by part, at last came out the four acts of the gladness, and the one long, and as yet u
+  ┊ ncatastrophied fifth act of the grief of his life's drama. He was an old man, who, at the age of
+  ┊  nearly sixty, had p","evidence":[{"snapshotId":"1bdc318b-6bbe-4b73-9e3b-407ce449a1b5","passageI
+  ┊ d":"1bdc318b-6bbe-4b73-9e3b-407ce449a1b5:p2","quote":"Availing himself of the mild, summer-cool 
+  ┊ weather that now reigned in these latitudes, and in preparation for the peculiarly active pursui
+  ┊ ts shortly to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his
+  ┊  portable forge to the hold again, after concluding his contributory work for Ahab's leg, but st
+  ┊ ill retained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly 
+  ┊ invoked by the headsmen, and harpooneers, and bowsmen to do some little job for them; altering, 
+  ┊ or repairing, or new shaping their various weapons and boat furniture. Often he would be surroun
+  ┊ ded by an eager circle, all waiting to be served; holding boat-spades, pike-heads, harpoons, and
+  ┊  lances, and jealously watching his every sooty movement, as he toiled. Nevertheless, this old m
+  ┊ an's was a patient hammer wielded by a patient arm. No murmur, no impatience, no petulance did c
+  ┊ ome from him. Silent, slow, and solemn; bowing over still further his chronically broken back, h
+  ┊ e toiled away, as if toil were life itself, and the heavy beating of his hammer the heavy beatin
+  ┊ g of his heart. And so it was.—Most miserable! A peculiar walk in this old man, a certain slight
+  ┊  but painful appearing yawing in his gait, had at an early period of the voyage excited the curi
+  ┊ osity of the mariners. And to the importunity of their persisted questionings he had finally giv
+  ┊ en in; and so it came to pass that every one now knew the shameful story of his wretched fate. B
+  ┊ elated, and not innocently, one bitter winter's midnight, on the road running between two countr
+  ┊ y towns, the blacksmith half-stupidly felt the deadly numbness stealing over him, and sought ref
+  ┊ uge in a leaning, dilapidated barn. The issue was, the loss of the extremities of both feet. Out
+  ┊  of this revelation, part by part, at last came out the four acts of the gladness, and the one l
+  ┊ ong, and as yet uncatastrophied fifth act of the grief of his life's drama. He was an old man, w
+  ┊ ho, at the age of nearly sixty, had p"}]} · 52 ms
+❯   citations [{"snapshotId":"1bdc318b-6bbe-4b73-9e3b-407ce449a1b5","passageId":"1bdc318b-6bbe-4b73-9e
+  citations 3b-407ce449a1b5:p2","quote":"Availing himself of the mild, summer-cool weather that now 
+  citations reigned in these latitudes, and in preparation for the peculiarly active pursuits shortl
+  citations y to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his 
+  citations portable forge to the hold again, after concluding his contributory work for Ahab's leg,
+  citations  but still retained it on deck, fast lashed to ringbolts by the foremast; being now almo
+  citations st incessantly invoked by the headsmen, and harpooneers, and bowsmen to do some little j
+  citations ob for them; altering, or repairing, or new shaping their various weapons and boat furni
+  citations ture. Often he would be surrounded by an eager circle, all waiting to be served; holding
+  citations  boat-spades, pike-heads, harpoons, and lances, and jealously watching his every sooty m
+  citations ovement, as he toiled. Nevertheless, this old man's was a patient hammer wielded by a pa
+  citations tient arm. No murmur, no impatience, no petulance did come from him. Silent, slow, and s
+  citations olemn; bowing over still further his chronically broken back, he toiled away, as if toil
+  citations  were life itself, and the heavy beating of his hammer the heavy beating of his heart. A
+  citations nd so it was.—Most miserable! A peculiar walk in this old man, a certain slight but pain
+  citations ful appearing yawing in his gait, had at an early period of the voyage excited the curio
+  citations sity of the mariners. And to the importunity of their persisted questionings he had fina
+  citations lly given in; and so it came to pass that every one now knew the shameful story of his w
+  citations retched fate. Belated, and not innocently, one bitter winter's midnight, on the road run
+  citations ning between two country towns, the blacksmith half-stupidly felt the deadly numbness st
+  citations ealing over him, and sought refuge in a leaning, dilapidated barn. The issue was, the lo
+  citations ss of the extremities of both feet. Out of this revelation, part by part, at last came o
+  citations ut the four acts of the gladness, and the one long, and as yet uncatastrophied fifth act
+  citations  of the grief of his life's drama. He was an old man, who, at the age of nearly sixty, h
+  citations ad p"}]
+❯   result {"status":"done","answer":"Availing himself of the mild, summer-cool weather that now reign
+  result ed in these latitudes, and in preparation for the peculiarly active pursuits shortly to be 
+  result anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable fo
+  result rge to the hold again, after concluding his contributory work for Ahab's leg, but still ret
+  result ained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly in
+  result voked by the headsmen, and harpooneers, and bowsmen to do some little job for them; alterin
+  result g, or repairing, or new shaping their various weapons and boat furniture. Often he would be
+  result  surrounded by an eager circle, all waiting to be served; holding boat-spades, pike-heads, 
+  result harpoons, and lances, and jealously watching his every sooty movement, as he toiled. Nevert
+  result heless, this old man's was a patient hammer wielded by a patient arm. No murmur, no impatie
+  result nce, no petulance did come from him. Silent, slow, and solemn; bowing over still further hi
+  result s chronically broken back, he toiled away, as if toil were life itself, and the heavy beati
+  result ng of his hammer the heavy beating of his heart. And so it was.—Most miserable! A peculiar 
+  result walk in this old man, a certain slight but painful appearing yawing in his gait, had at an 
+  result early period of the voyage excited the curiosity of the mariners. And to the importunity of
+  result  their persisted questionings he had finally given in; and so it came to pass that every on
+  result e now knew the shameful story of his wretched fate. Belated, and not innocently, one bitter
+  result  winter's midnight, on the road running between two country towns, the blacksmith half-stup
+  result idly felt the deadly numbness stealing over him, and sought refuge in a leaning, dilapidate
+  result d barn. The issue was, the loss of the extremities of both feet. Out of this revelation, pa
+  result rt by part, at last came out the four acts of the gladness, and the one long, and as yet un
+  result catastrophied fifth act of the grief of his life's drama. He was an old man, who, at the ag
+  result e of nearly sixty, had p","runId":"run_mvdzlztk_0wp6dvl"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-stage6-model │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /sources
+  source 1 {"snapshot":"1bdc318b-6bbe-4b73-9e3b-407ce449a1b5","url":"https://httpbin.org/html"}
+❯ ❯  local │ done
+❯ ────────────────────────────────────────────────
+❯ /source 1
+  source {"snapshotId":"1bdc318b-6bbe-4b73-9e3b-
+  source 407ce449a1b5","documentId":"00044810-27
+  source a4-4a7e-a266-bae6ff7dd8cb","interactive
+  source Elements":[],"omittedTargets":0,"unread
+  source ableFrames":0,"passages":[{"text":"Herm
+  source an Melville - Moby-Dick","kind":"docume
+  source nt","id":"1bdc318b-6bbe-4b73-9e3b-407ce
+  source 449a1b5:p1","snapshotId":"1bdc318b-6bbe
+  source -4b73-9e3b-407ce449a1b5","url":"https:/
+  source /httpbin.org/html"},{"text":"Availing h
+  source imself of the mild, summer-cool weather
+  source  that now reigned in these latitudes, a
+  source nd in preparation for the peculiarly ac
+  source tive pursuits shortly to be anticipated
+  source , Perth, the begrimed, blistered old bl
+  source acksmith, had not removed his portable 
+  source forge to the hold again, after concludi
+  source ng his contributory work for Ahab's leg
+  source , but still retained it on deck, fast l
+  source ashed to ringbolts by the foremast; bei
+  source ng now almost incessantly invoked by th
+  source e headsmen, and harpooneers, and bowsme
+  source n to do some little job for them; alter
+  source ing, or repairing, or new shaping their
+  source  various weapons and boat furniture. Of
+  source ten he would be surrounded by an eager 
+  source circle, all waiting to be served; holdi
+  source ng boat-spades, pike-heads, harpoons, a
+  source nd lances, and jealously watching his e
+  source very sooty movement, as he toiled. Neve
+  source rtheless, this old man's was a patient 
+  source hammer wielded by a patient arm. No mur
+  source mur, no impatience, no petulance did co
+  source me from him. Silent, slow, and solemn; 
+  source bowing over still further his chronical
+  source ly broken back, he toiled away, as if t
+  source oil were life itself, and the heavy bea
+  source ting of his hammer the heavy beating of
+  source  his heart. And so it was.—Most miserab
+  source le! A peculiar walk in this old man, a 
+  source certain slight but painful appearing ya
+  source wing in his gait, had at an early perio
+  source d of the voyage excited the curiosity o
+  source f the mariners. And to the importunity 
+  source of their persisted questionings he had 
+  source finally given in; and so it came to pas
+  source s that every one now knew the shameful 
+  source story of his wretched fate. Belated, an
+  source d not innocently, one bitter winter's m
+  source idnight, on the road running between tw
+  source o country towns, the blacksmith half-st
+  source upidly felt the deadly numbness stealin
+  source g over him, and sought refuge in a lean
+  source ing, dilapidated barn. The issue was, t
+  source he loss of the extremities of both feet
+  source . Out of this revelation, part by part,
+  source  at last came out the four acts of the 
+  source gladness, and the one long, and as yet 
+  source uncatastrophied fifth act of the grief 
+  source of his life's drama. He was an old man,
+  source  who, at the age of nearly sixty, had p
+  source ","kind":"document","id":"1bdc318b-6bbe
+  source -4b73-9e3b-407ce449a1b5:p2","snapshotId
+  source ":"1bdc318b-6bbe-4b73-9e3b-407ce449a1b5
+  source ","url":"https://httpbin.org/html"}],"u
+  source nreadableRegions":0,"omittedPassages":t
+  source rue,"url":"https://httpbin.org/html","t
+  source itle":"","visibleText":"Herman Melville
+  source  - Moby-Dick\nAvailing himself of the m
+  source ild, summer-cool weather that now reign
+  source ed in these latitudes, and in preparati
+  source on for the peculiarly active pursuits s
+  source hortly to be anticipated, Perth, the be
+  source grimed, blistered old blacksmith, had n
+  source ot removed his portable forge to the ho
+  source ld again, after concluding his contribu
+  source tory work for Ahab's leg, but still ret
+  source ained it on deck, fast lashed to ringbo
+  source lts by the foremast; being now almost i
+  source ncessantly invoked by the headsmen, and
+  source  harpooneers, and bowsmen to do some li
+  source ttle job for them; altering, or repairi
+  source ng, or new shaping their various weapon
+  source s and boat furniture. Often he would be
+  source  surrounded by an eager circle, all wai
+  source ting to be served; holding boat-spades,
+  source  pike-heads, harpoons, and lances, and 
+  source jealously watching his every sooty move
+  source ment, as he toiled. Nevertheless, this 
+  source old man's was a patient hammer wielded 
+  source by a patient arm. No murmur, no impatie
+  source nce, no petulance did come from him. Si
+  source lent, slow, and solemn; bowing over sti
+  source ll further his chronically broken back,
+  source  he toiled away, as if toil were life i
+  source tself, and the heavy beating of his ham
+  source mer the heavy beating of his heart. And
+  source  so it was.—Most miserable! A peculiar 
+  source walk in this old man, a certain slight 
+  source but painful appearing yawing in his gai
+  source t, had at an early period of the voyage
+  source  excited the curiosity of the mariners.
+  source  And to the importunity of their persis
+  source ted questionings he had finally given i
+  source n; and so it came to pass that every on
+  source e now knew the shameful story of his wr
+  source etched fate. Belated, and not innocentl
+  source y, one bitter winter's midnight, on the
+  source  road running between two country towns
+  source , the blacksmith half-stupidly felt the
+  source  deadly numbness stealing over him, and
+  source  sought refuge in a leaning, dilapidate
+  source d barn. The issue was, the loss of the 
+  source extremities of both feet. Out of this r
+  source evelation, part by part, at last came o
+  source ut the four acts of the gladness, and t
+  source he one long, and as yet uncatastrophied
+  source  fifth act of the grief of his life's d
+  source rama. He was an old man, who, at the ag
+  source e of nearly sixty, had p","accessibilit
+  source yTreeSummary":"Safe DOM target summary.
+  source  Native AX field values are not capture
+  source d.","timestamp":"2026-10-18T15:35:37.10
+  source 4Z"}
+❯ /quit
+Closed. ⋔
