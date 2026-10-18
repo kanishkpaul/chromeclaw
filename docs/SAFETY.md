@@ -140,3 +140,11 @@ model, including with hosted settings. Cancel revokes an active run; deleting/ch
 refuses subsequent admissions. Forget deletes that local run's notes, not original or external
 copies. The integration probe and synthetic recollections establish no live personal-profile or
 personal-memory quality claim. See D-025, D-026 and [PHASE7.md](PHASE7.md).
+
+Phase 8 retains blocked subresource requests while distinguishing them from a failed main
+document in read-only page/source opening. A denied font, query-versioned asset or telemetry
+request cannot invalidate an otherwise readable page; redirects and denied main-document reads
+still refuse. Interactive action outcomes retain every request refusal. The controlled live
+regression independently checks zero requests at denied asset/telemetry endpoints in source and
+compiled modes. Styling/scripts can consequently be absent, and captures remain bounded by the
+existing visibility rules. This does not establish arbitrary live-site isolation or correctness.

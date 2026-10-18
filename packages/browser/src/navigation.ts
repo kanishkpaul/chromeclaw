@@ -17,7 +17,18 @@ export async function guardNavigation(
   },
 ) {
   let ticket: string | undefined;
-  const refusals: string[] = [];
+  const refusals: { reason: string; mainDocument: boolean }[] = [];
+  const recordRefusal = (reason: string, request: Request) => {
+    let mainDocument = true;
+    try {
+      mainDocument =
+        request.isNavigationRequest() &&
+        request.frame() === session.page.mainFrame();
+    } catch {
+      // An unestablished frame cannot prove that the failed request was only an asset.
+    }
+    refusals.push({ reason, mainDocument });
+  };
   await session.context.routeWebSocket("**/*", (socket) => socket.close());
   await session.context.route("**/*", async (route) => {
     try {
@@ -51,8 +62,9 @@ export async function guardNavigation(
         frame = request.frame();
       } catch {
         // Popup navigation may be intercepted before it has a frame. It has no authority.
-        refusals.push(
+        recordRefusal(
           "A request without an established task frame is refused.",
+          request,
         );
         await route.abort("blockedbyclient");
         return;
@@ -78,7 +90,7 @@ export async function guardNavigation(
         else ticket = undefined;
       }
       if (refusal) {
-        refusals.push(refusal);
+        recordRefusal(refusal, request);
         await route.abort("blockedbyclient");
       } else {
         const headers = { ...request.headers() };
@@ -91,7 +103,7 @@ export async function guardNavigation(
           .catch(() => undefined);
         if (!response) {
           // Network/close failures are refusal outcomes. Transport diagnostics may contain secrets.
-          refusals.push("The guarded browser request failed.");
+          recordRefusal("The guarded browser request failed.", request);
           await route.abort("failed").catch(() => {
             // A closing context has already aborted the request.
           });
@@ -102,14 +114,15 @@ export async function guardNavigation(
           response.status() < 400 &&
           response.headers().location
         ) {
-          refusals.push(
+          recordRefusal(
             "Redirects require a fresh, permitted navigation. No redirect was followed.",
+            request,
           );
           await route.abort("blockedbyclient");
         } else if (
           /attachment/i.test(response.headers()["content-disposition"] ?? "")
         ) {
-          refusals.push("Downloads require hand-back.");
+          recordRefusal("Downloads require hand-back.", request);
           await route.abort("blockedbyclient");
         } else await route.fulfill({ response });
         await response.dispose();
@@ -118,7 +131,10 @@ export async function guardNavigation(
       // Page closure may race an in-flight route or response disposal. A live transport error
       // is a refusal, with diagnostics withheld because URLs and bodies can contain secrets.
       if (!session.page.isClosed())
-        refusals.push("The guarded browser request could not complete safely.");
+        recordRefusal(
+          "The guarded browser request could not complete safely.",
+          route.request(),
+        );
       await route.abort("failed").catch(() => {
         // Closing the context has already aborted this request.
       });
@@ -150,8 +166,13 @@ export async function guardNavigation(
     clear() {
       ticket = undefined;
     },
-    refusal() {
-      return refusals.shift();
+    refusal(options: { documentOnly?: boolean } = {}) {
+      if (!options.documentOnly) return refusals.shift()?.reason;
+      // A blocked font, query-versioned asset or telemetry request does not invalidate a
+      // readable document. Discard those diagnostics without admitting their requests.
+      const refusal = refusals.find((entry) => entry.mainDocument)?.reason;
+      refusals.length = 0;
+      return refusal;
     },
   };
 }

@@ -1,0 +1,18 @@
+{
+  "suite": "live-01-regressions",
+  "source": false,
+  "checks": [
+    {
+      "id": "blocked-passive-assets-do-not-fail-readable-main-document",
+      "passed": false,
+      "status": "failed",
+      "error": "Read-only page navigation was refused.",
+      "runId": "run_mvdqy200_rgmkdy1"
+    },
+    {
+      "id": "query-assets-telemetry-and-foreign-requests-still-blocked",
+      "passed": true,
+      "forbidden": 0
+    }
+  ]
+}

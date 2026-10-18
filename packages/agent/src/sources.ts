@@ -92,7 +92,8 @@ export async function openCapturedSource(
       irreversible: "deny",
     });
     await navigate(session.page, url.href);
-    if (guard.refusal()) throw new Error("Source navigation was refused.");
+    if (guard.refusal({ documentOnly: true }))
+      throw new Error("Source navigation was refused.");
     await store.append({
       version: 1,
       type: "source_opened",

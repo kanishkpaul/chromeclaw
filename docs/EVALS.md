@@ -172,3 +172,14 @@ locally; the planner does not receive unlimited full documents. Unsupported/qual
 claims remain uncertain for human support review. Snapshot history uses a selected bounded JSON
 file, not a live profile or an embedding index. See [PHASE7.md](PHASE7.md) and the completion report
 for measured results and limits; live public-site and daily-use testing remain Phase 8.
+
+## Phase 8 live pilot
+
+`pnpm eval:live` runs the frozen public-site manifest through real headed Chrome and a loopback
+dummy BYOK wire emulator. It uses no real key or hosted inference. `pnpm eval:live-local` requires
+the explicit existing local endpoint/model variables and runs actual inference. Both preserve
+failed attempts and exit nonzero on misses. Synthetic history remains a separate zero-inference
+subset. `--followup` on the underlying script selects revised-label development checks rather
+than changing original scores. The live commands stay manual; CI runs `eval:live-regressions`
+against controlled pages in source/compiled modes. See [PHASE8.md](PHASE8.md) for scope, scoring,
+cleanup, emulation limits and the unfinished seven-day gate.

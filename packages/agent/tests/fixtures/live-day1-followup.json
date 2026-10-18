@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "ecb73e7fe78fceba0c44a5807aa205da9f31e25b",
+  "limits": "Development follow-ups after observed site drift. Not held out, not replacements for original failures. Anonymous reads only; no writes.",
+  "cases": [
+    {
+      "id": "read-example-current",
+      "mode": "ask",
+      "url": "https://example.com/",
+      "task": "Quote the complete English paragraph describing this domain's use, with its exact captured passage citation.",
+      "expected": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes."
+    },
+    {
+      "id": "find-example-current",
+      "mode": "find",
+      "url": "https://example.com/",
+      "task": "Find the link explaining more about this example domain. Return the offered target without clicking.",
+      "expectedDestination": "https://iana.org/help/example-domains"
+    }
+  ]
+}

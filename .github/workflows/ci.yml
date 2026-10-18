@@ -38,6 +38,7 @@ jobs:
       - run: pnpm eval:discovery-terminal
       - run: pnpm eval:readers
       - run: pnpm eval:tui
+      - run: pnpm eval:live-regressions
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -60,5 +61,6 @@ jobs:
             .chromeclaw/phase7-discovery
             .chromeclaw/phase7-safety
             .chromeclaw/phase7-terminal
+            .chromeclaw/phase8-regressions
           include-hidden-files: true
           if-no-files-found: error

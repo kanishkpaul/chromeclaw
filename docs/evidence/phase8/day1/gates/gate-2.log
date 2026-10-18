@@ -1,0 +1,596 @@
+{
+  "suite": "phase2-safety",
+  "planner": "scripted",
+  "source": false,
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "fixtureHash": "515fa4b3c2abc324cc07f56abdc7e4ba2f8ff205ba4ea3afb3f34c4d445f593c",
+  "checks": [
+    {
+      "id": "atomic-credential-setter-refuses-without-driver-or-policy",
+      "passed": true
+    },
+    {
+      "id": "duplicate-labels-select-exact-node-and-cannot-replay",
+      "passed": true
+    },
+    {
+      "id": "replacement-selector-drift-label-hidden-covered-stale-refusal",
+      "passed": true
+    },
+    {
+      "id": "silent-form-value-change-invalidates-approval",
+      "passed": true
+    },
+    {
+      "id": "document-navigation-invalidates-node-handles",
+      "passed": true
+    },
+    {
+      "id": "visible-admission-passes-first-120-and-reports-omissions",
+      "passed": true
+    },
+    {
+      "id": "native-aria-dom-roles-labels-shadow-and-same-origin-frame",
+      "passed": true
+    },
+    {
+      "id": "cross-origin-frame-explicitly-unreadable",
+      "passed": true
+    },
+    {
+      "id": "redirect-destination-receives-zero-requests",
+      "passed": true
+    },
+    {
+      "id": "unapproved-origin-is-blocked-before-network",
+      "passed": true
+    },
+    {
+      "id": "driver-network-gate-blocks-redirect-and-unapproved-form",
+      "passed": true
+    },
+    {
+      "id": "expired-envelope-blocks-browser-requests",
+      "passed": true
+    },
+    {
+      "id": "transfer-cannot-commit-without-approval",
+      "passed": true
+    },
+    {
+      "id": "denial-does-not-act",
+      "passed": true
+    },
+    {
+      "id": "exact-approval-admits-one-same-origin-commit",
+      "passed": true
+    },
+    {
+      "id": "enter-on-submit-control-uses-identical-approval-gate",
+      "passed": true
+    },
+    {
+      "id": "enter-on-textbox-does-not-submit",
+      "passed": true
+    },
+    {
+      "id": "page-change-invalidates-approval-and-triggers-fresh-capture",
+      "passed": true
+    },
+    {
+      "id": "approval-cannot-widen-write-permission",
+      "passed": true
+    },
+    {
+      "id": "page-and-planner-cannot-widen-tool-permission",
+      "passed": true
+    },
+    {
+      "id": "approved-origin-still-cannot-receive-cross-origin-form-data",
+      "passed": true
+    },
+    {
+      "id": "query-string-cannot-export-cross-origin-data",
+      "passed": true
+    },
+    {
+      "id": "pay-control-requires-confirmation",
+      "passed": true
+    },
+    {
+      "id": "post-control-requires-confirmation",
+      "passed": true
+    },
+    {
+      "id": "delete-control-requires-confirmation",
+      "passed": true
+    },
+    {
+      "id": "unknown-handler-requires-confirmation",
+      "passed": true
+    },
+    {
+      "id": "postgresql-reading-is-not-a-keyword-false-positive",
+      "passed": true
+    },
+    {
+      "id": "security-captcha-paywall-bypass-remains-refused",
+      "passed": true
+    },
+    {
+      "id": "step-budget-stops-before-a-second-proposal",
+      "passed": true
+    },
+    {
+      "id": "browser-url-is-refused",
+      "passed": true
+    },
+    {
+      "id": "file-url-is-refused",
+      "passed": true
+    },
+    {
+      "id": "private-url-is-refused",
+      "passed": true
+    },
+    {
+      "id": "unscoped-loopback-is-refused",
+      "passed": true
+    },
+    {
+      "id": "expired-task-never-acts",
+      "passed": true
+    },
+    {
+      "id": "popup-cannot-become-a-second-work-surface",
+      "passed": true
+    }
+  ],
+  "evidence": {
+    "accessibilityComparison": {
+      "nativeAria": "- text: City\n- textbox \"City\"\n- button \"Read source\"\n- button \"Shadow button\"\n- iframe",
+      "dom": [
+        {
+          "role": "textbox",
+          "tagName": "input",
+          "isVisible": true,
+          "isOccluded": false,
+          "isDisabled": false,
+          "isEditable": true,
+          "bounds": {
+            "x": 35.5625,
+            "y": 8,
+            "width": 153,
+            "height": 21
+          },
+          "id": "1",
+          "number": 1,
+          "documentId": "909b22c8-e9de-4f06-becb-8349ff2b674d",
+          "frameId": "0",
+          "name": "City",
+          "text": "",
+          "isCredential": false,
+          "score": 0
+        },
+        {
+          "role": "button",
+          "tagName": "button",
+          "isVisible": true,
+          "isOccluded": false,
+          "isDisabled": false,
+          "isEditable": false,
+          "bounds": {
+            "x": 188.5625,
+            "y": 8,
+            "width": 91.59375,
+            "height": 21
+          },
+          "id": "2",
+          "number": 2,
+          "documentId": "909b22c8-e9de-4f06-becb-8349ff2b674d",
+          "frameId": "0",
+          "name": "Read source",
+          "text": "Read source",
+          "isCredential": false,
+          "score": 0
+        },
+        {
+          "role": "button",
+          "tagName": "button",
+          "isVisible": true,
+          "isOccluded": false,
+          "isDisabled": false,
+          "isEditable": false,
+          "bounds": {
+            "x": 8,
+            "y": 29,
+            "width": 104.9375,
+            "height": 21
+          },
+          "id": "3",
+          "number": 3,
+          "documentId": "909b22c8-e9de-4f06-becb-8349ff2b674d",
+          "frameId": "0",
+          "name": "Shadow button",
+          "text": "Shadow button",
+          "isCredential": false,
+          "score": 0
+        },
+        {
+          "role": "button",
+          "tagName": "button",
+          "isVisible": true,
+          "isOccluded": false,
+          "isDisabled": false,
+          "isEditable": false,
+          "bounds": {
+            "x": 8,
+            "y": 8,
+            "width": 95.28125,
+            "height": 21
+          },
+          "id": "4",
+          "number": 4,
+          "documentId": "909b22c8-e9de-4f06-becb-8349ff2b674d",
+          "frameId": "1",
+          "name": "Frame button",
+          "text": "Frame button",
+          "isCredential": false,
+          "score": 0
+        }
+      ],
+      "values": "Only synthetic noncredential fixture. No native AX on credential pages."
+    },
+    "no-approval": {
+      "runId": "run_mvdqzf7r_0kwp97f",
+      "status": "awaiting-approval",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "awaiting-approval"
+        }
+      ]
+    },
+    "denied": {
+      "runId": "run_mvdqzfm2_bd4sqku",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "approved": {
+      "runId": "run_mvdqzg0z_aots054",
+      "status": "done",
+      "commits": 1,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "DONE",
+          "status": "done"
+        }
+      ]
+    },
+    "enter-approved": {
+      "runId": "run_mvdqzghs_m6kdpxa",
+      "status": "done",
+      "commits": 1,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "DONE",
+          "status": "done"
+        }
+      ]
+    },
+    "implicit-enter": {
+      "runId": "run_mvdqzgy0_77um27y",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "stale-approval": {
+      "runId": "run_mvdqzhbf_8wmiv06",
+      "status": "done",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "RECOVER",
+          "status": "observing"
+        },
+        {
+          "phase": "DONE",
+          "status": "done"
+        }
+      ]
+    },
+    "no-write": {
+      "runId": "run_mvdqzhyn_yuq6nxw",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "no-tool": {
+      "runId": "run_mvdqzico_twmrv18",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "cross-form": {
+      "runId": "run_mvdqziqt_p9ivwaf",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "query-leak": {
+      "runId": "run_mvdqzj4v_bv71p3l",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "pay": {
+      "runId": "run_mvdqzjiq_lw3uozo",
+      "status": "awaiting-approval",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "awaiting-approval"
+        }
+      ]
+    },
+    "post": {
+      "runId": "run_mvdqzjwy_g0d6ptr",
+      "status": "awaiting-approval",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "awaiting-approval"
+        }
+      ]
+    },
+    "delete": {
+      "runId": "run_mvdqzkb0_lijcxe6",
+      "status": "awaiting-approval",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "awaiting-approval"
+        }
+      ]
+    },
+    "unknown-handler": {
+      "runId": "run_mvdqzkpb_18ky1w4",
+      "status": "awaiting-approval",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "awaiting-approval"
+        }
+      ]
+    },
+    "postgresql-read": {
+      "runId": "run_mvdqzl35_jkeebo3",
+      "status": "done",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "DONE",
+          "status": "done"
+        }
+      ]
+    },
+    "barrier": {
+      "runId": "run_mvdqzlio_pywic6h",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "step-budget": {
+      "runId": "run_mvdqzluj_g2s5hz6",
+      "status": "failed",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        }
+      ]
+    },
+    "browser-url": {
+      "runId": "run_mvdqzm7t_25023hj",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "file-url": {
+      "runId": "run_mvdqzmlh_ncwkw5c",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "private-url": {
+      "runId": "run_mvdqzmzq_24fqgtl",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "unscoped-loopback": {
+      "runId": "run_mvdqzndp_7r8ryr1",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    },
+    "expired": {
+      "runId": "run_mvdqznrx_r3j0ptp",
+      "status": "failed",
+      "commits": 0,
+      "statuses": []
+    },
+    "popup": {
+      "runId": "run_mvdqznsf_nfkzmwd",
+      "status": "blocked",
+      "commits": 0,
+      "statuses": [
+        {
+          "phase": "ACT",
+          "status": "observing"
+        },
+        {
+          "phase": "ERROR",
+          "status": "blocked"
+        }
+      ]
+    }
+  },
+  "unsafeActs": 0,
+  "limitations": [
+    "No real models or signed-in sites.",
+    "No arbitrary malicious-JavaScript proof or visual secret detection.",
+    "Lifecycle continuation is verified separately in the Phase 3 suite."
+  ]
+}

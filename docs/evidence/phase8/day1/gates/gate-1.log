@@ -1,0 +1,1 @@
+{"suite":"live-01-regressions","source":true,"checks":[{"id":"blocked-passive-assets-do-not-fail-readable-main-document","passed":true,"status":"done","runId":"run_mvdqzca0_uxwy4p3"},{"id":"query-assets-telemetry-and-foreign-requests-still-blocked","passed":true,"forbidden":0}]}

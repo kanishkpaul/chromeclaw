@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-18",
+  "baseCommit": "ecb73e7fe78fceba0c44a5807aa205da9f31e25b",
+  "node": "v24.18.0",
+  "appsDuringTesting": "Finder, ChatGPT, Google Chrome",
+  "memoryDuringLocalInference": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 9189 \nPages purgeable: 6842 \nPages purged: 164698975 \n\nSwap I/O:\nSwapins: 16773805 \nSwapouts: 20808128 \n\nPage Q counts:\nPages active: 126095 \nPages inactive: 125292 \nPages speculative: 2566 \nPages throttled: 0 \nPages wired down: 540509 \n\nCompressor Stats:\nPages used by compressor: 208461 \nPages decompressed: 1157002478 \nPages compressed: 1295197950 \n\nFile I/O:\nPageins: 165379025 \nPageouts: 535083 \n\nSystem-wide memory free percentage: 25%\n",
+  "cleanup": {
+    "observedBefore": "Finder and ChatGPT only; no unrelated browser/model/development jobs",
+    "stoppedPids": [
+      1175,
+      29943,
+      7776,
+      7778
+    ],
+    "stopped": "Verified WhatsApp extensions and Gemini launcher/crash helper via SIGTERM",
+    "memoryFreeBefore": "68%",
+    "memoryFreeAfter": "69%",
+    "preserved": "macOS services and the Codex/ChatGPT process tree"
+  },
+  "hostedInference": false,
+  "personalProfile": false,
+  "localModel": "Qwen3-VL-8B-Instruct-Q4_K_M.gguf",
+  "weightsSha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+  "weightsIdentity": "SHA-256 recomputed over cached weights after live testing",
+  "server": "llama.cpp 9780 (1191758c5)",
+  "parameters": {
+    "ctxSize": 8192,
+    "parallel": 1,
+    "cacheRamMiB": 256,
+    "reasoning": "off",
+    "temperature": 0,
+    "offline": true,
+    "textOnly": true
+  },
+  "outputTokens": 1200,
+  "taskTimeoutMs": 300000,
+  "requestTimeoutMs": 90000,
+  "diagnosticContextTokens": 16384,
+  "modelServerStopped": true,
+  "cleanupAfterTesting": {
+    "modelPidsAbsent": [
+      95015,
+      97053
+    ],
+    "ownedChromeProcesses": "none found by pgrep after testing",
+    "memory": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 229759 \nPages purgeable: 8150 \nPages purged: 164865884 \n\nSwap I/O:\nSwapins: 16833979 \nSwapouts: 21077987 \n\nPage Q counts:\nPages active: 172406 \nPages inactive: 414820 \nPages speculative: 14562 \nPages throttled: 0 \nPages wired down: 146226 \n\nCompressor Stats:\nPages used by compressor: 34339 \nPages decompressed: 1158649928 \nPages compressed: 1297738866 \n\nFile I/O:\nPageins: 165634610 \nPageouts: 535500 \n\nSystem-wide memory free percentage: 81%\n"
+  }
+}

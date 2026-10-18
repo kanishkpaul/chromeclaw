@@ -1,0 +1,1567 @@
+[
+  {
+    "url": "https://example.com/",
+    "finalUrl": "https://example.com/",
+    "failed": [],
+    "refusals": [],
+    "headings": [],
+    "passages": {
+      "passages": [
+        {
+          "text": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+          "kind": "document",
+          "id": "diagnostic:p1",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "هذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.",
+          "kind": "document",
+          "id": "diagnostic:p2",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。",
+          "kind": "document",
+          "id": "diagnostic:p3",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "L’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable.  Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.",
+          "kind": "document",
+          "id": "diagnostic:p4",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "Данный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.",
+          "kind": "document",
+          "id": "diagnostic:p5",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "Este dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.",
+          "kind": "document",
+          "id": "diagnostic:p6",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        },
+        {
+          "text": "Learn more",
+          "kind": "document",
+          "id": "diagnostic:p7",
+          "snapshotId": "diagnostic",
+          "url": "https://example.com/"
+        }
+      ],
+      "unreadableRegions": 0,
+      "omittedPassages": false
+    }
+  },
+  {
+    "url": "https://docs.python.org/3/tutorial/",
+    "finalUrl": "https://docs.python.org/3/tutorial/",
+    "failed": [
+      {
+        "url": "https://docs.python.org/3/_static/pygments.css?v=b86133f3",
+        "type": "stylesheet",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/classic.css?v=234b1a7c",
+        "type": "stylesheet",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/pydoctheme.css?v=48df1187",
+        "type": "stylesheet",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/documentation_options.js?v=0fe728b1",
+        "type": "script",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/doctools.js?v=9bcbadda",
+        "type": "script",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/sphinx_highlight.js?v=dc90522c",
+        "type": "script",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://docs.python.org/3/_static/pygments_dark.css?v=0fc419ee",
+        "type": "stylesheet",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      },
+      {
+        "url": "https://analytics.python.org/js/script.file-downloads.outbound-links.js",
+        "type": "script",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      }
+    ],
+    "refusals": [
+      "A data-bearing request requires exact action approval.",
+      "A data-bearing request requires exact action approval.",
+      "A data-bearing request requires exact action approval.",
+      "A data-bearing request requires exact action approval.",
+      "A data-bearing request requires exact action approval.",
+      "A data-bearing request requires exact action approval.",
+      "The destination origin is outside the fixed task permissions.",
+      "A data-bearing request requires exact action approval."
+    ],
+    "headings": [
+      {
+        "text": "The Python Tutorial¶",
+        "rect": {
+          "x": 8,
+          "y": 682.375,
+          "width": 1424,
+          "height": 37,
+          "top": 682.375,
+          "right": 1432,
+          "bottom": 719.375,
+          "left": 8
+        },
+        "html": "<h1>The Python Tutorial<a class=\"headerlink\" href=\"#the-python-tutorial\" title=\"Link to this heading\">¶</a></h1>",
+        "style": "visible"
+      }
+    ],
+    "passages": {
+      "passages": [
+        {
+          "text": "Theme",
+          "kind": "document",
+          "id": "diagnostic:p1",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Previous topic",
+          "kind": "document",
+          "id": "diagnostic:p2",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Changelog",
+          "kind": "document",
+          "id": "diagnostic:p3",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Next topic",
+          "kind": "document",
+          "id": "diagnostic:p4",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "1.",
+          "kind": "document",
+          "id": "diagnostic:p5",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Whetting Your Appetite",
+          "kind": "document",
+          "id": "diagnostic:p6",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "This page",
+          "kind": "document",
+          "id": "diagnostic:p7",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Report a bug",
+          "kind": "document",
+          "id": "diagnostic:p8",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Improve this page",
+          "kind": "document",
+          "id": "diagnostic:p9",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Show source",
+          "kind": "document",
+          "id": "diagnostic:p10",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Navigation",
+          "kind": "document",
+          "id": "diagnostic:p11",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "index",
+          "kind": "document",
+          "id": "diagnostic:p12",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "modules",
+          "kind": "document",
+          "id": "diagnostic:p13",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "|",
+          "kind": "document",
+          "id": "diagnostic:p14",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "next",
+          "kind": "document",
+          "id": "diagnostic:p15",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "|",
+          "kind": "document",
+          "id": "diagnostic:p16",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "previous",
+          "kind": "document",
+          "id": "diagnostic:p17",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "|",
+          "kind": "document",
+          "id": "diagnostic:p18",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Python",
+          "kind": "document",
+          "id": "diagnostic:p19",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "»",
+          "kind": "document",
+          "id": "diagnostic:p20",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "3.15.0 Documentation",
+          "kind": "document",
+          "id": "diagnostic:p21",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "»",
+          "kind": "document",
+          "id": "diagnostic:p22",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python Tutorial",
+          "kind": "document",
+          "id": "diagnostic:p23",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "|",
+          "kind": "document",
+          "id": "diagnostic:p24",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Theme",
+          "kind": "document",
+          "id": "diagnostic:p25",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "|",
+          "kind": "document",
+          "id": "diagnostic:p26",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python Tutorial",
+          "kind": "document",
+          "id": "diagnostic:p27",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "¶",
+          "kind": "document",
+          "id": "diagnostic:p28",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Tip",
+          "kind": "document",
+          "id": "diagnostic:p29",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "This tutorial is designed for",
+          "kind": "document",
+          "id": "diagnostic:p30",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "programmers",
+          "kind": "document",
+          "id": "diagnostic:p31",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "that are new to the Python language,",
+          "kind": "document",
+          "id": "diagnostic:p32",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "not",
+          "kind": "document",
+          "id": "diagnostic:p33",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "beginners",
+          "kind": "document",
+          "id": "diagnostic:p34",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "who are new to programming.",
+          "kind": "document",
+          "id": "diagnostic:p35",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Python is an easy to learn, powerful programming language. It has efficient\nhigh-level data structures and a simple but effective approach to\nobject-oriented programming. Python’s elegant syntax and dynamic typing,\ntogether with its interpreted nature, make it an ideal language for scripting\nand rapid application development in many areas on most platforms.",
+          "kind": "document",
+          "id": "diagnostic:p36",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python interpreter and the extensive standard library are freely available\nin source or binary form for all major platforms from the Python website,",
+          "kind": "document",
+          "id": "diagnostic:p37",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "https://www.python.org/",
+          "kind": "document",
+          "id": "diagnostic:p38",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": ", and may be freely distributed. The same site also\ncontains distributions of and pointers to many free third party Python modules,\nprograms and tools, and additional documentation.",
+          "kind": "document",
+          "id": "diagnostic:p39",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python interpreter is easily extended with new functions and data types\nimplemented in C or C++ (or other languages callable from C). Python is also\nsuitable as an extension language for customizable applications.",
+          "kind": "document",
+          "id": "diagnostic:p40",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "This tutorial introduces the reader informally to the basic concepts and\nfeatures of the Python language and system. Be aware that it expects you to\nhave a basic understanding of programming in general. It helps to have a Python\ninterpreter handy for hands-on experience, but all examples are self-contained,\nso the tutorial can be read off-line as well.",
+          "kind": "document",
+          "id": "diagnostic:p41",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "For a description of standard objects and modules, see",
+          "kind": "document",
+          "id": "diagnostic:p42",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "Python built-ins reference",
+          "kind": "document",
+          "id": "diagnostic:p43",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "and",
+          "kind": "document",
+          "id": "diagnostic:p44",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python standard library",
+          "kind": "document",
+          "id": "diagnostic:p45",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": ".",
+          "kind": "document",
+          "id": "diagnostic:p46",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "The Python Language Reference",
+          "kind": "document",
+          "id": "diagnostic:p47",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "text": "gives a more formal definition of\nthe language.  To write extensions in C or C++, read",
+          "kind": "document",
+          "id": "diagnostic:p48",
+          "snapshotId": "diagnostic",
+          "url": "https://docs.python.org/3/tutorial/"
+        }
+      ],
+      "unreadableRegions": 0,
+      "omittedPassages": false
+    }
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+    "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+    "failed": [
+      {
+        "url": "https://incoming.telemetry.mozilla.org/submit/mdn-fred/events/1/9fbd9271-1b92-4f3f-b1e9-b004faccaf6e",
+        "type": "ping",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      }
+    ],
+    "refusals": [
+      "The destination origin is outside the fixed task permissions."
+    ],
+    "headings": [
+      {
+        "text": "JavaScript Guide",
+        "rect": {
+          "x": 336,
+          "y": 205,
+          "width": 768,
+          "height": 50,
+          "top": 205,
+          "right": 1104,
+          "bottom": 255,
+          "left": 336
+        },
+        "html": "<h1>JavaScript Guide</h1>",
+        "style": "visible"
+      }
+    ],
+    "passages": {
+      "passages": [
+        {
+          "text": "HTML",
+          "kind": "document",
+          "id": "diagnostic:p1",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "CSS",
+          "kind": "document",
+          "id": "diagnostic:p2",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript",
+          "kind": "document",
+          "id": "diagnostic:p3",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Web APIs",
+          "kind": "document",
+          "id": "diagnostic:p4",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "All",
+          "kind": "document",
+          "id": "diagnostic:p5",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Learn",
+          "kind": "document",
+          "id": "diagnostic:p6",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Tools",
+          "kind": "document",
+          "id": "diagnostic:p7",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "About",
+          "kind": "document",
+          "id": "diagnostic:p8",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Blog",
+          "kind": "document",
+          "id": "diagnostic:p9",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Web",
+          "kind": "document",
+          "id": "diagnostic:p10",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript",
+          "kind": "document",
+          "id": "diagnostic:p11",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Guide",
+          "kind": "document",
+          "id": "diagnostic:p12",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Theme",
+          "kind": "shadow",
+          "id": "diagnostic:p13",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "English (US)",
+          "kind": "shadow",
+          "id": "diagnostic:p14",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript Guide",
+          "kind": "document",
+          "id": "diagnostic:p15",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "The JavaScript Guide shows you how to use",
+          "kind": "document",
+          "id": "diagnostic:p16",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript",
+          "kind": "document",
+          "id": "diagnostic:p17",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "and gives an overview of the language. If you need exhaustive information about a language feature, have a look at the",
+          "kind": "document",
+          "id": "diagnostic:p18",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript reference",
+          "kind": "document",
+          "id": "diagnostic:p19",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": ".",
+          "kind": "document",
+          "id": "diagnostic:p20",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "This Guide is divided into the following chapters.",
+          "kind": "document",
+          "id": "diagnostic:p21",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "In this article",
+          "kind": "document",
+          "id": "diagnostic:p22",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Introduction",
+          "kind": "document",
+          "id": "diagnostic:p23",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Grammar and types",
+          "kind": "document",
+          "id": "diagnostic:p24",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Control flow and error handling",
+          "kind": "document",
+          "id": "diagnostic:p25",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Loops and iteration",
+          "kind": "document",
+          "id": "diagnostic:p26",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Functions",
+          "kind": "document",
+          "id": "diagnostic:p27",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Expressions and operators",
+          "kind": "document",
+          "id": "diagnostic:p28",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Numbers and strings",
+          "kind": "document",
+          "id": "diagnostic:p29",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Representing dates & times",
+          "kind": "document",
+          "id": "diagnostic:p30",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Regular expressions",
+          "kind": "document",
+          "id": "diagnostic:p31",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Indexed collections",
+          "kind": "document",
+          "id": "diagnostic:p32",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Keyed collections",
+          "kind": "document",
+          "id": "diagnostic:p33",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Working with objects",
+          "kind": "document",
+          "id": "diagnostic:p34",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Using classes",
+          "kind": "document",
+          "id": "diagnostic:p35",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Promises",
+          "kind": "document",
+          "id": "diagnostic:p36",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Typed arrays",
+          "kind": "document",
+          "id": "diagnostic:p37",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Iterators and generators",
+          "kind": "document",
+          "id": "diagnostic:p38",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Resource management",
+          "kind": "document",
+          "id": "diagnostic:p39",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Internationalization",
+          "kind": "document",
+          "id": "diagnostic:p40",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript modules",
+          "kind": "document",
+          "id": "diagnostic:p41",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Advanced topics",
+          "kind": "document",
+          "id": "diagnostic:p42",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Introduction",
+          "kind": "document",
+          "id": "diagnostic:p43",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Overview:",
+          "kind": "document",
+          "id": "diagnostic:p44",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Introduction",
+          "kind": "document",
+          "id": "diagnostic:p45",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "About this guide",
+          "kind": "document",
+          "id": "diagnostic:p46",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "About JavaScript",
+          "kind": "document",
+          "id": "diagnostic:p47",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript and Java",
+          "kind": "document",
+          "id": "diagnostic:p48",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "ECMAScript",
+          "kind": "document",
+          "id": "diagnostic:p49",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Tools",
+          "kind": "document",
+          "id": "diagnostic:p50",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "What's next",
+          "kind": "document",
+          "id": "diagnostic:p51",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Grammar and types",
+          "kind": "document",
+          "id": "diagnostic:p52",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Overview:",
+          "kind": "document",
+          "id": "diagnostic:p53",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Grammar and types",
+          "kind": "document",
+          "id": "diagnostic:p54",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Basic syntax & comments",
+          "kind": "document",
+          "id": "diagnostic:p55",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Declarations",
+          "kind": "document",
+          "id": "diagnostic:p56",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Variable scope",
+          "kind": "document",
+          "id": "diagnostic:p57",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Variable hoisting",
+          "kind": "document",
+          "id": "diagnostic:p58",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Data structures and types",
+          "kind": "document",
+          "id": "diagnostic:p59",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Literals",
+          "kind": "document",
+          "id": "diagnostic:p60",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Control flow and error handling",
+          "kind": "document",
+          "id": "diagnostic:p61",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript",
+          "kind": "document",
+          "id": "diagnostic:p62",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Tutorials and guides",
+          "kind": "document",
+          "id": "diagnostic:p63",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript Guide",
+          "kind": "document",
+          "id": "diagnostic:p64",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Introduction",
+          "kind": "document",
+          "id": "diagnostic:p65",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Grammar and types",
+          "kind": "document",
+          "id": "diagnostic:p66",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Control flow and error handling",
+          "kind": "document",
+          "id": "diagnostic:p67",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Loops and iteration",
+          "kind": "document",
+          "id": "diagnostic:p68",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Functions",
+          "kind": "document",
+          "id": "diagnostic:p69",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Expressions and operators",
+          "kind": "document",
+          "id": "diagnostic:p70",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Numbers and strings",
+          "kind": "document",
+          "id": "diagnostic:p71",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Representing dates & times",
+          "kind": "document",
+          "id": "diagnostic:p72",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Regular expressions",
+          "kind": "document",
+          "id": "diagnostic:p73",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Indexed collections",
+          "kind": "document",
+          "id": "diagnostic:p74",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Keyed collections",
+          "kind": "document",
+          "id": "diagnostic:p75",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Working with objects",
+          "kind": "document",
+          "id": "diagnostic:p76",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Using classes",
+          "kind": "document",
+          "id": "diagnostic:p77",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Using promises",
+          "kind": "document",
+          "id": "diagnostic:p78",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "JavaScript typed arrays",
+          "kind": "document",
+          "id": "diagnostic:p79",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        },
+        {
+          "text": "Iterators and generators",
+          "kind": "document",
+          "id": "diagnostic:p80",
+          "snapshotId": "diagnostic",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+        }
+      ],
+      "unreadableRegions": 0,
+      "omittedPassages": false
+    }
+  },
+  {
+    "url": "https://nodejs.org/api/",
+    "finalUrl": "https://nodejs.org/api/",
+    "failed": [
+      {
+        "url": "https://fonts.googleapis.com/css?family=Lato:400,700,400italic&display=fallback",
+        "type": "stylesheet",
+        "failure": {
+          "errorText": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      }
+    ],
+    "refusals": [
+      "The destination origin is outside the fixed task permissions."
+    ],
+    "headings": [
+      {
+        "text": "Node.js v26.12.0 documentation",
+        "rect": {
+          "x": 258,
+          "y": 16,
+          "width": 662.71875,
+          "height": 47,
+          "top": 16,
+          "right": 920.71875,
+          "bottom": 63,
+          "left": 258
+        },
+        "html": "<h1>Node.js v26.12.0 documentation</h1>",
+        "style": "visible"
+      }
+    ],
+    "passages": {
+      "passages": [
+        {
+          "text": "Node.js",
+          "kind": "document",
+          "id": "diagnostic:p1",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "About this documentation",
+          "kind": "document",
+          "id": "diagnostic:p2",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Usage and example",
+          "kind": "document",
+          "id": "diagnostic:p3",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Assertion testing",
+          "kind": "document",
+          "id": "diagnostic:p4",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Asynchronous context tracking",
+          "kind": "document",
+          "id": "diagnostic:p5",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Async hooks",
+          "kind": "document",
+          "id": "diagnostic:p6",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Benchmark runner",
+          "kind": "document",
+          "id": "diagnostic:p7",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Buffer",
+          "kind": "document",
+          "id": "diagnostic:p8",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C++ addons",
+          "kind": "document",
+          "id": "diagnostic:p9",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C/C++ addons with Node-API",
+          "kind": "document",
+          "id": "diagnostic:p10",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C++ embedder API",
+          "kind": "document",
+          "id": "diagnostic:p11",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Child processes",
+          "kind": "document",
+          "id": "diagnostic:p12",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Cluster",
+          "kind": "document",
+          "id": "diagnostic:p13",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Command-line options",
+          "kind": "document",
+          "id": "diagnostic:p14",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Console",
+          "kind": "document",
+          "id": "diagnostic:p15",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Crypto",
+          "kind": "document",
+          "id": "diagnostic:p16",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Debugger",
+          "kind": "document",
+          "id": "diagnostic:p17",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Deprecated APIs",
+          "kind": "document",
+          "id": "diagnostic:p18",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Diagnostics Channel",
+          "kind": "document",
+          "id": "diagnostic:p19",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "DNS",
+          "kind": "document",
+          "id": "diagnostic:p20",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Domain",
+          "kind": "document",
+          "id": "diagnostic:p21",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Environment Variables",
+          "kind": "document",
+          "id": "diagnostic:p22",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Errors",
+          "kind": "document",
+          "id": "diagnostic:p23",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Events",
+          "kind": "document",
+          "id": "diagnostic:p24",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "File system",
+          "kind": "document",
+          "id": "diagnostic:p25",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "FFI",
+          "kind": "document",
+          "id": "diagnostic:p26",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Globals",
+          "kind": "document",
+          "id": "diagnostic:p27",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Node.js v26.12.0 documentation",
+          "kind": "document",
+          "id": "diagnostic:p28",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Table of contents",
+          "kind": "document",
+          "id": "diagnostic:p29",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Index",
+          "kind": "document",
+          "id": "diagnostic:p30",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Other versions",
+          "kind": "document",
+          "id": "diagnostic:p31",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Options",
+          "kind": "document",
+          "id": "diagnostic:p32",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Table of contents",
+          "kind": "document",
+          "id": "diagnostic:p33",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Index",
+          "kind": "document",
+          "id": "diagnostic:p34",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Index",
+          "kind": "document",
+          "id": "diagnostic:p35",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "#",
+          "kind": "document",
+          "id": "diagnostic:p36",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "About this documentation",
+          "kind": "document",
+          "id": "diagnostic:p37",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Usage and example",
+          "kind": "document",
+          "id": "diagnostic:p38",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Assertion testing",
+          "kind": "document",
+          "id": "diagnostic:p39",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Asynchronous context tracking",
+          "kind": "document",
+          "id": "diagnostic:p40",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Async hooks",
+          "kind": "document",
+          "id": "diagnostic:p41",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Benchmark runner",
+          "kind": "document",
+          "id": "diagnostic:p42",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Buffer",
+          "kind": "document",
+          "id": "diagnostic:p43",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C++ addons",
+          "kind": "document",
+          "id": "diagnostic:p44",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C/C++ addons with Node-API",
+          "kind": "document",
+          "id": "diagnostic:p45",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "C++ embedder API",
+          "kind": "document",
+          "id": "diagnostic:p46",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Child processes",
+          "kind": "document",
+          "id": "diagnostic:p47",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Cluster",
+          "kind": "document",
+          "id": "diagnostic:p48",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Command-line options",
+          "kind": "document",
+          "id": "diagnostic:p49",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Console",
+          "kind": "document",
+          "id": "diagnostic:p50",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Crypto",
+          "kind": "document",
+          "id": "diagnostic:p51",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Debugger",
+          "kind": "document",
+          "id": "diagnostic:p52",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Deprecated APIs",
+          "kind": "document",
+          "id": "diagnostic:p53",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Diagnostics Channel",
+          "kind": "document",
+          "id": "diagnostic:p54",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "DNS",
+          "kind": "document",
+          "id": "diagnostic:p55",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Domain",
+          "kind": "document",
+          "id": "diagnostic:p56",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Environment Variables",
+          "kind": "document",
+          "id": "diagnostic:p57",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Errors",
+          "kind": "document",
+          "id": "diagnostic:p58",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Events",
+          "kind": "document",
+          "id": "diagnostic:p59",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "File system",
+          "kind": "document",
+          "id": "diagnostic:p60",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "FFI",
+          "kind": "document",
+          "id": "diagnostic:p61",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        },
+        {
+          "text": "Globals",
+          "kind": "document",
+          "id": "diagnostic:p62",
+          "snapshotId": "diagnostic",
+          "url": "https://nodejs.org/api/"
+        }
+      ],
+      "unreadableRegions": 0,
+      "omittedPassages": false
+    }
+  }
+]

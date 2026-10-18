@@ -1,0 +1,351 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "actualLocal": false,
+  "hostedInference": false,
+  "profile": "emulated-byok-wire-only",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 12,
+  "completed": 12,
+  "passed": 5,
+  "modelQualityClaim": "None; labels drive mock responses.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [
+    {
+      "caseId": "read-example",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-example",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-absent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "research-python",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "web-python",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    }
+  ],
+  "results": [
+    {
+      "id": "read-example",
+      "mode": "ask",
+      "passed": false,
+      "status": "awaiting-answer",
+      "answer": "Expected public passage unavailable; inspect site drift or scope.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 2537,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdqw7x2_j6fqz9k",
+      "log": "read-example/run_mvdqw7x2_j6fqz9k.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Read-only page navigation was refused.",
+      "answer": "Read-only page navigation was refused.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1155,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqw9vs_3gxaz10",
+      "log": "read-python/run_mvdqw9vs_3gxaz10.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Read-only page navigation was refused.",
+      "answer": "Read-only page navigation was refused.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 831,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqwarw_egrn70r",
+      "log": "read-mdn/run_mvdqwarw_egrn70r.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 950,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdqwbez_fmj9ujk",
+      "log": "find-example/run_mvdqwbez_fmj9ujk.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "failed",
+      "error": "Read-only page navigation was refused.",
+      "answer": "Read-only page navigation was refused.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 817,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqwc5e_4b7tnb3",
+      "log": "find-python/run_mvdqwc5e_4b7tnb3.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "failed",
+      "error": "Read-only page navigation was refused.",
+      "answer": "Read-only page navigation was refused.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 734,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqwcs3_00ovzl7",
+      "log": "find-node/run_mvdqwcs3_00ovzl7.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 967,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdqwdch_8bki7vj",
+      "log": "find-absent/run_mvdqwdch_8bki7vj.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent",
+      "mode": "work",
+      "passed": true,
+      "status": "done",
+      "answer": "Synthetic field edited; form not submitted.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": true,
+      "latencyMs": 1784,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 3,
+      "liveActivations": 0,
+      "runId": "run_mvdqwe3d_2yk934m",
+      "log": "edit-unsent/run_mvdqwe3d_2yk934m.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "research-python",
+      "mode": "research",
+      "passed": true,
+      "status": "done",
+      "answer": "The Python Tutorial",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1888,
+      "steps": 1,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdqwfgy_aln7jp1",
+      "log": "research-python/run_mvdqwfgy_aln7jp1.jsonl",
+      "sourceFailures": [
+        {
+          "stage": "source-failure",
+          "detail": "The destination origin is outside the fixed task permissions.",
+          "url": "https://duckduckgo.com/duckduckgo-help-pages/company/ads-by-microsoft-on-duckduckgo-private-search"
+        }
+      ]
+    },
+    {
+      "id": "web-python",
+      "mode": "web",
+      "passed": false,
+      "status": "uncertain",
+      "error": "No validated source matches; absence from the wider web/history is not established.",
+      "answer": "No readable official page.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1519,
+      "steps": 1,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdqwgxe_816q2lk",
+      "log": "web-python/run_mvdqwgxe_816q2lk.jsonl",
+      "sourceFailures": [
+        {
+          "stage": "source-failure",
+          "detail": "The destination origin is outside the fixed task permissions.",
+          "url": "https://duckduckgo.com/duckduckgo-help-pages/company/ads-by-microsoft-on-duckduckgo-private-search"
+        }
+      ]
+    },
+    {
+      "id": "history-example",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://example.com/",
+      "ranked": [],
+      "urls": [
+        "https://example.com/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 758,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqwi3m_bjw4rv5",
+      "log": "history-example/run_mvdqwi3m_bjw4rv5.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-python",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://docs.python.org/3/tutorial/",
+      "ranked": [],
+      "urls": [
+        "https://docs.python.org/3/tutorial/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 562,
+      "steps": 1,
+      "usage": [],
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdqwioo_76x17en",
+      "log": "history-python/run_mvdqwioo_76x17en.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

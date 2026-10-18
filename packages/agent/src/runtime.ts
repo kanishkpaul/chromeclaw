@@ -685,7 +685,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         inFlight = true;
         await abortable(navigate(session.page, pageUrl), signal);
         inFlight = false;
-        if (navigation.refusal())
+        if (navigation.refusal({ documentOnly: true }))
           throw new RuntimeFailure("Read-only page navigation was refused.");
         await saveStep(
           makeStep(
@@ -1174,7 +1174,9 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         );
         inFlight = false;
         signal.throwIfAborted();
-        const navigationRefusal = navigation.refusal();
+        const navigationRefusal = navigation.refusal({
+          documentOnly: isReadOnlyPage,
+        });
         let result = navigationRefusal
           ? { refused: true, reason: navigationRefusal }
           : execution;
