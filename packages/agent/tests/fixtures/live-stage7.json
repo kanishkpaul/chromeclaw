@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "stage": 7,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "00b60b7",
+  "scope": "Final regression and retest of Stages 1-6. Frozen labels and criteria of earlier manifests are reused unchanged. Every retested task was already observed, so no result here is held-out evidence. No hosted inference, real keys, login, credential entry, posting or purchase. Public-site submits are never approved.",
+  "defects": [
+    { "id": "D1-subresource-refusal-fails-read", "stage": 1, "status": "fixed in b86c5f6", "regression": "pnpm eval:live-regressions" },
+    { "id": "D2-duplicate-ranked-urls-accepted", "stage": 3, "status": "fixed in 4da27c5", "regression": "pnpm eval:live-regressions" },
+    { "id": "D3-cut-passage-reported-complete", "stage": 6, "status": "fixed in 00b60b7", "regression": "pnpm eval:live-regressions" },
+    { "id": "D4-inline-link-splits-passage", "stage": 6, "status": "fixed in 00b60b7", "regression": "pnpm eval:live-regressions" },
+    { "id": "D5-anchor-name-attribute-as-link-name", "stage": 6, "status": "fixed in 00b60b7", "regression": "pnpm eval:live-regressions" },
+    { "id": "D6-cleanup-deadline-on-long-tasks", "stage": "2 and 6", "status": "root-caused and fixed in Stage 7", "regression": "node packages/agent/tests/live-cleanup.browser.mjs" }
+  ],
+  "harnessCorrection": "Stage 2-4 terminal resize used TIOCSWINSZ without SIGWINCH. live.pty.py now signals the resize; the earlier recordings stay as recorded.",
+  "retests": {
+    "dummy": [
+      "node packages/agent/tests/live.browser.mjs --cases=read-example,read-python,read-mdn,find-example,find-python,find-node,find-absent,edit-unsent,history-example,history-python",
+      "node packages/agent/tests/live.browser.mjs --day2",
+      "node packages/agent/tests/live-research.browser.mjs",
+      "node packages/agent/tests/live-recovery.browser.mjs",
+      "node packages/agent/tests/live-byok.browser.mjs",
+      "python3 apps/cli/tests/stage6.pty.py"
+    ],
+    "actualLocal": [
+      "node packages/agent/tests/live.browser.mjs --actual-local --cases=read-example,read-python,read-mdn,find-example,find-python,find-node,find-absent,edit-unsent,history-example,history-python",
+      "node packages/agent/tests/live.browser.mjs --day2 --actual-local",
+      "node packages/agent/tests/live-research.browser.mjs --actual-local",
+      "node packages/agent/tests/live-recovery.browser.mjs --actual-local",
+      "python3 apps/cli/tests/stage6.pty.py --actual-local",
+      "python3 apps/cli/tests/live.pty.py --day2",
+      "python3 apps/cli/tests/live.pty.py --stage3",
+      "python3 apps/cli/tests/live.pty.py --stage4"
+    ],
+    "excluded": "Day 1 research-python and web-python and the Stage 3 public-search probe issue public search queries that previously met an access barrier. They are not rerun; their recorded outcomes stand."
+  },
+  "criteria": [
+    "Each defect regression passes in source and compiled modes where the suite supports both.",
+    "Long actual-local tasks record no Browser cleanup failed warning.",
+    "Retest outcomes are compared with the originally recorded outcome of the same frozen case and classified; a miss stays a miss.",
+    "No owned Chrome or model process remains after testing."
+  ],
+  "classification": ["product defect", "harness mistake", "model miss", "site drift or access barrier", "capacity limit", "permission or scope refusal"]
+}
