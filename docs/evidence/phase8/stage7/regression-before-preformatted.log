@@ -1,0 +1,19 @@
+{"suite":"live-01-regressions","source":true,"checks":[{"id":"blocked-passive-assets-do-not-fail-readable-main-document","passed":true,"status":"done","runId":"run_mvdz6tqj_t99gun9"},{"id":"query-assets-telemetry-and-foreign-requests-still-blocked","passed":true,"forbidden":0},{"id":"explicit-source-opening-survives-blocked-passive-assets","passed":true},{"id":"sentence-with-inline-link-is-one-passage","passed":true,"passages":["The fixture sentence has an inline link inside it.","People","Line one\n  Line two","RFC 0000    Inline Preformatted Title    June 1999\nBody"],"linkNames":["inline\n link","People"]},{"id":"legacy-anchor-name-attribute-is-not-link-name","passed":true},{"id":"inline-heading-inside-preformatted-text-stays-one-passage","passed":false},{"id":"preformatted-passage-keeps-line-breaks","passed":true,"status":"done"},{"id":"passage-cut-at-node-cap-is-reported-as-omitted","passed":true,"omittedPassages":true,"capturedChars":2000,"paragraphChars":2519,"status":"done"},{"id":"main-document-redirect-still-refuses-without-following","passed":true,"status":"failed","forbidden":0}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.length === 9 && checks.every((check) => check.passed))
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-regressions.browser.mjs:253:8) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

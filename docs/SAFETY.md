@@ -156,3 +156,25 @@ rejecting repeated URLs with otherwise valid evidence. Source origins, query con
 model accounting and action permissions remain unchanged. The fixed public search lane stops
 at a challenge; a separately declared controlled candidate index with actual public page reads
 is assisted retrieval, never evidence of public-search availability or broad relevance.
+
+Stage 6 makes capture report a cut passage as omitted, so a 2,000-character prefix is no longer
+presented to the model or research readers as complete text. Text nodes now merge within their
+block-level ancestor, which lets one exact citation cover a sentence containing an inline link.
+Exact single-passage verification and the 2,000/6,000-character bounds are unchanged. `placeholder`
+and `name` attributes label only form fields; credential classification, which already applies only to
+form fields, still sees them. Controlled source/compiled regressions and the credential, safety
+and work-safety suites cover these changes. A complete accessible-name implementation is not claimed.
+
+Stage 7 keeps cleanup truthful without stalling on a hung driver. Disconnect has a 5-second
+bound. After disconnect, the runtime waits up to 45 seconds for the Chrome process to exit and
+release the profile, then records which bound failed. Returning at disconnect was rejected
+because Chrome was still writing the profile. Preformatted text keeps one passage per node, so
+the complete-passage research verifier still matches RFC-style titles; prose merging is unchanged.
+
+D-032 narrows find-on-page freshness to the references it cites. Unrelated page activity and
+layout movement no longer refuse a read-only result. A changed cited control or passage, a
+replaced or covered node, or a URL change still does. Find remains unable to activate, type or
+navigate. Every act keeps the document-wide snapshot binding and exact approval of D-015.
+`find-freshness.browser.mjs` keeps the must-refuse controls in source and compiled modes.
+D-033 lets find accept identical link labels only when every peer leads to the same exact URL.
+Buttons and differing destinations still hand back for a position.

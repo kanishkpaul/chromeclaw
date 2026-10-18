@@ -1,0 +1,6 @@
+/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-live/terminal-stage3-gjj0j2j3
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 204, in <module>
+    assert len(checks) == (3 if STAGE4 else 2) and all(check['passed'] for check in checks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

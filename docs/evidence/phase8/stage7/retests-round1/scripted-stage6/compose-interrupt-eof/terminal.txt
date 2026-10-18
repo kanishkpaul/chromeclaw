@@ -1,0 +1,41 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · synthetic-stage6-model · local · http://127.0.0.1:62622/v1
+❯   Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯  synthetic-stage6-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /compose
+  Compose multiple lines. /send submits; /discard clears.
+· stage6-compose Read https://httpbin.org/robots.txt
+· Quote its complete visible text with its captured passage citation.
+· /discard
+  Draft discarded.
+❯ /compose
+  Compose multiple lines. /send submits; /discard clears.
+· stage6-compose Read https://httpbin.org/robots.txt
+· Quote its complete visible text with its captured passage citation.
+· /send
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-stage6-model","configuration":{"stream":false,"res
+  provider ponseFormat":"json","endpoint":"http://127.0.0.1:62622/v1","mode":"local","requestCost":0
+  provider ,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:62622/v1/chat/completions" · 5553 bytes
+❯   Stopping the task; the session will remain open.
+❯   result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mvdyjljj_zbnz8jw"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-stage6-model │ local │ stopped │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /help
+  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯ Closed. ⋔

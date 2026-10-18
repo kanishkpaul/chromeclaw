@@ -1,0 +1,29 @@
+{
+  "suite": "live-01-terminal-stage4",
+  "actualLocal": true,
+  "hostedInference": false,
+  "lane": "public read",
+  "indexRequests": [],
+  "model": "chromeclaw-qwen3vl",
+  "site": "https://httpbin.org/robots.txt",
+  "sources": [
+    "https://httpbin.org/robots.txt"
+  ],
+  "checks": [
+    {
+      "id": "pause-cancel-reopen-and-resume-public-read",
+      "passed": true,
+      "status": "done"
+    },
+    {
+      "id": "cancel-local-request-without-action-dispatch",
+      "passed": true
+    },
+    {
+      "id": "source-trace-inspection-resize-and-clean-exit",
+      "passed": true,
+      "exitCode": 0
+    }
+  ],
+  "latencyMs": 18849
+}

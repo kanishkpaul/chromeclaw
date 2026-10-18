@@ -1,0 +1,240 @@
+{
+  "suite": "live-01-session2",
+  "startedOn": "2026-10-18",
+  "session": 2,
+  "distinctDayCredit": false,
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "3062f9e779efcf532bd1b8a7153c40e12aeb4e331286c8503cc1029093e95692",
+  "limits": "Second engineering session on the same calendar date as Day 1. Anonymous public reads, one unsubmitted dummy textarea edit, synthetic history. No activation, posting, login, personal profile or search-engine retry. Labels frozen before execution; all misses retained.",
+  "selected": 8,
+  "completed": 8,
+  "passed": 6,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-httpbin-heading",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "Herman Melville - Moby-Dick",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 18939,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2472,
+          "completionTokens": 115
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzwv8l_u0fl63s",
+      "log": "read-httpbin-heading/run_mvdzwv8l_u0fl63s.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-robots",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "User-agent: *\nDisallow: /deny",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 12157,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 1421,
+          "completionTokens": 107
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzx9un_vpfxlar",
+      "log": "read-robots/run_mvdzx9un_vpfxlar.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-iana-heading",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "Example Domains",
+      "ranked": [
+        "https://www.iana.org/help"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 96839,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 7431,
+          "completionTokens": 101
+        },
+        {
+          "promptTokens": 7677,
+          "completionTokens": 157
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzxj8d_hm42neg",
+      "log": "read-iana-heading/run_mvdzxj8d_hm42neg.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-iana-reservation",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Find target is unavailable, credential-bearing or stale.",
+      "answer": "The RFC 2606 link is target number 9, titled \"Reserved Top Level DNS Names\" and points to https://www.iana.org/go/rfc2606. This matches the task requirement to find the RFC 2606 link explaining reservation of example domains.",
+      "ranked": [
+        "https://www.iana.org/go/rfc2606"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 50078,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 7624,
+          "completionTokens": 146
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdzzlyd_avo7nfu",
+      "log": "find-iana-reservation/run_mvdzzlyd_avo7nfu.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent-checkout",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No checkout payment button is offered.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 11783,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2558,
+          "completionTokens": 39
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve00olh_0y9f92b",
+      "log": "find-absent-checkout/run_mve00olh_0y9f92b.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent-textarea",
+      "mode": "work",
+      "passed": false,
+      "status": "failed",
+      "error": "Three identical unsuccessful proposals. Stopped recovery.",
+      "answer": "Three identical unsuccessful proposals. Stopped recovery.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 45687,
+      "steps": 6,
+      "usage": [
+        {
+          "promptTokens": 1220,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 2160,
+          "completionTokens": 58
+        },
+        {
+          "promptTokens": 2246,
+          "completionTokens": 53
+        },
+        {
+          "promptTokens": 2331,
+          "completionTokens": 54
+        },
+        {
+          "promptTokens": 2414,
+          "completionTokens": 54
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve00xot_12wqrbj",
+      "log": "edit-unsent-textarea/run_mve00xot_12wqrbj.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-iana",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://www.iana.org/help/example-domains",
+      "ranked": [],
+      "urls": [
+        "https://www.iana.org/help/example-domains"
+      ],
+      "verifiedField": false,
+      "latencyMs": 752,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve01wxy_i6v9ive",
+      "log": "history-iana/run_mve01wxy_i6v9ive.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-httpbin",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://httpbin.org/html",
+      "ranked": [],
+      "urls": [
+        "https://httpbin.org/html"
+      ],
+      "verifiedField": false,
+      "latencyMs": 715,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve01xit_e62kwsj",
+      "log": "history-httpbin/run_mve01xit_e62kwsj.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

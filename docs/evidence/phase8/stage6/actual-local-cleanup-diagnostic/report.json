@@ -1,0 +1,88 @@
+{
+  "suite": "live-01-stage6-terminal",
+  "lane": "actualLocal",
+  "actualLocal": true,
+  "hostedInference": false,
+  "model": "chromeclaw-qwen3vl",
+  "manifestSha256": "41461f0eef53bf711421f45e6c0afb21aa2b4e752c0f720d7f85418e6a62cd8f",
+  "results": [
+    {
+      "id": "local-ask-held-out-public-page",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "doneWithRuntimeCitation": false,
+        "answerContainsFrozenSentence": true
+      },
+      "runId": "run_mvdwh5tu_5fgplno",
+      "status": "uncertain",
+      "answer": "The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.",
+      "error": "Ask requires an exact extractive answer with resolvable captured passage IDs."
+    },
+    {
+      "id": "local-inspect-sources-and-open-cited-passage",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "skippedBecauseNoCitation": false
+      },
+      "skipped": true,
+      "runId": "run_mvdwh5tu_5fgplno"
+    },
+    {
+      "id": "local-find-held-out-public-link",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "doneWithValidatedMatch": true,
+        "firstMatchIsPeopleLink": false,
+        "noActivationOrLaterNavigation": true
+      },
+      "runId": "run_mvdwi3os_0ot1ij8",
+      "status": "done",
+      "firstMatch": {
+        "snapshotId": "96e85d34-e07b-4fe2-af9b-2612e4e5eccb",
+        "target": 21,
+        "reason": "The target is explicitly labeled 'People' and its destination URL points to a page listing people involved in the project."
+      },
+      "element": {
+        "name": "14",
+        "role": "link",
+        "href": null,
+        "destination": "https://info.cern.ch/hypertext/WWW/People.html"
+      },
+      "error": "Browser cleanup failed."
+    },
+    {
+      "id": "local-edit-and-approved-save-on-loopback-fixture",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "serverRecordsExactlyOneCorrectSave": true,
+        "saveOnlyAfterExactApproval": true,
+        "noRepeatedWriteOrSecondSave": true
+      },
+      "runId": "run_mvdwj3as_nrkr30t",
+      "status": "done",
+      "answer": "Note saved for review.",
+      "error": null,
+      "saves": [
+        {
+          "note": "STAGE6-LOCAL-NOTE"
+        }
+      ],
+      "approvals": [
+        "pending_mvdwjcbs_mzr8cl8"
+      ],
+      "denials": [],
+      "interventions": [],
+      "acts": [
+        "navigate",
+        "type",
+        "click"
+      ]
+    }
+  ],
+  "leftoverOwnedChrome": [],
+  "latencyMs": 109338
+}
