@@ -170,3 +170,9 @@ bound. After disconnect, the runtime waits up to 45 seconds for the Chrome proce
 release the profile, then records which bound failed. Returning at disconnect was rejected
 because Chrome was still writing the profile. Preformatted text keeps one passage per node, so
 the complete-passage research verifier still matches RFC-style titles; prose merging is unchanged.
+
+D-032 narrows find-on-page freshness to the references it cites. Unrelated page activity and
+layout movement no longer refuse a read-only result. A changed cited control or passage, a
+replaced or covered node, or a URL change still does. Find remains unable to activate, type or
+navigate. Every act keeps the document-wide snapshot binding and exact approval of D-015.
+`find-freshness.browser.mjs` keeps the must-refuse controls in source and compiled modes.

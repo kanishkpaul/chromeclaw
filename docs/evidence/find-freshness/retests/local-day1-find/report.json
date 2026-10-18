@@ -1,0 +1,126 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "session": 1,
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 4,
+  "completed": 4,
+  "passed": 1,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "find-example",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link 'Learn more' (target 1) directs to https://iana.org/help/example-domains, which explains more about this example domain.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 12295,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2633,
+          "completionTokens": 114
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve2wsi7_r9snqo6",
+      "log": "find-example/run_mve2wsi7_r9snqo6.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link for the tutorial intended for someone starting to learn Python is the 'Beginner's Guide' at target 28.",
+      "ranked": [
+        "https://wiki.python.org/moin/BeginnersGuide"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 48434,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 7865,
+          "completionTokens": 111
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve2x1zq_kh8qwd9",
+      "log": "find-python/run_mve2x1zq_kh8qwd9.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Several controls share this label. Clarify a position (first, second or third) before choosing.",
+      "answer": "The file system API link is target number 25, labeled \"File system\", with destination https://nodejs.org/api/fs.html.",
+      "ranked": [
+        "https://nodejs.org/api/fs.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 46914,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 10942,
+          "completionTokens": 107
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve2y3d5_g9jxsj5",
+      "log": "find-node/run_mve2y3d5_g9jxsj5.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No control to purchase an airplane ticket is offered on this page.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 9202,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2620,
+          "completionTokens": 60
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mve2z3kd_kvt8mbv",
+      "log": "find-absent/run_mve2z3kd_kvt8mbv.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

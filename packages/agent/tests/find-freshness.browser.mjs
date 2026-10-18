@@ -1,6 +1,6 @@
-// Reproduces read-only find refusing every result on a page that mutates after load, as on
-// nodejs.org/api in Phase 8. Controls record which changes must keep refusing under any future
-// freshness rule. This documents current behavior for a design decision; it changes nothing.
+// Read-only find on a page that mutates after load, as on nodejs.org/api in Phase 8. Before
+// D-032 every row below refused as stale. Unrelated activity and layout movement now complete;
+// every change to the cited control or passage must keep refusing.
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
@@ -38,6 +38,8 @@ let tick = 0;
 setInterval(async () => {
   const current = await (await fetch('/mode')).text();
   if (current === 'clock') document.getElementById('clock').textContent = String(++tick);
+  if (current === 'shift' && !document.getElementById('banner'))
+    document.getElementById('people').parentElement.insertAdjacentHTML('beforebegin', '<p id=banner style="height:120px">Release notes</p>');
   if (current === 'relabel') document.getElementById('people').textContent = 'Payments';
   if (current === 'retarget') document.getElementById('people').href = '/payments';
   if (current === 'passage') document.querySelector('p').textContent = 'The billing page lists invoices.';
@@ -54,11 +56,12 @@ setInterval(async () => {
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const cases = [
-  // id, page change after capture, cited reference, outcome under today's rule
+  // id, page change after capture, cited reference, required outcome
   ["static-target", "none", "target", "done"],
   ["static-passage", "none", "passage", "done"],
-  ["unrelated-clock-target", "clock", "target", "uncertain"],
-  ["unrelated-clock-passage", "clock", "passage", "uncertain"],
+  ["unrelated-clock-target", "clock", "target", "done"],
+  ["unrelated-layout-shift-target", "shift", "target", "done"],
+  ["unrelated-clock-passage", "clock", "passage", "done"],
   ["cited-link-relabelled", "relabel", "target", "uncertain"],
   ["cited-link-retargeted", "retarget", "target", "uncertain"],
   ["cited-link-replaced", "replace", "target", "uncertain"],
@@ -127,13 +130,7 @@ try {
 }
 const checks = results.map((result) => ({
   id: result.id,
-  // Unrelated-clock rows reproduce the limitation today; a future rule may flip only those rows.
-  role:
-    result.change === "none"
-      ? "control-completes"
-      : result.change === "clock"
-        ? "reproduction"
-        : "control-refuses",
+  role: result.expected === "done" ? "completes" : "must-refuse",
   passed: result.status === result.expected,
   status: result.status,
   error: result.error,

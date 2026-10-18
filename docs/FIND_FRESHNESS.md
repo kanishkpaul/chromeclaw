@@ -1,6 +1,10 @@
 # Find freshness on pages that mutate after load
 
-Status: proposal for Kanishk's decision. No product behavior has changed.
+Status: Kanishk chose option B on 2026-10-18; implemented under D-032. The reproduction now
+requires the clock and layout-shift cases to complete and the five cited-change controls to
+refuse; [after the change](evidence/find-freshness/after-source.log) it passes 10/10. On the
+live page, `find-node` now stops at the separate duplicate-label rule instead of freshness. The
+analysis below is retained as written before the decision.
 
 ## Problem
 
