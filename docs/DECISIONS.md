@@ -529,3 +529,14 @@ Live retest: `find-node` no longer fails as stale in either lane. It now stops a
 duplicate-label rule, because nodejs.org offers two "File system" links, both to `fs.html`, and
 find asks for a position. That rule is unchanged here. The CERN find and the other Stage 6
 local cases still pass 4/4. No dependency, permission, directory or plugin boundary is added.
+
+## D-033 · 2026-10-18 · Same-destination links are not ambiguous to find
+
+Kanishk asked to relax find's duplicate-label rule only when every same-named, same-role link
+has the same destination. After D-032, nodejs.org `find-node` stopped at that rule: the page
+offers two "File system" links, sidebar and index, both to `fs.html`. A unit test and a loopback
+browser check failed before the change. Find now accepts a link whose same-label, same-role peers
+all share its exact destination URL. A destination differing only by fragment counts as
+different. Buttons, links to differing destinations and other controls still need a position.
+The live retest then passed `find-node` in the scripted and local lanes. This changes no
+permission, activation or approval rule.

@@ -176,3 +176,5 @@ layout movement no longer refuse a read-only result. A changed cited control or 
 replaced or covered node, or a URL change still does. Find remains unable to activate, type or
 navigate. Every act keeps the document-wide snapshot binding and exact approval of D-015.
 `find-freshness.browser.mjs` keeps the must-refuse controls in source and compiled modes.
+D-033 lets find accept identical link labels only when every peer leads to the same exact URL.
+Buttons and differing destinations still hand back for a position.

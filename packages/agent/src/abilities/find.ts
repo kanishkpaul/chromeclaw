@@ -74,7 +74,14 @@ export async function verifyPageFind(
           other.role === node.role &&
           !other.isCredential,
       );
-      if (peers.length > 1) {
+      // Same-label links that all lead to one destination name the same thing, such as a
+      // sidebar and an index entry; either answer is equivalent. Buttons and links whose
+      // destinations differ, even by fragment, still need a position (D-033).
+      const isOneDestination =
+        node.role === "link" &&
+        node.destination !== undefined &&
+        peers.every((peer) => peer.destination === node.destination);
+      if (peers.length > 1 && !isOneDestination) {
         // Identical offered labels do not establish which one the person intended. Support an
         // explicit ordinal in trusted input; other context disambiguation still needs hand-back.
         const ordinals = [
