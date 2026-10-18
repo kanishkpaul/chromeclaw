@@ -1,0 +1,32 @@
+{
+  "frozenPlanCommit": "899dee9",
+  "retests": {
+    "dummy": [
+      "node packages/agent/tests/live.browser.mjs --cases=read-example,read-python,read-mdn,find-example,find-python,find-node,find-absent,edit-unsent,history-example,history-python",
+      "node packages/agent/tests/live.browser.mjs --day2",
+      "node packages/agent/tests/live-research.browser.mjs",
+      "node packages/agent/tests/live-recovery.browser.mjs",
+      "node packages/agent/tests/live-byok.browser.mjs",
+      "python3 apps/cli/tests/stage6.pty.py"
+    ],
+    "actualLocal": [
+      "node packages/agent/tests/live.browser.mjs --actual-local --cases=read-example,read-python,read-mdn,find-example,find-python,find-node,find-absent,edit-unsent,history-example,history-python",
+      "node packages/agent/tests/live.browser.mjs --day2 --actual-local",
+      "node packages/agent/tests/live-research.browser.mjs --actual-local",
+      "node packages/agent/tests/live-recovery.browser.mjs --actual-local",
+      "python3 apps/cli/tests/stage6.pty.py --actual-local",
+      "python3 apps/cli/tests/live.pty.py --day2",
+      "python3 apps/cli/tests/live.pty.py --stage3",
+      "python3 apps/cli/tests/live.pty.py --stage4"
+    ],
+    "excluded": "Day 1 research-python and web-python and the Stage 3 public-search probe issue public search queries that previously met an access barrier. They are not rerun; their recorded outcomes stand."
+  },
+  "cleanupReproduction": [
+    "pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/live-cleanup.browser.mjs --source",
+    "node packages/agent/tests/live-cleanup.browser.mjs"
+  ],
+  "compare": "python3 docs/evidence/phase8/stage7/compare.py --copy",
+  "check": "pnpm check",
+  "actualInference": true,
+  "hostedSpend": 0
+}

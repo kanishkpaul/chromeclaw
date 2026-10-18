@@ -1,0 +1,280 @@
+{
+  "suite": "phase4-model-accounting",
+  "source": false,
+  "actualLocal": false,
+  "responseFormat": "json",
+  "model": "synthetic-model",
+  "endpoint": "http://127.0.0.1:58596/read/v1",
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "evidenceDir": "attempt-Z9xFk3",
+  "checks": [
+    {
+      "id": "production-local-factory-browser-read-and-accounting",
+      "passed": true
+    },
+    {
+      "id": "typed-alias-cannot-change-the-fixed-user-task-or-repeat-its-commit",
+      "passed": true
+    },
+    {
+      "id": "local-transport-failure-records-selected-endpoint-without-hosted-fallback",
+      "passed": true
+    },
+    {
+      "id": "retry-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "parse-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "usage-invalid-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "usage-over-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "missing-usage-is-explicit-null-without-a-fabricated-charge",
+      "passed": true
+    },
+    {
+      "id": "cli-read-exit-0-done-json",
+      "passed": true
+    },
+    {
+      "id": "cli-fail-exit-1-failed-json",
+      "passed": true
+    },
+    {
+      "id": "cli-blocked-exit-1-blocked-json",
+      "passed": true
+    },
+    {
+      "id": "cli-answer-exit-2-awaiting-answer-json",
+      "passed": true
+    },
+    {
+      "id": "cli-reopen-recaptures-and-returns-paused-exit-2",
+      "passed": true
+    },
+    {
+      "id": "cli-approval-exit-2-awaiting-approval-json",
+      "passed": true
+    },
+    {
+      "id": "cli-uncertain-exit-3-uncertain-json",
+      "passed": true
+    },
+    {
+      "id": "cli-cancel-exit-130-stopped-jsonl",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "read",
+      "runId": "run_mvdy08ja_d8hmx4u",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "read/run_mvdy08ja_d8hmx4u.jsonl"
+    },
+    {
+      "name": "form",
+      "runId": "run_mvdy091k_m3pyjd4",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "form/run_mvdy091k_m3pyjd4.jsonl"
+    },
+    {
+      "name": "local-failure",
+      "runId": "run_mvdy09kp_u821sn0",
+      "status": "failed",
+      "reservedCost": 0,
+      "relativeLog": "local-failure/run_mvdy09kp_u821sn0.jsonl"
+    },
+    {
+      "name": "retry",
+      "runId": "run_mvdy09vt_djgwzzf",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "retry/run_mvdy09vt_djgwzzf.jsonl"
+    },
+    {
+      "name": "parse",
+      "runId": "run_mvdy0aal_u3k9eb2",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "parse/run_mvdy0aal_u3k9eb2.jsonl"
+    },
+    {
+      "name": "usage-invalid",
+      "runId": "run_mvdy0b04_8ngz1z3",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "usage-invalid/run_mvdy0b04_8ngz1z3.jsonl"
+    },
+    {
+      "name": "usage-over",
+      "runId": "run_mvdy0bcn_mk66mef",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "usage-over/run_mvdy0bcn_mk66mef.jsonl"
+    },
+    {
+      "name": "unknown-usage",
+      "runId": "run_mvdy0bpm_fxhxr7f",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "unknown-usage/run_mvdy0bpm_fxhxr7f.jsonl"
+    },
+    {
+      "name": "cli-read",
+      "runId": "run_mvdy0c7f_4d2niqn",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "cli-read/run_mvdy0c7f_4d2niqn.jsonl"
+    },
+    {
+      "name": "cli-fail",
+      "runId": "run_mvdy0cvm_5ar7tme",
+      "status": "failed",
+      "reservedCost": 0,
+      "relativeLog": "cli-fail/run_mvdy0cvm_5ar7tme.jsonl"
+    },
+    {
+      "name": "cli-blocked",
+      "runId": "run_mvdy0dfr_uvjkfcz",
+      "status": "blocked",
+      "reservedCost": 0,
+      "relativeLog": "cli-blocked/run_mvdy0dfr_uvjkfcz.jsonl"
+    },
+    {
+      "name": "cli-answer",
+      "runId": "run_mvdy0dzb_34qmuti",
+      "status": "awaiting-answer",
+      "reservedCost": 0,
+      "relativeLog": "cli-answer/run_mvdy0dzb_34qmuti.jsonl"
+    },
+    {
+      "name": "cli-approval",
+      "runId": "run_mvdy0f2b_ecmhd0w",
+      "status": "awaiting-approval",
+      "reservedCost": 0,
+      "relativeLog": "cli-approval/run_mvdy0f2b_ecmhd0w.jsonl"
+    },
+    {
+      "name": "cli-uncertain",
+      "runId": "run_mvdy0fpw_fddtrpc",
+      "status": "uncertain",
+      "reservedCost": 0,
+      "relativeLog": "cli-uncertain/run_mvdy0fpw_fddtrpc.jsonl"
+    },
+    {
+      "name": "cli-cancel",
+      "runId": "run_mvdy0g9v_1yz9gn9",
+      "status": "stopped",
+      "reservedCost": 0,
+      "relativeLog": "cli-cancel/run_mvdy0g9v_1yz9gn9.jsonl"
+    }
+  ],
+  "syntheticRequests": [
+    {
+      "scenario": "read",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "retry",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "parse",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "usage-invalid",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "usage-over",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "unknown-usage",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "unknown-usage",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "fail",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "blocked",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "answer",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "approval",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "approval",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "uncertain",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "cancel",
+      "outputLimit": 1024
+    }
+  ],
+  "providerAttempts": 22,
+  "savedCities": [
+    "Kolkata"
+  ],
+  "loginSubmissions": 0,
+  "limitations": [
+    "Hosted inference intentionally skipped by owner.",
+    "Client reservations are not verified provider invoices.",
+    "Synthetic HTTP services; no model capability score."
+  ]
+}

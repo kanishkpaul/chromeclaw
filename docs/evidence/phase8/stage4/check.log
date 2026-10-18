@@ -1,0 +1,426 @@
+
+> chromeclaw@0.1.0 check /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && pnpm typecheck && pnpm lint && pnpm test
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/shared build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Cleaning output folder
+packages/egress build: ESM Build start
+packages/shared build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 28ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 28ms
+packages/shared build: DTS Build start
+packages/egress build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 350ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 620ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 49.83 KB
+packages/browser build: ESM ⚡️ Build success in 11ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 639ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/index.js               98.93 KB
+packages/agent build: ESM ⚡️ Build success in 16ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 1036ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 10ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 1544ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 49ms
+DTS Build start
+DTS ⚡️ Build success in 1275ms
+DTS dist/index.d.ts 20.00 B
+
+> chromeclaw@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress typecheck && pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck
+
+
+> @chromeclaw/egress@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> tsc --noEmit
+
+
+> @chromeclaw/shared@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> tsc --noEmit
+
+
+> @chromeclaw/browser@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> tsc --noEmit
+
+
+> @chromeclaw/agent@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> tsc --noEmit
+
+
+> @chromeclaw/evals@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> tsc --noEmit
+
+
+> @chromeclaw/cli@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsc --noEmit
+
+
+> chromeclaw@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress lint && pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint
+
+
+> @chromeclaw/egress@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/shared@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/browser@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/agent@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/evals@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/cli@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> eslint src tests --ext .ts
+
+
+> chromeclaw@0.1.0 test /Users/kanishk/Downloads/GitHub/chromeclaw
+> vitest run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ✓ packages/agent/tests/config.test.ts (6 tests) 7ms
+ ✓ packages/agent/tests/discovery.test.ts (5 tests) 2ms
+ ✓ packages/agent/tests/find.test.ts (7 tests) 6ms
+ ✓ packages/agent/tests/storage.test.ts (4 tests) 33ms
+ ✓ packages/agent/tests/tools.test.ts (3 tests) 7ms
+ ✓ packages/agent/tests/safety.test.ts (7 tests) 2ms
+ ✓ packages/agent/tests/prompt.test.ts (4 tests) 2ms
+ ✓ packages/agent/tests/ask.test.ts (3 tests) 3ms
+ ✓ packages/agent/tests/search.test.ts (2 tests) 2ms
+ ✓ packages/agent/tests/history.test.ts (1 test) 7ms
+ ✓ packages/evals/tests/scoring.test.ts (6 tests) 7ms
+ ✓ packages/shared/tests/architecture.test.ts (2 tests) 76ms
+ ✓ apps/cli/tests/terminal.test.ts (3 tests) 9ms
+ ✓ packages/shared/tests/utils.test.ts (2 tests) 2ms
+ ✓ packages/shared/tests/schemas.test.ts (3 tests) 5ms
+ ✓ packages/agent/tests/openai.test.ts (1 test) 4ms
+ ✓ packages/agent/tests/planner.test.ts (2 tests) 3ms
+ ✓ packages/browser/tests/targets.test.ts (1 test) 3ms
+ ✓ apps/cli/tests/cli.test.ts (5 tests) 1500ms
+   ✓ provider CLI boundary > rejects invalid provider and run settings with no successful run 734ms
+ ❯ packages/agent/tests/stream.test.ts (4 tests | 4 failed) 20009ms
+   × bounded streamed action proposals > collects frames before parsing one action and records usage separately from byte progress 5004ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded streamed action proposals > refuses a disconnected stream instead of executing its partial JSON 5002ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded streamed action proposals > detects keys split across individually valid frames without exposing content in progress 5000ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded streamed action proposals > aborts a long stream without a parser repair or another send 5002ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/egress/tests/http.test.ts (8 tests | 8 failed) 40014ms
+   × bounded application egress > records metadata before sending exactly the approved body 5004ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded application egress > never sends after an audit failure, abort or origin mismatch 5003ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded application egress > bounds request bytes, response bytes and streaming-body time 5001ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded application egress > caps 429 retries and withholds HTTP error bodies 5002ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded application egress > refuses configured credentials in a body or echoed response 5001ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × bounded application egress > refuses automatic redirects and malformed JSON 5000ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × pre-send request reservations > asks admission for each retry and never sends a refused attempt 5002ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   × pre-send request reservations > rejects invalid declared cost instead of inventing a zero-cost hosted send 5001ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/agent/tests/stream.test.ts > bounded streamed action proposals > collects frames before parsing one action and records usage separately from byte progress
+ FAIL  packages/agent/tests/stream.test.ts > bounded streamed action proposals > refuses a disconnected stream instead of executing its partial JSON
+ FAIL  packages/agent/tests/stream.test.ts > bounded streamed action proposals > detects keys split across individually valid frames without exposing content in progress
+ FAIL  packages/agent/tests/stream.test.ts > bounded streamed action proposals > aborts a long stream without a parser repair or another send
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > records metadata before sending exactly the approved body
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > never sends after an audit failure, abort or origin mismatch
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > bounds request bytes, response bytes and streaming-body time
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > caps 429 retries and withholds HTTP error bodies
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > refuses configured credentials in a body or echoed response
+ FAIL  packages/egress/tests/http.test.ts > bounded application egress > refuses automatic redirects and malformed JSON
+ FAIL  packages/egress/tests/http.test.ts > pre-send request reservations > asks admission for each retry and never sends a refused attempt
+ FAIL  packages/egress/tests/http.test.ts > pre-send request reservations > rejects invalid declared cost instead of inventing a zero-cost hosted send
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 12 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "records metadata before sending exactly the approved body". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/agent/tests/stream.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "collects frames before parsing one action and records usage separately from byte progress". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "never sends after an audit failure, abort or origin mismatch". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/agent/tests/stream.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "refuses a disconnected stream instead of executing its partial JSON". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "bounds request bytes, response bytes and streaming-body time". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/agent/tests/stream.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "detects keys split across individually valid frames without exposing content in progress". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "caps 429 retries and withholds HTTP error bodies". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/agent/tests/stream.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "aborts a long stream without a parser repair or another send". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "refuses configured credentials in a body or echoed response". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "refuses automatic redirects and malformed JSON". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "asks admission for each retry and never sends a refused attempt". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: listen EPERM: operation not permitted 127.0.0.1
+ ❯ Server.setupListenHandle [as _listen2] node:net:1987:21
+ ❯ listenInCluster node:net:2066:12
+ ❯ node:net:2275:7
+ ❯ processTicksAndRejections node:internal/process/task_queues:90:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'EPERM', errno: -1, syscall: 'listen', address: '127.0.0.1' }
+This error originated in "packages/egress/tests/http.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "rejects invalid declared cost instead of inventing a zero-cost hosted send". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ Test Files  2 failed | 19 passed (21)
+      Tests  12 failed | 67 passed (79)
+     Errors  12 errors
+   Start at  17:58:54
+   Duration  40.26s (transform 401ms, setup 0ms, collect 1.38s, tests 61.70s, environment 2ms, prepare 840ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
+ ELIFECYCLE  Command failed with exit code 1.

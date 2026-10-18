@@ -1,0 +1,34 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ❯ packages/agent/tests/find.test.ts (9 tests | 1 failed) 5ms
+   × find on the current page > accepts identical link labels only when every peer has the same destination 2ms
+     → expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/agent/tests/find.test.ts > find on the current page > accepts identical link labels only when every peer has the same destination
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/agent/tests/find.test.ts:154:76
+    152|       "https://nodejs.org/api/fs.html#promises",
+    153|     ]);
+    154|     expect((await verifyPageFind(finish([target]), same, current)).pas…
+       |                                                                            ^
+    155|       true,
+    156|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  22:45:20
+   Duration  234ms (transform 29ms, setup 0ms, collect 37ms, tests 5ms, environment 0ms, prepare 30ms)
+

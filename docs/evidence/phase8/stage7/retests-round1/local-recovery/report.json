@@ -1,0 +1,28 @@
+{
+  "suite": "live-01-stage4",
+  "actualLocal": true,
+  "hostedInference": false,
+  "fixtureSha256": "f97c25852a883df5e32b26142492b4ae4ae03f701ad3714ad01dfa9e0f77127a",
+  "model": "chromeclaw-qwen3vl",
+  "results": [
+    {
+      "id": "pause-after-proposal-reopen-and-resume",
+      "passed": true,
+      "initial": "paused",
+      "reopened": "paused",
+      "resumed": "done",
+      "reservedCost": 0,
+      "latencyMs": 15616
+    },
+    {
+      "id": "cancel-after-proposal-reopen-and-resume",
+      "passed": true,
+      "initial": "stopped",
+      "reopened": "paused",
+      "resumed": "done",
+      "reservedCost": 0,
+      "latencyMs": 15613
+    }
+  ],
+  "requests": []
+}

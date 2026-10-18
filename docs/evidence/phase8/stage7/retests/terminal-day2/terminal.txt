@@ -1,0 +1,127 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+[2K[1G ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/ask https://httpbin.org/robots.txt Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  ┊ navigate  {"type":"navigate","url":"https://httpbin.org/robots.txt"} · 1687 ms
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12114 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"User-agent: *\nDisallow: /deny","evidence":[{"snapshotId":"
+  ┊ 52eafe74-cc30-47c4-8e04-05ebaa160fcb","passageId":"52eafe74-cc30-47c4-8e04-05ebaa160fcb:p1","quo
+  ┊ te":"User-agent: *\nDisallow: /deny"}]} · 6500 ms
+[1G[0J❯ [3G[2K[1G  citations [{"snapshotId":"52eafe74-cc30-47c4-8e04-05ebaa160fcb","passageId":"52eafe74-cc30-47c4-8e
+  citations 04-05ebaa160fcb:p1","quote":"User-agent: *\nDisallow: /deny"}]
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"User-agent: *\nDisallow: /deny","runId":"run_mve0a4dz_q2fec06"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/sources
+[2K[1G  source 1 {"snapshot":"52eafe74-cc30-47c4-8e04-05ebaa160fcb","url":"https://httpbin.org/robots.txt"
+  source 1 }
+[1G[0J❯ [3G/trace
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────
+[1G[0J❯ [3G[2K[1G  trace run_started {"id":"run_mve0a4dz_q2fec06","task":"Quo
+  trace run_started te the complete visible robots.txt text 
+  trace run_started exactly, including its newline, with its
+  trace run_started  captured passage citation.","askUrl":"h
+  trace run_started ttps://httpbin.org/robots.txt","status":
+  trace run_started "observing","startedAt":"2026-10-18T15:5
+  trace run_started 4:21.239Z","maxSteps":4,"permissions":{"
+  trace run_started origins":["https://httpbin.org"],"tools"
+  trace run_started :["navigate","wait","extract_text","summ
+  trace run_started arize_page","ask_user","finish","fail"],
+  trace run_started "read":true,"write":false,"irreversible"
+  trace run_started :"deny","allowLoopback":false,"maxSteps"
+  trace run_started :4,"expiresAt":1792339041238,"maxCost":0
+  trace run_started },"provider":"unresolved","model":"unres
+  trace run_started olved","answers":[],"reservedCost":0}
+[1G[0J❯ [3G[2K[1G  trace configuration {"provider":"local","model":"chromecla
+  trace configuration w-qwen3vl","configuration":{"stream":f
+  trace configuration alse,"responseFormat":"llama-schema","
+  trace configuration endpoint":"http://127.0.0.1:18184/v1",
+  trace configuration "mode":"local","requestCost":0,"maxOut
+  trace configuration putTokens":1200,"tokenLimitField":"max
+  trace configuration _tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mve0a4u0_svdzcjv","gate":{"deci
+  trace gate sion":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace act_started {"stepId":"step_mve0a4u0_svdzcjv","actio
+  trace act_started n":{"type":"navigate","url":"https://htt
+  trace act_started pbin.org/robots.txt"}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0a4u0_svdzcjv","index":0,"phase"
+  trace step :"ACT","status":"observing","action":{"type":"n
+  trace step avigate","url":"https://httpbin.org/robots.txt"
+  trace step },"observationSummary":"Opened the explicitly r
+  trace step equested read-only page under fixed read permis
+  trace step sions.","result":"Opened the explicitly request
+  trace step ed read-only page under fixed read permissions.
+  trace step ","gate":{"decision":"allow","approved":false},
+  trace step "startedAt":"2026-10-18T15:54:21.246Z","complet
+  trace step edAt":"2026-10-18T15:54:22.933Z","durationMs":1
+  trace step 687}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"52eafe74-cc30-47c4-8e04-0
+  trace observation 5ebaa160fcb","documentId":"faef5288-feee
+  trace observation -4c8d-aa8a-67eaf1688d7c","interactiveEle
+  trace observation ments":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"User-agen
+  trace observation t: *\nDisallow: /deny","kind":"document"
+  trace observation ,"id":"52eafe74-cc30-47c4-8e04-05ebaa160
+  trace observation fcb:p1","snapshotId":"52eafe74-cc30-47c4
+  trace observation -8e04-05ebaa160fcb","url":"https://httpb
+  trace observation in.org/robots.txt"}],"unreadableRegions"
+  trace observation :0,"omittedPassages":false,"url":"https:
+  trace observation //httpbin.org/robots.txt","title":"","vi
+  trace observation sibleText":"User-agent: *\nDisallow: /de
+  trace observation ny","accessibilityTreeSummary":"Safe DOM
+  trace observation  target summary. Native AX field values 
+  trace observation are not captured.","timestamp":"2026-10-
+  trace observation 18T15:54:22.962Z"}
+[1G[0J❯ [3G[2K[1G  trace crossing {"destination":"http://127.0.0.1:18184/v1/c
+  trace crossing hat/completions","requestBytes":12114,"payl
+  trace crossing oadHash":"3cb66b6efbe41c76b5bb0051675549064
+  trace crossing 87a92ed34e640928e060fef3cf2787d","attempt":
+  trace crossing 1,"estimatedCost":0,"accounting":"local-zer
+  trace crossing o"}
+[1G[0J❯ [3G[2K[1G  trace model_usage {"promptTokens":1416,"completionTokens":
+  trace model_usage 105}
+[1G[0J❯ [3G[2K[1G  trace proposal {"stepId":"step_mve0aapl_8h6oea0","action":
+  trace proposal {"type":"finish","answer":"User-agent: *\nD
+  trace proposal isallow: /deny","evidence":[{"snapshotId":"
+  trace proposal 52eafe74-cc30-47c4-8e04-05ebaa160fcb","pass
+  trace proposal ageId":"52eafe74-cc30-47c4-8e04-05ebaa160fc
+  trace proposal b:p1","quote":"User-agent: *\nDisallow: /de
+  trace proposal ny"}]}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mve0aapl_8h6oea0","gate":{"deci
+  trace gate sion":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0aapl_8h6oea0","index":1,"phase"
+  trace step :"DONE","status":"done","action":{"type":"finis
+  trace step h","answer":"User-agent: *\nDisallow: /deny","e
+  trace step vidence":[{"snapshotId":"52eafe74-cc30-47c4-8e0
+  trace step 4-05ebaa160fcb","passageId":"52eafe74-cc30-47c4
+  trace step -8e04-05ebaa160fcb:p1","quote":"User-agent: *\n
+  trace step Disallow: /deny"}]},"beforeId":"52eafe74-cc30-4
+  trace step 7c4-8e04-05ebaa160fcb","observationSummary":"Sn
+  trace step apshot-bound passage citations support the exac
+  trace step t extractive answer.","result":"Snapshot-bound 
+  trace step passage citations support the exact extractive 
+  trace step answer.","gate":{"decision":"allow","approved":
+  trace step false},"startedAt":"2026-10-18T15:54:22.939Z","
+  trace step completedAt":"2026-10-18T15:54:29.439Z","durati
+  trace step onMs":6500}
+[1G[0J❯ [3G[2K[1G  trace run_completed {"status":"done","completedAt":"2026-1
+  trace run_completed 0-18T15:54:29.572Z","finalAnswer":"Use
+  trace run_completed r-agent: *\nDisallow: /deny"}
+[1G[0J❯ [3G/quit
+Closed. ⋔

@@ -1,0 +1,786 @@
+[
+  {
+    "retest": "dummy-day1",
+    "original": "day1/emulated-after",
+    "retestDirectory": ".chromeclaw/phase8-live/emulated-byok-BEtsY6",
+    "originalPassed": 6,
+    "originalTotal": 12,
+    "retestPassed": 6,
+    "retestTotal": 10,
+    "cases": [
+      {
+        "id": "edit-unsent",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "find-absent",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "find-example",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "find-node",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "Find results are stale. Capture again before choosing a result."
+      },
+      {
+        "id": "find-python",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "history-example",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-python",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-example",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "awaiting-answer",
+        "retestError": null
+      },
+      {
+        "id": "read-mdn",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-python",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "research-python",
+        "originalPassed": false,
+        "retestPassed": null,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "web-python",
+        "originalPassed": false,
+        "retestPassed": null,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "dummy-day2",
+    "original": "stage2/emulated",
+    "retestDirectory": ".chromeclaw/phase8-live/emulated-byok-oNzPOU",
+    "originalPassed": 8,
+    "originalTotal": 8,
+    "retestPassed": 8,
+    "retestTotal": 8,
+    "cases": [
+      {
+        "id": "edit-unsent-textarea",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "find-absent-checkout",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "find-iana-reservation",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-httpbin",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-iana",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-httpbin-heading",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-iana-heading",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-robots",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "dummy-research",
+    "original": "stage3/emulated",
+    "retestDirectory": ".chromeclaw/phase8-research/emulated-assisted-z3EzNN",
+    "originalPassed": 6,
+    "originalTotal": 6,
+    "retestPassed": 6,
+    "retestTotal": 6,
+    "cases": [
+      {
+        "id": "assisted-httpbin-inventory",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "assisted-outside-scope",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      },
+      {
+        "id": "assisted-redirect",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      },
+      {
+        "id": "assisted-rfc-url",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "assisted-standard-titles",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "assisted-unavailable",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      }
+    ]
+  },
+  {
+    "retest": "dummy-recovery",
+    "original": "stage4/emulated",
+    "retestDirectory": ".chromeclaw/phase8-recovery/dummy-IWd7nM",
+    "originalPassed": 4,
+    "originalTotal": 4,
+    "retestPassed": 4,
+    "retestTotal": 4,
+    "cases": [
+      {
+        "id": "cancel-after-proposal-reopen-and-resume",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "pause-after-proposal-reopen-and-resume",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "reopen-retains-exhausted-spend-budget",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "unsent-edit-is-not-replayed-on-reopen",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "dummy-byok",
+    "original": "stage5/final",
+    "retestDirectory": ".chromeclaw/phase8-byok/attempt-CMcG8T",
+    "originalPassed": 17,
+    "originalTotal": 17,
+    "retestPassed": 17,
+    "retestTotal": 17,
+    "cases": [
+      {
+        "id": "auth-401",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: http (401)."
+      },
+      {
+        "id": "cancel-sse",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "stopped",
+        "retestError": "Stopped by user. No new act will be dispatched."
+      },
+      {
+        "id": "credential-echo",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: credential-echo."
+      },
+      {
+        "id": "incomplete-sse",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner stream ended before completion."
+      },
+      {
+        "id": "invalid-action",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner reply is not a complete JSON action."
+      },
+      {
+        "id": "missing-usage",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "negative-usage",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner returned invalid token usage."
+      },
+      {
+        "id": "over-limit-usage",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner exceeded the configured output token limit."
+      },
+      {
+        "id": "repair-action",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "repair-envelope",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "repair-truncation",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "retry-429",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "retry-503",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: http (503)."
+      },
+      {
+        "id": "retry-budget",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: budget-exhausted."
+      },
+      {
+        "id": "timeout",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: timeout."
+      },
+      {
+        "id": "valid-json",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "valid-sse",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "scripted-stage6",
+    "original": "stage6/scripted-retest",
+    "retestDirectory": ".chromeclaw/phase8-live/stage6-scripted-0w8v6av_",
+    "originalPassed": 2,
+    "originalTotal": 3,
+    "retestPassed": 1,
+    "retestTotal": 3,
+    "cases": [
+      {
+        "id": "scripted-compose-interrupt-and-eof",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "scripted-deny-public-submit",
+        "originalPassed": true,
+        "retestPassed": null,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "scripted-long-output-and-narrow-resize",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "scripted_deny_public_submit",
+        "originalPassed": null,
+        "retestPassed": false,
+        "retestStatus": null,
+        "retestError": "AssertionError('deny-public-submit: expected state not reached; inspect the recording.')"
+      }
+    ]
+  },
+  {
+    "retest": "local-day1",
+    "original": "day1/actual-local-8k",
+    "retestDirectory": ".chromeclaw/phase8-live/local-PdZQtG",
+    "originalPassed": 4,
+    "originalTotal": 12,
+    "retestPassed": 4,
+    "retestTotal": 10,
+    "cases": [
+      {
+        "id": "edit-unsent",
+        "originalPassed": true,
+        "retestPassed": false,
+        "retestStatus": "failed",
+        "retestError": "Three identical unsuccessful proposals. Stopped recovery."
+      },
+      {
+        "id": "find-absent",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "find-example",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "find-node",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "Find results are stale. Capture again before choosing a result."
+      },
+      {
+        "id": "find-python",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-example",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-python",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-example",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-mdn",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: timeout."
+      },
+      {
+        "id": "read-python",
+        "originalPassed": false,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "research-python",
+        "originalPassed": false,
+        "retestPassed": null,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "web-python",
+        "originalPassed": false,
+        "retestPassed": null,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "local-day2",
+    "original": "stage2/actual-local",
+    "retestDirectory": ".chromeclaw/phase8-live/local-LQawSh",
+    "originalPassed": 5,
+    "originalTotal": 8,
+    "retestPassed": 6,
+    "retestTotal": 8,
+    "cases": [
+      {
+        "id": "edit-unsent-textarea",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "failed",
+        "retestError": "Three identical unsuccessful proposals. Stopped recovery."
+      },
+      {
+        "id": "find-absent-checkout",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "The model reported no match in the captured viewport; absence is unverified."
+      },
+      {
+        "id": "find-iana-reservation",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "Find target is unavailable, credential-bearing or stale."
+      },
+      {
+        "id": "history-httpbin",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "history-iana",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-httpbin-heading",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-iana-heading",
+        "originalPassed": false,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "read-robots",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "local-research",
+    "original": "stage3/actual-local",
+    "retestDirectory": ".chromeclaw/phase8-research/local-assisted-O8BZXt",
+    "originalPassed": 3,
+    "originalTotal": 6,
+    "retestPassed": 3,
+    "retestTotal": 6,
+    "cases": [
+      {
+        "id": "assisted-httpbin-inventory",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": "Answer must exactly join the cited claim texts."
+      },
+      {
+        "id": "assisted-outside-scope",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      },
+      {
+        "id": "assisted-redirect",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      },
+      {
+        "id": "assisted-rfc-url",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "failed",
+        "retestError": "Planner transport failed: timeout."
+      },
+      {
+        "id": "assisted-standard-titles",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "assisted-unavailable",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "uncertain",
+        "retestError": "No validated source matches; absence from the wider web/history is not established."
+      }
+    ]
+  },
+  {
+    "retest": "local-recovery",
+    "original": "stage4/actual-local",
+    "retestDirectory": ".chromeclaw/phase8-recovery/local-feHW7C",
+    "originalPassed": 2,
+    "originalTotal": 2,
+    "retestPassed": 2,
+    "retestTotal": 2,
+    "cases": [
+      {
+        "id": "cancel-after-proposal-reopen-and-resume",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "pause-after-proposal-reopen-and-resume",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "local-stage6",
+    "original": "stage6/actual-local-retest",
+    "retestDirectory": ".chromeclaw/phase8-live/stage6-local-vzpuo0a1",
+    "originalPassed": 4,
+    "originalTotal": 4,
+    "retestPassed": 4,
+    "retestTotal": 4,
+    "cases": [
+      {
+        "id": "local-ask-held-out-public-page",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "local-edit-and-approved-save-on-loopback-fixture",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "local-find-held-out-public-link",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "local-inspect-sources-and-open-cited-passage",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "terminal-day2",
+    "original": "stage2/terminal",
+    "retestDirectory": ".chromeclaw/phase8-live/terminal-session2-q9hv4mmm",
+    "originalPassed": 2,
+    "originalTotal": 2,
+    "retestPassed": 2,
+    "retestTotal": 2,
+    "cases": [
+      {
+        "id": "actual-local-public-read-through-tui",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "source-trace-inspection-resize-and-clean-exit",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "terminal-stage3",
+    "original": "stage3/terminal",
+    "retestDirectory": ".chromeclaw/phase8-live/terminal-stage3-9qayio06",
+    "originalPassed": 1,
+    "originalTotal": 2,
+    "retestPassed": 1,
+    "retestTotal": 2,
+    "cases": [
+      {
+        "id": "actual-local-assisted-research-through-tui",
+        "originalPassed": false,
+        "retestPassed": false,
+        "retestStatus": "uncertain",
+        "retestError": null
+      },
+      {
+        "id": "source-trace-inspection-resize-and-clean-exit",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  },
+  {
+    "retest": "terminal-stage4",
+    "original": "stage4/terminal",
+    "retestDirectory": ".chromeclaw/phase8-live/terminal-stage4-_n3ab1a8",
+    "originalPassed": 3,
+    "originalTotal": 3,
+    "retestPassed": 3,
+    "retestTotal": 3,
+    "cases": [
+      {
+        "id": "cancel-local-request-without-action-dispatch",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      },
+      {
+        "id": "pause-cancel-reopen-and-resume-public-read",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": "done",
+        "retestError": null
+      },
+      {
+        "id": "source-trace-inspection-resize-and-clean-exit",
+        "originalPassed": true,
+        "retestPassed": true,
+        "retestStatus": null,
+        "retestError": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "parentCommit": "3029d649b8675a8307e53c7ed91eecc2368a9bd5",
+  "publicDummy": "node packages/agent/tests/live-byok.browser.mjs",
+  "modelSource": "pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source",
+  "modelCompiled": "node packages/agent/tests/models.browser.mjs",
+  "check": "pnpm check",
+  "actualInference": false,
+  "hostedSpend": 0
+}

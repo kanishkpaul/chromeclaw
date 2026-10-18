@@ -1,0 +1,378 @@
+
+> chromeclaw@0.1.0 eval:runtime /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/runtime.browser.mjs --source
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Target: es2022
+packages/egress build: CLI Cleaning output folder
+packages/shared build: CLI Cleaning output folder
+packages/egress build: ESM Build start
+packages/shared build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 10ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 11ms
+packages/egress build: DTS Build start
+packages/shared build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 330ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 662ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 51.96 KB
+packages/browser build: ESM ⚡️ Build success in 11ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 681ms
+packages/browser build: DTS dist/index.d.ts 6.33 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/index.js               99.95 KB
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM ⚡️ Build success in 16ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 848ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 9ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 840ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 11ms
+DTS Build start
+DTS ⚡️ Build success in 876ms
+DTS dist/index.d.ts 20.00 B
+{
+  "suite": "phase3-runtime",
+  "planner": "scripted-and-loopback-http",
+  "source": true,
+  "evidenceDir": "attempt-v1mAOn",
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "cwd": "/Users/kanishk/Downloads/GitHub/chromeclaw",
+  "checks": [
+    {
+      "id": "real-browser-through-confined-http-adapter-retains-extraction-after-navigation",
+      "passed": true
+    },
+    {
+      "id": "crossing-is-durable-before-send-and-credential-markers-stay-local",
+      "passed": true
+    },
+    {
+      "id": "429-retry-is-bounded-and-recorded-in-a-real-browser-http-run",
+      "passed": true
+    },
+    {
+      "id": "ask-user-waits-without-planning-and-accepts-one-bound-answer",
+      "passed": true
+    },
+    {
+      "id": "six-step-form-finishes-only-after-independent-world-check",
+      "passed": true
+    },
+    {
+      "id": "blank-page-finish-cannot-claim-verified-completion",
+      "passed": true
+    },
+    {
+      "id": "unverified-interactive-finish-retains-edits-for-bounded-user-judgment",
+      "passed": true
+    },
+    {
+      "id": "completion-judgment-is-bounded-and-reopen-does-not-reset-the-limit",
+      "passed": true
+    },
+    {
+      "id": "three-identical-unsuccessful-proposals-stop-without-unbounded-retries",
+      "passed": true
+    },
+    {
+      "id": "ambiguous-commit-acknowledgment-stops-without-repeating",
+      "passed": true
+    },
+    {
+      "id": "credential-handback-continues-from-fresh-capture-without-agent-entry",
+      "passed": true
+    },
+    {
+      "id": "pending-input-persists-and-reopen-recaptures-pauses-without-old-approval",
+      "passed": true
+    },
+    {
+      "id": "actual-browser-run-remains-readable-with-a-corrupt-tail",
+      "passed": true
+    },
+    {
+      "id": "sigkill-and-new-process-reader-recover-the-browser-trace-without-false-completion",
+      "passed": true
+    },
+    {
+      "id": "one-pending-approval-executes-once-and-rejects-duplicate-response",
+      "passed": true
+    },
+    {
+      "id": "modal-perturbation-reobserves-after-approved-dismissal",
+      "passed": true
+    },
+    {
+      "id": "cancel-interrupts-http-body-wait-and-dispatches-no-act",
+      "passed": true
+    },
+    {
+      "id": "cancel-before-action-dispatch-prevents-new-browser-effects",
+      "passed": true
+    },
+    {
+      "id": "cancel-in-flight-navigation-closes-browser-and-reports-possible-effects",
+      "passed": true
+    },
+    {
+      "id": "malformed-model-reply-has-one-repair-attempt-and-no-browser-act",
+      "passed": true
+    },
+    {
+      "id": "one-valid-citation-does-not-hide-an-invalid-reference",
+      "passed": true
+    },
+    {
+      "id": "browser-startup-failure-is-recorded-where-storage-is-available",
+      "passed": true
+    },
+    {
+      "id": "cleanup-failure-does-not-replace-the-primary-failure",
+      "passed": true
+    },
+    {
+      "id": "storage-failure-is-reported-without-claiming-a-durable-trace",
+      "passed": true
+    },
+    {
+      "id": "external-denial-wins-over-a-later-automatic-approval",
+      "passed": true
+    },
+    {
+      "id": "configured-provider-key-echo-never-reaches-a-proposal-or-trace",
+      "passed": true
+    },
+    {
+      "id": "credential-questions-hand-back-and-discard-raw-user-replies",
+      "passed": true
+    },
+    {
+      "id": "cancel-during-human-input-clears-pending-authority-and-interrupts-callback-wait",
+      "passed": true
+    },
+    {
+      "id": "session-expiry-mid-task-hands-back-without-a-credential-write-or-false-finish",
+      "passed": true
+    },
+    {
+      "id": "cli-json-is-undecorated-and-refusal-exits-nonzero",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "http",
+      "runId": "run_mve2udur_e27pmr1",
+      "status": "done"
+    },
+    {
+      "name": "answer",
+      "runId": "run_mve2ueie_93pmcxu",
+      "status": "done"
+    },
+    {
+      "name": "six-step",
+      "runId": "run_mve2uf0b_my9qqdj",
+      "status": "done"
+    },
+    {
+      "name": "false-finish",
+      "runId": "run_mve2ufhv_ghdyo26",
+      "status": "uncertain"
+    },
+    {
+      "name": "completion-judgment",
+      "runId": "run_mve2ufro_mll0aie",
+      "status": "done"
+    },
+    {
+      "name": "bounded-completion-judgment",
+      "runId": "run_mve2ug8t_2dh23r8",
+      "status": "uncertain"
+    },
+    {
+      "name": "no-change",
+      "runId": "run_mve2uguj_syostl6",
+      "status": "failed"
+    },
+    {
+      "name": "ambiguous",
+      "runId": "run_mve2uh8a_b761us5",
+      "status": "uncertain"
+    },
+    {
+      "name": "credential-resume",
+      "runId": "run_mve2uhld_hc2xom9",
+      "status": "done"
+    },
+    {
+      "name": "pending",
+      "runId": "run_mve2uhyq_cu5kf1l",
+      "status": "awaiting-answer"
+    },
+    {
+      "name": "reopened",
+      "runId": "run_mve2uhyq_cu5kf1l",
+      "status": "paused"
+    },
+    {
+      "name": "killed-writer",
+      "runId": "run_mve2udur_e27pmr1",
+      "status": "paused"
+    },
+    {
+      "name": "approval-replay",
+      "runId": "run_mve2uily_zy7duf0",
+      "status": "done"
+    },
+    {
+      "name": "modal",
+      "runId": "run_mve2uj0p_6tg41ge",
+      "status": "done"
+    },
+    {
+      "name": "cancel-http",
+      "runId": "run_mve2ujep_qt2sgtf",
+      "status": "stopped"
+    },
+    {
+      "name": "cancel-schedule",
+      "runId": "run_mve2ujnj_wdfr3df",
+      "status": "stopped"
+    },
+    {
+      "name": "cancel-browser",
+      "runId": "run_mve2ujwd_o0x2t28",
+      "status": "stopped"
+    },
+    {
+      "name": "parse-repair",
+      "runId": "run_mve2uk5u_c9l0bht",
+      "status": "failed"
+    },
+    {
+      "name": "fabricated-citation",
+      "runId": "run_mve2ukgn_g6leh2u",
+      "status": "uncertain"
+    },
+    {
+      "name": "startup-failure",
+      "runId": "run_mve2uksn_7etvwjy",
+      "status": "failed"
+    },
+    {
+      "name": "cleanup-failure",
+      "runId": "run_mve2ukt5_cfmwrzy",
+      "status": "failed"
+    },
+    {
+      "name": "storage-failure",
+      "runId": "run_mve2ul4u_oy2deas",
+      "status": "failed"
+    },
+    {
+      "name": "approval-race",
+      "runId": "run_mve2ul4u_vr7x5ya",
+      "status": "blocked"
+    },
+    {
+      "name": "key-echo",
+      "runId": "run_mve2ulhl_6h8uw20",
+      "status": "failed"
+    },
+    {
+      "name": "credential-question",
+      "runId": "run_mve2ulrw_i35477k",
+      "status": "done"
+    },
+    {
+      "name": "cancel-answer",
+      "runId": "run_mve2um2j_wqorppj",
+      "status": "stopped"
+    },
+    {
+      "name": "session-expiry",
+      "runId": "run_mve2umbv_exs1mkb",
+      "status": "awaiting-answer"
+    }
+  ],
+  "modelRequests": 9,
+  "limitations": [
+    "No paid or actual local model.",
+    "No signed-in or held-out live site.",
+    "Exact extractive evidence is not semantic entailment.",
+    "Privacy filtering is not arbitrary PII classification."
+  ]
+}

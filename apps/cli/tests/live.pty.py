@@ -8,6 +8,7 @@ from pathlib import Path
 import pty
 import select
 import shutil
+import signal
 import struct
 import subprocess
 import sys
@@ -24,16 +25,17 @@ if not MODEL or not ENDPOINT:
     raise RuntimeError('Explicit local endpoint/model required; no fallback.')
 DAY2 = '--day2' in sys.argv
 STAGE3 = '--stage3' in sys.argv
-if DAY2 and STAGE3:
+STAGE4 = '--stage4' in sys.argv
+if sum([DAY2, STAGE3, STAGE4]) > 1:
     raise RuntimeError('Choose one terminal scenario.')
-SITE = 'https://httpbin.org/robots.txt' if DAY2 else 'https://example.com/'
-ORIGIN = 'https://httpbin.org' if DAY2 else 'https://example.com'
-ARTIFACTS = Path(tempfile.mkdtemp(prefix='terminal-stage3-' if STAGE3 else 'terminal-session2-' if DAY2 else 'terminal-', dir=ROOT / '.chromeclaw/phase8-live'))
+SITE = 'https://httpbin.org/robots.txt' if DAY2 or STAGE4 else 'https://example.com/'
+ORIGIN = 'https://httpbin.org' if DAY2 or STAGE4 else 'https://example.com'
+ARTIFACTS = Path(tempfile.mkdtemp(prefix='terminal-stage4-' if STAGE4 else 'terminal-stage3-' if STAGE3 else 'terminal-session2-' if DAY2 else 'terminal-', dir=ROOT / '.chromeclaw/phase8-live'))
 WORK = Path(tempfile.mkdtemp(prefix='chromeclaw-live-tui-'))
 LOGS = ARTIFACTS / 'runs'
 LOGS.mkdir()
-expected = 'User-agent: *\nDisallow: /deny' if DAY2 else 'This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.'
-question = 'Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.' if DAY2 else 'Quote the complete English paragraph describing this domain use, with its exact captured passage citation.'
+expected = 'User-agent: *\nDisallow: /deny' if DAY2 or STAGE4 else 'This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.'
+question = 'Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.' if DAY2 or STAGE4 else 'Quote the complete English paragraph describing this domain use, with its exact captured passage citation.'
 index_server, index_requests = None, []
 source_urls = ['https://httpbin.org/robots.txt', 'https://httpbin.org/html']
 if STAGE3:
@@ -119,8 +121,45 @@ try:
     wait(lambda: 'ready' in text, 20)
     request = '/research ' + json.dumps({'mode': 'research', 'engineUrl': ORIGIN + '/index', 'queries': [question], 'maxSources': 5}) if STAGE3 else '/ask ' + SITE + ' ' + question
     os.write(master, (request + '\n').encode())
-    wait(completed, 180)
-    result = completed()
+    if STAGE4:
+        def records():
+            return [json.loads(line) for file in LOGS.glob('*.jsonl') for line in file.read_text().split('\n')[:-1]]
+
+        def pending_pause():
+            states = [event for event in records() if event['type'] == 'state']
+            return states[-1] if states and states[-1]['payload'].get('pending', {}).get('kind') == 'pause' else None
+
+        os.write(master, b'/pause\n')
+        wait(pending_pause, 30)
+        first = pending_pause()
+        run_id = first['runId']
+        os.write(master, b'/cancel\n')
+        wait(lambda: any(event['type'] == 'run_completed' and event['payload']['status'] == 'stopped' for event in records()), 20)
+        drain(1)
+        os.write(master, ('/resume ' + run_id + '\n').encode())
+        wait(lambda: pending_pause() and pending_pause()['payload']['pending']['id'] != first['payload']['pending']['id'], 30)
+        os.write(master, b'/continue\n')
+        wait(lambda: any(event['type'] == 'run_completed' and event['payload']['status'] == 'done' for event in records()), 180)
+        result = next(event['payload'] for event in reversed(records()) if event['type'] == 'run_completed')
+        checks.append({'id': 'pause-cancel-reopen-and-resume-public-read', 'passed': result['finalAnswer'] == expected, 'status': result['status']})
+        os.write(master, b'/trace\n')
+        drain(1)
+        prior_runs = {event['runId'] for event in records()}
+
+        def new_records():
+            return [event for event in records() if event['runId'] not in prior_runs]
+        os.write(master, (request + '\n').encode())
+        wait(lambda: any(event['type'] == 'crossing' for event in new_records()), 30)
+        os.write(master, b'/cancel\n')
+        wait(lambda: any(event['type'] == 'run_completed' and event['payload']['status'] == 'stopped' for event in new_records()), 20)
+        cancelled = new_records()
+        crossing = next(index for index, event in enumerate(cancelled) if event['type'] == 'crossing')
+        cancelled = cancelled[crossing + 1:]
+        checks.append({'id': 'cancel-local-request-without-action-dispatch', 'passed': not any(event['type'] in ['proposal', 'act_started'] for event in cancelled)})
+    else:
+        wait(completed, 180)
+    if not STAGE4:
+        result = completed()
     passed = result['status'] == 'done' and (all(text in result.get('finalAnswer', '') for text in expected) if STAGE3 else result.get('finalAnswer') == expected)
     if STAGE3:
         records = [json.loads(line) for file in LOGS.glob('*.jsonl') for line in file.read_text().split('\n')[:-1]]
@@ -128,10 +167,14 @@ try:
         claims = [claim for event in records if event['type'] == 'step' for claim in event['payload'].get('action', {}).get('claims', [])]
         cited_urls = {observations.get(ref['snapshotId'], {}).get('url') for claim in claims for ref in claim['evidence']}
         passed = passed and set(source_urls).issubset(cited_urls)
-    checks.append({'id': 'actual-local-assisted-research-through-tui' if STAGE3 else 'actual-local-public-read-through-tui', 'passed': passed, 'status': result['status']})
+    if not STAGE4:
+        checks.append({'id': 'actual-local-assisted-research-through-tui' if STAGE3 else 'actual-local-public-read-through-tui', 'passed': passed, 'status': result['status']})
     os.write(master, b'/sources\n')
     drain(1)
     fcntl.ioctl(master, termios.TIOCSWINSZ, struct.pack('HHHH', 28, 60, 0, 0))
+    # The TUI does not own this PTY as its controlling terminal, so the kernel sends no SIGWINCH.
+    os.kill(process.pid, signal.SIGWINCH)
+    recording.append([round(time.monotonic() - started, 4), 'r', '60x28'])
     os.write(master, b'/trace\n')
     drain(1)
     os.write(master, b'/quit\n')
@@ -153,9 +196,9 @@ finally:
     shutil.rmtree(WORK)
     (ARTIFACTS / 'terminal.txt').write_text(text)
     with (ARTIFACTS / 'terminal.cast').open('w') as output:
-        output.write(json.dumps({'version': 2, 'width': 100, 'height': 40, 'title': 'ChromeClaw Stage 3 assisted live-source research' if STAGE3 else 'ChromeClaw session 2 live local read' if DAY2 else 'ChromeClaw Day 1 live local read; development follow-up'}) + '\n')
+        output.write(json.dumps({'version': 2, 'width': 100, 'height': 40, 'title': 'ChromeClaw Stage 4 interruption and recovery' if STAGE4 else 'ChromeClaw Stage 3 assisted live-source research' if STAGE3 else 'ChromeClaw session 2 live local read' if DAY2 or STAGE4 else 'ChromeClaw Day 1 live local read; development follow-up'}) + '\n')
         for event in recording:
             output.write(json.dumps(event) + '\n')
-    (ARTIFACTS / 'report.json').write_text(json.dumps({'suite': 'live-01-terminal-stage3' if STAGE3 else 'live-01-terminal-session2' if DAY2 else 'live-01-terminal-development-followup', 'actualLocal': True, 'hostedInference': False, 'lane': 'assisted live sources; controlled candidate index, not public search' if STAGE3 else 'public read', 'indexRequests': index_requests, 'model': MODEL, 'site': SITE, 'sources': source_urls if STAGE3 else [SITE], 'checks': checks, 'latencyMs': round((time.monotonic() - started) * 1000)}, indent=2) + '\n')
+    (ARTIFACTS / 'report.json').write_text(json.dumps({'suite': 'live-01-terminal-stage4' if STAGE4 else 'live-01-terminal-stage3' if STAGE3 else 'live-01-terminal-session2' if DAY2 or STAGE4 else 'live-01-terminal-development-followup', 'actualLocal': True, 'hostedInference': False, 'lane': 'assisted live sources; controlled candidate index, not public search' if STAGE3 else 'public read', 'indexRequests': index_requests, 'model': MODEL, 'site': SITE, 'sources': source_urls if STAGE3 else [SITE], 'checks': checks, 'latencyMs': round((time.monotonic() - started) * 1000)}, indent=2) + '\n')
 print(ARTIFACTS)
-assert len(checks) == 2 and all(check['passed'] for check in checks)
+assert len(checks) == (3 if STAGE4 else 2) and all(check['passed'] for check in checks)

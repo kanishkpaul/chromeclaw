@@ -1,0 +1,105 @@
+
+> chromeclaw@0.1.0 eval:find-freshness /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-freshness.browser.mjs && node packages/agent/tests/find-freshness.browser.mjs --built
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/egress build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 9ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 11ms
+packages/shared build: DTS Build start
+packages/egress build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 334ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 654ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 51.96 KB
+packages/browser build: ESM ⚡️ Build success in 11ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 671ms
+packages/browser build: DTS dist/index.d.ts 6.33 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/index.js               100.12 KB
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM ⚡️ Build success in 16ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 845ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 10ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 854ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 11ms
+DTS Build start
+DTS ⚡️ Build success in 871ms
+DTS dist/index.d.ts 20.00 B
+{"suite":"live-01-find-freshness","built":false,"checks":[{"id":"static-target","role":"completes","passed":true,"status":"done","error":null},{"id":"static-passage","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-clock-target","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-layout-shift-target","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-clock-passage","role":"completes","passed":true,"status":"done","error":null},{"id":"cited-link-relabelled","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-retargeted","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-replaced","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-covered","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-passage-changed","role":"must-refuse","passed":true,"status":"uncertain","error":"Find results are stale. Capture again before choosing a result."}]}
+{"suite":"live-01-find-freshness","built":true,"checks":[{"id":"static-target","role":"completes","passed":true,"status":"done","error":null},{"id":"static-passage","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-clock-target","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-layout-shift-target","role":"completes","passed":true,"status":"done","error":null},{"id":"unrelated-clock-passage","role":"completes","passed":true,"status":"done","error":null},{"id":"cited-link-relabelled","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-retargeted","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-replaced","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-link-covered","role":"must-refuse","passed":true,"status":"uncertain","error":"Find target is unavailable, credential-bearing or stale."},{"id":"cited-passage-changed","role":"must-refuse","passed":true,"status":"uncertain","error":"Find results are stale. Capture again before choosing a result."}]}

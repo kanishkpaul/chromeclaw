@@ -1,0 +1,160 @@
+{
+  "actual-local": [
+    {
+      "file": "actual-local/cancel-after-proposal-reopen-and-resume/run_mvdt0j25_usa8z8n.jsonl",
+      "crossings": 2,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 2,
+      "completionStatuses": [
+        "stopped",
+        "done"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "actual-local/pause-after-proposal-reopen-and-resume/run_mvdt05dt_fzqot7j.jsonl",
+      "crossings": 2,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 2,
+      "completionStatuses": [
+        "done"
+      ],
+      "cleanupErrors": []
+    }
+  ],
+  "emulated": [
+    {
+      "file": "emulated/reopen-retains-exhausted-spend-budget/run_mvdsyj0c_iz9rd22.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 1,
+      "completionStatuses": [
+        "failed"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "emulated/unsent-edit-is-not-replayed-on-reopen/run_mvdsykrw_t0x0dd7.jsonl",
+      "crossings": 3,
+      "acts": [
+        "navigate",
+        "type"
+      ],
+      "finishProposals": 0,
+      "completionStatuses": [],
+      "cleanupErrors": []
+    },
+    {
+      "file": "emulated/cancel-after-proposal-reopen-and-resume/run_mvdsyhab_fqu326h.jsonl",
+      "crossings": 2,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 2,
+      "completionStatuses": [
+        "stopped",
+        "done"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "emulated/pause-after-proposal-reopen-and-resume/run_mvdsyeqw_o45fmyc.jsonl",
+      "crossings": 2,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 2,
+      "completionStatuses": [
+        "done"
+      ],
+      "cleanupErrors": []
+    }
+  ],
+  "terminal": [
+    {
+      "file": "terminal/runs/run_mvdt3xc2_vy9p24z.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 0,
+      "completionStatuses": [
+        "stopped"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "terminal/runs/run_mvdt3pb5_5ck1vbk.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 1,
+      "completionStatuses": [
+        "stopped",
+        "done"
+      ],
+      "cleanupErrors": []
+    }
+  ],
+  "terminal-initial-harness-order-failure": [
+    {
+      "file": "terminal-initial-harness-order-failure/runs/run_mvdt1ddi_bs697qj.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 0,
+      "completionStatuses": [
+        "stopped"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "terminal-initial-harness-order-failure/runs/run_mvdt14rb_xr1zteo.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 1,
+      "completionStatuses": [
+        "stopped",
+        "done"
+      ],
+      "cleanupErrors": []
+    }
+  ],
+  "terminal-initial-navigation-assertion-failure": [
+    {
+      "file": "terminal-initial-navigation-assertion-failure/runs/run_mvdt2ia1_ukw88m7.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 0,
+      "completionStatuses": [
+        "stopped"
+      ],
+      "cleanupErrors": []
+    },
+    {
+      "file": "terminal-initial-navigation-assertion-failure/runs/run_mvdt2a3i_rxcdxen.jsonl",
+      "crossings": 1,
+      "acts": [
+        "navigate"
+      ],
+      "finishProposals": 1,
+      "completionStatuses": [
+        "stopped",
+        "done"
+      ],
+      "cleanupErrors": []
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+[
+  {
+    "lane": "initial",
+    "case": "valid-json",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "valid-sse",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "repair-envelope",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "repair-action",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "invalid-action",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner reply is not a complete JSON action.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "retry-429",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "retry-503",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: http (503).",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 3,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "auth-401",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: http (401).",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "missing-usage",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "negative-usage",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner returned invalid token usage.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "over-limit-usage",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner exceeded the configured output token limit.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "repair-truncation",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "timeout",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: timeout.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "incomplete-sse",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner stream ended before completion.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "cancel-sse",
+    "expectedFailureReasonVerified": true,
+    "error": "Stopped by user. No new act will be dispatched.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "credential-echo",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: credential-echo.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "initial",
+    "case": "retry-budget",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: budget-exhausted.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "valid-json",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "valid-sse",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "repair-envelope",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "repair-action",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "invalid-action",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner reply is not a complete JSON action.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "retry-429",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "retry-503",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: http (503).",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 3,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "auth-401",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: http (401).",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "missing-usage",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "negative-usage",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner returned invalid token usage.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "over-limit-usage",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner exceeded the configured output token limit.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "repair-truncation",
+    "expectedFailureReasonVerified": false,
+    "error": null,
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 2,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "timeout",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: timeout.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "incomplete-sse",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner stream ended before completion.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "cancel-sse",
+    "expectedFailureReasonVerified": true,
+    "error": "Stopped by user. No new act will be dispatched.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "credential-echo",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: credential-echo.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  },
+  {
+    "lane": "final",
+    "case": "retry-budget",
+    "expectedFailureReasonVerified": true,
+    "error": "Planner transport failed: budget-exhausted.",
+    "acts": [
+      "navigate"
+    ],
+    "crossings": 1,
+    "cleanupErrors": 0
+  }
+]

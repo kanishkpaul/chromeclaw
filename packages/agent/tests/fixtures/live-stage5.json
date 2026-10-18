@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "stage": 5,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "3029d64",
+  "scope": "Dummy BYOK HTTP emulator only. Anonymous public read in disposable Chrome. No actual hosted or local inference, real key, fallback, writes, activation, login or personal profile.",
+  "url": "https://httpbin.org/robots.txt",
+  "task": "Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.",
+  "expected": "User-agent: *\nDisallow: /deny",
+  "requestCost": 0.001,
+  "cases": [
+    { "id": "valid-json", "status": "done", "requests": 1 },
+    { "id": "valid-sse", "status": "done", "requests": 1 },
+    { "id": "repair-envelope", "status": "done", "requests": 2 },
+    { "id": "repair-action", "status": "done", "requests": 2 },
+    { "id": "invalid-action", "status": "failed", "requests": 2 },
+    { "id": "retry-429", "status": "done", "requests": 2 },
+    { "id": "retry-503", "status": "failed", "requests": 3 },
+    { "id": "auth-401", "status": "failed", "requests": 1 },
+    { "id": "missing-usage", "status": "done", "requests": 1 },
+    { "id": "negative-usage", "status": "failed", "requests": 1 },
+    { "id": "over-limit-usage", "status": "failed", "requests": 1 },
+    { "id": "repair-truncation", "status": "done", "requests": 2 },
+    { "id": "timeout", "status": "failed", "requests": 1 },
+    { "id": "incomplete-sse", "status": "failed", "requests": 1 },
+    { "id": "cancel-sse", "status": "stopped", "requests": 1 },
+    { "id": "credential-echo", "status": "failed", "requests": 1 },
+    { "id": "retry-budget", "status": "failed", "requests": 1 }
+  ]
+}
