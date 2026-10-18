@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "stage": 4,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "4da27c5",
+  "scope": "Anonymous public reads and one synthetic unsubmitted edit. No activations, login, personal profile, hosted inference or downloads. Scripted replies measure recovery mechanics only.",
+  "read": {
+    "url": "https://httpbin.org/robots.txt",
+    "task": "Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.",
+    "expected": "User-agent: *\nDisallow: /deny"
+  },
+  "edit": {
+    "url": "https://httpbin.org/forms/post",
+    "task": "Type STAGE4-UNSENT in the Customer name field. Never submit or activate anything.",
+    "value": "STAGE4-UNSENT"
+  },
+  "cases": [
+    "pause-after-proposal-reopen-and-resume",
+    "cancel-after-proposal-reopen-and-resume",
+    "reopen-retains-exhausted-spend-budget",
+    "unsent-edit-is-not-replayed-on-reopen"
+  ],
+  "localCases": [
+    "pause-after-proposal-reopen-and-resume",
+    "cancel-after-proposal-reopen-and-resume"
+  ],
+  "terminal": "Pause before model dispatch, reopen saved run, resume with exact pending ID, inspect trace, then cancel a second read."
+}

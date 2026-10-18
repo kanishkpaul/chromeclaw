@@ -1,0 +1,41 @@
+{
+  "suite": "live-01-ranked-url-regression",
+  "source": false,
+  "live": false,
+  "checks": [
+    {
+      "id": "duplicate-ranked-url-refuses-valid-citations",
+      "passed": false,
+      "status": "done",
+      "runId": "run_mvdsfyv5_l8pbv0m"
+    },
+    {
+      "id": "unique-ranked-url-with-valid-citation-completes",
+      "passed": true,
+      "status": "done",
+      "runId": "run_mvdsfzgq_bq9k2zx"
+    },
+    {
+      "id": "no-browser-writes",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/index"
+        },
+        {
+          "method": "GET",
+          "path": "/source"
+        },
+        {
+          "method": "GET",
+          "path": "/index"
+        },
+        {
+          "method": "GET",
+          "path": "/source"
+        }
+      ]
+    }
+  ]
+}

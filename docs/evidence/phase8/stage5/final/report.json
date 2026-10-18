@@ -1,0 +1,513 @@
+{
+  "suite": "live-01-stage5",
+  "actualInference": false,
+  "hostedSpend": 0,
+  "lane": "dummy hosted wire via explicit loopback adapter seam; actual public read",
+  "fixtureSha256": "3091b0fa0094cc5f35b9a17cf70defa0c3b0c36f30d3c88a3b277f86f6f77cca",
+  "endpoint": "http://127.0.0.1:63304/v1",
+  "results": [
+    {
+      "id": "valid-json",
+      "passed": true,
+      "status": "done",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 1829
+    },
+    {
+      "id": "valid-sse",
+      "passed": true,
+      "status": "done",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 1,
+      "latencyMs": 784
+    },
+    {
+      "id": "repair-envelope",
+      "passed": true,
+      "status": "done",
+      "requests": 2,
+      "reservedCost": 0.002,
+      "usage": [
+        {
+          "promptTokens": null,
+          "completionTokens": null
+        },
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 860
+    },
+    {
+      "id": "repair-action",
+      "passed": true,
+      "status": "done",
+      "requests": 2,
+      "reservedCost": 0.002,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        },
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 955
+    },
+    {
+      "id": "invalid-action",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner reply is not a complete JSON action.",
+      "requests": 2,
+      "reservedCost": 0.002,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        },
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 892
+    },
+    {
+      "id": "retry-429",
+      "passed": true,
+      "status": "done",
+      "requests": 2,
+      "reservedCost": 0.002,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 964
+    },
+    {
+      "id": "retry-503",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner transport failed: http (503).",
+      "requests": 3,
+      "reservedCost": 0.003,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 1226
+    },
+    {
+      "id": "auth-401",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner transport failed: http (401).",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 996
+    },
+    {
+      "id": "missing-usage",
+      "passed": true,
+      "status": "done",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [
+        {
+          "promptTokens": null,
+          "completionTokens": null
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 851
+    },
+    {
+      "id": "negative-usage",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner returned invalid token usage.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 899
+    },
+    {
+      "id": "over-limit-usage",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner exceeded the configured output token limit.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 820
+    },
+    {
+      "id": "repair-truncation",
+      "passed": true,
+      "status": "done",
+      "requests": 2,
+      "reservedCost": 0.002,
+      "usage": [
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        },
+        {
+          "promptTokens": 100,
+          "completionTokens": 8
+        }
+      ],
+      "progressUpdates": 0,
+      "latencyMs": 879
+    },
+    {
+      "id": "timeout",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner transport failed: timeout.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 1325
+    },
+    {
+      "id": "incomplete-sse",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner stream ended before completion.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 1,
+      "latencyMs": 838
+    },
+    {
+      "id": "cancel-sse",
+      "passed": true,
+      "status": "stopped",
+      "error": "Stopped by user. No new act will be dispatched.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 1,
+      "latencyMs": 660
+    },
+    {
+      "id": "credential-echo",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner transport failed: credential-echo.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 912
+    },
+    {
+      "id": "retry-budget",
+      "passed": true,
+      "status": "failed",
+      "error": "Planner transport failed: budget-exhausted.",
+      "requests": 1,
+      "reservedCost": 0.001,
+      "usage": [],
+      "progressUpdates": 0,
+      "latencyMs": 1121
+    }
+  ],
+  "requests": [
+    {
+      "caseId": "valid-json",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "5b04f4c25cb56c688d2a3243b1b34d741a85a6433eccae1d7fa693d438d2a63a",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "valid-sse",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": true,
+      "outputLimit": 64,
+      "tokenLimitField": "max_completion_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "870be48c99f87a4f35a17c73c80f05c59291b8504ebf945b9a852fd2e2afa7ce",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-envelope",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "0b837273f3e5ef9b5247cebe68c63e53f44a9e51becdc8fa419d3cae7b0caa26",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-envelope",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "b92ba76954175430e575f99453a3545b339e1388486e40f9db79711b09628875",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-action",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "df4e612fb7a71ba7f67da225a4732c6e26f46dd6679d7bbe6d53f74ff449295d",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-action",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "55e46ded2d57227bfcd26da724bdfe1acdada2125be44afbdd293866b7752e4d",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "invalid-action",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "6e319b4cc9bb59870c930dbd67cb62db4d3b01303c6cbab844d40756a8ebbf0f",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "invalid-action",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "4a35422b7006f2c7001108ca5b9d10889d339d523aa6a5a3825692a4d287f019",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-429",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "6d90245527a47fb1d153543dfbc5454e680f1ae19da24be531afbfc2e0afa9d9",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-429",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "6d90245527a47fb1d153543dfbc5454e680f1ae19da24be531afbfc2e0afa9d9",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-503",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "01d0f2b40c470d463b6f2b9fb17be18d50ff7aba9ec94e6a597678e632e91a03",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-503",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "01d0f2b40c470d463b6f2b9fb17be18d50ff7aba9ec94e6a597678e632e91a03",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-503",
+      "attempt": 3,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "01d0f2b40c470d463b6f2b9fb17be18d50ff7aba9ec94e6a597678e632e91a03",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "auth-401",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "6e0fe80da1c55d279ef5e3f22d6c6bc9f81b532211f6ccee0471ccc6ba9adeda",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "missing-usage",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "a4d6b275ac55b5b3d9d5cfe20571355dbeb0da3d9bce5440b2019053249cf6c3",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "negative-usage",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "890604b8001bd606fdaeddfc8ce18ef10b12bba23bd0cc8280a037582b32bb04",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "over-limit-usage",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "ac538fd9cdc7617cb764e4714a181551fc55cb4a70472332946b344449c5a8f5",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-truncation",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "3e5c9f3b83553a2605fd1d56115d39ed418acfa4f0e7645811a4213b0a8d7f2d",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "repair-truncation",
+      "attempt": 2,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "2119eee1cb85eacbc8cefb78ca8f2d9e9091933015d9a6e3dd669ddd8be95bd7",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "timeout",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "c4dab54d50d27b8af70a0891ba5728833c02b262c873969e003682d0da1d0964",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "incomplete-sse",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": true,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "b262a462c42c0f0bfd3e9f0d87eda1b94a6430d189d0aad22d8476c5a74acf0e",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "cancel-sse",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": true,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "6b3b3ee967303b23776f4e12ae4236fbab74114bd1d13b480956ac93eca406fa",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "credential-echo",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "07a764de0438955f924b8046a3b203fe301ee58681b22abf5fc8a3f288572735",
+      "durableBeforeReceipt": true
+    },
+    {
+      "caseId": "retry-budget",
+      "attempt": 1,
+      "path": "/v1/chat/completions",
+      "stream": false,
+      "outputLimit": 64,
+      "tokenLimitField": "max_tokens",
+      "authorization": "dummy-only",
+      "payloadHash": "e7225cb2f57273b0183d749343bbc04f841522353c35ccab8a71990f1f6a5d49",
+      "durableBeforeReceipt": true
+    }
+  ],
+  "serverErrors": []
+}

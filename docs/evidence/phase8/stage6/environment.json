@@ -1,0 +1,30 @@
+{
+  "foregroundAtStart": [
+    "Finder",
+    "Claude"
+  ],
+  "initialMemoryAvailablePercent": 79,
+  "memoryTotalBytes": 17179869184,
+  "stoppedUnneededWorkloads": [],
+  "preserved": [
+    "Claude desktop app and its two Claude Code sessions",
+    "claude-mem worker (bun, chroma-mcp, background claude)",
+    "context7 MCP",
+    "macOS services"
+  ],
+  "noteOnPreviewTui": "The earlier 'ChromeClaw TUI preview' window was no longer running when inspected; no ChromeClaw, Chrome or model process existed before testing.",
+  "modelFile": "Qwen3VL-8B-Instruct-Q4_K_M.gguf",
+  "modelSha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+  "modelServer": "/opt/homebrew/bin/llama-server version 9780 (1191758c5) --alias chromeclaw-qwen3vl --host 127.0.0.1 --port 18184 --offline --ctx-size 16384 --cache-ram 256 --parallel 1 --reasoning off --temp 0",
+  "modelServerPid": 39279,
+  "modelServerStoppedWith": "SIGTERM to the exact owned PID; confirmed exited",
+  "downloads": false,
+  "actualHostedInference": false,
+  "hostedSpendUsd": 0,
+  "leftoverChromeOrModelProcesses": [],
+  "finalMemoryAvailablePercent": 80,
+  "foregroundAtEnd": [
+    "Finder",
+    "Claude"
+  ]
+}

@@ -1,0 +1,223 @@
+
+> chromeclaw@0.1.0 eval:find /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: CLI Target: es2022
+packages/egress build: CLI Cleaning output folder
+packages/egress build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 9ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 12ms
+packages/shared build: DTS Build start
+packages/egress build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 341ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 703ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 49.95 KB
+packages/browser build: ESM ⚡️ Build success in 12ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 717ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/index.js               98.93 KB
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM ⚡️ Build success in 18ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 893ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 9ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 875ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 12ms
+DTS Build start
+DTS ⚡️ Build success in 914ms
+DTS dist/index.d.ts 20.00 B
+{
+  "suite": "phase6-find-contract",
+  "built": false,
+  "planner": "scripted-contract-only",
+  "actualModel": false,
+  "writes": 0,
+  "checks": [
+    {
+      "id": "reopen-retains-mode-and-pauses",
+      "passed": true,
+      "runId": "run_mvdw953r_oocss1g",
+      "log": "target/run_mvdw953r_oocss1g.jsonl"
+    },
+    {
+      "id": "target",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdw953r_oocss1g",
+      "log": "target/run_mvdw953r_oocss1g.jsonl"
+    },
+    {
+      "id": "passage",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdw95wz_44qcoz1",
+      "log": "passage/run_mvdw95wz_44qcoz1.jsonl"
+    },
+    {
+      "id": "mixed",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdw969i_vmqxgq5",
+      "log": "mixed/run_mvdw969i_vmqxgq5.jsonl"
+    },
+    {
+      "id": "duplicates",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdw96ly_s7cct8n",
+      "log": "duplicates/run_mvdw96ly_s7cct8n.jsonl"
+    },
+    {
+      "id": "invented",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdw96yc_7z1bitq",
+      "log": "invented/run_mvdw96yc_7z1bitq.jsonl"
+    },
+    {
+      "id": "credential",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdw97af_rusj8f9",
+      "log": "credential/run_mvdw97af_rusj8f9.jsonl"
+    },
+    {
+      "id": "stale",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdw97mv_p3ca1y5",
+      "log": "stale/run_mvdw97mv_p3ca1y5.jsonl"
+    },
+    {
+      "id": "no-match",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdw98ed_jn4yish",
+      "log": "no-match/run_mvdw98ed_jn4yish.jsonl"
+    },
+    {
+      "id": "clarify",
+      "passed": true,
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "runId": "run_mvdw98qb_f76dw3h",
+      "log": "clarify/run_mvdw98qb_f76dw3h.jsonl"
+    },
+    {
+      "id": "click",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdw992v_v9we1gq",
+      "log": "click/run_mvdw992v_v9we1gq.jsonl"
+    },
+    {
+      "id": "type",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdw99fc_934489m",
+      "log": "type/run_mvdw99fc_934489m.jsonl"
+    },
+    {
+      "id": "navigate",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdw99ru_rhqln1y",
+      "log": "navigate/run_mvdw99ru_rhqln1y.jsonl"
+    },
+    {
+      "id": "scroll",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdw9a48_ha4hryr",
+      "log": "scroll/run_mvdw9a48_ha4hryr.jsonl"
+    }
+  ],
+  "execution": "source-0TTq6Q"
+}

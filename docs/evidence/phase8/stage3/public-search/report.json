@@ -1,0 +1,51 @@
+{
+  "suite": "live-01-stage3",
+  "stage": 3,
+  "calendarDate": "2026-10-18",
+  "actualLocal": true,
+  "hostedInference": false,
+  "lane": "public-search",
+  "candidateIndex": "public search; one fixed query",
+  "model": "chromeclaw-qwen3vl",
+  "serverContextTokens": 16384,
+  "fixtureSha256": "24a0666792922a721cfd12a5aa1cbc8e32b2c09aa2b552d1bcc11af5beb94523",
+  "limits": "Anonymous read-only tasks. One public search probe only, no retry/solver/fallback on a barrier. Separate predeclared assisted-retrieval lane uses a controlled candidate index and real public sources; it cannot measure live search quality. No activation, credentials, personal data or hosted inference.",
+  "selected": 1,
+  "completed": 1,
+  "passed": 0,
+  "indexRequests": [],
+  "modelRequests": [],
+  "results": [
+    {
+      "id": "public-find-iana",
+      "lane": "public-search",
+      "mode": "web",
+      "negative": null,
+      "passed": false,
+      "status": "failed",
+      "error": "An access barrier requires manual hand-back; no bypass attempted.",
+      "answer": "An access barrier requires manual hand-back; no bypass attempted.",
+      "urls": [],
+      "sourceCoverage": [],
+      "referenceValid": false,
+      "sources": [],
+      "failures": [
+        {
+          "stage": "source-failure",
+          "detail": "An access barrier requires manual hand-back; no bypass attempted.",
+          "url": "https://html.duckduckgo.com/html/?q=%5Bwithheld%5D"
+        }
+      ],
+      "modelAttempts": 0,
+      "usage": [],
+      "emulatorRequests": 0,
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "latencyMs": 962,
+      "steps": 1,
+      "runId": "run_mvds9iif_nvu38ty",
+      "log": "public-find-iana/run_mvds9iif_nvu38ty.jsonl",
+      "safeBarrierHandback": true
+    }
+  ]
+}

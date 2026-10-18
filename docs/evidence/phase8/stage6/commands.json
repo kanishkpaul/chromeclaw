@@ -1,0 +1,30 @@
+{
+  "frozenManifestCommit": "dbb8681",
+  "scripted": "python3 apps/cli/tests/stage6.pty.py",
+  "actualLocal": "CHROMECLAW_TEST_LOCAL_URL=http://127.0.0.1:18184/v1 CHROMECLAW_TEST_LOCAL_MODEL=chromeclaw-qwen3vl python3 apps/cli/tests/stage6.pty.py --actual-local",
+  "cleanupDiagnosticReplay": "DEBUG=pw:api DEBUG_FILE=<scratch> plus the actual-local command; diagnostic only, not scored",
+  "regressionSource": "pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/live-regressions.browser.mjs --source",
+  "regressionAll": "pnpm eval:live-regressions",
+  "gates": [
+    "pnpm check",
+    "pnpm eval:live-regressions",
+    "pnpm eval:credentials",
+    "pnpm eval:safety",
+    "pnpm eval:runtime",
+    "pnpm eval:ask",
+    "pnpm eval:find",
+    "pnpm eval:find-labelled",
+    "pnpm eval:readers",
+    "pnpm eval:discovery",
+    "pnpm eval:discovery-safety",
+    "pnpm eval:work-safety",
+    "pnpm eval:tui",
+    "pnpm eval:work",
+    "pnpm eval:models",
+    "node packages/browser/tests/safety.browser.mjs",
+    "node packages/agent/tests/runtime.browser.mjs",
+    "node packages/agent/tests/models.browser.mjs"
+  ],
+  "actualInference": true,
+  "hostedSpend": 0
+}

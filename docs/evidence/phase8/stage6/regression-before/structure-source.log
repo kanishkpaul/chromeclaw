@@ -1,0 +1,19 @@
+{"suite":"live-01-regressions","source":true,"checks":[{"id":"blocked-passive-assets-do-not-fail-readable-main-document","passed":true,"status":"done","runId":"run_mvdwl8jc_np50k3g"},{"id":"query-assets-telemetry-and-foreign-requests-still-blocked","passed":true,"forbidden":0},{"id":"explicit-source-opening-survives-blocked-passive-assets","passed":true},{"id":"sentence-with-inline-link-is-one-passage","passed":false,"passages":["The fixture sentence has an","inline\n link","inside\n it.","People","Line one\n  Line two"],"linkNames":["inline\n link","14"]},{"id":"legacy-anchor-name-attribute-is-not-link-name","passed":false},{"id":"preformatted-passage-keeps-line-breaks","passed":true,"status":"done"},{"id":"passage-cut-at-node-cap-is-reported-as-omitted","passed":false,"omittedPassages":false,"capturedChars":2000,"paragraphChars":2519,"status":"done"},{"id":"main-document-redirect-still-refuses-without-following","passed":true,"status":"failed","forbidden":0}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.length === 8 && checks.every((check) => check.passed))
+
+    at <anonymous> (/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-regressions.browser.mjs:247:8) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

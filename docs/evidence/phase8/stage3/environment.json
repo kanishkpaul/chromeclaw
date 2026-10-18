@@ -1,0 +1,29 @@
+{
+  "stage": 3,
+  "calendarDate": "2026-10-18",
+  "parentCommit": "eee18ca1a4af0f108cbc101e82f2b7186e1e51b8",
+  "inventory": "Only Finder and ChatGPT/Codex foreground; no unrelated browser/model/development job. No other app required closing.",
+  "memoryFreeBefore": "80%",
+  "model": "Qwen3-VL-8B-Instruct-Q4_K_M.gguf",
+  "weightsSha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+  "server": "llama.cpp 9780 (1191758c5)",
+  "settings": {
+    "offline": true,
+    "ctxSize": 16384,
+    "parallel": 1,
+    "cacheRamMiB": 256,
+    "reasoning": "off",
+    "temperature": 0,
+    "textOnly": true,
+    "maxOutputTokens": 1600,
+    "tuiOutputTokens": 1200,
+    "requestTimeoutMs": 90000
+  },
+  "actualHostedSpend": 0,
+  "personalProfile": false,
+  "publicSearchQueries": 1,
+  "engineFallback": false,
+  "modelServerStopped": true,
+  "memoryAfterInference": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 185056 \nPages purgeable: 820 \nPages purged: 164954449 \n\nSwap I/O:\nSwapins: 16869906 \nSwapouts: 21093491 \n\nPage Q counts:\nPages active: 148729 \nPages inactive: 416215 \nPages speculative: 4136 \nPages throttled: 0 \nPages wired down: 168561 \n\nCompressor Stats:\nPages used by compressor: 89415 \nPages decompressed: 1159788064 \nPages compressed: 1299405461 \n\nFile I/O:\nPageins: 166101740 \nPageouts: 537316 \n\nSystem-wide memory free percentage: 73%\n",
+  "finalProcessInspection": "No Google Chrome or llama-server executable process remains after source/compiled and live-source gates."
+}

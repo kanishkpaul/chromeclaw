@@ -1,0 +1,34 @@
+{
+  "suite": "live-01-ranked-url-regression",
+  "source": false,
+  "live": true,
+  "checks": [
+    {
+      "id": "duplicate-ranked-url-refuses-valid-citations",
+      "passed": true,
+      "status": "uncertain",
+      "error": "Ranked source URLs must be unique.",
+      "runId": "run_mvdsiunu_3xtc7a9"
+    },
+    {
+      "id": "unique-ranked-url-with-valid-citation-completes",
+      "passed": true,
+      "status": "done",
+      "runId": "run_mvdsiw2t_4pya1hy"
+    },
+    {
+      "id": "no-browser-writes",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/index"
+        },
+        {
+          "method": "GET",
+          "path": "/index"
+        }
+      ]
+    }
+  ]
+}

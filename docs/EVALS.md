@@ -182,4 +182,28 @@ failed attempts and exit nonzero on misses. Synthetic history remains a separate
 subset. `--followup` on the underlying script selects revised-label development checks rather
 than changing original scores. The live commands stay manual; CI runs `eval:live-regressions`
 against controlled pages in source/compiled modes. See [PHASE8.md](PHASE8.md) for scope, scoring,
-cleanup, emulation limits and the unfinished seven-day gate.
+cleanup, emulation limits and the unfinished seven-stage gate.
+
+The owner superseded the calendar-day gate with seven back-to-back stages (D-028).
+Stage 3's `eval:live-research` keeps public search and controlled-candidate/live-source lanes
+separate. `--actual-local --public-probe` runs the single public query; the default candidate
+lane is dummy BYOK, and `--actual-local` measures local source synthesis. Do not count assisted
+retrieval as public-search quality or negative zero-inference cases as model answers.
+`eval:live-regressions` includes source/compiled ranked-URL uniqueness checks. The underlying
+`live-research-regression.browser.mjs --live-source` is a manual real-source engineering retest,
+not inference or a CI network dependency. The [Stage 3 report](evidence/phase8/stage3/README.md)
+retains the pre-fix failures and frozen local/TUI misses.
+
+Stage 4's `eval:live-recovery` runs dummy BYOK against public pages; append `--actual-local` to
+the underlying script with explicit endpoint/model variables for the two actual-inference cases.
+`python3 apps/cli/tests/live.pty.py --stage4` records pause/cancel/reopen/continue and cancellation
+during local planning. The [Stage 4 report](evidence/phase8/stage4/README.md) separates recovery
+mechanics, narrow extractive model results, controlled lifecycle gates and harness corrections.
+These public-site commands remain manual; existing lifecycle fixtures are deterministic gates.
+
+Stage 5's `eval:live-byok` uses only an explicit dummy-provider adapter seam and public read-only
+Chrome tasks. Its frozen seventeen cases check JSON/SSE, reply repair, retry ceilings, usage,
+timeouts, cancellation and per-attempt durable reservations. Successful fault handling is not a
+successful model answer: expected failures count toward the protocol contract only. The
+[Stage 5 report](evidence/phase8/stage5/README.md) separates synthetic usage/reservations from
+zero actual hosted spending. Source/compiled model fixtures retain configuration/fallback gates.

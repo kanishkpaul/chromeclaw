@@ -1,0 +1,238 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+[2K[1G ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/ask https://httpbin.org/robots.txt Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G/pause
+[2K[1G  Pause requested before another act.
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  ┊ navigate  {"type":"navigate","url":"https://httpbin.org/robots.txt"} · 1679 ms
+[1G[0J❯ [3G[2K[1G  Paused. Take over in Chrome if needed. /continue recaptures before acting.
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ paused │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/cancel
+[2K[1G  Cancellation requested; in-flight effects may already have happened.
+[1G[0J❯ [3G[2K[1G  result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mve0c3rs_hrit19q"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ stopped │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/resume run_mve0c3rs_hrit19q
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  Paused. Take over in Chrome if needed. /continue recaptures before acting.
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ paused │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/continue
+[2K[1G  ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12252 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"User-agent: *\nDisallow: /deny","evidence":[{"snapshotId":"
+  ┊ 2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1","passageId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1:p1","quo
+  ┊ te":"User-agent: *\nDisallow: /deny"}]} · 10347 ms
+[1G[0J❯ [3G[2K[1G  citations [{"snapshotId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1","passageId":"2f029b97-7c9e-4a6d-9e
+  citations ca-d0d5de17dbf1:p1","quote":"User-agent: *\nDisallow: /deny"}]
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"User-agent: *\nDisallow: /deny","runId":"run_mve0c3rs_hrit19q"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/trace
+[2K[1G  trace run_started {"id":"run_mve0c3rs_hrit19q","task":"Quote the complete visible robots.txt text 
+  trace run_started exactly, including its newline, with its captured passage citation.","askUrl":"h
+  trace run_started ttps://httpbin.org/robots.txt","status":"observing","startedAt":"2026-10-18T15:5
+  trace run_started 5:53.752Z","maxSteps":4,"permissions":{"origins":["https://httpbin.org"],"tools"
+  trace run_started :["navigate","wait","extract_text","summarize_page","ask_user","finish","fail"],
+  trace run_started "read":true,"write":false,"irreversible":"deny","allowLoopback":false,"maxSteps"
+  trace run_started :4,"expiresAt":1792339133752,"maxCost":0},"provider":"unresolved","model":"unres
+  trace run_started olved","answers":[],"reservedCost":0}
+[1G[0J❯ [3G[2K[1G  trace configuration {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":fal
+  trace configuration se,"responseFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mod
+  trace configuration e":"local","requestCost":0,"maxOutputTokens":1200,"tokenLimitField":"max_token
+  trace configuration s","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mve0c49p_frui2dr","gate":{"decision":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace act_started {"stepId":"step_mve0c49p_frui2dr","action":{"type":"navigate","url":"https://htt
+  trace act_started pbin.org/robots.txt"}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0c49p_frui2dr","index":0,"phase":"ACT","status":"observing","action":{"t
+  trace step ype":"navigate","url":"https://httpbin.org/robots.txt"},"observationSummary":"Opened th
+  trace step e explicitly requested read-only page under fixed read permissions.","result":"Opened t
+  trace step he explicitly requested read-only page under fixed read permissions.","gate":{"decision
+  trace step ":"allow","approved":false},"startedAt":"2026-10-18T15:55:53.756Z","completedAt":"2026-
+  trace step 10-18T15:55:55.435Z","durationMs":1679}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"345263d8-7a82-4642-b965-a3ef2449a552","documentId":"73ccf984-2aa3
+  trace observation -4660-97d7-af7b3db03848","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"User-agent: *\nDisallow: /deny","kind":"document"
+  trace observation ,"id":"345263d8-7a82-4642-b965-a3ef2449a552:p1","snapshotId":"345263d8-7a82-4642
+  trace observation -b965-a3ef2449a552","url":"https://httpbin.org/robots.txt"}],"unreadableRegions"
+  trace observation :0,"omittedPassages":false,"url":"https://httpbin.org/robots.txt","title":"","vi
+  trace observation sibleText":"User-agent: *\nDisallow: /deny","accessibilityTreeSummary":"Safe DOM
+  trace observation  target summary. Native AX field values are not captured.","timestamp":"2026-10-
+  trace observation 18T15:55:55.457Z"}
+[1G[0J❯ [3G[2K[1G  trace state {"status":"paused","pending":{"id":"pending_mve0c539_gwnl99g","kind":"pause","reason":
+  trace state "Paused before another act."}}
+[1G[0J❯ [3G[2K[1G  trace error {"stage":"observe","message":"Stopped by user. No new act will be dispatched.","stepId
+  trace error ":"step_mve0c49p_frui2dr"}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0c554_5js3v1g","index":1,"phase":"ERROR","status":"stopped","beforeId":"
+  trace step 345263d8-7a82-4642-b965-a3ef2449a552","observationSummary":"Stopped by user. No new act
+  trace step  will be dispatched.","result":"Stopped by user. No new act will be dispatched.","error
+  trace step ":"Stopped by user. No new act will be dispatched.","startedAt":"2026-10-18T15:55:55.44
+  trace step 0Z","completedAt":"2026-10-18T15:55:55.528Z","durationMs":88}
+[1G[0J❯ [3G[2K[1G  trace run_completed {"status":"stopped","completedAt":"2026-10-18T15:55:55.533Z","finalAnswer":"St
+  trace run_completed opped by user. No new act will be dispatched.","error":"Stopped by user. No ne
+  trace run_completed w act will be dispatched."}
+[1G[0J❯ [3G[2K[1G  trace configuration {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":fal
+  trace configuration se,"responseFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mod
+  trace configuration e":"local","requestCost":0,"maxOutputTokens":1200,"tokenLimitField":"max_token
+  trace configuration s","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"0c2d1238-b467-40c2-956d-db9a985c02a1","documentId":"92199147-f5f9
+  trace observation -44c5-8ae5-99341ba5da1c","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"User-agent: *\nDisallow: /deny","kind":"document"
+  trace observation ,"id":"0c2d1238-b467-40c2-956d-db9a985c02a1:p1","snapshotId":"0c2d1238-b467-40c2
+  trace observation -956d-db9a985c02a1","url":"https://httpbin.org/robots.txt"}],"unreadableRegions"
+  trace observation :0,"omittedPassages":false,"url":"https://httpbin.org/robots.txt","title":"","vi
+  trace observation sibleText":"User-agent: *\nDisallow: /deny","accessibilityTreeSummary":"Safe DOM
+  trace observation  target summary. Native AX field values are not captured.","timestamp":"2026-10-
+  trace observation 18T15:55:57.283Z"}
+[1G[0J❯ [3G[2K[1G  trace state {"status":"paused","pending":{"id":"pending_mve0c6hz_6h3otk1","kind":"pause","reason":
+  trace state "Reopened with a fresh capture. Old approvals are invalid."}}
+[1G[0J❯ [3G[2K[1G  trace user_response {"pendingId":"pending_mve0c6hz_6h3otk1","kind":"pause"}
+[1G[0J❯ [3G[2K[1G  trace state {"status":"observing"}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1","documentId":"a4e522e1-03b0
+  trace observation -4ad9-95aa-4c9919bfe1f0","interactiveElements":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"User-agent: *\nDisallow: /deny","kind":"document"
+  trace observation ,"id":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1:p1","snapshotId":"2f029b97-7c9e-4a6d
+  trace observation -9eca-d0d5de17dbf1","url":"https://httpbin.org/robots.txt"}],"unreadableRegions"
+  trace observation :0,"omittedPassages":false,"url":"https://httpbin.org/robots.txt","title":"","vi
+  trace observation sibleText":"User-agent: *\nDisallow: /deny","accessibilityTreeSummary":"Safe DOM
+  trace observation  target summary. Native AX field values are not captured.","timestamp":"2026-10-
+  trace observation 18T15:55:57.360Z"}
+[1G[0J❯ [3G[2K[1G  trace crossing {"destination":"http://127.0.0.1:18184/v1/chat/completions","requestBytes":12252,"p
+  trace crossing ayloadHash":"7f827f8788412f5159a7b2a78afa7fc2def546b892d00c38f03f54397f2c9dda","att
+  trace crossing empt":1,"estimatedCost":0,"accounting":"local-zero"}
+[1G[0J❯ [3G[2K[1G  trace model_usage {"promptTokens":1453,"completionTokens":107}
+[1G[0J❯ [3G[2K[1G  trace proposal {"stepId":"step_mve0cej2_nzkqn3q","action":{"type":"finish","answer":"User-agent: *
+  trace proposal \nDisallow: /deny","evidence":[{"snapshotId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1"
+  trace proposal ,"passageId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1:p1","quote":"User-agent: *\nDisa
+  trace proposal llow: /deny"}]}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mve0cej2_nzkqn3q","gate":{"decision":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0cej2_nzkqn3q","index":3,"phase":"DONE","status":"done","action":{"type"
+  trace step :"finish","answer":"User-agent: *\nDisallow: /deny","evidence":[{"snapshotId":"2f029b97
+  trace step -7c9e-4a6d-9eca-d0d5de17dbf1","passageId":"2f029b97-7c9e-4a6d-9eca-d0d5de17dbf1:p1","qu
+  trace step ote":"User-agent: *\nDisallow: /deny"}]},"beforeId":"2f029b97-7c9e-4a6d-9eca-d0d5de17db
+  trace step f1","observationSummary":"Snapshot-bound passage citations support the exact extractive
+  trace step  answer.","result":"Snapshot-bound passage citations support the exact extractive answe
+  trace step r.","gate":{"decision":"allow","approved":false},"startedAt":"2026-10-18T15:55:57.355Z"
+  trace step ,"completedAt":"2026-10-18T15:56:07.702Z","durationMs":10347}
+[1G[0J❯ [3G[2K[1G  trace run_completed {"status":"done","completedAt":"2026-10-18T15:56:07.835Z","finalAnswer":"User-
+  trace run_completed agent: *\nDisallow: /deny"}
+[1G[0J❯ [3G/ask https://httpbin.org/robots.txt Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  ┊ navigate  {"type":"navigate","url":"https://httpbin.org/robots.txt"} · 674 ms
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12114 bytes
+[1G[0J❯ [3G/cancel
+[2K[1G  Cancellation requested; in-flight effects may already have happened.
+[1G[0J❯ [3G[2K[1G  result {"status":"stopped","answer":"Stopped by user. No new act will be dispatched.","error":"Sto
+  result pped by user. No new act will be dispatched.","runId":"run_mve0cfgw_81m1hdh"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ stopped │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/sources
+[2K[1G  source 1 {"snapshot":"b66b8ef5-7309-4872-a2a7-5737f2adef2f","url":"https://httpbin.org/robots.txt"
+  source 1 }
+[1G[0J❯ [3G/trace
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ stopped │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────
+[1G[0J❯ [3G[2K[1G  trace run_started {"id":"run_mve0cfgw_81m1hdh","task":"Quo
+  trace run_started te the complete visible robots.txt text 
+  trace run_started exactly, including its newline, with its
+  trace run_started  captured passage citation.","askUrl":"h
+  trace run_started ttps://httpbin.org/robots.txt","status":
+  trace run_started "observing","startedAt":"2026-10-18T15:5
+  trace run_started 6:08.912Z","maxSteps":4,"permissions":{"
+  trace run_started origins":["https://httpbin.org"],"tools"
+  trace run_started :["navigate","wait","extract_text","summ
+  trace run_started arize_page","ask_user","finish","fail"],
+  trace run_started "read":true,"write":false,"irreversible"
+  trace run_started :"deny","allowLoopback":false,"maxSteps"
+  trace run_started :4,"expiresAt":1792339148912,"maxCost":0
+  trace run_started },"provider":"unresolved","model":"unres
+  trace run_started olved","answers":[],"reservedCost":0}
+[1G[0J❯ [3G[2K[1G  trace configuration {"provider":"local","model":"chromecla
+  trace configuration w-qwen3vl","configuration":{"stream":f
+  trace configuration alse,"responseFormat":"llama-schema","
+  trace configuration endpoint":"http://127.0.0.1:18184/v1",
+  trace configuration "mode":"local","requestCost":0,"maxOut
+  trace configuration putTokens":1200,"tokenLimitField":"max
+  trace configuration _tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mve0cfr3_kdmzkzf","gate":{"deci
+  trace gate sion":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace act_started {"stepId":"step_mve0cfr3_kdmzkzf","actio
+  trace act_started n":{"type":"navigate","url":"https://htt
+  trace act_started pbin.org/robots.txt"}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0cfr3_kdmzkzf","index":0,"phase"
+  trace step :"ACT","status":"observing","action":{"type":"n
+  trace step avigate","url":"https://httpbin.org/robots.txt"
+  trace step },"observationSummary":"Opened the explicitly r
+  trace step equested read-only page under fixed read permis
+  trace step sions.","result":"Opened the explicitly request
+  trace step ed read-only page under fixed read permissions.
+  trace step ","gate":{"decision":"allow","approved":false},
+  trace step "startedAt":"2026-10-18T15:56:08.912Z","complet
+  trace step edAt":"2026-10-18T15:56:09.586Z","durationMs":6
+  trace step 74}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"b66b8ef5-7309-4872-a2a7-5
+  trace observation 737f2adef2f","documentId":"8a00622a-24ac
+  trace observation -4921-8e08-94de6407c9c4","interactiveEle
+  trace observation ments":[],"omittedTargets":0,"unreadable
+  trace observation Frames":0,"passages":[{"text":"User-agen
+  trace observation t: *\nDisallow: /deny","kind":"document"
+  trace observation ,"id":"b66b8ef5-7309-4872-a2a7-5737f2ade
+  trace observation f2f:p1","snapshotId":"b66b8ef5-7309-4872
+  trace observation -a2a7-5737f2adef2f","url":"https://httpb
+  trace observation in.org/robots.txt"}],"unreadableRegions"
+  trace observation :0,"omittedPassages":false,"url":"https:
+  trace observation //httpbin.org/robots.txt","title":"","vi
+  trace observation sibleText":"User-agent: *\nDisallow: /de
+  trace observation ny","accessibilityTreeSummary":"Safe DOM
+  trace observation  target summary. Native AX field values 
+  trace observation are not captured.","timestamp":"2026-10-
+  trace observation 18T15:56:09.608Z"}
+[1G[0J❯ [3G[2K[1G  trace crossing {"destination":"http://127.0.0.1:18184/v1/c
+  trace crossing hat/completions","requestBytes":12114,"payl
+  trace crossing oadHash":"ec43ff3f87372d7aa86fb6ba8309f4c17
+  trace crossing b9af8c34c5f186f5b854f063a6ac041","attempt":
+  trace crossing 1,"estimatedCost":0,"accounting":"local-zer
+  trace crossing o"}
+[1G[0J❯ [3G[2K[1G  trace error {"stage":"plan","message":"Stopped by user. No
+  trace error  new act will be dispatched.","stepId":"step_m
+  trace error ve0cfr3_kdmzkzf"}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mve0cg24_4f0tshc","index":1,"phase"
+  trace step :"ERROR","status":"stopped","beforeId":"b66b8ef
+  trace step 5-7309-4872-a2a7-5737f2adef2f","observationSumm
+  trace step ary":"Stopped by user. No new act will be dispa
+  trace step tched.","result":"Stopped by user. No new act w
+  trace step ill be dispatched.","error":"Stopped by user. N
+  trace step o new act will be dispatched.","startedAt":"202
+  trace step 6-10-18T15:56:09.591Z","completedAt":"2026-10-1
+  trace step 8T15:56:09.676Z","durationMs":85}
+[1G[0J❯ [3G[2K[1G  trace run_completed {"status":"stopped","completedAt":"202
+  trace run_completed 6-10-18T15:56:09.680Z","finalAnswer":"
+  trace run_completed Stopped by user. No new act will be di
+  trace run_completed spatched.","error":"Stopped by user. N
+  trace run_completed o new act will be dispatched."}
+[1G[0J❯ [3G/quit
+Closed. ⋔

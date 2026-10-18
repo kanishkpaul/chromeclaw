@@ -1,0 +1,18 @@
+{
+  "initialForeground": [
+    "Finder",
+    "ChatGPT/Codex"
+  ],
+  "initialMemoryAvailablePercent": 77,
+  "unneededWorkloadsStopped": [],
+  "model": {
+    "pid": 10302,
+    "sha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+    "command": "cached offline Qwen3-VL-8B Q4_K_M; ctx16384 parallel1 reasoningoff temp0"
+  },
+  "leftoverChromeOrModelProcesses": [],
+  "memoryAfter": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 207941 \nPages purgeable: 1631 \nPages purged: 165004340 \n\nSwap I/O:\nSwapins: 16873615 \nSwapouts: 21093491 \n\nPage Q counts:\nPages active: 183521 \nPages inactive: 377488 \nPages speculative: 420 \nPages throttled: 0 \nPages wired down: 155931 \n\nCompressor Stats:\nPages used by compressor: 86811 \nPages decompressed: 1160544058 \nPages compressed: 1300429549 \n\nFile I/O:\nPageins: 166436843 \nPageouts: 537571 \n\nSystem-wide memory free percentage: 75%\n",
+  "node": "v24.18.0",
+  "pnpm": "10.23.0",
+  "chrome": "Google Chrome 155.0.8059.80"
+}

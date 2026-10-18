@@ -1,0 +1,12 @@
+{
+  "parent": "4da27c56aecc8e0b04e9d946a9159e2efbcd5c89",
+  "dummy": "node packages/agent/tests/live-recovery.browser.mjs",
+  "local": "CHROMECLAW_TEST_LOCAL_URL=http://127.0.0.1:18184/v1 CHROMECLAW_TEST_LOCAL_MODEL=chromeclaw-qwen3vl node packages/agent/tests/live-recovery.browser.mjs --actual-local",
+  "terminal": "CHROMECLAW_TEST_LOCAL_URL=http://127.0.0.1:18184/v1 CHROMECLAW_TEST_LOCAL_MODEL=chromeclaw-qwen3vl python3 apps/cli/tests/live.pty.py --stage4",
+  "gates": [
+    "pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/runtime.browser.mjs --source",
+    "node packages/agent/tests/runtime.browser.mjs",
+    "pnpm check"
+  ],
+  "note": "Initial omitted-flag invocation is excluded from actual-local evidence; originals retained."
+}
