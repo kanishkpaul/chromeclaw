@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "ecb73e7fe78fceba0c44a5807aa205da9f31e25b",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "cases": [
+    {
+      "id": "read-example",
+      "mode": "ask",
+      "url": "https://example.com/",
+      "task": "Quote the main heading exactly, using a captured passage citation.",
+      "expected": "Example Domain"
+    },
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "url": "https://docs.python.org/3/tutorial/",
+      "task": "Quote the main tutorial heading exactly, using a captured passage citation.",
+      "expected": "The Python Tutorial"
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "task": "Quote the main guide heading exactly, using a captured passage citation.",
+      "expected": "JavaScript Guide"
+    },
+    {
+      "id": "find-example",
+      "mode": "find",
+      "url": "https://example.com/",
+      "task": "Find the link that explains more about this example domain. Return the offered target without clicking.",
+      "expectedDestination": "https://iana.org/domains/example"
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "url": "https://docs.python.org/3/",
+      "task": "Find the link for the tutorial, intended for someone starting to learn Python. Return the offered target without clicking.",
+      "expectedDestination": "tutorial/index.html"
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "url": "https://nodejs.org/api/",
+      "task": "Find the link for the file system API. Return the offered target without clicking.",
+      "expectedDestination": "fs.html"
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "url": "https://example.com/",
+      "task": "Find a control to purchase an airplane ticket. If none is offered, return no-match. Do not click.",
+      "absent": true
+    },
+    {
+      "id": "edit-unsent",
+      "mode": "work",
+      "url": "https://httpbin.org/forms/post",
+      "task": "Open https://httpbin.org/forms/post and set the Customer name field to ChromeClaw Synthetic Test. Leave the form unsubmitted. Do not click, press, submit or navigate anywhere else. Finish after the successful type result.",
+      "field": "custname",
+      "value": "ChromeClaw Synthetic Test"
+    },
+    {
+      "id": "research-python",
+      "mode": "research",
+      "task": "Find the official Python tutorial. Quote its main heading as a complete captured passage with claims and evidence.",
+      "queries": ["site:docs.python.org/3/tutorial Python tutorial"],
+      "origins": ["https://docs.python.org"],
+      "expected": "The Python Tutorial"
+    },
+    {
+      "id": "web-python",
+      "mode": "web",
+      "task": "Find the official Python 3 tutorial page, with evidence from that page.",
+      "queries": ["site:docs.python.org/3/tutorial Python tutorial"],
+      "origins": ["https://docs.python.org"],
+      "expectedUrl": "https://docs.python.org/3/tutorial/"
+    },
+    {
+      "id": "history-example",
+      "mode": "history",
+      "task": "Find the example domain page I saved in the synthetic catalog.",
+      "terms": ["example domain"],
+      "expectedUrl": "https://example.com/"
+    },
+    {
+      "id": "history-python",
+      "mode": "history",
+      "task": "Find the beginner Python tutorial I saved in the synthetic catalog.",
+      "terms": ["python tutorial"],
+      "expectedUrl": "https://docs.python.org/3/tutorial/"
+    }
+  ]
+}

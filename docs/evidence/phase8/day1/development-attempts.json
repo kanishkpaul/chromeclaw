@@ -1,0 +1,29 @@
+[
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live.browser.mjs",
+      "--followup"
+    ],
+    "exitCode": 0,
+    "log": "followup-0.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live.browser.mjs",
+      "--followup",
+      "--actual-local"
+    ],
+    "exitCode": 0,
+    "log": "followup-1.log"
+  },
+  {
+    "command": [
+      "python3",
+      "apps/cli/tests/live.pty.py"
+    ],
+    "exitCode": 1,
+    "log": "followup-2.log"
+  }
+]

@@ -1,0 +1,143 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+[2K[1G ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/ask https://example.com/ Quote the complete English paragraph describing this domain use, with its exact captured passage citation.
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":false,"respons
+  provider eFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCos
+  provider t":0,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  ┊ navigate  {"type":"navigate","url":"https://example.com/"} · 1217 ms
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 15908 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"This domain is for use in documentation examples without ne
+  ┊ eding permission. This is not a service; avoid relying on it for testing and monitoring purposes
+  ┊ .","pageFind":{"outcome":"matches","matches":[{"snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff
+  ┊ 6","target":1,"reason":"The exact English paragraph is captured in the passage with id '47e63938
+  ┊ -b0aa-45bc-bdbe-ad7896275ff6:p1'."}]},"evidence":[{"snapshotId":"47e63938-b0aa-45bc-bdbe-ad78962
+  ┊ 75ff6","passageId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6:p1","quote":"This domain is for use in 
+  ┊ documentation examples without needing permission. This is not a service; avoid relying on it fo
+  ┊ r testing and monitoring purposes."}]} · 17237 ms
+[1G[0J❯ [3G/sources
+[2K[1G  Run a task or /resume a saved run first.
+[1G[0J❯ [3G[2K[1G  citations [{"snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6","passageId":"47e63938-b0aa-45bc-bd
+  citations be-ad7896275ff6:p1","quote":"This domain is for use in documentation examples without ne
+  citations eding permission. This is not a service; avoid relying on it for testing and monitoring 
+  citations purposes."}]
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"This domain is for use in documentation examples without needing
+  result  permission. This is not a service; avoid relying on it for testing and monitoring purposes
+  result .","runId":"run_mvdrcnk3_36brqlo"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/trace
+[2K[1G  trace run_started {"id":"run_mvdrcnk3_36brqlo","task":"Quote the complete English paragraph descri
+  trace run_started bing this domain use, with its exact captured passage citation.","askUrl":"https
+  trace run_started ://example.com/","status":"observing","startedAt":"2026-10-18T11:44:22.851Z","ma
+  trace run_started xSteps":4,"permissions":{"origins":["https://example.com"],"tools":["navigate","
+  trace run_started wait","extract_text","summarize_page","ask_user","finish","fail"],"read":true,"w
+  trace run_started rite":false,"irreversible":"deny","allowLoopback":false,"maxSteps":4,"expiresAt"
+  trace run_started :1792324042851,"maxCost":0},"provider":"unresolved","model":"unresolved","answer
+  trace run_started s":[],"reservedCost":0}
+[1G[0J❯ [3G[2K[1G  trace configuration {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":fal
+  trace configuration se,"responseFormat":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mod
+  trace configuration e":"local","requestCost":0,"maxOutputTokens":1200,"tokenLimitField":"max_token
+  trace configuration s","requestTimeoutMs":90000}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mvdrcnw9_lgdkcnj","gate":{"decision":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace act_started {"stepId":"step_mvdrcnw9_lgdkcnj","action":{"type":"navigate","url":"https://exa
+  trace act_started mple.com/"}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mvdrcnw9_lgdkcnj","index":0,"phase":"ACT","status":"observing","action":{"t
+  trace step ype":"navigate","url":"https://example.com/"},"observationSummary":"Opened the explicit
+  trace step ly requested read-only page under fixed read permissions.","result":"Opened the explici
+  trace step tly requested read-only page under fixed read permissions.","gate":{"decision":"allow",
+  trace step "approved":false},"startedAt":"2026-10-18T11:44:22.855Z","completedAt":"2026-10-18T11:4
+  trace step 4:24.072Z","durationMs":1217}
+[1G[0J❯ [3G[2K[1G  trace observation {"snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6","documentId":"f96cd0dc-1341
+  trace observation -42a1-a318-7a0df3e27307","interactiveElements":[{"role":"link","tagName":"a","is
+  trace observation Visible":true,"isOccluded":false,"isDisabled":false,"isEditable":false,"bounds":
+  trace observation {"x":679,"y":790.15625,"width":82,"height":19},"destination":"https://iana.org/h
+  trace observation elp/example-domains","id":"1","number":1,"documentId":"f96cd0dc-1341-42a1-a318-7
+  trace observation a0df3e27307","frameId":"0","name":"Learn more","text":"Learn more","isCredential
+  trace observation ":false,"score":0}],"omittedTargets":0,"unreadableFrames":0,"passages":[{"text":
+  trace observation "This domain is for use in documentation examples without needing permission. Th
+  trace observation is is not a service; avoid relying on it for testing and monitoring purposes.","
+  trace observation kind":"document","id":"47e63938-b0aa-45bc-bdbe-ad7896275ff6:p1","snapshotId":"47
+  trace observation e63938-b0aa-45bc-bdbe-ad7896275ff6","url":"https://example.com/"},{"text":"هذا ا
+  trace observation لنطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تج
+  trace observation نب الاعتماد عليها لأغراض الاختبار والمراقبة.","kind":"document","id":"47e63938-b
+  trace observation 0aa-45bc-bdbe-ad7896275ff6:p2","snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff
+  trace observation 6","url":"https://example.com/"},{"text":"该域名仅用于文档示例，无需获得许可。这
+  trace observation 并非一项服务，请勿将其用于测试和监控目的。","kind":"document","id":"47e63938-b0a
+  trace observation a-45bc-bdbe-ad7896275ff6:p3","snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6"
+  trace observation ,"url":"https://example.com/"},{"text":"L’usage de ce domaine est réservé à des 
+  trace observation exemples de documentation, sans autorisation préalable.  Il ne s’agit pas d’un s
+  trace observation ervice ; son utilisation à des fins de test ou de surveillance est à éviter.","k
+  trace observation ind":"document","id":"47e63938-b0aa-45bc-bdbe-ad7896275ff6:p4","snapshotId":"47e
+  trace observation 63938-b0aa-45bc-bdbe-ad7896275ff6","url":"https://example.com/"},{"text":"Данный
+  trace observation  домен предназначен для использования в примерах документации без необходимости 
+  trace observation получения предварительного разрешения. Это не сервис; не рекомендуется его испол
+  trace observation ьзование для тестирования и мониторинга.","kind":"document","id":"47e63938-b0aa-
+  trace observation 45bc-bdbe-ad7896275ff6:p5","snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6","
+  trace observation url":"https://example.com/"},{"text":"Este dominio está destinado al uso en ejem
+  trace observation plos de documentación sin necesidad de permiso. Esto no es un servicio; evitar u
+  trace observation tilizarlo para realizar pruebas o monitoreos.","kind":"document","id":"47e63938-
+  trace observation b0aa-45bc-bdbe-ad7896275ff6:p6","snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275f
+  trace observation f6","url":"https://example.com/"},{"text":"Learn more","kind":"document","id":"4
+  trace observation 7e63938-b0aa-45bc-bdbe-ad7896275ff6:p7","snapshotId":"47e63938-b0aa-45bc-bdbe-ad
+  trace observation 7896275ff6","url":"https://example.com/"}],"unreadableRegions":0,"omittedPassage
+  trace observation s":false,"url":"https://example.com/","title":"Example Domain","visibleText":"Th
+  trace observation is domain is for use in documentation examples without needing permission. This 
+  trace observation is not a service; avoid relying on it for testing and monitoring purposes.\nهذا 
+  trace observation النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى ت
+  trace observation جنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n该域名仅用于文档示例，无需获得许
+  trace observation 可。这并非一项服务，请勿将其用于测试和监控目的。\nL’usage de ce domaine est rése
+  trace observation rvé à des exemples de documentation, sans autorisation préalable.  Il ne s’agit 
+  trace observation pas d’un service ; son utilisation à des fins de test ou de surveillance est à é
+  trace observation viter.\nДанный домен предназначен для использования в примерах документации без 
+  trace observation необходимости получения предварительного разрешения. Это не сервис; не рекоменду
+  trace observation ется его использование для тестирования и мониторинга.\nEste dominio está destin
+  trace observation ado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un 
+  trace observation servicio; evitar utilizarlo para realizar pruebas o monitoreos.\nLearn more","ac
+  trace observation cessibilityTreeSummary":"Safe DOM target summary. Native AX field values are not
+  trace observation  captured.\nlink: Learn more","timestamp":"2026-10-18T11:44:24.109Z"}
+[1G[0J❯ [3G[2K[1G  trace crossing {"destination":"http://127.0.0.1:18184/v1/chat/completions","requestBytes":15908,"p
+  trace crossing ayloadHash":"4e50da8b3e5376a5b02a64d578527b86cc28a7a7defd1f641b717317715ba401","att
+  trace crossing empt":1,"estimatedCost":0,"accounting":"local-zero"}
+[1G[0J❯ [3G[2K[1G  trace model_usage {"promptTokens":2393,"completionTokens":227}
+[1G[0J❯ [3G[2K[1G  trace proposal {"stepId":"step_mvdrd1st_pbyijra","action":{"type":"finish","answer":"This domain i
+  trace proposal s for use in documentation examples without needing permission. This is not a servi
+  trace proposal ce; avoid relying on it for testing and monitoring purposes.","pageFind":{"outcome"
+  trace proposal :"matches","matches":[{"snapshotId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6","target"
+  trace proposal :1,"reason":"The exact English paragraph is captured in the passage with id '47e639
+  trace proposal 38-b0aa-45bc-bdbe-ad7896275ff6:p1'."}]},"evidence":[{"snapshotId":"47e63938-b0aa-45
+  trace proposal bc-bdbe-ad7896275ff6","passageId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6:p1","quote"
+  trace proposal :"This domain is for use in documentation examples without needing permission. This
+  trace proposal  is not a service; avoid relying on it for testing and monitoring purposes."}]}}
+[1G[0J❯ [3G[2K[1G  trace gate {"stepId":"step_mvdrd1st_pbyijra","gate":{"decision":"allow","approved":false}}
+[1G[0J❯ [3G[2K[1G  trace step {"id":"step_mvdrd1st_pbyijra","index":1,"phase":"DONE","status":"done","action":{"type"
+  trace step :"finish","answer":"This domain is for use in documentation examples without needing pe
+  trace step rmission. This is not a service; avoid relying on it for testing and monitoring purpose
+  trace step s.","pageFind":{"outcome":"matches","matches":[{"snapshotId":"47e63938-b0aa-45bc-bdbe-a
+  trace step d7896275ff6","target":1,"reason":"The exact English paragraph is captured in the passag
+  trace step e with id '47e63938-b0aa-45bc-bdbe-ad7896275ff6:p1'."}]},"evidence":[{"snapshotId":"47e
+  trace step 63938-b0aa-45bc-bdbe-ad7896275ff6","passageId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6:p1
+  trace step ","quote":"This domain is for use in documentation examples without needing permission.
+  trace step  This is not a service; avoid relying on it for testing and monitoring purposes."}]},"b
+  trace step eforeId":"47e63938-b0aa-45bc-bdbe-ad7896275ff6","observationSummary":"Snapshot-bound pa
+  trace step ssage citations support the exact extractive answer.","result":"Snapshot-bound passage 
+  trace step citations support the exact extractive answer.","gate":{"decision":"allow","approved":f
+  trace step alse},"startedAt":"2026-10-18T11:44:24.081Z","completedAt":"2026-10-18T11:44:41.318Z","
+  trace step durationMs":17237}
+[1G[0J❯ [3G[2K[1G  trace run_completed {"status":"done","completedAt":"2026-10-18T11:44:41.487Z","finalAnswer":"This 
+  trace run_completed domain is for use in documentation examples without needing permission. This i
+  trace run_completed s not a service; avoid relying on it for testing and monitoring purposes."}
+[1G[0J❯ [3G/quit
+Closed. ⋔

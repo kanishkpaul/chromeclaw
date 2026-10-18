@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 88, in <module>
+    wait(lambda: process.poll() is not None, 20)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 64, in wait
+    raise AssertionError('Live terminal did not reach the expected state; inspect recording.')
+AssertionError: Live terminal did not reach the expected state; inspect recording.

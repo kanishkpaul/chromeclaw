@@ -416,3 +416,23 @@ Ordinary security-topic articles retain read access, preserving the old harmless
 History reopen retains its local execution identity without invoking model configuration or
 requiring credentials. The search plugin removal gate also runs all twenty seeded history cases,
 so disabling web search cannot disable snapshot lookup.
+
+## D-027 · 2026-10-18 · Live testing preserves mock and daily-use boundaries
+
+Phase 8 starts with a frozen anonymous public-site pilot, an unsent synthetic demonstration-form
+edit and synthetic history snapshots. Kanishk requested a process/app inventory and cleanup
+before live testing and explicitly chose dummy BYOK emulation instead of real hosted inference.
+The wire emulator uses the existing injected OpenAI-compatible adapter with dummy credentials,
+synthetic usage and reservations; production hosted configuration remains HTTPS-only and refuses
+loopback. Cached offline local inference is reported separately. No dependency, permission
+expansion, profile attachment or top-level directory is added. Seven days of reviewed bounded use
+remain required; a single pilot does not complete Phase 8 or authorize Phase 9.
+
+Live Python/MDN/Node documentation exposed passive-resource refusals incorrectly failing a
+successfully loaded read-only page. A controlled regression reproduced the defect before its fix.
+The navigation guard now tags main-document refusals, and read-only callers drain only those as
+fatal outcomes. Blocked fonts, query-versioned assets, telemetry and foreign requests stay blocked;
+ordinary interactive actions retain all-request refusal handling. No redirect, query, origin,
+credential or action gate is relaxed. Read-only captures can be incomplete after blocked assets;
+reference validation remains distinct from semantic correctness. Original live failures and
+revised-label development follow-ups remain separate evidence.

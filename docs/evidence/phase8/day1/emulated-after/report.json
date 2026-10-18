@@ -1,0 +1,400 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "actualLocal": false,
+  "hostedInference": false,
+  "profile": "emulated-byok-wire-only",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 12,
+  "completed": 12,
+  "passed": 6,
+  "modelQualityClaim": "None; labels drive mock responses.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [
+    {
+      "caseId": "read-example",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "read-python",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "read-mdn",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-example",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-python",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-node",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-absent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    }
+  ],
+  "results": [
+    {
+      "id": "read-example",
+      "mode": "ask",
+      "passed": false,
+      "status": "awaiting-answer",
+      "answer": "Expected public passage unavailable; inspect site drift or scope.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1416,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3hku_wzxvchn",
+      "log": "read-example/run_mvdr3hku_wzxvchn.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "The Python Tutorial",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 829,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3io6_4u1f6q9",
+      "log": "read-python/run_mvdr3io6_4u1f6q9.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "JavaScript Guide",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1468,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3jb7_4tlw0gh",
+      "log": "read-mdn/run_mvdr3jb7_4tlw0gh.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 929,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3kg0_24bnnan",
+      "log": "find-example/run_mvdr3kg0_24bnnan.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 650,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3l5u_jct4qcw",
+      "log": "find-python/run_mvdr3l5u_jct4qcw.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Find results are stale. Capture again before choosing a result.",
+      "answer": "Offered candidate.",
+      "ranked": [
+        "https://nodejs.org/api/fs.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 918,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3lnw_1iw2c1x",
+      "log": "find-node/run_mvdr3lnw_1iw2c1x.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 918,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdr3mde_k33u0qx",
+      "log": "find-absent/run_mvdr3mde_k33u0qx.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent",
+      "mode": "work",
+      "passed": true,
+      "status": "done",
+      "answer": "Synthetic field edited; form not submitted.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": true,
+      "latencyMs": 1703,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.003,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 3,
+      "liveActivations": 0,
+      "runId": "run_mvdr3n2w_ictw0uu",
+      "log": "edit-unsent/run_mvdr3n2w_ictw0uu.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "research-python",
+      "mode": "research",
+      "passed": false,
+      "status": "failed",
+      "error": "An access barrier requires manual hand-back; no bypass attempted.",
+      "answer": "An access barrier requires manual hand-back; no bypass attempted.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 864,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr3oe7_dif781k",
+      "log": "research-python/run_mvdr3oe7_dif781k.jsonl",
+      "sourceFailures": [
+        {
+          "stage": "source-failure",
+          "detail": "An access barrier requires manual hand-back; no bypass attempted.",
+          "url": "https://html.duckduckgo.com/html/?q=%5Bwithheld%5D"
+        }
+      ]
+    },
+    {
+      "id": "web-python",
+      "mode": "web",
+      "passed": false,
+      "status": "failed",
+      "error": "An access barrier requires manual hand-back; no bypass attempted.",
+      "answer": "An access barrier requires manual hand-back; no bypass attempted.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 578,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr3p27_w29qn31",
+      "log": "web-python/run_mvdr3p27_w29qn31.jsonl",
+      "sourceFailures": [
+        {
+          "stage": "source-failure",
+          "detail": "An access barrier requires manual hand-back; no bypass attempted.",
+          "url": "https://html.duckduckgo.com/html/?q=%5Bwithheld%5D"
+        }
+      ]
+    },
+    {
+      "id": "history-example",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://example.com/",
+      "ranked": [],
+      "urls": [
+        "https://example.com/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 694,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr3pi9_87k2vky",
+      "log": "history-example/run_mvdr3pi9_87k2vky.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-python",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://docs.python.org/3/tutorial/",
+      "ranked": [],
+      "urls": [
+        "https://docs.python.org/3/tutorial/"
+      ],
+      "verifiedField": false,
+      "latencyMs": 542,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr3q1k_by6w006",
+      "log": "history-python/run_mvdr3q1k_by6w006.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

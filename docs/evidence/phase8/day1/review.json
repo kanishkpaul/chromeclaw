@@ -1,0 +1,192 @@
+{
+  "date": "2026-10-18",
+  "reviewScope": "Every failed frozen live case classified against its report, captures and proposals. No human rating or broad semantic correctness claim.",
+  "cases": [
+    {
+      "attempt": "emulated-before",
+      "id": "read-example",
+      "classification": "obsolete heading expectation",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/read-example/run_mvdqw7x2_j6fqz9k.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "read-python",
+      "classification": "confirmed passive-resource refusal defect",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/read-python/run_mvdqw9vs_3gxaz10.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "read-mdn",
+      "classification": "confirmed passive-resource refusal defect",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/read-mdn/run_mvdqwarw_egrn70r.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "find-example",
+      "classification": "obsolete destination label",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/find-example/run_mvdqwbez_fmj9ujk.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "find-python",
+      "classification": "confirmed passive-resource refusal defect",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/find-python/run_mvdqwc5e_4b7tnb3.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "find-node",
+      "classification": "confirmed passive-resource refusal defect",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/find-node/run_mvdqwcs3_00ovzl7.jsonl"
+    },
+    {
+      "attempt": "emulated-before",
+      "id": "web-python",
+      "classification": "exact URL-label miss; captured canonical index differs",
+      "report": "emulated-before/report.json",
+      "trace": "emulated-before/web-python/run_mvdqwgxe_816q2lk.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "read-example",
+      "classification": "obsolete heading expectation",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/read-example/run_mvdr3hku_wzxvchn.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "find-example",
+      "classification": "obsolete destination label",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/find-example/run_mvdr3kg0_24bnnan.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "find-python",
+      "classification": "expected tutorial target not offered in bounded viewport",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/find-python/run_mvdr3l5u_jct4qcw.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "find-node",
+      "classification": "stale-reference hand-back",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/find-node/run_mvdr3lnw_1iw2c1x.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "research-python",
+      "classification": "engine access barrier; manual hand-back",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/research-python/run_mvdr3oe7_dif781k.jsonl"
+    },
+    {
+      "attempt": "emulated-after",
+      "id": "web-python",
+      "classification": "engine access barrier; manual hand-back",
+      "report": "emulated-after/report.json",
+      "trace": "emulated-after/web-python/run_mvdr3p27_w29qn31.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "read-example",
+      "classification": "obsolete heading expectation; cited paragraph does not answer heading question",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/read-example/run_mvdr12v2_oxyidwj.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "read-python",
+      "classification": "model citation/mode failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/read-python/run_mvdr1esq_cdkw7w5.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "read-mdn",
+      "classification": "8192-context capacity failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/read-mdn/run_mvdr26nm_7tjdwbz.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "find-example",
+      "classification": "obsolete destination label; current link returned",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/find-example/run_mvdr28cw_0l7m632.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "find-python",
+      "classification": "8192-context capacity failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/find-python/run_mvdr2glg_ef1w6ms.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "find-node",
+      "classification": "8192-context capacity failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/find-node/run_mvdr2ha0_c68j3u2.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "research-python",
+      "classification": "8192-context capacity failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/research-python/run_mvdr31gy_komsvw7.jsonl"
+    },
+    {
+      "attempt": "actual-local-8k",
+      "id": "web-python",
+      "classification": "8192-context capacity failure",
+      "report": "actual-local-8k/report.json",
+      "trace": "actual-local-8k/web-python/run_mvdr32za_pf1milx.jsonl"
+    },
+    {
+      "attempt": "actual-local-16k",
+      "id": "read-python",
+      "classification": "model citation/mode failure",
+      "report": "actual-local-16k/report.json",
+      "trace": "actual-local-16k/read-python/run_mvdr4mi9_habj9k3.jsonl"
+    },
+    {
+      "attempt": "actual-local-16k",
+      "id": "read-mdn",
+      "classification": "extra extraction followed by request timeout",
+      "report": "actual-local-16k/report.json",
+      "trace": "actual-local-16k/read-mdn/run_mvdr5g09_shtuw7b.jsonl"
+    },
+    {
+      "attempt": "actual-local-16k",
+      "id": "find-python",
+      "classification": "alternate beginner-guide destination; exact-label miss, semantic relevance ambiguous",
+      "report": "actual-local-16k/report.json",
+      "trace": "actual-local-16k/find-python/run_mvdr8wf6_mt1vtog.jsonl"
+    },
+    {
+      "attempt": "actual-local-16k",
+      "id": "find-node",
+      "classification": "stale-reference hand-back",
+      "report": "actual-local-16k/report.json",
+      "trace": "actual-local-16k/find-node/run_mvdr9ye5_75zlufg.jsonl"
+    }
+  ],
+  "productDefect": "Passive-resource refusals failed loaded read-only documents; reproduced before fix and covered by four source/compiled regressions.",
+  "unfixedLimits": [
+    "model citation/mode quality",
+    "prompt/context capacity and latency",
+    "viewport-only capture",
+    "stale references",
+    "site drift and exact-label ambiguity",
+    "access barriers"
+  ],
+  "dailyUseGate": "open",
+  "phase9": "unstarted"
+}

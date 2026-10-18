@@ -1,0 +1,71 @@
+{
+  "suite": "live-01-day1-development-followup",
+  "startedOn": "2026-10-18",
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "d6102a7f4ae4766cc1211e4d6d1bbd2aaf849c380350fa1a8e55f9bf8b69e5ed",
+  "limits": "Development follow-ups after observed site drift. Not held out, not replacements for original failures. Anonymous reads only; no writes.",
+  "selected": 2,
+  "completed": 2,
+  "passed": 2,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-example-current",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 18964,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2496,
+          "completionTokens": 251
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrbz3t_hjauq1z",
+      "log": "read-example-current/run_mvdrbz3t_hjauq1z.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example-current",
+      "mode": "find",
+      "passed": true,
+      "status": "done",
+      "answer": "The link 'Learn more' (target 1) directs to https://iana.org/help/example-domains, which explains the example domain. This is the only offered visible noncredential target.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 12424,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2617,
+          "completionTokens": 122
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrcdql_msxlu8v",
+      "log": "find-example-current/run_mvdrcdql_msxlu8v.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

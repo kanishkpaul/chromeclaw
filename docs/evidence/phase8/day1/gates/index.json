@@ -1,0 +1,69 @@
+[
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live-regressions.browser.mjs"
+    ],
+    "exitCode": 0,
+    "log": "gate-0.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/live-regressions.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "log": "gate-1.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/browser/tests/safety.browser.mjs"
+    ],
+    "exitCode": 0,
+    "log": "gate-2.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/browser/tests/safety.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "log": "gate-3.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/ask.browser.mjs",
+      "--built"
+    ],
+    "exitCode": 0,
+    "log": "gate-4.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/ask.browser.mjs"
+    ],
+    "exitCode": 0,
+    "log": "gate-5.log"
+  }
+]

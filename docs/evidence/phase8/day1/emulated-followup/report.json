@@ -1,0 +1,84 @@
+{
+  "suite": "live-01-day1-development-followup",
+  "startedOn": "2026-10-18",
+  "actualLocal": false,
+  "hostedInference": false,
+  "profile": "emulated-byok-wire-only",
+  "fixtureSha256": "d6102a7f4ae4766cc1211e4d6d1bbd2aaf849c380350fa1a8e55f9bf8b69e5ed",
+  "limits": "Development follow-ups after observed site drift. Not held out, not replacements for original failures. Anonymous reads only; no writes.",
+  "selected": 2,
+  "completed": 2,
+  "passed": 2,
+  "modelQualityClaim": "None; labels drive mock responses.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [
+    {
+      "caseId": "read-example-current",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-example-current",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    }
+  ],
+  "results": [
+    {
+      "id": "read-example-current",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1458,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrbx7y_pxoghps",
+      "log": "read-example-current/run_mvdrbx7y_pxoghps.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-example-current",
+      "mode": "find",
+      "passed": true,
+      "status": "done",
+      "answer": "Offered candidate.",
+      "ranked": [
+        "https://iana.org/help/example-domains"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 886,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrbycf_sl2p65h",
+      "log": "find-example-current/run_mvdrbycf_sl2p65h.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

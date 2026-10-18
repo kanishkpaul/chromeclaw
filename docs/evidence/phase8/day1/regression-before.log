@@ -1,0 +1,19 @@
+{"suite":"live-01-regressions","source":false,"checks":[{"id":"blocked-passive-assets-do-not-fail-readable-main-document","passed":false,"status":"failed","error":"Read-only page navigation was refused.","runId":"run_mvdqy200_rgmkdy1"},{"id":"query-assets-telemetry-and-foreign-requests-still-blocked","passed":true,"forbidden":0}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.length===2 && checks.every((check) => check.passed))
+
+    at file:///Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-regressions.browser.mjs:42:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

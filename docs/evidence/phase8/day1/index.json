@@ -1,0 +1,80 @@
+{
+  "baseCommit": "ecb73e7fe78fceba0c44a5807aa205da9f31e25b",
+  "dailyGate": "open; one engineering pilot is not seven days of personal TUI use",
+  "phase9": "unstarted",
+  "attempts": [
+    {
+      "name": "emulated-before",
+      "report": "emulated-before/report.json",
+      "suite": "live-01-day1",
+      "passed": 5,
+      "total": 12,
+      "condition": "dummy BYOK; no model quality claim",
+      "commandExitCode": 1
+    },
+    {
+      "name": "emulated-after",
+      "report": "emulated-after/report.json",
+      "suite": "live-01-day1",
+      "passed": 6,
+      "total": 12,
+      "condition": "dummy BYOK; no model quality claim",
+      "commandExitCode": 1
+    },
+    {
+      "name": "actual-local-8k",
+      "report": "actual-local-8k/report.json",
+      "suite": "live-01-day1",
+      "passed": 4,
+      "total": 12,
+      "condition": "original 8K local",
+      "commandExitCode": 1
+    },
+    {
+      "name": "actual-local-16k",
+      "report": "actual-local-16k/report.json",
+      "suite": "live-01-day1",
+      "passed": 0,
+      "total": 4,
+      "condition": "development retest at 16K",
+      "commandExitCode": 1
+    },
+    {
+      "name": "emulated-followup",
+      "report": "emulated-followup/report.json",
+      "suite": "live-01-day1-development-followup",
+      "passed": 2,
+      "total": 2,
+      "condition": "dummy BYOK; no model quality claim",
+      "commandExitCode": 0
+    },
+    {
+      "name": "actual-local-followup",
+      "report": "actual-local-followup/report.json",
+      "suite": "live-01-day1-development-followup",
+      "passed": 2,
+      "total": 2,
+      "condition": "development retest at 16K",
+      "commandExitCode": 0
+    },
+    {
+      "name": "terminal-before",
+      "report": "terminal-before/report.json",
+      "suite": "live-01-terminal-development-followup",
+      "passed": 1,
+      "total": 2,
+      "condition": "read passed; exit-check harness race; overall command failed",
+      "commandExitCode": 1,
+      "completedChecks": 1
+    },
+    {
+      "name": "terminal-final",
+      "report": "terminal-final/report.json",
+      "suite": "live-01-terminal-development-followup",
+      "passed": 2,
+      "total": 2,
+      "condition": "development retest at 16K",
+      "commandExitCode": 0
+    }
+  ]
+}

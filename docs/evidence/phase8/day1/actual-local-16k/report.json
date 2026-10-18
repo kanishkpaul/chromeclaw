@@ -1,0 +1,126 @@
+{
+  "suite": "live-01-day1",
+  "startedOn": "2026-10-18",
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "7f27b5d38a13e3cd0007e91f04af9b3ad9887abf2b56a5faa48474d0dcb3ca31",
+  "limits": "Public anonymous pages only. No submit, login, purchase, posting or personal profile. Labels frozen before execution; failures retained.",
+  "selected": 4,
+  "completed": 4,
+  "passed": 0,
+  "modelQualityClaim": "Small held-out public-site pilot only; synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-python",
+      "mode": "ask",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Ask requires an exact extractive answer with resolvable captured passage IDs.",
+      "answer": "The main tutorial heading is \"1. Whetting Your Appetite\".",
+      "ranked": [
+        "https://docs.python.org/3/tutorial/appetite.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 38231,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 7621,
+          "completionTokens": 190
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr4mi9_habj9k3",
+      "log": "read-python/run_mvdr4mi9_habj9k3.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-mdn",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Planner transport failed: timeout.",
+      "answer": "Planner transport failed: timeout.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 161241,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 14543,
+          "completionTokens": 45
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr5g09_shtuw7b",
+      "log": "read-mdn/run_mvdr5g09_shtuw7b.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-python",
+      "mode": "find",
+      "passed": false,
+      "status": "done",
+      "answer": "The link for the tutorial intended for someone starting to learn Python is the 'Beginner's Guide' at target 28. It is visible and matches the task requirement.",
+      "ranked": [
+        "https://wiki.python.org/moin/BeginnersGuide"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 49211,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 8211,
+          "completionTokens": 123
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr8wf6_mt1vtog",
+      "log": "find-python/run_mvdr8wf6_mt1vtog.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-node",
+      "mode": "find",
+      "passed": false,
+      "status": "uncertain",
+      "error": "Find results are stale. Capture again before choosing a result.",
+      "answer": "The file system API is accessible via the 'File system' link (target number 25).",
+      "ranked": [
+        "https://nodejs.org/api/fs.html"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 67161,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 11468,
+          "completionTokens": 107
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdr9ye5_75zlufg",
+      "log": "find-node/run_mvdr9ye5_75zlufg.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}
