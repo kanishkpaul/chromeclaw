@@ -1,0 +1,7 @@
+/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-live/stage6-scripted-z2tfbm3l
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/stage6.pty.py", line 497, in <module>
+    assert results and all(result['passed'] for result in results)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-live/stage6-scripted-z2tfbm3l

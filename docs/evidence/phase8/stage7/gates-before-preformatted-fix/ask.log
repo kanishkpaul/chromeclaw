@@ -1,0 +1,370 @@
+
+> chromeclaw@0.1.0 eval:ask /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: CLI Cleaning output folder
+packages/egress build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 11ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 14ms
+packages/egress build: DTS Build start
+packages/shared build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 439ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 930ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 50.81 KB
+packages/browser build: ESM ⚡️ Build success in 14ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 841ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/index.js               99.51 KB
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM ⚡️ Build success in 18ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 1041ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 11ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 1058ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 13ms
+DTS Build start
+DTS ⚡️ Build success in 1080ms
+DTS dist/index.d.ts 20.00 B
+{
+  "suite": "phase5-ask-controlled",
+  "evidenceDir": "attempt-O2XHDM",
+  "actualLocal": false,
+  "model": "synthetic-ask-model",
+  "endpoint": "http://127.0.0.1:61245/normal/v1",
+  "implementation": "source",
+  "fixtureCount": 20,
+  "passed": 20,
+  "results": [
+    {
+      "id": "plain",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydf6j_nsdb6iq",
+      "relativeLog": "plain/run_mvdydf6j_nsdb6iq.jsonl",
+      "receivedBytes": 961,
+      "error": null
+    },
+    {
+      "id": "unicode",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydfp2_g7vl9xw",
+      "relativeLog": "unicode/run_mvdydfp2_g7vl9xw.jsonl",
+      "receivedBytes": 985,
+      "error": null
+    },
+    {
+      "id": "year",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydg3u_oc7r2t1",
+      "relativeLog": "year/run_mvdydg3u_oc7r2t1.jsonl",
+      "receivedBytes": 961,
+      "error": null
+    },
+    {
+      "id": "table",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydgj7_trkegpf",
+      "relativeLog": "table/run_mvdydgj7_trkegpf.jsonl",
+      "receivedBytes": 949,
+      "error": null
+    },
+    {
+      "id": "shadow",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydgyj_bmwz89b",
+      "relativeLog": "shadow/run_mvdydgyj_bmwz89b.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    },
+    {
+      "id": "frame",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydhdt_64r3w4a",
+      "relativeLog": "frame/run_mvdydhdt_64r3w4a.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "scrim",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydhti_00o33yw",
+      "relativeLog": "scrim/run_mvdydhti_00o33yw.jsonl",
+      "receivedBytes": 967,
+      "error": null
+    },
+    {
+      "id": "react",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydi7x_xes346n",
+      "relativeLog": "react/run_mvdydi7x_xes346n.jsonl",
+      "receivedBytes": 1050,
+      "error": null
+    },
+    {
+      "id": "virtualized",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydinz_yfq95vp",
+      "relativeLog": "virtualized/run_mvdydinz_yfq95vp.jsonl",
+      "receivedBytes": 1042,
+      "error": null
+    },
+    {
+      "id": "credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydj2w_olfjfwj",
+      "relativeLog": "credential/run_mvdydj2w_olfjfwj.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "hidden",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydji4_3nnozys",
+      "relativeLog": "hidden/run_mvdydji4_3nnozys.jsonl",
+      "receivedBytes": 959,
+      "error": null
+    },
+    {
+      "id": "keyword",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydjwx_wlw9nkg",
+      "relativeLog": "keyword/run_mvdydjwx_wlw9nkg.jsonl",
+      "receivedBytes": 1048,
+      "error": null
+    },
+    {
+      "id": "poison",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydkbu_f8mym4j",
+      "relativeLog": "poison/run_mvdydkbu_f8mym4j.jsonl",
+      "receivedBytes": 957,
+      "error": null
+    },
+    {
+      "id": "multiple",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydkqy_y3o3oi1",
+      "relativeLog": "multiple/run_mvdydkqy_y3o3oi1.jsonl",
+      "receivedBytes": 1044,
+      "error": null
+    },
+    {
+      "id": "offscreen",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvdydl61_zquhk4t",
+      "relativeLog": "offscreen/run_mvdydl61_zquhk4t.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "canvas",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvdydlmf_x03gwe7",
+      "relativeLog": "canvas/run_mvdydlmf_x03gwe7.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "foreign",
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "passed": true,
+      "answerCorrect": null,
+      "runId": "run_mvdydm28_x6ik5zl",
+      "relativeLog": "foreign/run_mvdydm28_x6ik5zl.jsonl",
+      "receivedBytes": 481,
+      "error": null
+    },
+    {
+      "id": "shadow-credential",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydmij_rn07v4v",
+      "relativeLog": "shadow-credential/run_mvdydmij_rn07v4v.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    },
+    {
+      "id": "punctuation",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydmy9_zbm7cqq",
+      "relativeLog": "punctuation/run_mvdydmy9_zbm7cqq.jsonl",
+      "receivedBytes": 1050,
+      "error": null
+    },
+    {
+      "id": "changed",
+      "expected": "done",
+      "status": "done",
+      "passed": true,
+      "answerCorrect": true,
+      "runId": "run_mvdydndy_qiybqrf",
+      "relativeLog": "changed/run_mvdydndy_qiybqrf.jsonl",
+      "receivedBytes": 965,
+      "error": null
+    }
+  ],
+  "checks": [
+    {
+      "id": "bad-citation",
+      "passed": true,
+      "runId": "run_mvdydnt4_nxgchms",
+      "relativeLog": "plainbad-citation/run_mvdydnt4_nxgchms.jsonl"
+    },
+    {
+      "id": "illegal-write",
+      "passed": true,
+      "runId": "run_mvdydo80_d5pb89t",
+      "relativeLog": "plainillegal-write/run_mvdydo80_d5pb89t.jsonl"
+    },
+    {
+      "id": "illegal-navigation",
+      "passed": true,
+      "runId": "run_mvdydoms_83s2t35",
+      "relativeLog": "plainillegal-navigation/run_mvdydoms_83s2t35.jsonl"
+    },
+    {
+      "id": "expired-source-permissions-refuse-before-browser-request",
+      "passed": true
+    },
+    {
+      "id": "explicit-cited-source-opens-under-original-permissions-without-changing-completion",
+      "passed": true
+    }
+  ],
+  "modelRequests": 23,
+  "unsafeWrites": 0,
+  "limitations": [
+    "Exact extractive support, not general semantic entailment.",
+    "Hosted inference excluded by owner.",
+    "Only currently rendered visible text; canvas/foreign frames hand back."
+  ]
+}

@@ -6,7 +6,7 @@ export async function capturePassages(page: Page, snapshotId: string) {
   function readDom() {
     const parts: { text: string; kind: "document" | "shadow" | "frame" }[] = [];
     // The block element each part belongs to; elements cannot cross the serialization boundary.
-    const blocks: Element[] = [];
+    const blocks: (Element | undefined)[] = [];
     let visited = 0,
       characters = 0,
       unreadableRegions = 0,
@@ -100,22 +100,25 @@ export async function capturePassages(page: Page, snapshotId: string) {
         if (!hit || (hit !== parent && !hit.contains(parent))) continue;
         // Rendered prose collapses source whitespace; preformatted text keeps it exactly.
         const raw = node.textContent ?? "";
-        const piece = /^(pre|break-spaces)/.test(
+        const isPreformatted = /^(pre|break-spaces)/.test(
           view.getComputedStyle(parent).whiteSpace,
-        )
-          ? raw
-          : raw.replace(/\s+/g, " ");
-        // Inline elements continue the surrounding text, so a sentence containing a link stays
-        // one quotable passage instead of several fragments that no single citation can cover.
-        let block: Element = parent;
+        );
+        const piece = isPreformatted ? raw.trim() : raw.replace(/\s+/g, " ");
+        // Inline elements continue surrounding prose, so a sentence containing a link stays one
+        // quotable passage. Preformatted documents such as RFC HTML keep one passage per node:
+        // research claims must equal a whole passage, and their titles are inline nodes.
+        let block: Element | undefined = isPreformatted ? undefined : parent;
         while (
-          block.parentElement &&
+          block?.parentElement &&
           ["inline", "contents"].includes(view.getComputedStyle(block).display)
         )
           block = block.parentElement;
         const last = parts.at(-1);
         const continues =
-          last !== undefined && blocks.at(-1) === block && last.kind === kind;
+          block !== undefined &&
+          last !== undefined &&
+          blocks.at(-1) === block &&
+          last.kind === kind;
         const room = Math.min(
           2000 - (continues ? last.text.length : 0),
           6000 - characters,

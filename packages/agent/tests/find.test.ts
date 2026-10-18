@@ -43,7 +43,7 @@ const observation: BrowserObservation = {
   ],
 };
 const current = {
-  snapshotIsCurrent: async () => true,
+  passagesAreCurrent: async () => true,
   targetIsCurrent: async () => true,
 };
 type Finish = Extract<BrowserAction, { type: "finish" }>;
@@ -97,10 +97,66 @@ describe("find on the current page", () => {
       (
         await verifyPageFind(finish([target]), observation, {
           ...current,
-          snapshotIsCurrent: async () => ++checks === 1,
+          passagesAreCurrent: async () => ++checks === 1,
         })
       ).passed,
     ).toBe(false);
+  });
+  it("rechecks only the cited passages and every cited target", async () => {
+    const rechecked: string[][] = [];
+    const targets: number[] = [];
+    const result = await verifyPageFind(
+      finish([
+        target,
+        { snapshotId: "s", passageId: "s:p1", reason: "Delivery timing" },
+      ]),
+      observation,
+      {
+        passagesAreCurrent: async (ids) => {
+          rechecked.push(ids);
+          return true;
+        },
+        targetIsCurrent: async (number) => {
+          targets.push(number);
+          return true;
+        },
+      },
+    );
+    expect(result.passed).toBe(true);
+    expect(rechecked).toEqual([["s:p1"], ["s:p1"]]);
+    expect(targets).toEqual([1, 1]);
+  });
+  it("accepts identical link labels only when every peer has the same destination", async () => {
+    const link = (number: number, destination: string) => ({
+      id: String(number),
+      number,
+      name: "File system",
+      role: "link",
+      destination,
+      isVisible: true,
+      isCredential: false,
+      score: 0,
+    });
+    const page = (destinations: string[]) => ({
+      ...observation,
+      interactiveElements: destinations.map((url, index) =>
+        link(index + 1, url),
+      ),
+    });
+    const same = page([
+      "https://nodejs.org/api/fs.html",
+      "https://nodejs.org/api/fs.html",
+    ]);
+    const differing = page([
+      "https://nodejs.org/api/fs.html",
+      "https://nodejs.org/api/fs.html#promises",
+    ]);
+    expect((await verifyPageFind(finish([target]), same, current)).passed).toBe(
+      true,
+    );
+    expect(
+      (await verifyPageFind(finish([target]), differing, current)).detail,
+    ).toContain("Several controls share this label");
   });
   it("leaves no-match uncertain and rejects unstructured completion", async () => {
     expect(

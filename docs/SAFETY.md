@@ -164,3 +164,17 @@ Exact single-passage verification and the 2,000/6,000-character bounds are uncha
 and `name` attributes label only form fields; credential classification, which already applies only to
 form fields, still sees them. Controlled source/compiled regressions and the credential, safety
 and work-safety suites cover these changes. A complete accessible-name implementation is not claimed.
+
+Stage 7 keeps cleanup truthful without stalling on a hung driver. Disconnect has a 5-second
+bound. After disconnect, the runtime waits up to 45 seconds for the Chrome process to exit and
+release the profile, then records which bound failed. Returning at disconnect was rejected
+because Chrome was still writing the profile. Preformatted text keeps one passage per node, so
+the complete-passage research verifier still matches RFC-style titles; prose merging is unchanged.
+
+D-032 narrows find-on-page freshness to the references it cites. Unrelated page activity and
+layout movement no longer refuse a read-only result. A changed cited control or passage, a
+replaced or covered node, or a URL change still does. Find remains unable to activate, type or
+navigate. Every act keeps the document-wide snapshot binding and exact approval of D-015.
+`find-freshness.browser.mjs` keeps the must-refuse controls in source and compiled modes.
+D-033 lets find accept identical link labels only when every peer leads to the same exact URL.
+Buttons and differing destinations still hand back for a position.
