@@ -1,0 +1,473 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+❯   Task + Enter · /find URL description · /ask URL question · /passage ID · /open ID · /close-source 
+  · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue 
+  · /cancel · /resume ID · /quit
+❯  chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-six-step Start by navigating to http://127.0.0.1:53307/work/six-step. Fill City with Kolkata, Project with Orbit, choose Research for Department, check Consent, press Next, then Save exactly once. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10618 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7282 bytes; not validated
+❯   ┊ receive   model proposal · 8339 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/six-step"} · 4882 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12060 bytes
+❯   ┊ receive   model proposal · 9013 bytes; not validated
+❯   ┊ receive   model proposal · 9760 bytes; not validated
+❯   ┊ receive   model proposal · 10507 bytes; not validated
+❯   ┊ receive   model proposal · 11258 bytes; not validated
+❯   ┊ receive   model proposal · 12012 bytes; not validated
+❯   ┊ receive   model proposal · 12768 bytes; not validated
+❯   ┊ receive   model proposal · 13522 bytes; not validated
+❯   ┊ receive   model proposal · 14343 bytes; not validated
+❯   ┊ type      target 1; value withheld · 4706 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12402 bytes
+❯   ┊ type      target 2; value withheld · 4795 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12747 bytes
+❯   ┊ select    {"type":"select","snapshotId":"f5b109e6-488f-413a-a382-2a0df03da0be","target":3,"optio
+  ┊ n":"[withheld]"} · 5436 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 13064 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"ddb0e5b4-12e7-431c-af9c-9d714629e630","target":4}
+❯   │ target "Consent"
+❯   │ destination "http://127.0.0.1:53307/saved/six-step"
+❯   │ reason "Activate checkbox \"Consent\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcdxm1_sbxp52n · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcdxm1_sbxp52n
+  ┊ click     {"type":"click","snapshotId":"ddb0e5b4-12e7-431c-af9c-9d714629e630","target":4} · 5794
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 13324 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"bf046cc5-03c0-4fcd-b144-911b5e82c13a","target":5}
+❯   │ target "Next"
+❯   │ destination "http://127.0.0.1:53307/saved/six-step"
+❯   │ reason "Activate button \"Next\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdce233_wqml0yj · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdce233_wqml0yj
+  ┊ click     {"type":"click","snapshotId":"bf046cc5-03c0-4fcd-b144-911b5e82c13a","target":5} · 5776
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 13552 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"5b1d6b22-8355-476b-8ffb-978bc227dce1","target":5}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/six-step"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdce6r7_rnhqlki · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdce6r7_rnhqlki
+  ┊ click     {"type":"click","snapshotId":"5b1d6b22-8355-476b-8ffb-978bc227dce1","target":5} · 6021
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12650 bytes
+❯   ┊ receive   model proposal · 15648 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"1602f
+  ┊ 5ee-1b37-4812-bbb3-5f8771c426ab","quote":"Saved requested settings."}]} · 5610 ms
+❯   citations [{"snapshotId":"1602f5ee-1b37-4812-bbb3-5f8771c426ab","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","runId":"run_mvdcddhj_bm6e54j"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-city Start by navigating to http://127.0.0.1:53307/work/city. Set City to Kolkata and save exactly once. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10526 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7281 bytes; not validated
+❯   ┊ receive   model proposal · 8099 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/city"} · 3099 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11198 bytes
+❯   ┊ receive   model proposal · 8766 bytes; not validated
+❯   ┊ receive   model proposal · 9514 bytes; not validated
+❯   ┊ receive   model proposal · 10261 bytes; not validated
+❯   ┊ receive   model proposal · 11019 bytes; not validated
+❯   ┊ receive   model proposal · 11771 bytes; not validated
+❯   ┊ receive   model proposal · 12527 bytes; not validated
+❯   ┊ receive   model proposal · 13597 bytes; not validated
+❯   ┊ type      target 1; value withheld · 3854 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11540 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"4610f2b5-382d-4d82-858d-86eb95c46bc7","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/city"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcema5_eksp7b7 · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcema5_eksp7b7
+  ┊ click     {"type":"click","snapshotId":"4610f2b5-382d-4d82-858d-86eb95c46bc7","target":2} · 4628
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11389 bytes
+❯   ┊ receive   model proposal · 14317 bytes; not validated
+❯   ┊ receive   model proposal · 15074 bytes; not validated
+❯   ┊ receive   model proposal · 16144 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"53144
+  ┊ 363-3967-48e3-a223-4f828ba4075f","quote":"Saved requested settings."}]} · 4509 ms
+❯   citations [{"snapshotId":"53144363-3967-48e3-a223-4f828ba4075f","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","runId":"run_mvdced6m_azkq02s"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-textarea Start by navigating to http://127.0.0.1:53307/work/textarea. Set Notes to Clear skies and save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10526 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7285 bytes; not validated
+❯   ┊ receive   model proposal · 8102 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/textarea"} · 3775 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11225 bytes
+❯   ┊ receive   model proposal · 8765 bytes; not validated
+❯   ┊ receive   model proposal · 9512 bytes; not validated
+❯   ┊ receive   model proposal · 10259 bytes; not validated
+❯   ┊ receive   model proposal · 11010 bytes; not validated
+❯   ┊ receive   model proposal · 11764 bytes; not validated
+❯   ┊ receive   model proposal · 12520 bytes; not validated
+❯   ┊ receive   model proposal · 13278 bytes; not validated
+❯   ┊ receive   model proposal · 14098 bytes; not validated
+❯   ┊ type      target 1; value withheld · 5335 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11568 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"1fb19d6a-2f12-41b0-b376-6872e727af9c","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/textarea"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcf273_k5dtvhq · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcf273_k5dtvhq
+  ┊ click     {"type":"click","snapshotId":"1fb19d6a-2f12-41b0-b376-6872e727af9c","target":2} · 6440
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11406 bytes
+❯   ┊ receive   model proposal · 14828 bytes; not validated
+❯   ┊ receive   model proposal · 15638 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"9e5b6
+  ┊ cb7-82e7-45ac-94db-20bc9d58416f","quote":"Saved requested settings."}]} · 7265 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"9e5b6cb7-82e7-45ac-94db-20bc9d58416f","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","error":"Browser cleanup failed.","ru
+  result nId":"run_mvdceqap_md6u4u3"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-editable Start by navigating to http://127.0.0.1:53307/work/editable. Set the Description editor to Project ready and save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10545 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7285 bytes; not validated
+❯   ┊ receive   model proposal · 8117 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/editable"} · 5568 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11226 bytes
+❯   ┊ receive   model proposal · 8766 bytes; not validated
+❯   ┊ receive   model proposal · 9513 bytes; not validated
+❯   ┊ receive   model proposal · 10260 bytes; not validated
+❯   ┊ receive   model proposal · 11016 bytes; not validated
+❯   ┊ receive   model proposal · 11767 bytes; not validated
+❯   ┊ receive   model proposal · 12527 bytes; not validated
+❯   ┊ receive   model proposal · 13850 bytes; not validated
+❯   ┊ type      target 1; value withheld · 6145 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11575 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"c801ed61-a64b-4b3f-beca-2004c5cc2e00","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/editable"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcfqhz_uezlzlo · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcfqhz_uezlzlo
+  ┊ click     {"type":"click","snapshotId":"c801ed61-a64b-4b3f-beca-2004c5cc2e00","target":2} · 6039
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11431 bytes
+❯   ┊ receive   model proposal · 14580 bytes; not validated
+❯   ┊ receive   model proposal · 15400 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"2729b
+  ┊ a95-a2db-44f2-a31a-12bbf1f073d6","quote":"Saved requested settings."}]} · 6540 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"2729ba95-a2db-44f2-a31a-12bbf1f073d6","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","error":"Browser cleanup failed.","ru
+  result nId":"run_mvdcfchw_3kj76gj"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-select Start by navigating to http://127.0.0.1:53307/work/select. Choose Express for Delivery and save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10525 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7853 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/select"} · 4706 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11258 bytes
+❯   ┊ receive   model proposal · 8519 bytes; not validated
+❯   ┊ receive   model proposal · 9267 bytes; not validated
+❯   ┊ receive   model proposal · 10015 bytes; not validated
+❯   ┊ receive   model proposal · 10773 bytes; not validated
+❯   ┊ receive   model proposal · 11527 bytes; not validated
+❯   ┊ receive   model proposal · 12286 bytes; not validated
+❯   ┊ receive   model proposal · 13104 bytes; not validated
+❯   ┊ select    {"type":"select","snapshotId":"a10cc57d-f184-42a4-a267-66656be815fd","target":1,"optio
+  ┊ n":"[withheld]"} · 6134 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11574 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"8248b091-ae17-4b76-b558-a2ab9c09b6ed","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/select"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcgdvn_n3v3j4w · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcgdvn_n3v3j4w
+  ┊ click     {"type":"click","snapshotId":"8248b091-ae17-4b76-b558-a2ab9c09b6ed","target":2} · 6861
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11367 bytes
+❯   ┊ receive   model proposal · 13830 bytes; not validated
+❯   ┊ receive   model proposal · 14580 bytes; not validated
+❯   ┊ receive   model proposal · 15398 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"63144
+  ┊ d31-ecb8-42ca-9720-c995f04ccd32","quote":"Saved requested settings."}]} · 5827 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"63144d31-ecb8-42ca-9720-c995f04ccd32","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","error":"Browser cleanup failed.","ru
+  result nId":"run_mvdcfzwf_evuirw2"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-checkbox Start by navigating to http://127.0.0.1:53307/work/checkbox. Check the Updates checkbox, then save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10530 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7285 bytes; not validated
+❯   ┊ receive   model proposal · 8102 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/checkbox"} · 4187 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11228 bytes
+❯   ┊ receive   model proposal · 8767 bytes; not validated
+❯   ┊ receive   model proposal · 9514 bytes; not validated
+❯   ┊ receive   model proposal · 10261 bytes; not validated
+❯   ┊ receive   model proposal · 11017 bytes; not validated
+❯   ┊ receive   model proposal · 11766 bytes; not validated
+❯   ┊ receive   model proposal · 12579 bytes; not validated
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"24e679ac-8746-4235-b069-6ec027295006","target":1}
+❯   │ target "Updates"
+❯   │ destination "http://127.0.0.1:53307/saved/checkbox"
+❯   │ reason "Activate checkbox \"Updates\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcgut8_72wxbat · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcgut8_72wxbat
+  ┊ click     {"type":"click","snapshotId":"24e679ac-8746-4235-b069-6ec027295006","target":1} · 5683
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11488 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"58047b05-9670-4c01-aa2d-48c5f77fc13a","target":2}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/checkbox"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdcgz95_z828yj1 · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdcgz95_z828yj1
+  ┊ click     {"type":"click","snapshotId":"58047b05-9670-4c01-aa2d-48c5f77fc13a","target":2} · 5889
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11327 bytes
+❯   ┊ receive   model proposal · 13315 bytes; not validated
+❯   ┊ receive   model proposal · 13830 bytes; not validated
+❯   ┊ receive   model proposal · 14580 bytes; not validated
+❯   ┊ receive   model proposal · 15399 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"66afc
+  ┊ a70-e340-46e8-95a4-f62f70bd685e","quote":"Saved requested settings."}]} · 6485 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"66afca70-e340-46e8-95a4-f62f70bd685e","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","error":"Browser cleanup failed.","ru
+  result nId":"run_mvdcgmro_dii327e"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-radio Start by navigating to http://127.0.0.1:53307/work/radio. Choose Weekly for Frequency, then save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10525 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7282 bytes; not validated
+❯   ┊ receive   model proposal · 8101 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/radio"} · 4622 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11433 bytes
+❯   ┊ receive   model proposal · 8766 bytes; not validated
+❯   ┊ receive   model proposal · 9514 bytes; not validated
+❯   ┊ receive   model proposal · 10261 bytes; not validated
+❯   ┊ receive   model proposal · 11017 bytes; not validated
+❯   ┊ receive   model proposal · 11766 bytes; not validated
+❯   ┊ receive   model proposal · 12585 bytes; not validated
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"94a6a331-eb5e-4523-8e1c-a6e760ee8f95","target":2}
+❯   │ target "Weekly"
+❯   │ destination "http://127.0.0.1:53307/saved/radio"
+❯   │ reason "Activate radio \"Weekly\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdchh7q_kqineqr · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdchh7q_kqineqr
+  ┊ click     {"type":"click","snapshotId":"94a6a331-eb5e-4523-8e1c-a6e760ee8f95","target":2} · 5816
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11692 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"2acac7ae-7c6c-4e7d-aebe-eeab1ce125b4","target":3}
+❯   │ target "Save"
+❯   │ destination "http://127.0.0.1:53307/saved/radio"
+❯   │ reason "Activate button \"Save\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdchlm1_7ekgsl6 · /deny or Esc denies · Enter denies
+❯  chromeclaw-qwen3vl │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve pending_mvdchlm1_7ekgsl6
+  ┊ click     {"type":"click","snapshotId":"2acac7ae-7c6c-4e7d-aebe-eeab1ce125b4","target":3} · 5762
+  ┊  ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11309 bytes
+❯   ┊ receive   model proposal · 13315 bytes; not validated
+❯   ┊ receive   model proposal · 13830 bytes; not validated
+❯   ┊ receive   model proposal · 14580 bytes; not validated
+❯   ┊ receive   model proposal · 15400 bytes; not validated
+❯   ┊ finish    {"type":"finish","answer":"Saved requested settings.","evidence":[{"snapshotId":"de109
+  ┊ b20-fad4-4933-bbe7-1a012731f67c","quote":"Saved requested settings."}]} · 8248 ms
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   citations [{"snapshotId":"de109b20-fad4-4933-bbe7-1a012731f67c","quote":"Saved requested settings.
+  citations "}]
+❯   result {"status":"done","answer":"Saved requested settings.","error":"Browser cleanup failed.","ru
+  result nId":"run_mvdch8l6_ahajr6a"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ done │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-duplicate Start by navigating to http://127.0.0.1:53307/work/duplicate. Fill the SECOND City field with Kolkata. Leave the first field empty. Then save. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10574 bytes
+❯   ┊ receive   model proposal · 520 bytes; not validated
+❯   ┊ receive   model proposal · 1281 bytes; not validated
+❯   ┊ receive   model proposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7286 bytes; not validated
+❯   ┊ receive   model proposal · 8104 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:53307/work/duplicate"} · 4649 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11498 bytes
+❯   ┊ receive   model proposal · 8768 bytes; not validated
+❯   ┊ receive   model proposal · 9515 bytes; not validated
+❯   ┊ receive   model proposal · 10266 bytes; not validated
+❯   ┊ receive   model proposal · 11020 bytes; not validated
+❯   ┊ receive   model proposal · 11776 bytes; not validated
+❯   ┊ receive   model proposal · 12530 bytes; not validated
+❯   ┊ receive   model proposal · 13354 bytes; not validated
+❯   ┊ type      target 2; value withheld · 6590 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11840 bytes
+❯   ┊ type      target 2; value withheld · 6237 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12109 bytes
+❯   ┊ type      target 2; value withheld · 6711 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 12378 bytes
+❯   ┊ type      target 2; value withheld · 6906 ms
+❯   error {"stage":"after-observe","message":"Three identical unsuccessful proposals. Stopped recovery
+  error .","stepId":"step_mvdcil22_vfwb9fw"}
+❯   ┊ error     "failed" · 6918 ms
+❯   error "Three identical unsuccessful proposals. Stopped recovery."
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   result {"status":"failed","answer":"Three identical unsuccessful proposals. Stopped recovery.","er
+  result ror":"Three identical unsuccessful proposals. Stopped recovery.","runId":"run_mvdchwck_utt2
+  result p4y"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ failed │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯ 

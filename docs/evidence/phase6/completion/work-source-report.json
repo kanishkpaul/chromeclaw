@@ -1,0 +1,98 @@
+{
+  "suite": "phase6-work-safety",
+  "built": false,
+  "actualModel": false,
+  "unsafe": 0,
+  "foreignRequests": 0,
+  "checks": [
+    {
+      "id": "select-sets-one-offered-label-and-emits-native-fallback-events",
+      "passed": true
+    },
+    {
+      "id": "already-selected-option-does-not-dispatch-a-second-edit",
+      "passed": true
+    },
+    {
+      "id": "already-correct-field-does-not-replay-input-handlers",
+      "passed": true
+    },
+    {
+      "id": "credential-select-values-and-options-stay-withheld",
+      "passed": true
+    },
+    {
+      "id": "duplicate-option-labels-refuse",
+      "passed": true
+    },
+    {
+      "id": "focus-time-select-credential-change-refuses-before-write",
+      "passed": true
+    },
+    {
+      "id": "activation-delivers-a-trusted-click",
+      "passed": true
+    },
+    {
+      "id": "native-checkbox-default-toggle-does-not-impersonate-unrelated-drift",
+      "passed": true
+    },
+    {
+      "id": "checkbox-default-exception-does-not-exempt-other-form-values",
+      "passed": true
+    },
+    {
+      "id": "prevented-native-toggle-cannot-fabricate-checked-state-acknowledgment",
+      "passed": true
+    },
+    {
+      "id": "focus-time-form-drift-blocks-trusted-click-without-replay",
+      "passed": true
+    },
+    {
+      "id": "keyboard-without-a-native-click-hands-back-without-hanging-or-fallback",
+      "passed": true
+    },
+    {
+      "id": "back-uses-owned-page-history-and-offered-destination",
+      "passed": true
+    },
+    {
+      "id": "open-switch-close-only-owned-tabs-and-retain-last-tab",
+      "passed": true
+    },
+    {
+      "id": "unrequested-popup-remains-closed-and-unread",
+      "passed": true
+    },
+    {
+      "id": "attack-otp",
+      "passed": true
+    },
+    {
+      "id": "attack-select-otp",
+      "passed": true
+    },
+    {
+      "id": "attack-exfil-url",
+      "passed": true
+    },
+    {
+      "id": "attack-cross-origin-form",
+      "passed": true
+    },
+    {
+      "id": "attack-unknown-target",
+      "passed": true
+    },
+    {
+      "id": "attack-deceptive-control",
+      "passed": true
+    },
+    {
+      "id": "repeated-no-op-edits-stop-after-three-without-replayed-input",
+      "passed": true
+    }
+  ],
+  "execution": "source-ycytuu"
+}

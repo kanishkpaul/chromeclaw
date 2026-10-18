@@ -1,0 +1,69 @@
+six-step: pass
+city: pass
+textarea: pass
+editable: pass
+select: pass
+checkbox: pass
+radio: pass
+duplicate: pass
+drift: pass
+modal: pass
+react: pass
+press: pass
+scroll: pass
+back: FAIL
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/tui.pty.py", line 366, in <module>
+    run_work_acceptance()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/tui.pty.py", line 359, in run_work_acceptance
+    raise AssertionError(case_id + ': independently scored work task failed\n' + terminal.plain()[start:][-3000:])
+AssertionError: back: independently scored work task failed
+oposal · 2038 bytes; not validated
+❯   ┊ receive   model proposal · 2790 bytes; not validated
+❯   ┊ receive   model proposal · 3537 bytes; not validated
+❯   ┊ receive   model proposal · 4284 bytes; not validated
+❯   ┊ receive   model proposal · 5031 bytes; not validated
+❯   ┊ receive   model proposal · 5778 bytes; not validated
+❯   ┊ receive   model proposal · 6529 bytes; not validated
+❯   ┊ receive   model proposal · 7849 bytes; not validated
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:49932/work/back"} · 4499 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10838 bytes
+❯   ┊ navigate  {"type":"navigate","url":"http://127.0.0.1:49932/next/back"} · 3841 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11156 bytes
+❯   ┊ receive   model proposal · 8519 bytes; not validated
+❯   ┊ receive   model proposal · 9266 bytes; not validated
+❯   ┊ receive   model proposal · 10013 bytes; not validated
+❯   ┊ receive   model proposal · 10770 bytes; not validated
+❯   ┊ receive   model proposal · 11522 bytes; not validated
+❯   ┊ receive   model proposal · 12269 bytes; not validated
+❯   ┊ receive   model proposal · 13016 bytes; not validated
+❯   ┊ receive   model proposal · 13763 bytes; not validated
+❯   ┊ receive   model proposal · 14510 bytes; not validated
+❯   ┊ receive   model proposal · 15261 bytes; not validated
+❯   ┊ receive   model proposal · 16584 bytes; not validated
+❯   ┊ back      {"type":"back","snapshotId":"4c78eb14-885e-4ae5-a3dc-bd43954f9b05","url":"http://127.0
+  ┊ .0.1:49932/work/back"} · 6943 ms
+❯   error "Page context is stale. Capture the page again."
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11510 bytes
+❯   ┊ back      {"type":"back","snapshotId":"4c78eb14-885e-4ae5-a3dc-bd43954f9b05","url":"http://127.0
+  ┊ .0.1:49932/work/back"} · 7480 ms
+❯   error "Page context is stale. Capture the page again."
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 11864 bytes
+❯   ┊ back      {"type":"back","snapshotId":"4c78eb14-885e-4ae5-a3dc-bd43954f9b05","url":"http://127.0
+  ┊ .0.1:49932/work/back"} · 7795 ms
+❯   error "Page context is stale. Capture the page again."
+❯   error {"stage":"gate","message":"Three identical unsuccessful proposals. Stopped recovery.","stepI
+  error d":"step_mvd04x5j_atqzlsj"}
+❯   ┊ error     "failed" · 7808 ms
+❯   error "Three identical unsuccessful proposals. Stopped recovery."
+❯   error {"stage":"cleanup","message":"Browser cleanup failed."}
+❯   result {"status":"failed","answer":"Three identical unsuccessful proposals. Stopped recovery.","er
+  result ror":"Three identical unsuccessful proposals. Stopped recovery.","runId":"run_mvd0494g_zqdl
+  result k0i"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ failed │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯ 

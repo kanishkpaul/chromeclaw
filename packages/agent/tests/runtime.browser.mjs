@@ -334,6 +334,59 @@ try {
   assert.equal(run.status, "uncertain");
   record("blank-page-finish-cannot-claim-verified-completion");
 
+  saved = [];
+  call = 0;
+  const judgmentRuntime = new BrowserAgentRuntime();
+  run = await runCase("completion-judgment", {
+    name: "phase6-script", model: "scripted",
+    async plan(input) {
+      call++;
+      if (call === 1) return { type: "navigate", url: `${origin}/form` };
+      if (call === 2) return { type: "type", ...target(input.observation, "City"), text: "Kolkata" };
+      if (call === 3) return finish("The form is saved.");
+      if (call === 4) {
+        assert.deepEqual(input.answers, ["Save is still required."]);
+        assert.ok(input.recentSteps.includes('"name":"City"'));
+        assert.ok(!input.recentSteps.includes("Kolkata"));
+        return { type: "click", ...target(input.observation, "Save") };
+      }
+      return finish();
+    },
+  }, {
+    runtime: judgmentRuntime, interactive: true, approve: async () => true,
+    onState(state) {
+      if (state.pending?.kind === "answer") judgmentRuntime.respond({ runId: state.id, pendingId: state.pending.id, kind: "answer", answer: "Save is still required." });
+    },
+    verify: async () => ({ passed: saved.length === 1 && saved[0].city === "Kolkata", detail: "Independent single correct save after human completion judgment." }),
+  });
+  assert.equal(run.status, "done");
+  assert.equal(run.error, undefined);
+  assert.equal(saved.length, 1);
+  record("unverified-interactive-finish-retains-edits-for-bounded-user-judgment");
+
+  call = 0;
+  let judgments = 0;
+  const boundedJudgment = new BrowserAgentRuntime();
+  const invalidCompletion = { name: "phase6-script", model: "scripted", async plan() { call++; return finish("Unverified claim."); } };
+  const judgmentOptions = {
+    interactive: true,
+    onState(state) {
+      if (state.pending?.kind === "answer") {
+        judgments++;
+        boundedJudgment.respond({ runId: state.id, pendingId: state.pending.id, kind: "answer", answer: "Recheck the actual page." });
+      } else if (state.pending?.kind === "pause") boundedJudgment.respond({ runId: state.id, pendingId: state.pending.id, kind: "pause" });
+    },
+  };
+  run = await runCase("bounded-completion-judgment", invalidCompletion, { ...judgmentOptions, runtime: boundedJudgment });
+  assert.equal(run.status, "uncertain");
+  assert.equal(judgments, 2);
+  assert.equal(call, 3);
+  run = await boundedJudgment.reopen(run.id, { ...judgmentOptions, planner: invalidCompletion, headless: true, logDir: path.join(execution, "bounded-completion-judgment", "runs"), profileDir: path.join(profiles, "bounded-judgment-reopen") });
+  assert.equal(run.status, "uncertain");
+  assert.equal(judgments, 2);
+  assert.equal(call, 4);
+  record("completion-judgment-is-bounded-and-reopen-does-not-reset-the-limit");
+
   call = 0;
   run = await runCase("no-change", {
     name: "phase3-script",

@@ -7,7 +7,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,6 +27,11 @@ jobs:
       - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs --built
       - run: pnpm eval:find
       - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs --built
+      - run: pnpm eval:find-labelled
+      - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/find-model.browser.mjs --built
+      - run: pnpm eval:work-safety
+      - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/browser/tests/work.browser.mjs --built
+      - run: pnpm eval:work
       - run: pnpm eval:session
       - run: pnpm eval:tui
       - uses: actions/upload-artifact@v4
@@ -43,6 +48,9 @@ jobs:
             .chromeclaw/phase5-terminal
             .chromeclaw/phase5-ask
             .chromeclaw/phase5-session
+            .chromeclaw/phase6-find-labelled
+            .chromeclaw/phase6-work
+            .chromeclaw/phase6-work-safety
             .chromeclaw/phase6-find
           include-hidden-files: true
           if-no-files-found: error

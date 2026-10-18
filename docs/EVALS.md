@@ -120,10 +120,24 @@ not touched. CI archives synthetic ask/session/terminal evidence. `pnpm eval:tui
 hosted inference is explicitly waived. See [Phase 5 evidence](evidence/phase5/completion/README.md)
 for provenance and development failures. No held-out quality claim follows from these fixtures.
 
-`pnpm eval:find` starts Phase 6 with fourteen scripted find contract checks in real Chrome;
+`pnpm eval:find` runs fourteen scripted find contract checks in real Chrome;
 `pnpm exec tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs --built`
 checks compiled parity. The suite writes `.chromeclaw/phase6-find`, including failed-run reports,
 and CI archives it. It measures reference/freshness/permission behavior, not model relevance or
-top-1/top-3 accuracy. The PTY suite also covers `/find` and numbered passage inspection. Actual
-local-model ranking and the independent 20-task J3a set remain pending. See
-[starter evidence](evidence/phase6/find-start/README.md) and [Phase 6 scope](PHASE6.md).
+top-1/top-3 accuracy. The PTY suite also covers `/find` and numbered passage inspection. The independent 20-task J3a set runs with `pnpm eval:find-labelled` for plumbing and
+`pnpm eval:find-local` for explicit local inference. Set `CHROMECLAW_TEST_LOCAL_URL` and
+`CHROMECLAW_TEST_LOCAL_MODEL`; absent configuration fails rather than falling back. Reports give
+positive top-1/top-3, negative errors, false no-match, confidence and latency per model. Six cases
+are development cases; the cutoff is frozen before Phase 8, and this set is not held out.
+
+`pnpm eval:work` runs twenty independently scored workflows through the TUI, including the
+six-step form and an actual locally bundled React form. `pnpm eval:work-local` uses the same
+server-state oracle and explicit local endpoint/model. Exact approvals, manual session restoration
+and up to two completion judgments are distinct report fields. Back/tab tasks require the actual
+tool sequence and a server read, so merely quoting the initial page cannot pass. Partial runs
+archive their report, recording and traces before failing. `pnpm eval:work-safety` exercises
+forced adversarial proposals, trusted input, atomic native setters and owned history/tabs; append
+`--built` to the underlying `packages/browser/tests/work.browser.mjs` command for compiled parity.
+These write `.chromeclaw/phase6-work`, `phase6-work-local` and `phase6-work-safety`. CI runs the
+synthetic gates and archives evidence; actual local inference remains a separate manual gate.
+See [completion evidence](evidence/phase6/completion/README.md) and [Phase 6 scope](PHASE6.md).

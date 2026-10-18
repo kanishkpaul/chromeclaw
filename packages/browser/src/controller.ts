@@ -12,11 +12,13 @@ import {
   resolveTarget,
   type TargetQuery,
 } from "./targets";
+import { backDestination } from "./tabs";
 import { capturePassages } from "./reading";
 import { inspectField } from "./credentials";
 
 export interface BrowserOptions {
   readPassages?: boolean | undefined;
+  readHistory?: boolean | undefined;
   headless?: boolean | undefined;
   profileDir?: string | undefined;
   screenshotsDir?: string | undefined;
@@ -109,6 +111,11 @@ async function capturePage(
   const capture = await captureTargets(page);
   return {
     ...capture,
+    ...(options.readHistory
+      ? await backDestination(page).then((backUrl) =>
+          backUrl && backUrl !== "about:blank" ? { backUrl } : {},
+        )
+      : {}),
     ...(options.readPassages
       ? await capturePassages(page, capture.snapshotId)
       : {}),
@@ -148,8 +155,8 @@ export async function clickTarget(
   query: TargetQuery,
 ): Promise<string | BrowserRefusal> {
   const outcome = await activateTarget(page, query);
-  return outcome === "acted"
-    ? `Activated target ${query.target}`
+  return outcome === "acted" || outcome === "toggled"
+    ? `Activated target ${query.target} through trusted browser input.${outcome === "toggled" ? " Verified native toggle." : ""}`
     : {
         refused: true,
         ...(outcome === "uncertain" ? { uncertain: true } : {}),
@@ -191,6 +198,10 @@ export async function typeIntoTarget(
         refused: true,
         reason: "Credential entry is refused. Enter it yourself in Chrome.",
       };
+    if (
+      (await element.evaluate(inspectField, { verify: query.value })).verified
+    )
+      return `No change: target ${query.target} already matches the requested text. This field write is complete.`;
     await element.focus();
     if (!(await resolveTarget(page, query)))
       return {
@@ -211,7 +222,7 @@ export async function typeIntoTarget(
           "No change after an ordinary field write. Capture the page again.",
       };
     return result.written
-      ? `Typed into target ${query.target}. Verified that the field matches the proposed text. This write is complete.`
+      ? `Typed into target ${query.target}. Verified that the field matches the proposed text. This write is complete. Native DOM setter fallback; input/change events are untrusted.`
       : {
           refused: true,
           reason: result.refusal ?? "The field could not be written.",
@@ -222,6 +233,69 @@ export async function typeIntoTarget(
       reason: "The target changed or could not be edited safely.",
     };
   }
+}
+
+/** A select uses an exact offered label; option values never leave the browser. */
+export async function selectTarget(
+  page: Page,
+  query: TargetQuery & { option: string },
+): Promise<string | BrowserRefusal> {
+  const target = await resolveTarget(page, query);
+  if (
+    !target ||
+    target.metadata.options?.filter((option) => option === query.option)
+      .length !== 1
+  )
+    return {
+      refused: true,
+      reason: "Option or target is stale. Capture the page again.",
+    };
+  if ((await target.element.evaluate(inspectField)).credential)
+    return {
+      refused: true,
+      reason: "Credential entry is refused. Enter it yourself in Chrome.",
+    };
+  const alreadySelected = await target.element.evaluate(
+    (node, label) =>
+      node instanceof HTMLSelectElement &&
+      !node.multiple &&
+      node.selectedOptions.length === 1 &&
+      node.selectedOptions[0]?.label === label,
+    query.option,
+  );
+  if (alreadySelected)
+    return `No change: target ${query.target} already has the requested selection. This field write is complete.`;
+  await target.element.focus();
+  if (!(await resolveTarget(page, query)))
+    return {
+      refused: true,
+      reason: "Select changed during focus. Capture the page again.",
+    };
+  const outcome = await target.element.evaluate(inspectField, {
+    select: query.option,
+    state: target.state,
+  });
+  if (!outcome.written)
+    return {
+      refused: true,
+      reason: outcome.refusal ?? "The select could not be edited safely.",
+    };
+  const verified = await target.element.evaluate(
+    (node, label) =>
+      node instanceof HTMLSelectElement &&
+      node.isConnected &&
+      node.selectedOptions.length === 1 &&
+      node.selectedOptions[0]?.label === label,
+    query.option,
+  );
+  return verified
+    ? `Selected the offered option in target ${query.target}. Verified selection; native DOM setter fallback, input/change events are untrusted.`
+    : {
+        refused: true,
+        uncertain: true,
+        reason:
+          "Selection changed after input. Do not repeat without inspection.",
+      };
 }
 
 /** Keyboard input cannot be used as a second path into a credential field. */
@@ -249,8 +323,8 @@ export async function pressKey(
     };
   }
   const outcome = await activateTarget(page, query, key);
-  return outcome === "acted"
-    ? `Activated target ${query.target} with ${key}`
+  return outcome === "acted" || outcome === "toggled"
+    ? `Activated target ${query.target} with trusted ${key} browser input.${outcome === "toggled" ? " Verified native toggle." : ""}`
     : {
         refused: true,
         ...(outcome === "uncertain" ? { uncertain: true } : {}),
@@ -319,7 +393,21 @@ export async function scroll(
     direction === "left" ? -amount : direction === "right" ? amount : 0;
   const deltaY =
     direction === "up" ? -amount : direction === "down" ? amount : 0;
+  const before = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
   await page.mouse.wheel(deltaX, deltaY);
+  // Wheel dispatch is asynchronous. Wait for viewport movement before the next capture;
+  // a boundary or nested scroller may not move the window and reaches the bounded timeout.
+  await page
+    .waitForFunction(
+      (before) => scrollX !== before.x || scrollY !== before.y,
+      before,
+      { timeout: 1000 },
+    )
+    .catch((error: unknown) => {
+      // No viewport movement is normal at a boundary. Preserve disconnect/driver failures.
+      if (!(error instanceof Error) || error.name !== "TimeoutError")
+        throw error;
+    });
 }
 
 async function hasCredentialFields(page: Page): Promise<boolean> {

@@ -1,0 +1,11 @@
+{
+  "plugin": "select",
+  "removedFolder": "packages/agent/src/tools/select",
+  "registrationLinesRemoved": 1,
+  "checkExitCode": 0,
+  "registryRestoredExact": true,
+  "pluginRestoredExact": true,
+  "pluginHashes": {
+    "index.ts": "6772210035353987e355659777c28648adc02d217e7cc4f6ab6e8c5aaafe5536"
+  }
+}

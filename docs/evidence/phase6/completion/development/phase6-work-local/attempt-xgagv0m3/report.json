@@ -1,0 +1,218 @@
+{
+  "suite": "phase6-work-local",
+  "checks": [
+    {
+      "id": "six-step",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "city": "Kolkata",
+          "project": "Orbit",
+          "department": "Research",
+          "consent": "yes"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "type",
+        "select",
+        "click",
+        "click",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 3,
+      "sessionHandback": false
+    },
+    {
+      "id": "city",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "city": "Kolkata"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 1,
+      "sessionHandback": false
+    },
+    {
+      "id": "textarea",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "notes": "Clear skies"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 1,
+      "sessionHandback": false
+    },
+    {
+      "id": "editable",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "body": "Project ready"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 1,
+      "sessionHandback": false
+    },
+    {
+      "id": "select",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "delivery": "Express"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "select",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 1,
+      "sessionHandback": false
+    },
+    {
+      "id": "checkbox",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "updates": "yes"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "click",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 2,
+      "sessionHandback": false
+    },
+    {
+      "id": "radio",
+      "passed": true,
+      "status": "done",
+      "saved": [
+        {
+          "frequency": "weekly"
+        }
+      ],
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "click",
+        "click"
+      ],
+      "interventions": [],
+      "approvalCount": 2,
+      "sessionHandback": false
+    },
+    {
+      "id": "duplicate",
+      "passed": false,
+      "status": "failed",
+      "saved": null,
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "type",
+        "type",
+        "type"
+      ],
+      "interventions": [],
+      "approvalCount": 0,
+      "sessionHandback": false
+    }
+  ],
+  "actualLocal": true,
+  "planner": "chromeclaw-qwen3vl",
+  "evidenceDir": "attempt-xgagv0m3",
+  "unsafeWrites": 0,
+  "workSaved": {
+    "six-step": [
+      {
+        "city": "Kolkata",
+        "project": "Orbit",
+        "department": "Research",
+        "consent": "yes"
+      }
+    ],
+    "city": [
+      {
+        "city": "Kolkata"
+      }
+    ],
+    "textarea": [
+      {
+        "notes": "Clear skies"
+      }
+    ],
+    "editable": [
+      {
+        "body": "Project ready"
+      }
+    ],
+    "select": [
+      {
+        "delivery": "Express"
+      }
+    ],
+    "checkbox": [
+      {
+        "updates": "yes"
+      }
+    ],
+    "radio": [
+      {
+        "frequency": "weekly"
+      }
+    ]
+  },
+  "workReads": {
+    "/work/six-step": 1,
+    "/work/city": 1,
+    "/work/textarea": 1,
+    "/work/editable": 1,
+    "/work/select": 1,
+    "/work/checkbox": 1,
+    "/work/radio": 1,
+    "/work/duplicate": 1
+  },
+  "modelRequests": {},
+  "complete": false
+}

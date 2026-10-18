@@ -280,3 +280,58 @@ fixtures. The current route is experimental and viewport-only. Optional browser 
 no highlight, scrolling, control activation or permission widening is needed to inspect these
 results in the TUI. No new dependency, top-level directory or browser permission is required.
 The four final plugin registries and J2 select/back/tab work remain pending. See PHASE6.md.
+
+## D-023 · 2026-10-18 · Registered page tools and event-time input guards
+
+Phase 6 introduces the tool registry, one of the four intended plugin kinds. Each tool owns its
+folder and one composition registration line; tool plugins import contracts/adapters, never each
+other. Legacy search, extraction and screenshot dispatch stays explicit until its own migration.
+No pure-core, ability/model/search registry, dependency or top-level directory is claimed or added.
+Removing select plus its single registration line passes `pnpm check`; restoration is byte-exact.
+
+Use Playwright's trusted pointer/key activation on retained node handles. An adapter-owned capture
+listener rechecks document, target metadata, geometry and ordinary form state at input events.
+Resolve acknowledgment before navigation discards the document. Never retry a possibly dispatched
+activation through native click. Native checkbox/radio preactivation changes are permitted only
+for the expected target/group after an admitted gesture; unrelated form drift still refuses. A
+private post-action checked-state check can acknowledge that edit without serializing its value.
+The existing string-outcome adapter distinguishes that acknowledgment from dispatch-only results.
+
+Retain the atomic native setter for text/contenteditable and select, with `native-dom-fallback`
+recorded alongside tool effect before dispatch. Select adapts Blindfold's select behavior from
+`browser/src/content/apply.ts` at `0fddc14a24f88c5bcb72db5f93c53fd4db2c0b08`, upgraded with exact
+unique enabled option labels, protected field classification, focus-time revalidation and input/
+change acknowledgment. Option values remain inside the browser. Selection proposals and typed
+text are withheld in traces. No credential or unknown-widget fallback is enabled.
+
+Back uses the owned page's observed CDP history destination. Tabs are bounded to five owned pages;
+only the exact Page returned by an explicit open can join the run, including during a racing
+noopener popup. Browser requests remain guarded on the active page. Closing a tab needs exact
+approval and cannot close the last task tab. This is not personal-history or personal-profile
+access and does not implement Phase 7 concurrent research reading.
+
+Find uses a development cutoff of 0.98 after observing a confident wrong ambiguous result at 0.95.
+Self-reported confidence is not a calibrated probability. Indistinguishable control labels require
+an explicit first/second/third ordinal from trusted user input; unsupported disambiguation hands
+back. Keep the cutoff frozen before Phase 8 held-out testing and publish the development failures.
+The controlled fixture suite is not a held-out sample. Native event guards do not provide isolation
+from arbitrary malicious JavaScript or earlier page-installed listeners.
+
+The added browser/terminal gates extend CI's timeout from 15 to 25 minutes. React remains an
+already pinned test-only dependency; the work fixture bundle is generated locally without a CDN.
+Hosted inference remains waived; no model weights or providers are downloaded or changed silently.
+
+Interactive page work can hand an unverified finish back for user judgment at most twice while
+retaining the current page and edits. The answer cannot approve an action or widen permissions;
+recapture and the original action gates still apply. Noninteractive completion stays uncertain.
+This follows an actual local-model failure that mistook Next for a final save. The terminal eval
+counts these corrections separately from exact approvals and manual session restoration; assisted
+completion is not reported as autonomous completion. The failed run remains in the evidence.
+
+Compact action history retains safe target names for up to 24 steps, without typed values. It
+omits redundant before/after IDs; the next-action snapshot ID is restated after history to avoid
+copying an obsolete post-navigation capture. The strict freshness gate is unchanged. An actual
+Back task exposed this confusion and its failed trace is retained. History reads require the
+back tool explicitly; ask/find do not collect history or tabs. Driver acknowledgments time out
+after three seconds when a trusted key produces no click, and runtime cancellation can interrupt
+that wait without claiming an in-flight gesture was undone.

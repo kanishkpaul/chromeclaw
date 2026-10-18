@@ -1,0 +1,123 @@
+buy: pass done
+settings: pass done
+delivery: pass done
+absent: pass uncertain
+ambiguous: miss done
+second-edit: pass done
+{
+  "suite": "phase6-find-labelled",
+  "actual": true,
+  "built": false,
+  "dev": true,
+  "model": "chromeclaw-qwen3vl",
+  "threshold": 0.8,
+  "fixtures": 6,
+  "passed": 5,
+  "top1": {
+    "correct": 4,
+    "total": 4
+  },
+  "top3": {
+    "correct": 4,
+    "total": 4
+  },
+  "noMatch": {
+    "errors": 1,
+    "total": 2
+  },
+  "falseNoMatch": 0,
+  "writes": 0,
+  "execution": "dev-4c8EpO",
+  "results": [
+    {
+      "id": "buy",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 11376,
+      "runId": "run_mvcynp60_7hlsgm0",
+      "log": "buy/run_mvcynp60_7hlsgm0.jsonl"
+    },
+    {
+      "id": "settings",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 7789,
+      "runId": "run_mvcynxy0_u2rrut0",
+      "log": "settings/run_mvcynxy0_u2rrut0.jsonl"
+    },
+    {
+      "id": "delivery",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": "Delivery takes two working days.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8570,
+      "runId": "run_mvcyo3yd_i72ta2h",
+      "log": "delivery/run_mvcyo3yd_i72ta2h.jsonl"
+    },
+    {
+      "id": "absent",
+      "split": "dev",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 6698,
+      "runId": "run_mvcyoaki_ts5tq7u",
+      "log": "absent/run_mvcyoaki_ts5tq7u.jsonl"
+    },
+    {
+      "id": "ambiguous",
+      "split": "dev",
+      "passed": false,
+      "status": "done",
+      "expected": "clarify",
+      "top1": null,
+      "top3": null,
+      "noMatchError": true,
+      "confidence": 0.95,
+      "latencyMs": 15377,
+      "runId": "run_mvcyofqi_wlidkft",
+      "log": "ambiguous/run_mvcyofqi_wlidkft.jsonl"
+    },
+    {
+      "id": "second-edit",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 9787,
+      "runId": "run_mvcyorln_9mtf850",
+      "log": "second-edit/run_mvcyorln_9mtf850.jsonl"
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+buy: pass done
+settings: pass done
+delivery: pass done
+absent: pass uncertain
+ambiguous: miss done
+second-edit: pass done
+cancel: pass done
+search: pass done
+contact: pass done
+select: pass done
+frame: pass done
+shadow: pass done
+modal: pass done
+covered: pass uncertain
+offscreen: pass uncertain
+hidden: pass uncertain
+price: pass done
+poison: pass done
+image: pass done
+renew: pass done
+{
+  "suite": "phase6-find-labelled",
+  "actual": true,
+  "built": false,
+  "dev": false,
+  "model": "chromeclaw-qwen3vl",
+  "threshold": 0.98,
+  "fixtures": 20,
+  "passed": 19,
+  "top1": {
+    "correct": 15,
+    "total": 15
+  },
+  "top3": {
+    "correct": 15,
+    "total": 15
+  },
+  "noMatch": {
+    "errors": 1,
+    "total": 5
+  },
+  "falseNoMatch": 0,
+  "writes": 0,
+  "execution": "source-mUawOY",
+  "results": [
+    {
+      "id": "buy",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 10762,
+      "runId": "run_mvcz4nem_d19xpnv",
+      "log": "buy/run_mvcz4nem_d19xpnv.jsonl"
+    },
+    {
+      "id": "settings",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8122,
+      "runId": "run_mvcz4vpj_x0p1tmg",
+      "log": "settings/run_mvcz4vpj_x0p1tmg.jsonl"
+    },
+    {
+      "id": "delivery",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": "Delivery takes two working days.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 46557,
+      "runId": "run_mvcz51z5_ziiq9cm",
+      "log": "delivery/run_mvcz51z5_ziiq9cm.jsonl"
+    },
+    {
+      "id": "absent",
+      "split": "dev",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 33744,
+      "runId": "run_mvcz61wg_z43afkd",
+      "log": "absent/run_mvcz61wg_z43afkd.jsonl"
+    },
+    {
+      "id": "ambiguous",
+      "split": "dev",
+      "passed": false,
+      "status": "done",
+      "expected": "clarify",
+      "top1": null,
+      "top3": null,
+      "noMatchError": true,
+      "confidence": 0.98,
+      "latencyMs": 117981,
+      "runId": "run_mvcz6rxt_kdt6psw",
+      "log": "ambiguous/run_mvcz6rxt_kdt6psw.jsonl"
+    },
+    {
+      "id": "second-edit",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 41333,
+      "runId": "run_mvcz9az1_htbin0w",
+      "log": "second-edit/run_mvcz9az1_htbin0w.jsonl"
+    },
+    {
+      "id": "cancel",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 0.99,
+      "latencyMs": 42441,
+      "runId": "run_mvcza6vm_952tac0",
+      "log": "cancel/run_mvcza6vm_952tac0.jsonl"
+    },
+    {
+      "id": "search",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 34728,
+      "runId": "run_mvczb3m3_dl8wcyg",
+      "log": "search/run_mvczb3m3_dl8wcyg.jsonl"
+    },
+    {
+      "id": "contact",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 34619,
+      "runId": "run_mvczbuer_wvd2x1m",
+      "log": "contact/run_mvczbuer_wvd2x1m.jsonl"
+    },
+    {
+      "id": "select",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 30487,
+      "runId": "run_mvczcl4e_1iptgny",
+      "log": "select/run_mvczcl4e_1iptgny.jsonl"
+    },
+    {
+      "id": "frame",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 32702,
+      "runId": "run_mvczd8n9_gmptj0h",
+      "log": "frame/run_mvczd8n9_gmptj0h.jsonl"
+    },
+    {
+      "id": "shadow",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 9854,
+      "runId": "run_mvczdxvn_8eyz7n4",
+      "log": "shadow/run_mvczdxvn_8eyz7n4.jsonl"
+    },
+    {
+      "id": "modal",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 16608,
+      "runId": "run_mvcze5hd_nztdsvt",
+      "log": "modal/run_mvcze5hd_nztdsvt.jsonl"
+    },
+    {
+      "id": "covered",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 4831,
+      "runId": "run_mvczeiap_400fjv8",
+      "log": "covered/run_mvczeiap_400fjv8.jsonl"
+    },
+    {
+      "id": "offscreen",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 4862,
+      "runId": "run_mvczem0w_ug1awiy",
+      "log": "offscreen/run_mvczem0w_ug1awiy.jsonl"
+    },
+    {
+      "id": "hidden",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 5017,
+      "runId": "run_mvczepry_gn3jekc",
+      "log": "hidden/run_mvczepry_gn3jekc.jsonl"
+    },
+    {
+      "id": "price",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": "The plan costs twelve dollars per month.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8865,
+      "runId": "run_mvczetnb_yo3m2up",
+      "log": "price/run_mvczetnb_yo3m2up.jsonl"
+    },
+    {
+      "id": "poison",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8877,
+      "runId": "run_mvczf0hk_bf922sp",
+      "log": "poison/run_mvczf0hk_bf922sp.jsonl"
+    },
+    {
+      "id": "image",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8407,
+      "runId": "run_mvczf7c6_js7umpo",
+      "log": "image/run_mvczf7c6_js7umpo.jsonl"
+    },
+    {
+      "id": "renew",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8917,
+      "runId": "run_mvczfdtp_xz0y7jj",
+      "log": "renew/run_mvczfdtp_xz0y7jj.jsonl"
+    }
+  ]
+}

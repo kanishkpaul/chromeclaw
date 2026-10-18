@@ -39,7 +39,12 @@ Phase 4 merged through PR #7 at `5ee565e` after hosted CI passed. Phase 5 starte
 PR #8 at `4d09383`. The completion implements grounded read-only ask, explicit source opening,
 bounded SSE, disconnect handling and a measured disposable-session comparison. See
 [PHASE5.md](PHASE5.md) and its [completion evidence](evidence/phase5/completion/README.md) for
-controlled acceptance and the hosted-testing waiver. Phase 6 has started with the experimental `find-01` route; see [PHASE6.md](PHASE6.md). Its labelled model-quality gate and J2 work remain pending. Phases 7 through 9 remain pending.
+controlled acceptance and the hosted-testing waiver. Phase 6 implements `find-01` and `work-01`: ranked current-page references, nine independent
+registered tools, guarded trusted activation and explicit native edit fallbacks. Its controlled
+engineering gate passes twenty scripted workflows through the real TUI with independent state
+checks. Actual local-model quality is reported separately, including failed tasks and human
+interventions, in [completion evidence](evidence/phase6/completion/README.md). These results do
+not establish reliable autonomous page work. See [PHASE6.md](PHASE6.md). Phases 7 through 9 remain pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
 signed-in-site readiness.

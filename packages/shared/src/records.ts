@@ -29,6 +29,11 @@ const PermissionsSchema = z
           "search_web",
           "click",
           "type",
+          "select",
+          "back",
+          "open_tab",
+          "switch_tab",
+          "close_tab",
           "press",
           "wait",
           "extract_text",
@@ -62,6 +67,15 @@ export const PassageSchema = z
 export const ObservationRecordSchema = z
   .object({
     snapshotId: z.string(),
+    backUrl: z.string().optional(),
+    tabs: z
+      .array(
+        z
+          .object({ id: z.string(), url: z.string(), active: z.boolean() })
+          .strict(),
+      )
+      .max(5)
+      .optional(),
     passages: z.array(PassageSchema).max(100).optional(),
     unreadableRegions: z.number().int().nonnegative().optional(),
     omittedPassages: z.boolean().optional(),
@@ -97,6 +111,7 @@ export const ObservationRecordSchema = z
             .optional(),
           destination: z.string().optional(),
           formDestination: z.string().optional(),
+          options: z.array(z.string()).max(100).optional(),
           isEditable: z.boolean().optional(),
           isDisabled: z.boolean().optional(),
           isOccluded: z.boolean().optional(),

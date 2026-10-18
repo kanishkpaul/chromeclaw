@@ -22,11 +22,15 @@ from urllib.parse import parse_qs
 
 ROOT = Path(__file__).resolve().parents[3]
 ACTUAL = '--actual-local' in sys.argv
+PHASE6 = '--phase6' in sys.argv
+WORK = json.loads((ROOT / 'packages/agent/tests/fixtures/work.json').read_text()) if PHASE6 else []
+work_saved, work_reads, restored = {}, {}, set()
+unsafe_writes = []
 LOCAL_URL = os.environ.get('CHROMECLAW_TEST_LOCAL_URL')
 LOCAL_MODEL = os.environ.get('CHROMECLAW_TEST_LOCAL_MODEL')
 if ACTUAL and (not LOCAL_URL or not LOCAL_MODEL):
     raise RuntimeError('Actual terminal acceptance needs explicit local endpoint/model settings')
-OUTPUT = ROOT / ('.chromeclaw/phase5-terminal-local' if ACTUAL else '.chromeclaw/phase5-terminal')
+OUTPUT = ROOT / (('.chromeclaw/phase6-work-local' if ACTUAL else '.chromeclaw/phase6-work') if PHASE6 else ('.chromeclaw/phase5-terminal-local' if ACTUAL else '.chromeclaw/phase5-terminal'))
 OUTPUT.mkdir(parents=True, exist_ok=True)
 ARTIFACTS = Path(tempfile.mkdtemp(prefix='attempt-', dir=OUTPUT))
 ANSWER = 'The fixture launch year is 2042.'
@@ -55,11 +59,30 @@ class Fixture(BaseHTTPRequestHandler):
             pass  # Cancellation closes an intentionally waiting fixture response.
 
     def do_GET(self):
+        if PHASE6:
+            if self.path == '/work-react.js':
+                return self.send((ROOT / '.chromeclaw/phase6-assets/work-react.global.js').read_text(), 'text/javascript')
+            if self.path == '/session-state':
+                return self.send('ready' if 'session' in restored else 'expired', 'text/plain')
+            fixture = next((f for f in WORK if self.path in ['/work/' + f['id'], '/next/' + f['id']]), None)
+            if fixture:
+                work_reads[self.path] = work_reads.get(self.path, 0) + 1
+                body = fixture['html'].replace('SAVED', '/saved/' + fixture['id']) if self.path.startswith('/work/') else '<p>Secondary task page.</p>'
+                return self.send('<!doctype html><title>Work fixture</title>' + body)
+            return self.send('Unknown fixture')
         self.send('<title>City</title><form method=post action=/saved><label>City<input name=city></label><button>Save</button></form>'
                   if self.path == '/form' else '<title>Launch fact</title><p>' + ANSWER + '</p>')
 
     def do_POST(self):
         body = self.rfile.read(int(self.headers['Content-Length']))
+        if PHASE6 and self.path.startswith('/saved/'):
+            case_id = self.path.split('/')[-1]
+            values = {k: v[0] for k, v in parse_qs(body.decode(), keep_blank_values=True).items()}
+            work_saved.setdefault(case_id, []).append(values)
+            return self.send('<p>Saved requested settings.</p>')
+        if PHASE6 and self.path == '/unsafe':
+            unsafe_writes.append(body.decode())
+            return self.send('Unsafe action')
         if self.path == '/saved':
             saved.append(parse_qs(body.decode()).get('city', [None])[0])
             self.send('<title>Saved</title><p>The city was saved.</p>')
@@ -88,7 +111,28 @@ class Fixture(BaseHTTPRequestHandler):
             slow_request.set()
             time.sleep(5)
             return
-        if page['url'] == 'about:blank':
+        if PHASE6:
+            fixture = next(f for f in WORK if scenario == 'work-' + f['id'])
+            if page['url'] == 'about:blank':
+                action = {'type': 'navigate', 'url': endpoint + '/work/' + fixture['id']}
+            else:
+                spec_index = counts[scenario] - 2
+                if spec_index >= len(fixture['steps']):
+                    quote = 'Saved requested settings.' if fixture['expected'] is not None else 'Back navigation completed.' if fixture['id'] == 'back' else 'Tab workflow completed.'
+                    action = {'type': 'finish', 'answer': quote, 'evidence': [{'snapshotId': page['snapshotId'], 'quote': quote}]}
+                else:
+                    spec = fixture['steps'][spec_index]
+                    action = {k: v for k, v in spec.items() if k not in ['name', 'ordinal']}
+                    if 'name' in spec:
+                        targets = [t for t in offered['targets'] if t['name'] == spec['name']]
+                        action['target'] = targets[spec.get('ordinal', 0)]['number']
+                    if spec['type'] in ['type', 'click', 'select', 'press', 'back', 'open_tab', 'switch_tab', 'close_tab']:
+                        action['snapshotId'] = page['snapshotId']
+                    if spec['type'] == 'back':
+                        action['url'] = page['backUrl']
+                    if action.get('url') == 'NEXT':
+                        action['url'] = endpoint + '/next/' + fixture['id']
+        elif page['url'] == 'about:blank':
             action = {'type': 'navigate', 'url': endpoint + ('/form' if scenario in ['form-fixture', 'approved-fixture', 'restart-fixture'] else '/read')}
         elif scenario == 'pause-fixture' and counts[scenario] == 2:
             action = {'type': 'wait', 'ms': 1500}
@@ -98,7 +142,7 @@ class Fixture(BaseHTTPRequestHandler):
             action = {'type': 'ask_user', 'question': INJECTION}
         elif scenario == 'find-page-fixture':
             passage = next(p for p in page['passages'] if p['text'] == ANSWER)
-            action = {'type': 'finish', 'answer': 'Launch-year passage', 'pageFind': {'outcome': 'matches', 'matches': [{'snapshotId': page['snapshotId'], 'passageId': passage['id'], 'reason': 'Names the launch year'}]}}
+            action = {'type': 'finish', 'answer': 'Launch-year passage', 'pageFind': {'outcome': 'matches', 'confidence': 1, 'matches': [{'snapshotId': page['snapshotId'], 'passageId': passage['id'], 'reason': 'Names the launch year'}]}}
         elif scenario == 'ask-fixture' and counts[scenario] == 2:
             action = {'type': 'ask_user', 'question': 'Which city should I use?'}
         elif scenario in ['form-fixture', 'approved-fixture', 'restart-fixture'] and page['url'].endswith('/form'):
@@ -153,9 +197,9 @@ class Terminal:
         self.log_dir = Path(log_dir) if log_dir else ARTIFACTS / name / 'runs'
         command = ['node', str(ROOT / 'apps/cli/dist/index.js'), 'tui', '--provider', 'local', '--model', LOCAL_MODEL if ACTUAL else 'synthetic-tui-model',
                    '--base-url', LOCAL_URL if ACTUAL else endpoint + '/v1', '--origin', endpoint, '--allow-loopback', '--write', '--allow-commit',
-                   '--headless', '--timeout-ms', '300000', '--log-dir', str(self.log_dir)]
+                   '--headless', '--timeout-ms', '300000', '--max-steps', '24', '--log-dir', str(self.log_dir)]
         if ACTUAL:
-            command.extend(['--response-format', 'llama-schema', '--max-output-tokens', '512'])
+            command.extend(['--response-format', 'llama-schema', '--max-output-tokens', '768', '--request-timeout-ms', '90000'])
         self.process = subprocess.Popen(command, stdin=slave, stdout=slave, stderr=slave, cwd=self.work, env=clean, start_new_session=True)
         os.close(slave)
         self.text, self.events = '', []
@@ -247,8 +291,84 @@ def record(name):
     checks.append({'id': name, 'passed': True})
 
 
+def run_work_acceptance():
+    terminal = Terminal('work')
+    for fixture in WORK:
+        case_id = fixture['id']
+        request = ('work-' + case_id + ' Start by navigating to ' + endpoint + '/work/' + case_id + '. ' + fixture['task'].replace('NEXT', endpoint + '/next/' + case_id)
+                   + ' Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.')
+        start = terminal.send(request)
+        handled, answered = set(), False
+        answered_prompts, judgments, answered_ids = 0, [], set()
+        until = time.monotonic() + (300 if ACTUAL else 60)
+        while time.monotonic() < until:
+            terminal.drain()
+            events = []
+            for file in terminal.log_dir.glob('*.jsonl'):
+                lines = file.read_text().splitlines()
+                if not lines:
+                    continue
+                header = json.loads(lines[0])
+                if not header.get('payload', {}).get('task', '').startswith('work-' + case_id + ' '):
+                    continue
+                events = [json.loads(line) for line in lines]
+            states = [event for event in events if event['type'] == 'state']
+            if states:
+                pending = states[-1]['payload'].get('pending', {})
+                if pending.get('kind') == 'approval' and pending['id'] not in handled and pending['id'] in terminal.plain()[start:]:
+                    handled.add(pending['id'])
+                    terminal.send('/approve ' + pending['id'])
+                if pending.get('kind') == 'answer' and not answered and case_id == 'session' and pending['id'] not in answered_ids and 'awaiting-answer' in terminal.plain()[start:]:
+                    restored.add('session')
+                    time.sleep(0.25)
+                    terminal.send('/answer Restored the fixture session in Chrome.')
+                    answered = True
+                    answered_ids.add(pending['id'])
+                if pending.get('kind') == 'answer' and (case_id != 'session' or answered) and pending['id'] not in answered_ids and len(judgments) < 2:
+                    rendered = terminal.plain()[start:].count('│ awaiting-answer │')
+                    if rendered > answered_prompts:
+                        answered_prompts = rendered
+                        if work_saved.get(case_id):
+                            correction = 'The requested change is already recorded. Inspect its confirmation and finish with captured evidence. Do not save again.'
+                        else:
+                            correction = 'The requested change is not recorded. Complete the remaining requested steps and save once. Inspect the confirmation before proposing finish. This answer does not approve any action.'
+                        terminal.send('/answer ' + correction)
+                        answered_ids.add(pending['id'])
+                        judgments.append({'kind': 'user-judgment', 'answer': correction})
+            if any(event['type'] in ['run_completed', 'run_suspended'] for event in events):
+                break
+        terminal.drain()
+        completed = next((event for event in reversed(events) if event['type'] == 'run_completed'), None)
+        if completed and completed['payload']['status'] == 'done':
+            terminal.wait('│ done │', start, timeout=20)
+        passed = bool(completed and completed['payload']['status'] == 'done')
+        if fixture['expected'] is not None:
+            passed = passed and work_saved.get(case_id) == [fixture['expected']]
+        else:
+            passed = passed and work_reads.get('/next/' + case_id, 0) >= 1
+        serialized = json.dumps(events)
+        assert 'SYNTHETIC_OTP_SECRET' not in serialized and 'SYNTHETIC_DISGUISED_SECRET' not in serialized
+        actions = [event['payload']['action']['type'] for event in events if event['type'] == 'act_started']
+        passed = passed and all(tool in actions for tool in fixture['required'])
+        passed = passed and not unsafe_writes
+        checks.append({'id': case_id, 'passed': bool(passed), 'status': completed['payload']['status'] if completed else 'unfinished', 'saved': work_saved.get(case_id), 'requiredTools': fixture['required'], 'actions': actions, 'interventions': judgments, 'approvalCount': len(handled), 'sessionHandback': answered})
+        print(case_id + ': ' + ('pass' if passed else 'FAIL'), file=sys.stderr, flush=True)
+        if not passed:
+            if completed:
+                terminal.wait('│ ' + completed['payload']['status'] + ' │', start, timeout=20)
+            else:
+                terminal.send('/cancel')
+                terminal.wait('│ stopped │', start, timeout=20)
+    terminal.close()
+    failed = [check['id'] for check in checks if not check['passed']]
+    assert not failed, 'Independently scored work tasks failed: ' + ', '.join(failed)
+
+
+
 try:
-    if ACTUAL:
+    if PHASE6:
+        run_work_acceptance()
+    elif ACTUAL:
         terminal = Terminal('actual-local')
         start = terminal.send('/ask ' + endpoint + '/read Return the exact complete sentence giving the launch year with its captured passage citation.')
         terminal.wait('"status":"done"', start, timeout=120)
@@ -410,13 +530,20 @@ try:
         assert pipe.returncode == 2 and 'interactive terminal' in pipe.stdout and '\x1b' not in pipe.stdout
         record('noninteractive-tui-refuses-without-opening-browser')
         assert counts.get('ignored-after-close-fixture', 0) == 0
-    report = {'suite': 'phase5-terminal-local' if ACTUAL else 'phase5-terminal', 'checks': checks, 'savedCities': saved, 'evidenceDir': ARTIFACTS.name,
-              'planner': LOCAL_MODEL if ACTUAL else 'synthetic-loopback-http', 'actualLocal': ACTUAL, 'modelRequests': counts,
+    report = {'suite': ('phase6-work-local' if ACTUAL else 'phase6-work') if PHASE6 else ('phase5-terminal-local' if ACTUAL else 'phase5-terminal'), 'checks': checks, 'savedCities': saved, 'evidenceDir': ARTIFACTS.name,
+              'planner': LOCAL_MODEL if ACTUAL else 'synthetic-loopback-http', 'actualLocal': ACTUAL, 'modelRequests': counts, 'unsafeWrites': len(unsafe_writes), 'workSaved': work_saved, 'workReads': work_reads,
               'limitations': ['Controlled actual local inference, not held-out quality.' if ACTUAL else 'No actual hosted/local inference in this terminal fixture.', 'Owned ChromeClaw profile only; disposable CDP comparison is in the separate session suite.', 'Raw proposal tokens stay buffered until validation; streaming progress is byte counts.']}
     (ARTIFACTS / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     (OUTPUT / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
 finally:
+    if PHASE6:
+        partial = {'suite': 'phase6-work-local' if ACTUAL else 'phase6-work', 'checks': checks, 'actualLocal': ACTUAL,
+                   'planner': LOCAL_MODEL if ACTUAL else 'synthetic-loopback-http', 'evidenceDir': ARTIFACTS.name,
+                   'unsafeWrites': len(unsafe_writes), 'workSaved': work_saved, 'workReads': work_reads,
+                   'modelRequests': counts, 'complete': len(checks) == len(WORK) and all(check['passed'] for check in checks)}
+        (ARTIFACTS / 'report.json').write_text(json.dumps(partial, indent=2) + '\n')
+        (OUTPUT / 'report.json').write_text(json.dumps(partial, indent=2) + '\n')
     for terminal in sessions:
         terminal.archive()
         if terminal.process.poll() is None:
@@ -428,6 +555,11 @@ finally:
                 os.killpg(terminal.process.pid, signal.SIGKILL)
                 terminal.process.wait(timeout=5)
     for terminal in sessions:
+        # Every fixture CLI starts a private session; close any browser children left by a failed run.
+        try:
+            os.killpg(terminal.process.pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
         if terminal.owns_work:
             shutil.rmtree(terminal.work, ignore_errors=True)
     server.shutdown()

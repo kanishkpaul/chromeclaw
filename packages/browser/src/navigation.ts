@@ -1,3 +1,4 @@
+import { admitOwnedTab } from "./tabs";
 import { lookup } from "node:dns/promises";
 import type { BrowserSession } from "./controller";
 import { destinationRefusal, type TaskPermissions } from "@chromeclaw/shared";
@@ -111,8 +112,8 @@ export async function guardNavigation(
       });
     }
   });
-  session.context.on("page", (page) => {
-    if (page !== session.page)
+  session.context.on("page", async (page) => {
+    if (page !== session.page && !(await admitOwnedTab(session, page)))
       void page.close().catch(() => {
         // The browser may have already closed a blocked popup.
       });

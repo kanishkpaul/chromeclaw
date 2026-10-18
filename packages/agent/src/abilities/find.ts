@@ -1,5 +1,8 @@
 import type { BrowserAction, BrowserObservation } from "@chromeclaw/shared";
 
+// Measured on the Phase 6 development set; freeze before Phase 8 held-out evaluation.
+export const FIND_CONFIDENCE_THRESHOLD = 0.98;
+
 /** Verify binding and freshness, not semantic relevance or a model's claim of absence. */
 export async function verifyPageFind(
   finish: Extract<BrowserAction, { type: "finish" }>,
@@ -7,6 +10,7 @@ export async function verifyPageFind(
   current: {
     snapshotIsCurrent: () => Promise<boolean>;
     targetIsCurrent: (target: number) => Promise<boolean>;
+    description?: string;
   },
 ): Promise<{ passed: boolean; detail: string }> {
   const result = finish.pageFind;
@@ -19,6 +23,13 @@ export async function verifyPageFind(
   if (result.outcome === "no-match")
     return refuse(
       "The model reported no match in the captured viewport; absence is unverified.",
+    );
+  if (
+    result.confidence === undefined ||
+    result.confidence < FIND_CONFIDENCE_THRESHOLD
+  )
+    return refuse(
+      "Find confidence is missing or below the frozen development threshold. Clarify the description.",
     );
   const seen = new Set<string>();
   for (const match of result.matches) {
@@ -46,6 +57,33 @@ export async function verifyPageFind(
         return refuse(
           "Find target is unavailable, credential-bearing or stale.",
         );
+      const peers = observation.interactiveElements.filter(
+        (other) =>
+          other.name === node.name &&
+          other.role === node.role &&
+          !other.isCredential,
+      );
+      if (peers.length > 1) {
+        // Identical offered labels do not establish which one the person intended. Support an
+        // explicit ordinal in trusted input; other context disambiguation still needs hand-back.
+        const ordinals = [
+          ...(current.description ?? "").matchAll(
+            /\b(first|second|third|1st|2nd|3rd)\b/gi,
+          ),
+        ].map((match) =>
+          ["first", "1st"].includes(match[1]?.toLowerCase() ?? "")
+            ? 0
+            : ["second", "2nd"].includes(match[1]?.toLowerCase() ?? "")
+              ? 1
+              : 2,
+        );
+        const positions = new Set(ordinals);
+        const position = positions.size === 1 ? ordinals[0] : undefined;
+        if (position === undefined || peers[position]?.number !== match.target)
+          return refuse(
+            "Several controls share this label. Clarify a position (first, second or third) before choosing.",
+          );
+      }
     } else if (
       !observation.passages?.some(
         (passage) =>

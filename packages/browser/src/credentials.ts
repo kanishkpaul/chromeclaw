@@ -22,6 +22,7 @@ export function inspectField(
     | string
     | void
     | { value: string; state: FieldState }
+    | { select: string; state: FieldState }
     | { capture: true; state: FieldState }
     | { verify: string },
 ): FieldInspection {
@@ -33,7 +34,7 @@ export function inspectField(
         : undefined;
   if (
     typeof input === "object" &&
-    "value" in input &&
+    ("value" in input || "select" in input) &&
     !input.state.isCurrent()
   ) {
     return {
@@ -69,7 +70,10 @@ export function inspectField(
         : null;
     if (node) references.push(node);
   }
-  const labels = nativeInput ? Array.from(element.labels ?? []) : [];
+  const labels =
+    nativeInput || element instanceof HTMLSelectElement
+      ? Array.from(element.labels ?? [])
+      : [];
   const texts: string[] = [];
   // A recursive local function gains a tsx naming helper that cannot travel into Playwright's
   // document. Walk each label without closures, and skip control descendants before reading text.
@@ -107,7 +111,7 @@ export function inspectField(
     .toLowerCase()
     .split(/\s+/);
   const credential =
-    editable &&
+    (editable || element instanceof HTMLSelectElement) &&
     (element.getAttribute("type")?.toLowerCase() === "password" ||
       tokens.some((token) =>
         ["current-password", "new-password", "one-time-code"].includes(token),
@@ -151,8 +155,14 @@ export function inspectField(
             element.textContent === input.verify),
     };
   }
-  if (value === undefined) return inspection;
-  if (!element.isConnected || !editable)
+  const optionLabel =
+    typeof input === "object" && "select" in input ? input.select : undefined;
+  if (value === undefined && optionLabel === undefined) return inspection;
+  if (
+    !element.isConnected ||
+    (!editable &&
+      !(optionLabel !== undefined && element instanceof HTMLSelectElement))
+  )
     return {
       ...inspection,
       refusal: "The target is detached or is not an editable field.",
@@ -184,6 +194,39 @@ export function inspectField(
       ...inspection,
       refusal: "The field is covered or outside the viewport.",
     };
+
+  if (optionLabel !== undefined) {
+    if (
+      !(element instanceof HTMLSelectElement) ||
+      element.disabled ||
+      element.multiple
+    )
+      return {
+        ...inspection,
+        refusal: "Only an enabled single-select is supported.",
+      };
+    const options = Array.from(element.options).filter(
+      (option) =>
+        option.label === optionLabel &&
+        !option.disabled &&
+        !(
+          option.parentElement instanceof HTMLOptGroupElement &&
+          option.parentElement.disabled
+        ),
+    );
+    const option = options.length === 1 ? options[0] : undefined;
+    if (!option)
+      return {
+        ...inspection,
+        refusal: "Choose one unique enabled offered option label.",
+      };
+    // Adapted from Blindfold content/apply.ts; selection stays inside the atomic field guard.
+    element.value = option.value;
+    element.dispatchEvent(new Event("input", { bubbles: true }));
+    element.dispatchEvent(new Event("change", { bubbles: true }));
+    return { ...inspection, written: true };
+  }
+  if (value === undefined) return inspection;
 
   // The check and native setter share one document turn, so focus handlers cannot turn a safe
   // field into a password field between admission and writing. React also sees its native setter.

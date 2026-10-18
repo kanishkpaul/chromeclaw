@@ -1,0 +1,4 @@
+*.log -text -whitespace
+**/*.txt -text -whitespace
+**/*.cast -text -whitespace
+**/*.jsonl -text -whitespace

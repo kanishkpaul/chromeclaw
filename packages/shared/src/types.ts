@@ -15,6 +15,7 @@ export interface InteractiveElement {
   bounds?: { x: number; y: number; width: number; height: number };
   destination?: string | undefined;
   formDestination?: string | undefined;
+  options?: string[];
   isEditable?: boolean;
   isDisabled?: boolean;
   isOccluded?: boolean;
@@ -32,6 +33,8 @@ export interface InteractiveElement {
 export type Passage = z.infer<typeof PassageSchema>;
 
 export interface BrowserObservation {
+  backUrl?: string;
+  tabs?: { id: string; url: string; active: boolean }[];
   passages?: Passage[];
   unreadableRegions?: number;
   omittedPassages?: boolean;

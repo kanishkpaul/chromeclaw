@@ -1,0 +1,29 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · chromeclaw-qwen3vl · local · http://127.0.0.1:18184/v1
+❯   Task + Enter · /find URL description · /ask URL question · /passage ID · /open ID · /close-source 
+  · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue 
+  · /cancel · /resume ID · /quit
+❯  chromeclaw-qwen3vl │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ work-six-step Start by navigating to http://127.0.0.1:52895/work/six-step. Fill City with Kolkata, Project with Orbit, choose Research for Department, check Consent, press Next, then Save exactly once. Propose one action at a time. Never repeat a verified field write or a successful save. When finished return the exact sentence shown on the resulting page with captured evidence.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"chromeclaw-qwen3vl","configuration":{"stream":true,"response
+  provider Format":"llama-schema","endpoint":"http://127.0.0.1:18184/v1","mode":"local","requestCost
+  provider ":0,"maxOutputTokens":768,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 10618 bytes
+❯   error {"stage":"plan","message":"Planner transport failed: network."}
+❯   ┊ error     "failed" · 52 ms
+❯   error "Planner transport failed: network."
+❯   result {"status":"failed","answer":"Planner transport failed: network.","error":"Planner transport
+  result  failed: network.","runId":"run_mvdccpo2_nmmve57"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ failed │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯ 
