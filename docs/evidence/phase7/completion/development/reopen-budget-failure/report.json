@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "id": "poisoned-source-and-model-cannot-query-export-or-act",
+      "passed": true
+    },
+    {
+      "id": "engine-captcha-hands-back-without-bypass-or-fallback",
+      "passed": true
+    },
+    {
+      "id": "registered-secret-query-refused-before-browser",
+      "passed": true
+    },
+    {
+      "id": "reopen-pauses-before-any-source-or-query-crossing",
+      "passed": true
+    }
+  ],
+  "requests": [
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=captcha",
+    "/search?q=fixed-intent",
+    "/source",
+    "/source"
+  ]
+}

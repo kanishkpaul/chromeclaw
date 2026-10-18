@@ -10,6 +10,9 @@ import {
   type RuntimeReply,
 } from "@chromeclaw/agent";
 import {
+  createPermissions,
+  DiscoverySchema,
+  type Discovery,
   ObservationRecordSchema,
   type AgentRun,
   type AgentStep,
@@ -78,7 +81,11 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     const model = current?.model ?? config.model;
     const mode = current
       ? (current.configuration?.mode ??
-        (current.provider === "mock" ? "mock" : "unknown"))
+        (current.provider === "mock"
+          ? "mock"
+          : current.provider === "local-history"
+            ? "local"
+            : "unknown"))
       : config.mode;
     row(
       " ",
@@ -140,6 +147,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
     resume = false,
     askUrl?: string,
     findUrl?: string,
+    discovery?: Discovery,
   ) => {
     if (sourceOpening) {
       notice("The source window is still opening.");
@@ -160,6 +168,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       ...settings,
       askUrl,
       findUrl,
+      discovery,
       onProgress: ({ receivedBytes }) => {
         if (receivedBytes - lastProgress >= 512 || lastProgress === 0) {
           lastProgress = receivedBytes;
@@ -174,6 +183,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       onState: state,
       onStep: step,
       onEvent: (event) => {
+        if (event.type === "discovery") data("research", event.payload);
         if (event.type === "configuration") data("provider", event.payload);
         if (event.type === "crossing") {
           const crossing = event.payload;
@@ -200,6 +210,10 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       .then((run) => {
         current = run;
         const finish = run.steps.at(-1)?.action;
+        if (finish?.type === "finish" && finish.claims)
+          data("claims", finish.claims);
+        if (finish?.type === "finish" && finish.webFind)
+          data("ranked URLs", finish.webFind);
         if (finish?.type === "finish" && finish.evidence)
           data("citations", finish.evidence);
         if (run.findUrl && finish?.type === "finish" && finish.pageFind) {
@@ -320,7 +334,7 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
   };
   const help = () =>
     notice(
-      "Task + Enter · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
+      "Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins URL ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /compose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · /quit",
     );
   const handle = (line: string) => {
     if (closed) return;
@@ -425,6 +439,71 @@ export async function runTerminal(options: TerminalOptions): Promise<number> {
       return notice(
         "A task is active. Use its pending command, /pause or /cancel.",
       );
+    if (command === "/origins") {
+      try {
+        if (!words.length)
+          return notice(
+            "Use /origins followed by complete permitted origins for future tasks.",
+          );
+        const envelope = createPermissions(
+          { ...settings.permissions, origins: words },
+          Date.now(),
+        );
+        settings.permissions = {
+          ...settings.permissions,
+          origins: envelope.origins,
+        };
+        data("future task origins", envelope.origins);
+      } catch {
+        notice(
+          "Invalid origin scope. Active and saved tasks retain their original permissions.",
+        );
+      }
+      return;
+    }
+    if (command === "/forget") {
+      if (!argument)
+        return notice(
+          "Use /forget RUN-ID to delete that local run and its retained notes.",
+        );
+      void store
+        .forget(argument)
+        .then(() => {
+          if (current?.id === argument) current = undefined;
+          notice(
+            "Run and retained source notes deleted. Original catalog and external copies are unchanged.",
+          );
+        })
+        .catch(() =>
+          notice("Run could not be forgotten. Check its ID and log directory."),
+        );
+      return;
+    }
+    if (["/research", "/find-web", "/find-history"].includes(command)) {
+      try {
+        const payload: unknown = JSON.parse(argument);
+        const scope = DiscoverySchema.parse(payload);
+        if (
+          scope.mode !==
+          (command === "/research"
+            ? "research"
+            : command === "/find-web"
+              ? "web"
+              : "history")
+        )
+          return notice("Command and explicit discovery mode must agree.");
+        const task =
+          scope.mode === "history"
+            ? `Find in the selected snapshot: ${scope.terms.join(" ")}`
+            : scope.queries.join("; ");
+        execute(task, false, undefined, undefined, scope);
+      } catch {
+        notice(
+          'Provide discovery JSON: {"mode":"research" or "web","engineUrl":"https://html.duckduckgo.com/html/","queries":["question"],"maxSources":10}; history uses mode/catalog/from/to/terms.',
+        );
+      }
+      return;
+    }
     if (command === "/ask" || command === "/find") {
       const [url, ...question] = words;
       if (!url || !question.length)

@@ -1,0 +1,130 @@
+⋔ ChromeClaw
+[2K[1G ChromeClaw 0.1.0 · phase7-fixture · local · http://127.0.0.1:50431/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget 
+  RUN-ID · /origins URL ... · /find URL description · /ask URL question · /passa
+  ge ID · /open ID · /close-source · /compose then /send · /settings · /history 
+  · /trace · /sources · /source N · /pause · /continue · /cancel · /resume ID · 
+  /quit
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/origins http://127.0.0.1:50431
+[2K[1G  future task origins ["http://127.0.0.1:50431"]
+[1G[0J❯ [3G/research {"mode": "research", "engineUrl": "http://127.0.0.1:50431/search", "queries": ["amber atlas capacity"], "maxSources": 5}
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"phase7-fixture","configuration":{"stream
+  provider ":false,"responseFormat":"json","endpoint":"http://127.0.0.1:50431/v1
+  provider ","mode":"local","requestCost":0,"maxOutputTokens":1024,"tokenLimitFi
+  provider eld":"max_tokens","requestTimeoutMs":60000}}
+[1G[0J❯ [3G[2K[1G  research {"stage":"plan","detail":"{\"mode\":\"research\",\"subquestions\":[\"
+  research amber atlas capacity\"],\"maxSources\":5,\"concurrency\":5}"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"search","detail":"Trusted query fixed before source reads."
+  research ,"url":"http://127.0.0.1:50431/search?q=%5Bwithheld%5D"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"read","detail":"Read source 127.0.0.1:50431; 0/1 completed.
+  research ","url":"http://127.0.0.1:50431/source"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"source","detail":"Captured visible passages.","url":"http:/
+  research /127.0.0.1:50431/source","passages":[{"text":"Atlas notes","kind":"do
+  research cument","id":"343a67f1-3560-4329-be4a-872ab1e3cee2:p1","snapshotId":"
+  research 343a67f1-3560-4329-be4a-872ab1e3cee2","url":"http://127.0.0.1:50431/s
+  research ource"},{"text":"The amber atlas capacity is 31 units.","kind":"docum
+  research ent","id":"343a67f1-3560-4329-be4a-872ab1e3cee2:p2","snapshotId":"343
+  research a67f1-3560-4329-be4a-872ab1e3cee2","url":"http://127.0.0.1:50431/sour
+  research ce"}]}
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:50431/v1/chat/completions" · 7061 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"The amber atlas capacity is 31 units.",
+  ┊ "claims":[{"text":"The amber atlas capacity is 31 units.","kind":"extract","
+  ┊ evidence":[{"snapshotId":"343a67f1-3560-4329-be4a-872ab1e3cee2","passageId":
+  ┊ "343a67f1-3560-4329-be4a-872ab1e3cee2:p2","quote":"The amber atlas capacity 
+  ┊ is 31 units."}]}]} · 30 ms
+[1G[0J❯ [3G[2K[1G  claims [{"text":"The amber atlas capacity is 31 units.","kind":"extract","evid
+  claims ence":[{"snapshotId":"343a67f1-3560-4329-be4a-872ab1e3cee2","passageId"
+  claims :"343a67f1-3560-4329-be4a-872ab1e3cee2:p2","quote":"The amber atlas cap
+  claims acity is 31 units."}]}]
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"The amber atlas capacity is 31 units.","runI
+  result d":"run_mvdftvkj_fd765bb"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/find-web {"mode": "web", "engineUrl": "http://127.0.0.1:50431/search", "queries": ["amber atlas capacity"], "maxSources": 5}
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"phase7-fixture","configuration":{"stream
+  provider ":false,"responseFormat":"json","endpoint":"http://127.0.0.1:50431/v1
+  provider ","mode":"local","requestCost":0,"maxOutputTokens":1024,"tokenLimitFi
+  provider eld":"max_tokens","requestTimeoutMs":60000}}
+[1G[0J❯ [3G[2K[1G  research {"stage":"plan","detail":"{\"mode\":\"web\",\"subquestions\":[\"amber
+  research  atlas capacity\"],\"maxSources\":5,\"concurrency\":5}"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"search","detail":"Trusted query fixed before source reads."
+  research ,"url":"http://127.0.0.1:50431/search?q=%5Bwithheld%5D"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"read","detail":"Read source 127.0.0.1:50431; 0/1 completed.
+  research ","url":"http://127.0.0.1:50431/source"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"source","detail":"Captured visible passages.","url":"http:/
+  research /127.0.0.1:50431/source","passages":[{"text":"Atlas notes","kind":"do
+  research cument","id":"11b26cef-e59a-4aa2-9adc-4666e5a997e0:p1","snapshotId":"
+  research 11b26cef-e59a-4aa2-9adc-4666e5a997e0","url":"http://127.0.0.1:50431/s
+  research ource"},{"text":"The amber atlas capacity is 31 units.","kind":"docum
+  research ent","id":"11b26cef-e59a-4aa2-9adc-4666e5a997e0:p2","snapshotId":"11b
+  research 26cef-e59a-4aa2-9adc-4666e5a997e0","url":"http://127.0.0.1:50431/sour
+  research ce"}]}
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:50431/v1/chat/completions" · 6866 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"Ranked target","webFind":{"outcome":"ma
+  ┊ tches","matches":[{"url":"http://127.0.0.1:50431/source","reason":"Read the 
+  ┊ capacity notes","evidence":[{"snapshotId":"11b26cef-e59a-4aa2-9adc-4666e5a99
+  ┊ 7e0","passageId":"11b26cef-e59a-4aa2-9adc-4666e5a997e0:p2","quote":"The ambe
+  ┊ r atlas capacity is 31 units."}]}]}} · 20 ms
+[1G[0J❯ [3G[2K[1G  ranked URLs {"outcome":"matches","matches":[{"url":"http://127.0.0.1:50431/sou
+  ranked URLs rce","reason":"Read the capacity notes","evidence":[{"snapshotId":
+  ranked URLs "11b26cef-e59a-4aa2-9adc-4666e5a997e0","passageId":"11b26cef-e59a-
+  ranked URLs 4aa2-9adc-4666e5a997e0:p2","quote":"The amber atlas capacity is 31
+  ranked URLs  units."}]}]}
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"Ranked target","runId":"run_mvdftw7k_dd2xxfk
+  result "}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/find-history {"mode": "history", "catalog": "/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase7-terminal/attempt-d0iytd8y/selected.json", "from": "2026-10-01T00:00:00Z", "to": "2026-10-17T00:00:00Z", "terms": ["atlas"]}
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local-history","model":"lexical"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"plan","detail":"{\"mode\":\"history\",\"from\":\"2026-10-01
+  research T00:00:00Z\",\"to\":\"2026-10-17T00:00:00Z\",\"terms\":[\"atlas\"],\"
+  research disclosure\":\"none\"}"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"history-scope","detail":"{\"from\":\"2026-10-01T00:00:00Z\"
+  research ,\"to\":\"2026-10-17T00:00:00Z\",\"terms\":[\"atlas\"],\"candidates\"
+  research :1,\"modelDisclosure\":\"none\"}"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"read","detail":"Read source 127.0.0.1:50431; 0/1 completed.
+  research ","url":"http://127.0.0.1:50431/source"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"source","detail":"Captured visible passages.","url":"http:/
+  research /127.0.0.1:50431/source","passages":[{"text":"Atlas notes","kind":"do
+  research cument","id":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3:p1","snapshotId":"
+  research 8e8b5a90-af43-4533-b9e0-20f4ea0562f3","url":"http://127.0.0.1:50431/s
+  research ource"},{"text":"The amber atlas capacity is 31 units.","kind":"docum
+  research ent","id":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3:p2","snapshotId":"8e8
+  research b5a90-af43-4533-b9e0-20f4ea0562f3","url":"http://127.0.0.1:50431/sour
+  research ce"}]}
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"http://127.0.0.1:50431/source","webFind
+  ┊ ":{"outcome":"matches","matches":[{"url":"http://127.0.0.1:50431/source","re
+  ┊ ason":"Local title/URL terms matched; inspect the cited page.","evidence":[{
+  ┊ "snapshotId":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3","passageId":"8e8b5a90-af
+  ┊ 43-4533-b9e0-20f4ea0562f3:p1","quote":"Atlas notes"}]}]}} · 12 ms
+[1G[0J❯ [3G[2K[1G  ranked URLs {"outcome":"matches","matches":[{"url":"http://127.0.0.1:50431/sou
+  ranked URLs rce","reason":"Local title/URL terms matched; inspect the cited pa
+  ranked URLs ge.","evidence":[{"snapshotId":"8e8b5a90-af43-4533-b9e0-20f4ea0562
+  ranked URLs f3","passageId":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3:p1","quote":
+  ranked URLs "Atlas notes"}]}]}
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"http://127.0.0.1:50431/source","runId":"run_
+  result mvdftwni_duvi8ya"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G lexical │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/sources
+/passage 8e8b5a90-af43-4533-b9e0-20f4ea0562f3:p1
+[2K[1G  source 1 {"snapshot":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3","url":"http://127.
+  source 1 0.0.1:50431/source"}
+[1G[0J❯ [3G[2K[1G  source 2 {"snapshot":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3","url":"http://127.
+  source 2 0.0.1:50431/source"}
+[1G[0J❯ [3G[2K[1G  passage {"id":"8e8b5a90-af43-4533-b9e0-20f4ea0562f3:p1","snapshotId":"8e8b5a90
+  passage -af43-4533-b9e0-20f4ea0562f3","url":"http://127.0.0.1:50431/source","t
+  passage ext":"Atlas notes","kind":"document"}
+[1G[0J❯ [3G/forget run_mvdftwni_duvi8ya
+[2K[1G  Run and retained source notes deleted. Original catalog and external copies ar
+  e unchanged.
+[1G[0J❯ [3G/quit
+Closed. ⋔

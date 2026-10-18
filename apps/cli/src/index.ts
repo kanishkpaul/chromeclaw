@@ -28,6 +28,28 @@ program
   .option("--json", "print a single undecorated run object")
   .option("--jsonl", "stream durable events and one final result")
   .argument("<task>", "browser task to run")
+  .option(
+    "--research",
+    "research from fixed trusted queries and source passages",
+  )
+  .option("--find-web", "rank verified source URLs from a vague description")
+  .option(
+    "--find-history <snapshot>",
+    "search a selected local history/bookmark JSON snapshot",
+  )
+  .option(
+    "--search-engine <url>",
+    "plain engine-tab endpoint",
+    "https://html.duckduckgo.com/html/",
+  )
+  .option(
+    "--query <queries...>",
+    "one to three trusted research subquestions fixed before reads",
+  )
+  .option("--sources <number>", "maximum source pages, 1..15", "10")
+  .option("--from <iso>", "history scope start, ISO timestamp")
+  .option("--to <iso>", "history scope end, ISO timestamp")
+  .option("--terms <terms...>", "explicit local history title/URL terms")
   .option("--find <url>", "experimental read-only ranked matches on this page")
   .option("--ask <url>", "read-only passage-grounded question at this page")
   .option("--stream", "receive bounded SSE model replies")
@@ -82,6 +104,33 @@ program
     }
 
     if (!(options.json || options.jsonl)) printProvider(options);
+    if (
+      [
+        options.research,
+        options.findWeb,
+        options.findHistory,
+        options.find,
+        options.ask,
+      ].filter(Boolean).length > 1
+    )
+      throw new Error("Choose one research/find/ask mode.");
+    // Literal tags are local command choices; the runtime parses every scope field.
+    const discovery = options.findHistory
+      ? {
+          mode: "history" as const,
+          catalog: options.findHistory,
+          from: options.from,
+          to: options.to,
+          terms: options.terms,
+        }
+      : options.research || options.findWeb
+        ? {
+            mode: options.research ? ("research" as const) : ("web" as const),
+            engineUrl: options.searchEngine,
+            queries: options.query ?? [task],
+            maxSources: Number(options.sources),
+          }
+        : undefined;
     const runtime = new BrowserAgentRuntime();
     const controls = terminalControls(
       runtime,
@@ -91,6 +140,7 @@ program
       const run = await runtime.run({
         ...controls.options,
         task,
+        discovery,
         askUrl: options.ask,
         findUrl: options.find,
         permissions: {

@@ -9,7 +9,13 @@ import type { BrowserSession } from "./controller";
 import { capturePassages } from "./reading";
 
 export type SourceRead =
-  | { kind: "read"; url: string; passages: Passage[]; incomplete: boolean }
+  | {
+      kind: "read";
+      url: string;
+      passages: Passage[];
+      incomplete: boolean;
+      links: { url: string; title: string }[];
+    }
   | { kind: "refused"; url: string; reason: string };
 
 /**
@@ -19,11 +25,21 @@ export type SourceRead =
 export function createSourceReaders(
   session: BrowserSession,
   permissions: TaskPermissions,
+  trustedSearchUrls: readonly string[] = [],
+  priorAttempts = 0,
 ) {
   const pages = new Map<Page, string>();
   const opening = new Set<Promise<Page>>();
   const visited = new Set<string>();
+  const searchUrls = new Set(trustedSearchUrls);
+  const permitsQuery = (request: Request) =>
+    request.method() === "GET" &&
+    request.isNavigationRequest() &&
+    request.frame() === request.frame().page().mainFrame() &&
+    pages.get(request.frame().page()) === request.url() &&
+    searchUrls.has(request.url());
   let active = 0;
+  let attempts = priorAttempts;
   let closed = false;
   const owns = async (page: Page) => {
     if (pages.has(page)) return true;
@@ -36,7 +52,7 @@ export function createSourceReaders(
     if (closed) return "Source readers are closed.";
     if (
       request.method() !== "GET" ||
-      url.search ||
+      (url.search && !permitsQuery(request)) ||
       url.hash ||
       request.redirectedFrom() ||
       !["document", "stylesheet", "image", "font"].includes(
@@ -66,7 +82,8 @@ export function createSourceReaders(
     if (destination) return denied(destination);
     const url = new URL(value);
     url.hash = "";
-    if (url.search) return denied("Source URLs cannot carry query data.");
+    if (url.search && !searchUrls.has(url.href))
+      return denied("Source URLs cannot carry query data.");
     if (
       !permissions.read ||
       !permissions.tools.includes("navigate") ||
@@ -78,11 +95,12 @@ export function createSourceReaders(
     if (active >= 5)
       return denied("The five concurrent reader limit is reached.");
     // Twenty admitted sources is the initial controlled research budget, not a per-batch reset.
-    if (visited.size >= 20)
+    if (attempts >= 20)
       return denied("The twenty-source task budget is exhausted.");
     if (visited.has(url.href))
       return denied("This source URL was already admitted.");
     visited.add(url.href);
+    attempts++;
     active++;
     let page: Page | undefined;
     let expiry: ReturnType<typeof setTimeout> | undefined;
@@ -121,12 +139,29 @@ export function createSourceReaders(
           if (!response?.ok())
             return denied("Source navigation failed or was refused.");
           const captured = await capturePassages(page, randomUUID());
+          // Ordinary articles mentioning CAPTCHA remain readable; only visible challenge widgets hand back.
+          const challenge =
+            await page.evaluate<boolean>(`Array.from(document.querySelectorAll('form#challenge-form, .g-recaptcha, .h-captcha, [id^="cf-chl-"], input[name*="captcha" i], iframe[src*="captcha" i]')).some(e => {
+            for (let n = e; n; n = n.parentElement) { const s = getComputedStyle(n); if (s.display === 'none' || s.visibility !== 'visible' || s.opacity === '0') return false; }
+            return e.getClientRects().length > 0;
+          })`);
+          if (challenge)
+            return denied(
+              "An access barrier requires manual hand-back; no bypass attempted.",
+            );
+          const links = await page.evaluate<
+            { url: string; title: string }[]
+          >(`Array.from(document.querySelectorAll('a[href]')).filter(a => {
+            const r = a.getBoundingClientRect(); const s = getComputedStyle(a);
+            return r.width > 0 && r.height > 0 && r.top < innerHeight && r.bottom > 0 && s.visibility === 'visible' && s.display !== 'none';
+          }).slice(0, 30).map(a => ({url: a.href.slice(0, 2048), title: a.innerText.slice(0, 300)}))`);
           if (closed || signal.aborted || Date.now() >= permissions.expiresAt)
             return denied("Source reading was cancelled or expired.");
           return {
             kind: "read",
             url: url.href,
             passages: captured.passages,
+            links,
             incomplete:
               captured.omittedPassages || captured.unreadableRegions > 0,
           };
@@ -158,6 +193,7 @@ export function createSourceReaders(
   return {
     owns,
     refusal,
+    permitsQuery,
     read,
     async close() {
       closed = true;

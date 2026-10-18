@@ -1,0 +1,42 @@
+[
+  {
+    "suite": "runtime-source",
+    "exitCode": 0
+  },
+  {
+    "suite": "runtime-compiled",
+    "exitCode": 0
+  },
+  {
+    "suite": "safety-source",
+    "exitCode": 0
+  },
+  {
+    "suite": "safety-compiled",
+    "exitCode": 0
+  },
+  {
+    "suite": "work-source",
+    "exitCode": 0
+  },
+  {
+    "suite": "work-compiled",
+    "exitCode": 0
+  },
+  {
+    "suite": "ask-source",
+    "exitCode": 0
+  },
+  {
+    "suite": "ask-compiled",
+    "exitCode": 0
+  },
+  {
+    "suite": "find-source",
+    "exitCode": 0
+  },
+  {
+    "suite": "find-compiled",
+    "exitCode": 0
+  }
+]

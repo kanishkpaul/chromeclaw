@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/discovery.pty.py", line 109, in <module>
+    process.wait(timeout=10)
+    ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 2076, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['node', '/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/dist/index.js', 'tui', '--provider', 'local', '--model', 'phase7-fixture', '--base-url', 'http://127.0.0.1:61892/v1', '--headless', '--allow-loopback', '--origin', 'http://127.0.0.1:61892', '--no-stream', '--log-dir', '/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase7-terminal/attempt-3b10wcso/runs', '--timeout-ms', '120000']' timed out after 10 seconds

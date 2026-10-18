@@ -1,0 +1,13 @@
+{
+  "pageNavigationEntries": [
+    "about:blank",
+    "http://127.0.0.1:50554/one",
+    "http://127.0.0.1:50554/two"
+  ],
+  "pageApis": {
+    "history": "undefined",
+    "bookmarks": "undefined"
+  },
+  "globalHistoryAvailable": false,
+  "chosenIntegration": "explicit portable JSON snapshot; no live profile databases or extension UI"
+}

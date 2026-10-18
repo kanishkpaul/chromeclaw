@@ -1,0 +1,275 @@
+{
+  "suite": "phase3-runtime",
+  "planner": "scripted-and-loopback-http",
+  "source": true,
+  "evidenceDir": "attempt-BIuO4v",
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "cwd": "/Users/kanishk/Downloads/GitHub/chromeclaw",
+  "checks": [
+    {
+      "id": "real-browser-through-confined-http-adapter-retains-extraction-after-navigation",
+      "passed": true
+    },
+    {
+      "id": "crossing-is-durable-before-send-and-credential-markers-stay-local",
+      "passed": true
+    },
+    {
+      "id": "429-retry-is-bounded-and-recorded-in-a-real-browser-http-run",
+      "passed": true
+    },
+    {
+      "id": "ask-user-waits-without-planning-and-accepts-one-bound-answer",
+      "passed": true
+    },
+    {
+      "id": "six-step-form-finishes-only-after-independent-world-check",
+      "passed": true
+    },
+    {
+      "id": "blank-page-finish-cannot-claim-verified-completion",
+      "passed": true
+    },
+    {
+      "id": "unverified-interactive-finish-retains-edits-for-bounded-user-judgment",
+      "passed": true
+    },
+    {
+      "id": "completion-judgment-is-bounded-and-reopen-does-not-reset-the-limit",
+      "passed": true
+    },
+    {
+      "id": "three-identical-unsuccessful-proposals-stop-without-unbounded-retries",
+      "passed": true
+    },
+    {
+      "id": "ambiguous-commit-acknowledgment-stops-without-repeating",
+      "passed": true
+    },
+    {
+      "id": "credential-handback-continues-from-fresh-capture-without-agent-entry",
+      "passed": true
+    },
+    {
+      "id": "pending-input-persists-and-reopen-recaptures-pauses-without-old-approval",
+      "passed": true
+    },
+    {
+      "id": "actual-browser-run-remains-readable-with-a-corrupt-tail",
+      "passed": true
+    },
+    {
+      "id": "sigkill-and-new-process-reader-recover-the-browser-trace-without-false-completion",
+      "passed": true
+    },
+    {
+      "id": "one-pending-approval-executes-once-and-rejects-duplicate-response",
+      "passed": true
+    },
+    {
+      "id": "modal-perturbation-reobserves-after-approved-dismissal",
+      "passed": true
+    },
+    {
+      "id": "cancel-interrupts-http-body-wait-and-dispatches-no-act",
+      "passed": true
+    },
+    {
+      "id": "cancel-before-action-dispatch-prevents-new-browser-effects",
+      "passed": true
+    },
+    {
+      "id": "cancel-in-flight-navigation-closes-browser-and-reports-possible-effects",
+      "passed": true
+    },
+    {
+      "id": "malformed-model-reply-has-one-repair-attempt-and-no-browser-act",
+      "passed": true
+    },
+    {
+      "id": "one-valid-citation-does-not-hide-an-invalid-reference",
+      "passed": true
+    },
+    {
+      "id": "browser-startup-failure-is-recorded-where-storage-is-available",
+      "passed": true
+    },
+    {
+      "id": "cleanup-failure-does-not-replace-the-primary-failure",
+      "passed": true
+    },
+    {
+      "id": "storage-failure-is-reported-without-claiming-a-durable-trace",
+      "passed": true
+    },
+    {
+      "id": "external-denial-wins-over-a-later-automatic-approval",
+      "passed": true
+    },
+    {
+      "id": "configured-provider-key-echo-never-reaches-a-proposal-or-trace",
+      "passed": true
+    },
+    {
+      "id": "credential-questions-hand-back-and-discard-raw-user-replies",
+      "passed": true
+    },
+    {
+      "id": "cancel-during-human-input-clears-pending-authority-and-interrupts-callback-wait",
+      "passed": true
+    },
+    {
+      "id": "session-expiry-mid-task-hands-back-without-a-credential-write-or-false-finish",
+      "passed": true
+    },
+    {
+      "id": "cli-json-is-undecorated-and-refusal-exits-nonzero",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "http",
+      "runId": "run_mvdfe83u_nh7a4ot",
+      "status": "done"
+    },
+    {
+      "name": "answer",
+      "runId": "run_mvdfe9bp_5x666ws",
+      "status": "done"
+    },
+    {
+      "name": "six-step",
+      "runId": "run_mvdfea73_30t357g",
+      "status": "done"
+    },
+    {
+      "name": "false-finish",
+      "runId": "run_mvdfeb39_kakk629",
+      "status": "uncertain"
+    },
+    {
+      "name": "completion-judgment",
+      "runId": "run_mvdfebqw_11e0crf",
+      "status": "done"
+    },
+    {
+      "name": "bounded-completion-judgment",
+      "runId": "run_mvdfecmj_dfm0y6m",
+      "status": "uncertain"
+    },
+    {
+      "name": "no-change",
+      "runId": "run_mvdfee3c_h5tct57",
+      "status": "failed"
+    },
+    {
+      "name": "ambiguous",
+      "runId": "run_mvdfeeyu_ocftohc",
+      "status": "uncertain"
+    },
+    {
+      "name": "credential-resume",
+      "runId": "run_mvdfefnp_syk0tqb",
+      "status": "done"
+    },
+    {
+      "name": "pending",
+      "runId": "run_mvdfegfw_hcfhbig",
+      "status": "awaiting-answer"
+    },
+    {
+      "name": "reopened",
+      "runId": "run_mvdfegfw_hcfhbig",
+      "status": "paused"
+    },
+    {
+      "name": "killed-writer",
+      "runId": "run_mvdfe83u_nh7a4ot",
+      "status": "paused"
+    },
+    {
+      "name": "approval-replay",
+      "runId": "run_mvdfei1u_yul3o54",
+      "status": "done"
+    },
+    {
+      "name": "modal",
+      "runId": "run_mvdfeiub_k8vb58v",
+      "status": "done"
+    },
+    {
+      "name": "cancel-http",
+      "runId": "run_mvdfejpl_av31n29",
+      "status": "stopped"
+    },
+    {
+      "name": "cancel-schedule",
+      "runId": "run_mvdfek6e_jwnzmsy",
+      "status": "stopped"
+    },
+    {
+      "name": "cancel-browser",
+      "runId": "run_mvdfeknn_vl7xrzm",
+      "status": "stopped"
+    },
+    {
+      "name": "parse-repair",
+      "runId": "run_mvdfel81_t2wbnu3",
+      "status": "failed"
+    },
+    {
+      "name": "fabricated-citation",
+      "runId": "run_mvdfelwq_wxa3kj6",
+      "status": "uncertain"
+    },
+    {
+      "name": "startup-failure",
+      "runId": "run_mvdfemko_zqkxyig",
+      "status": "failed"
+    },
+    {
+      "name": "cleanup-failure",
+      "runId": "run_mvdfemlj_y3ul0s4",
+      "status": "failed"
+    },
+    {
+      "name": "storage-failure",
+      "runId": "run_mvdfena8_qz6yg9p",
+      "status": "failed"
+    },
+    {
+      "name": "approval-race",
+      "runId": "run_mvdfena8_w56yey7",
+      "status": "blocked"
+    },
+    {
+      "name": "key-echo",
+      "runId": "run_mvdfeo3c_2bnyxau",
+      "status": "failed"
+    },
+    {
+      "name": "credential-question",
+      "runId": "run_mvdfeopd_bwv7u7r",
+      "status": "done"
+    },
+    {
+      "name": "cancel-answer",
+      "runId": "run_mvdfepdg_vrdp8y9",
+      "status": "stopped"
+    },
+    {
+      "name": "session-expiry",
+      "runId": "run_mvdfepuk_ye33xb8",
+      "status": "awaiting-answer"
+    }
+  ],
+  "modelRequests": 9,
+  "limitations": [
+    "No paid or actual local model.",
+    "No signed-in or held-out live site.",
+    "Exact extractive evidence is not semantic entailment.",
+    "Privacy filtering is not arbitrary PII classification."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "actual": true,
+  "built": true,
+  "model": "chromeclaw-qwen3vl",
+  "historyModel": "local lexical; zero inference",
+  "personalHistory": false,
+  "results": [
+    {
+      "mode": "research",
+      "id": 1,
+      "expected": "The amber atlas capacity is 31 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 12209,
+      "runId": "run_mvdfb1kb_sxp6n30",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-1/run_mvdfb1kb_sxp6n30.jsonl"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/search?q=amber+atlas%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/1"
+    },
+    {
+      "method": "GET",
+      "url": "/other/1"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    }
+  ],
+  "passed": 1,
+  "total": 1
+}

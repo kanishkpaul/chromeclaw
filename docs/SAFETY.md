@@ -90,7 +90,7 @@ Phase 6's experimental find-on-page mode uses the same narrowed read-only page s
 Structured results name offered noncredential controls or passages without activation. Current
 snapshot/target checks plus passage recapture refuse stale results. A match validates a reference,
 not semantic relevance; an absent-match assertion stays uncertain. No automatic scroll, highlight
-or click is enabled. See [PHASE6.md](PHASE6.md) for the unfinished acceptance gate.
+or click is enabled. See [PHASE6.md](PHASE6.md) for the controlled acceptance gate and limitations.
 
 Phase 6 upgrades activation to trusted Playwright input with an adapter-owned event-time guard and
 pre-navigation acknowledgment. A native checkbox/radio default toggle is checked privately after
@@ -118,7 +118,25 @@ Only exact adapter-created tabs are admitted. Readers disable scripts before nav
 refuse query-bearing requests, subframes, redirects, secondary navigation and nonstatic resources.
 They capture visible passages without form values. Five concurrent tabs, twenty unique attempted
 sources and fifteen seconds per reader bound this first slice. Cancellation/revocation closes
-reader-owned tabs only. The default action runtime has no reader admission. This does not yet
-establish research prompt-injection resistance or supported synthesis; those gates remain open.
+reader-owned tabs only. The default action runtime has no reader admission. Synthetic attacks and model-specific completion results are separate evidence; these mechanisms
+do not establish universal injection resistance or semantic entailment.
 Static reads share the task context's cookies and retain the existing GET, DNS and network limits.
 See [PHASE7.md](PHASE7.md) and its source/compiled browser evidence.
+
+Phase 7 discovery fixes one to three trusted queries before reading any source. The only new
+query-bearing browser exception is the exact predeclared engine URL on its exact adapter-owned
+reader page; source queries, frames, scripts, redirects and writes stay refused. Registered-secret
+queries stop before Chrome opens. Forced model search/navigation/activation proposals cannot use
+the discovery path. Reopen pauses before fresh reads and retains task expiry, step limits and
+persisted source-attempt reservations. Search CAPTCHA stops with a manual hand-back reason; no
+solver or provider/engine fallback exists.
+
+Only captured source passages can support research claims or web URL matches. Invalid references
+and uncited final-answer additions refuse completion. Exact extraction is distinct from semantic
+entailment: qualified/conflicting claims need human review, and undeclared contradictions are not
+automatically detected. The history path reads an explicitly selected bounded JSON snapshot,
+filters locally and confirms at most three permitted pages. It never sends history metadata to a
+model, including with hosted settings. Cancel revokes an active run; deleting/changing the snapshot
+refuses subsequent admissions. Forget deletes that local run's notes, not original or external
+copies. The integration probe and synthetic recollections establish no live personal-profile or
+personal-memory quality claim. See D-025, D-026 and [PHASE7.md](PHASE7.md).

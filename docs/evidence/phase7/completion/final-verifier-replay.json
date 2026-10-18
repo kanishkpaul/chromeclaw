@@ -1,0 +1,722 @@
+{
+  "kind": "deterministic replay of recorded proposals against final verifier; no inference rerun",
+  "report": "report.json",
+  "results": [
+    {
+      "mode": "research",
+      "id": 1,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2569,
+          "completionTokens": 129
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 2,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2613,
+          "completionTokens": 132
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 3,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2590,
+          "completionTokens": 130
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 4,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2610,
+          "completionTokens": 137
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 5,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2599,
+          "completionTokens": 131
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 6,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2615,
+          "completionTokens": 133
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 7,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2618,
+          "completionTokens": 132
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 8,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2622,
+          "completionTokens": 134
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 9,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2617,
+          "completionTokens": 137
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 10,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2563,
+          "completionTokens": 128
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 11,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2585,
+          "completionTokens": 133
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 12,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2647,
+          "completionTokens": 142
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 13,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2581,
+          "completionTokens": 130
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 14,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2533,
+          "completionTokens": 124
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 15,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2575,
+          "completionTokens": 136
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 16,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2588,
+          "completionTokens": 131
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 17,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2613,
+          "completionTokens": 135
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 18,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2624,
+          "completionTokens": 136
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 19,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2565,
+          "completionTokens": 126
+        }
+      ]
+    },
+    {
+      "mode": "research",
+      "id": 20,
+      "allowed": true,
+      "expected": true,
+      "detail": "Citations resolve; all claims reproduce complete captured passages. Semantic truth and contradictions still need review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2608,
+          "completionTokens": 135
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 1,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2580,
+          "completionTokens": 160
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 2,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2582,
+          "completionTokens": 154
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 3,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2479,
+          "completionTokens": 155
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 4,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2543,
+          "completionTokens": 160
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 5,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2617,
+          "completionTokens": 166
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 6,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2612,
+          "completionTokens": 164
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 7,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2608,
+          "completionTokens": 164
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 8,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2550,
+          "completionTokens": 163
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 9,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2566,
+          "completionTokens": 162
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 10,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2590,
+          "completionTokens": 163
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 11,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2564,
+          "completionTokens": 156
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 12,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2578,
+          "completionTokens": 163
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 13,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2599,
+          "completionTokens": 162
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 14,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2496,
+          "completionTokens": 143
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 15,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 2602,
+          "completionTokens": 168
+        }
+      ]
+    },
+    {
+      "mode": "web",
+      "id": 16,
+      "allowed": false,
+      "expected": false,
+      "detail": "No validated source matches; absence from the wider web/history is not established.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "web",
+      "id": 17,
+      "allowed": false,
+      "expected": false,
+      "detail": "No validated source matches; absence from the wider web/history is not established.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "web",
+      "id": 18,
+      "allowed": false,
+      "expected": false,
+      "detail": "No validated source matches; absence from the wider web/history is not established.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "web",
+      "id": 19,
+      "allowed": false,
+      "expected": false,
+      "detail": "No validated source matches; absence from the wider web/history is not established.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "web",
+      "id": 20,
+      "allowed": false,
+      "expected": false,
+      "detail": "No validated source matches; absence from the wider web/history is not established.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 1,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 2,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 3,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 4,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 5,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 6,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 7,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 8,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 9,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 10,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 11,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 12,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 13,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 14,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 15,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 16,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 17,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 18,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 19,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    },
+    {
+      "mode": "history",
+      "id": 20,
+      "allowed": true,
+      "expected": true,
+      "detail": "Ranked URLs have captured source references; semantic relevance still requires review.",
+      "requestAttempts": 0,
+      "usage": []
+    }
+  ],
+  "passed": 60
+}

@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "id": "poisoned-source-and-model-cannot-query-export-or-act",
+      "passed": true
+    },
+    {
+      "id": "engine-captcha-hands-back-without-bypass-or-fallback",
+      "passed": true
+    },
+    {
+      "id": "registered-secret-query-refused-before-browser",
+      "passed": true
+    },
+    {
+      "id": "reopen-pauses-before-any-source-or-query-crossing",
+      "passed": true
+    },
+    {
+      "id": "source-reservations-survive-reopen-with-no-extra-crossing",
+      "passed": true
+    },
+    {
+      "id": "exhausted-step-budget-refuses-before-discovery-reads",
+      "passed": true
+    },
+    {
+      "id": "revoked-catalog-has-no-model-or-browser-requests",
+      "passed": true
+    },
+    {
+      "id": "history-reopen-needs-no-model-configuration-or-credentials",
+      "passed": true
+    },
+    {
+      "id": "forget-removes-run-notes-and-refuses-path-traversal",
+      "passed": true
+    },
+    {
+      "id": "measured-cdp-history-is-tab-local-without-global-history-bookmarks",
+      "passed": true
+    }
+  ],
+  "requests": [
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=fixed-intent",
+    "/source",
+    "/search?q=captcha",
+    "/search?q=fixed-intent",
+    "/source",
+    "/one",
+    "/two",
+    "/favicon.ico",
+    "/favicon.ico"
+  ]
+}

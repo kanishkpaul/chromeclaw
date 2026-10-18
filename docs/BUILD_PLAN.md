@@ -44,9 +44,13 @@ registered tools, guarded trusted activation and explicit native edit fallbacks.
 engineering gate passes twenty scripted workflows through the real TUI with independent state
 checks. Actual local-model quality is reported separately, including failed tasks and human
 interventions, in [completion evidence](evidence/phase6/completion/README.md). These results do
-not establish reliable autonomous page work. See [PHASE6.md](PHASE6.md). Phase 7 has started with
-an opt-in static background-reader boundary; search, synthesis and
-history/web finding remain pending. See [PHASE7.md](PHASE7.md). Phases 8 and 9 remain pending.
+not establish reliable autonomous page work. See [PHASE6.md](PHASE6.md). Phase 7 completion implements fixed-query research,
+verified web URLs and selected-snapshot history/bookmark lookup. Its controlled gate has sixty
+source/compiled fixture tasks, actual-local research/web results, seeded history recollections,
+terminal/JSON evidence and durable recovery-budget checks. Hosted inference stays waived; the
+owner authorized synthetic recollections rather than personal-history testing. Live Chrome
+history synchronization and broad semantic support are not claimed. See [PHASE7.md](PHASE7.md)
+and [completion evidence](evidence/phase7/completion/README.md). Phases 8 and 9 remain pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
 signed-in-site readiness.

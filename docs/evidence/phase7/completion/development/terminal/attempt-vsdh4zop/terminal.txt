@@ -1,0 +1,44 @@
+⋔ ChromeClaw
+[2K[1G ChromeClaw 0.1.0 · phase7-fixture · local · http://127.0.0.1:60812/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget 
+  RUN-ID · /find URL description · /ask URL question · /passage ID · /open ID · 
+  /close-source · /compose then /send · /settings · /history · /trace · /sources
+   · /source N · /pause · /continue · /cancel · /resume ID · /quit
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/research {"mode": "research", "engineUrl": "http://127.0.0.1:60812/search", "queries": ["amber atlas capacity"], "maxSources": 5}
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"phase7-fixture","configuration":{"stream
+  provider ":false,"responseFormat":"json","endpoint":"http://127.0.0.1:60812/v1
+  provider ","mode":"local","requestCost":0,"maxOutputTokens":1024,"tokenLimitFi
+  provider eld":"max_tokens","requestTimeoutMs":60000}}
+[1G[0J❯ [3G[2K[1G  research {"stage":"plan","detail":"{\"mode\":\"research\",\"subquestions\":[\"
+  research amber atlas capacity\"],\"maxSources\":5,\"concurrency\":5}"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"search","detail":"Trusted query fixed before source reads."
+  research ,"url":"http://127.0.0.1:60812/search?q=%5Bwithheld%5D"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"read","detail":"Read source 127.0.0.1:60812; 0/1 completed.
+  research ","url":"http://127.0.0.1:60812/source"}
+[1G[0J❯ [3G[2K[1G  research {"stage":"source","detail":"Captured visible passages.","url":"http:/
+  research /127.0.0.1:60812/source","passages":[{"text":"Atlas notes","kind":"do
+  research cument","id":"01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e:p1","snapshotId":"
+  research 01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e","url":"http://127.0.0.1:60812/s
+  research ource"},{"text":"The amber atlas capacity is 31 units.","kind":"docum
+  research ent","id":"01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e:p2","snapshotId":"01f
+  research bf07b-4fa6-48bc-aca1-5b3e9cab1c5e","url":"http://127.0.0.1:60812/sour
+  research ce"}]}
+[1G[0J❯ [3G[2K[1G  ┊ send      "http://127.0.0.1:60812/v1/chat/completions" · 7001 bytes
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"The amber atlas capacity is 31 units.",
+  ┊ "claims":[{"text":"The amber atlas capacity is 31 units.","kind":"extract","
+  ┊ evidence":[{"snapshotId":"01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e","passageId":
+  ┊ "01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e:p2","quote":"The amber atlas capacity 
+  ┊ is 31 units."}]}]} · 59 ms
+[1G[0J❯ [3G[2K[1G  claims [{"text":"The amber atlas capacity is 31 units.","kind":"extract","evid
+  claims ence":[{"snapshotId":"01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e","passageId"
+  claims :"01fbf07b-4fa6-48bc-aca1-5b3e9cab1c5e:p2","quote":"The amber atlas cap
+  claims acity is 31 units."}]}]
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"The amber atlas capacity is 31 units.","runI
+  result d":"run_mvderuoe_g2rs8dw"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G

@@ -1,0 +1,1833 @@
+{
+  "actual": true,
+  "built": true,
+  "model": "chromeclaw-qwen3vl",
+  "historyModel": "local lexical; zero inference",
+  "personalHistory": false,
+  "results": [
+    {
+      "mode": "research",
+      "id": 1,
+      "expected": "The amber atlas capacity is 31 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 13948,
+      "runId": "run_mvdeqivc_eayr9u9",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-1/run_mvdeqivc_eayr9u9.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 2,
+      "expected": "The birch lantern capacity is 38 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 13327,
+      "runId": "run_mvdeqtms_pufznmm",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-2/run_mvdeqtms_pufznmm.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 3,
+      "expected": "The cobalt sail capacity is 45 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 12987,
+      "runId": "run_mvder3x0_8pa5279",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-3/run_mvder3x0_8pa5279.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 4,
+      "expected": "The dahlia rover capacity is 52 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 14818,
+      "runId": "run_mvderdxu_6pko50n",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-4/run_mvderdxu_6pko50n.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 5,
+      "expected": "The ember compass capacity is 59 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 18387,
+      "runId": "run_mvderpdf_b47zino",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-5/run_mvderpdf_b47zino.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 6,
+      "expected": "The fern harbor capacity is 66 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 24031,
+      "runId": "run_mvdes3k7_p2ce2d7",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-6/run_mvdes3k7_p2ce2d7.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 7,
+      "expected": "The garnet prism capacity is 73 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 25377,
+      "runId": "run_mvdesm3q_rl2ioe0",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-7/run_mvdesm3q_rl2ioe0.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 8,
+      "expected": "The hazel kettle capacity is 80 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 23903,
+      "runId": "run_mvdet5op_cdas9si",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-8/run_mvdet5op_cdas9si.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 9,
+      "expected": "The indigo loom capacity is 87 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 26789,
+      "runId": "run_mvdeto4o_szpzsiw",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-9/run_mvdeto4o_szpzsiw.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 10,
+      "expected": "The jade orchard capacity is 94 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 25722,
+      "runId": "run_mvdeu8su_7sb4jgb",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-10/run_mvdeu8su_7sb4jgb.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 11,
+      "expected": "The kelp archive capacity is 101 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 21634,
+      "runId": "run_mvdeusnc_nb23kal",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-11/run_mvdeusnc_nb23kal.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 12,
+      "expected": "The lilac observatory capacity is 108 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 27006,
+      "runId": "run_mvdev9ca_6naodhj",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-12/run_mvdev9ca_6naodhj.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 13,
+      "expected": "The maple beacon capacity is 115 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 26493,
+      "runId": "run_mvdevu6g_pdnfkkw",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-13/run_mvdevu6g_pdnfkkw.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 14,
+      "expected": "The nickel garden capacity is 122 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 22230,
+      "runId": "run_mvdeweme_4n1yola",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-14/run_mvdeweme_4n1yola.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 15,
+      "expected": "The opal meadow capacity is 129 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 30770,
+      "runId": "run_mvdewvrx_eoklijz",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-15/run_mvdewvrx_eoklijz.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 16,
+      "expected": "The pearl foundry capacity is 136 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 23480,
+      "runId": "run_mvdexjin_rbng077",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-16/run_mvdexjin_rbng077.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 17,
+      "expected": "The quartz aviary capacity is 143 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 26207,
+      "runId": "run_mvdey1mv_vb3wotw",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-17/run_mvdey1mv_vb3wotw.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 18,
+      "expected": "The ruby station capacity is 150 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 25209,
+      "runId": "run_mvdeyluv_yacviqs",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-18/run_mvdeyluv_yacviqs.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 19,
+      "expected": "The silver notebook capacity is 157 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 28184,
+      "runId": "run_mvdez5b4_7uhpzq6",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-19/run_mvdez5b4_7uhpzq6.jsonl"
+    },
+    {
+      "mode": "research",
+      "id": 20,
+      "expected": "The topaz bridge capacity is 164 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": false,
+      "top3": false,
+      "negativeError": null,
+      "latencyMs": 26089,
+      "runId": "run_mvdezr20_tok1qwd",
+      "model": "chromeclaw-qwen3vl",
+      "log": "research-20/run_mvdezr20_tok1qwd.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 1,
+      "expected": "The amber atlas capacity is 31 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 22836,
+      "runId": "run_mvdf0b6p_lx2gr65",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-1/run_mvdf0b6p_lx2gr65.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 2,
+      "expected": "The birch lantern capacity is 38 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 27610,
+      "runId": "run_mvdf0st2_nm9n8w1",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-2/run_mvdf0st2_nm9n8w1.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 3,
+      "expected": "The cobalt sail capacity is 45 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 19263,
+      "runId": "run_mvdf1e3z_337bydq",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-3/run_mvdf1e3z_337bydq.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 4,
+      "expected": "The dahlia rover capacity is 52 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 27034,
+      "runId": "run_mvdf1sz3_0fw3n1o",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-4/run_mvdf1sz3_0fw3n1o.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 5,
+      "expected": "The ember compass capacity is 59 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 27568,
+      "runId": "run_mvdf2du1_42nwjrk",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-5/run_mvdf2du1_42nwjrk.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 6,
+      "expected": "The fern harbor capacity is 66 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 29247,
+      "runId": "run_mvdf2z3t_z5m235q",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-6/run_mvdf2z3t_z5m235q.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 7,
+      "expected": "The garnet prism capacity is 73 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 28740,
+      "runId": "run_mvdf3lo9_ktuzx7j",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-7/run_mvdf3lo9_ktuzx7j.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 8,
+      "expected": "The hazel kettle capacity is 80 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 29051,
+      "runId": "run_mvdf47um_2ts670g",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-8/run_mvdf47um_2ts670g.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 9,
+      "expected": "The indigo loom capacity is 87 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 23547,
+      "runId": "run_mvdf4u9m_li5ij0w",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-9/run_mvdf4u9m_li5ij0w.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 10,
+      "expected": "The jade orchard capacity is 94 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 28737,
+      "runId": "run_mvdf5cfp_vpmgk7g",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-10/run_mvdf5cfp_vpmgk7g.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 11,
+      "expected": "The kelp archive capacity is 101 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 25104,
+      "runId": "run_mvdf5ylz_eki3knn",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-11/run_mvdf5ylz_eki3knn.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 12,
+      "expected": "The lilac observatory capacity is 108 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 22675,
+      "runId": "run_mvdf6hza_7fnw0ju",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-12/run_mvdf6hza_7fnw0ju.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 13,
+      "expected": "The maple beacon capacity is 115 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 27095,
+      "runId": "run_mvdf6zh5_q96c323",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-13/run_mvdf6zh5_q96c323.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 14,
+      "expected": "The nickel garden capacity is 122 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 27648,
+      "runId": "run_mvdf7kdt_1uf5mm5",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-14/run_mvdf7kdt_1uf5mm5.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 15,
+      "expected": "The opal meadow capacity is 129 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 26576,
+      "runId": "run_mvdf85pu_a599lkd",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-15/run_mvdf85pu_a599lkd.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 16,
+      "expected": "The pearl foundry capacity is 136 units.",
+      "passed": true,
+      "status": "uncertain",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": null,
+      "top3": null,
+      "negativeError": false,
+      "latencyMs": 674,
+      "runId": "run_mvdf8q81_jtpp3r1",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-16/run_mvdf8q81_jtpp3r1.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 17,
+      "expected": "The quartz aviary capacity is 143 units.",
+      "passed": true,
+      "status": "uncertain",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": null,
+      "top3": null,
+      "negativeError": false,
+      "latencyMs": 760,
+      "runId": "run_mvdf8qqr_ckk6y5x",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-17/run_mvdf8qqr_ckk6y5x.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 18,
+      "expected": "The ruby station capacity is 150 units.",
+      "passed": true,
+      "status": "uncertain",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": null,
+      "top3": null,
+      "negativeError": false,
+      "latencyMs": 629,
+      "runId": "run_mvdf8rbv_m3odgmb",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-18/run_mvdf8rbv_m3odgmb.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 19,
+      "expected": "The silver notebook capacity is 157 units.",
+      "passed": true,
+      "status": "uncertain",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": null,
+      "top3": null,
+      "negativeError": false,
+      "latencyMs": 598,
+      "runId": "run_mvdf8rtd_3h1uqjw",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-19/run_mvdf8rtd_3h1uqjw.jsonl"
+    },
+    {
+      "mode": "web",
+      "id": 20,
+      "expected": "The topaz bridge capacity is 164 units.",
+      "passed": true,
+      "status": "uncertain",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": null,
+      "top3": null,
+      "negativeError": false,
+      "latencyMs": 605,
+      "runId": "run_mvdf8s9y_0n2q6nv",
+      "model": "chromeclaw-qwen3vl",
+      "log": "web-20/run_mvdf8s9y_0n2q6nv.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 1,
+      "expected": "The amber atlas capacity is 31 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 596,
+      "runId": "run_mvdf8sqs_isb9n40",
+      "model": "lexical",
+      "log": "history-1/run_mvdf8sqs_isb9n40.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 2,
+      "expected": "The birch lantern capacity is 38 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 700,
+      "runId": "run_mvdf8t7b_4jywpt2",
+      "model": "lexical",
+      "log": "history-2/run_mvdf8t7b_4jywpt2.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 3,
+      "expected": "The cobalt sail capacity is 45 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 1015,
+      "runId": "run_mvdf8tqr_4so0fy7",
+      "model": "lexical",
+      "log": "history-3/run_mvdf8tqr_4so0fy7.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 4,
+      "expected": "The dahlia rover capacity is 52 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 821,
+      "runId": "run_mvdf8uiy_gvm0jn2",
+      "model": "lexical",
+      "log": "history-4/run_mvdf8uiy_gvm0jn2.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 5,
+      "expected": "The ember compass capacity is 59 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 744,
+      "runId": "run_mvdf8v5r_t0zddby",
+      "model": "lexical",
+      "log": "history-5/run_mvdf8v5r_t0zddby.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 6,
+      "expected": "The fern harbor capacity is 66 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 696,
+      "runId": "run_mvdf8vqg_8nbhmys",
+      "model": "lexical",
+      "log": "history-6/run_mvdf8vqg_8nbhmys.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 7,
+      "expected": "The garnet prism capacity is 73 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 681,
+      "runId": "run_mvdf8w9s_nmx86fk",
+      "model": "lexical",
+      "log": "history-7/run_mvdf8w9s_nmx86fk.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 8,
+      "expected": "The hazel kettle capacity is 80 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 681,
+      "runId": "run_mvdf8wsp_m6uroa9",
+      "model": "lexical",
+      "log": "history-8/run_mvdf8wsp_m6uroa9.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 9,
+      "expected": "The indigo loom capacity is 87 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 718,
+      "runId": "run_mvdf8xbm_z5reaj6",
+      "model": "lexical",
+      "log": "history-9/run_mvdf8xbm_z5reaj6.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 10,
+      "expected": "The jade orchard capacity is 94 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 715,
+      "runId": "run_mvdf8xvk_jblplfz",
+      "model": "lexical",
+      "log": "history-10/run_mvdf8xvk_jblplfz.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 11,
+      "expected": "The kelp archive capacity is 101 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 688,
+      "runId": "run_mvdf8yfg_vz2zn5h",
+      "model": "lexical",
+      "log": "history-11/run_mvdf8yfg_vz2zn5h.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 12,
+      "expected": "The lilac observatory capacity is 108 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 715,
+      "runId": "run_mvdf8yyk_x7rlz9a",
+      "model": "lexical",
+      "log": "history-12/run_mvdf8yyk_x7rlz9a.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 13,
+      "expected": "The maple beacon capacity is 115 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 684,
+      "runId": "run_mvdf8zif_a3tjlid",
+      "model": "lexical",
+      "log": "history-13/run_mvdf8zif_a3tjlid.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 14,
+      "expected": "The nickel garden capacity is 122 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 697,
+      "runId": "run_mvdf901g_cxmncwr",
+      "model": "lexical",
+      "log": "history-14/run_mvdf901g_cxmncwr.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 15,
+      "expected": "The opal meadow capacity is 129 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 815,
+      "runId": "run_mvdf90ks_ondl250",
+      "model": "lexical",
+      "log": "history-15/run_mvdf90ks_ondl250.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 16,
+      "expected": "The pearl foundry capacity is 136 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 829,
+      "runId": "run_mvdf917f_6vtwcpu",
+      "model": "lexical",
+      "log": "history-16/run_mvdf917f_6vtwcpu.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 17,
+      "expected": "The quartz aviary capacity is 143 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 761,
+      "runId": "run_mvdf91ug_zlfgxg0",
+      "model": "lexical",
+      "log": "history-17/run_mvdf91ug_zlfgxg0.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 18,
+      "expected": "The ruby station capacity is 150 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 730,
+      "runId": "run_mvdf92fl_8tgioy7",
+      "model": "lexical",
+      "log": "history-18/run_mvdf92fl_8tgioy7.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 19,
+      "expected": "The silver notebook capacity is 157 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 811,
+      "runId": "run_mvdf92zv_9cnvnfs",
+      "model": "lexical",
+      "log": "history-19/run_mvdf92zv_9cnvnfs.jsonl"
+    },
+    {
+      "mode": "history",
+      "id": 20,
+      "expected": "The topaz bridge capacity is 164 units.",
+      "passed": true,
+      "status": "done",
+      "correctness": true,
+      "citationValidity": true,
+      "extractSupport": true,
+      "top1": true,
+      "top3": true,
+      "negativeError": null,
+      "latencyMs": 830,
+      "runId": "run_mvdf93me_f9gbkdd",
+      "model": "lexical",
+      "log": "history-20/run_mvdf93me_f9gbkdd.jsonl"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/search?q=amber+atlas%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/other/1"
+    },
+    {
+      "method": "GET",
+      "url": "/source/1"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=birch+lantern%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/2"
+    },
+    {
+      "method": "GET",
+      "url": "/other/2"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=cobalt+sail%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/3"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/other/3"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=dahlia+rover%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/4"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/other/4"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=ember+compass%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/5"
+    },
+    {
+      "method": "GET",
+      "url": "/other/5"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=fern+harbor%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/6"
+    },
+    {
+      "method": "GET",
+      "url": "/other/6"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=garnet+prism%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/7"
+    },
+    {
+      "method": "GET",
+      "url": "/other/7"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=hazel+kettle%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/8"
+    },
+    {
+      "method": "GET",
+      "url": "/other/8"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=indigo+loom%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/9"
+    },
+    {
+      "method": "GET",
+      "url": "/other/9"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=jade+orchard%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/10"
+    },
+    {
+      "method": "GET",
+      "url": "/other/10"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=kelp+archive%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/other/11"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/source/11"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=lilac+observatory%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/other/12"
+    },
+    {
+      "method": "GET",
+      "url": "/source/12"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=maple+beacon%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/13"
+    },
+    {
+      "method": "GET",
+      "url": "/other/13"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=nickel+garden%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/14"
+    },
+    {
+      "method": "GET",
+      "url": "/other/14"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=opal+meadow%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/other/15"
+    },
+    {
+      "method": "GET",
+      "url": "/source/15"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=pearl+foundry%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/16"
+    },
+    {
+      "method": "GET",
+      "url": "/other/16"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=quartz+aviary%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/17"
+    },
+    {
+      "method": "GET",
+      "url": "/other/17"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=ruby+station%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/18"
+    },
+    {
+      "method": "GET",
+      "url": "/other/18"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=silver+notebook%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/19"
+    },
+    {
+      "method": "GET",
+      "url": "/other/19"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=topaz+bridge%3A+What+capacity+does+this+project+have%3F+Quote+the+capacity+statement."
+    },
+    {
+      "method": "GET",
+      "url": "/source/20"
+    },
+    {
+      "method": "GET",
+      "url": "/other/20"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=amber+atlas%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/other/1"
+    },
+    {
+      "method": "GET",
+      "url": "/source/1"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=birch+lantern%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/2"
+    },
+    {
+      "method": "GET",
+      "url": "/other/2"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=cobalt+sail%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/3"
+    },
+    {
+      "method": "GET",
+      "url": "/other/3"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=dahlia+rover%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/4"
+    },
+    {
+      "method": "GET",
+      "url": "/other/4"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=ember+compass%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/5"
+    },
+    {
+      "method": "GET",
+      "url": "/other/5"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=fern+harbor%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/6"
+    },
+    {
+      "method": "GET",
+      "url": "/other/6"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=garnet+prism%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/other/7"
+    },
+    {
+      "method": "GET",
+      "url": "/source/7"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=hazel+kettle%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/8"
+    },
+    {
+      "method": "GET",
+      "url": "/other/8"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=indigo+loom%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/9"
+    },
+    {
+      "method": "GET",
+      "url": "/other/9"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=jade+orchard%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/10"
+    },
+    {
+      "method": "GET",
+      "url": "/other/10"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=kelp+archive%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/11"
+    },
+    {
+      "method": "GET",
+      "url": "/other/11"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=lilac+observatory%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/12"
+    },
+    {
+      "method": "GET",
+      "url": "/other/12"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=maple+beacon%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/13"
+    },
+    {
+      "method": "GET",
+      "url": "/other/13"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=nickel+garden%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/14"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/other/14"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=opal+meadow%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/other/15"
+    },
+    {
+      "method": "GET",
+      "url": "/source/15"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=absent+pearl+foundry%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=absent+quartz+aviary%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=absent+ruby+station%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=absent+silver+notebook%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/search?q=absent+topaz+bridge%3A+Find+the+project+capacity+notes+page."
+    },
+    {
+      "method": "GET",
+      "url": "/source/1"
+    },
+    {
+      "method": "GET",
+      "url": "/source/2"
+    },
+    {
+      "method": "GET",
+      "url": "/source/3"
+    },
+    {
+      "method": "GET",
+      "url": "/source/4"
+    },
+    {
+      "method": "GET",
+      "url": "/source/5"
+    },
+    {
+      "method": "GET",
+      "url": "/source/6"
+    },
+    {
+      "method": "GET",
+      "url": "/source/7"
+    },
+    {
+      "method": "GET",
+      "url": "/source/8"
+    },
+    {
+      "method": "GET",
+      "url": "/source/9"
+    },
+    {
+      "method": "GET",
+      "url": "/source/10"
+    },
+    {
+      "method": "GET",
+      "url": "/source/11"
+    },
+    {
+      "method": "GET",
+      "url": "/source/12"
+    },
+    {
+      "method": "GET",
+      "url": "/source/13"
+    },
+    {
+      "method": "GET",
+      "url": "/source/14"
+    },
+    {
+      "method": "GET",
+      "url": "/source/15"
+    },
+    {
+      "method": "GET",
+      "url": "/source/16"
+    },
+    {
+      "method": "GET",
+      "url": "/source/17"
+    },
+    {
+      "method": "GET",
+      "url": "/source/18"
+    },
+    {
+      "method": "GET",
+      "url": "/source/19"
+    },
+    {
+      "method": "GET",
+      "url": "/source/20"
+    }
+  ],
+  "passed": 60,
+  "total": 60
+}

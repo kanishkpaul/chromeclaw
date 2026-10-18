@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/discovery.pty.py", line 93, in <module>
+    wait_for(lambda: done_count() > count, mode + ' did not complete')
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/discovery.pty.py", line 82, in wait_for
+    assert predicate(), reason + '\n' + text[-2000:]
+           ~~~~~~~~~^^
+AssertionError: research did not complete
+⋔ ChromeClaw
+[2K[1G ChromeClaw 0.1.0 · phase7-fixture · local · http://127.0.0.1:62183/v1
+[1G[0J❯ [3G[2K[1G  Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget 
+  RUN-ID · /find URL description · /ask URL question · /passage ID · /open ID · 
+  /close-source · /compose then /send · /settings · /history · /trace · /sources
+   · /source N · /pause · /continue · /cancel · /resume ID · /quit
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ ready │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/research {"mode": "research", "engineUrl": "http://127.0.0.1:62183/search", "queries": ["amber atlas capacity"], "maxSources": 5}
+[2K[1G ⋔ ChromeClaw
+[1G[0J❯ [3G[2K[1G  provider {"provider":"local","model":"phase7-fixture","configuration":{"stream
+  provider ":false,"responseFormat":"json","endpoint":"http://127.0.0.1:62183/v1
+  provider ","mode":"local","requestCost":0,"maxOutputTokens":1024,"tokenLimitFi
+  provider eld":"max_tokens","requestTimeoutMs":60000}}
+[1G[0J❯ [3G[2K[1G  error {"stage":"discovery","message":"No enabled search backend."}
+[1G[0J❯ [3G[2K[1G  ┊ error     "failed" · 1611 ms
+[1G[0J❯ [3G[2K[1G  error "No enabled search backend."
+[1G[0J❯ [3G[2K[1G  result {"status":"failed","answer":"No enabled search backend.","error":"No en
+  result abled search backend.","runId":"run_mvdezpnx_lbkd56v"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G phase7-fixture │ local │ failed │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G

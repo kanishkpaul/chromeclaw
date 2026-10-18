@@ -141,3 +141,34 @@ forced adversarial proposals, trusted input, atomic native setters and owned his
 These write `.chromeclaw/phase6-work`, `phase6-work-local` and `phase6-work-safety`. CI runs the
 synthetic gates and archives evidence; actual local inference remains a separate manual gate.
 See [completion evidence](evidence/phase6/completion/README.md) and [Phase 6 scope](PHASE6.md).
+
+## Phase 7 discovery
+
+`pnpm eval:discovery` runs sixty synthetic browser tasks in both source and compiled modes:
+twenty research questions, fifteen positive/five absent web queries, and twenty seeded snapshot
+history/bookmark recollections. Expected facts and URLs belong to the fixture, never the planner.
+Search snippets deliberately give a wrong answer. Poisoned source text, duplicates, unavailable
+pages, redirects and unpermitted destinations exercise the same fixed scope. Reports retain raw
+requests and JSONL, with correctness, citation validity, exact extract support, ranking and latency.
+The repeated capacity-question format is controlled development coverage, not broad reasoning or
+retrieval quality. Two admitted sources repeat each fact; this is not a multi-hop benchmark.
+
+`pnpm eval:discovery-local` uses the same cases with explicit `CHROMECLAW_TEST_LOCAL_URL` and
+`CHROMECLAW_TEST_LOCAL_MODEL`. Research and positive web cases call the configured actual model;
+empty search results return uncertainty without inference. History ranking remains local lexical
+lookup with zero inference and must be reported separately. No hosted fallback or downloaded model.
+Kanishk authorized made-up history recollections; personal-history quality is not measured.
+
+`pnpm eval:discovery-safety` checks forced query/action attacks, registered-secret queries, CAPTCHA,
+revoked snapshots, reopen before crossings, durable source/step budget exhaustion, forgetting notes
+and the browser integration probe. `pnpm eval:discovery-terminal` records all three modes, passage
+inspection, forgetting and machine-readable CLI parity through a real PTY/browser/HTTP adapter.
+These measure engineering mechanics, not model quality. CI runs the synthetic suites and archives
+`.chromeclaw/phase7-{discovery,safety,terminal}` plus the inherited reader suite.
+
+The planner's existing prompt budgets retain at most eight source notes of 1,600 characters each,
+alongside the first captured source observation. Complete captured passages remain inspectable
+locally; the planner does not receive unlimited full documents. Unsupported/qualified/conflicting
+claims remain uncertain for human support review. Snapshot history uses a selected bounded JSON
+file, not a live profile or an embedding index. See [PHASE7.md](PHASE7.md) and the completion report
+for measured results and limits; live public-site and daily-use testing remain Phase 8.

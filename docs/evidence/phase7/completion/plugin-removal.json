@@ -1,0 +1,8 @@
+{
+  "exitCode": 0,
+  "historyExitCode": 0,
+  "registryRestored": true,
+  "pluginSha256": {
+    "packages/agent/src/search/engine-tab/index.ts": "b855f9dcec3afde149613af716e8d712b46456749ae73046ef0d5a5dce3ec2e7"
+  }
+}

@@ -13,6 +13,7 @@ export async function guardNavigation(
   readers?: {
     owns: (page: Page) => Promise<boolean>;
     refusal: (request: Request) => string | undefined;
+    permitsQuery?: (request: Request) => boolean;
   },
 ) {
   let ticket: string | undefined;
@@ -64,7 +65,11 @@ export async function guardNavigation(
       const carriesData =
         (request.method() !== "GET" && request.method() !== "HEAD") ||
         Boolean(url.search);
-      if (!refusal && carriesData) {
+      if (
+        !refusal &&
+        carriesData &&
+        !(isReader && readers?.permitsQuery?.(request))
+      ) {
         const destination = `${url.origin}${url.pathname}`;
         if (source === "about:blank" || new URL(source).origin !== url.origin)
           refusal = "Cross-origin request data is refused.";

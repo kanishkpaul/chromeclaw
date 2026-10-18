@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { BrowserActionSchema } from "./schemas";
+import { DiscoverySchema } from "./discovery";
 
 export const RunIdSchema = z
   .string()
@@ -197,6 +198,7 @@ export const RunHeaderSchema = z
     task: z.string(),
     askUrl: z.string().optional(),
     findUrl: z.string().optional(),
+    discovery: DiscoverySchema.optional(),
     status: StatusSchema,
     startedAt: z.string(),
     completedAt: z.string().optional(),

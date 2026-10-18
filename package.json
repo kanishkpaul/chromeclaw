@@ -35,7 +35,11 @@
     "eval:work": "pnpm build && tsx packages/agent/tests/work-assets.mjs && python3 apps/cli/tests/tui.pty.py --phase6",
     "eval:work-local": "pnpm build && tsx packages/agent/tests/work-assets.mjs && python3 apps/cli/tests/tui.pty.py --phase6 --actual-local",
     "eval:work-safety": "pnpm build && tsx --tsconfig tsconfig.base.json packages/browser/tests/work.browser.mjs",
-    "eval:readers": "pnpm build && tsx --tsconfig tsconfig.base.json packages/browser/tests/readers.browser.mjs --source && node packages/browser/tests/readers.browser.mjs"
+    "eval:readers": "pnpm build && tsx --tsconfig tsconfig.base.json packages/browser/tests/readers.browser.mjs --source && node packages/browser/tests/readers.browser.mjs",
+    "eval:discovery": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/discovery.browser.mjs && tsx --tsconfig tsconfig.base.json packages/agent/tests/discovery.browser.mjs --built",
+    "eval:discovery-local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/discovery.browser.mjs --built --actual-local",
+    "eval:discovery-safety": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/discovery-safety.browser.mjs && tsx --tsconfig tsconfig.base.json packages/agent/tests/discovery-safety.browser.mjs --built",
+    "eval:discovery-terminal": "pnpm build && python3 apps/cli/tests/discovery.pty.py"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -6,6 +6,11 @@
 > unattended control of signed-in sites. Phase 2 adds snapshot-bound targets
 > and fixed permissions. Phase 4 adds explicit local/BYOK selection and pre-send reservations; hosted inference testing is intentionally unverified.
 
+Phase 7 adds explicit `run --research`, `run --find-web` and selected JSON snapshot
+`run --find-history` modes through the existing TUI/runtime. See [scope, commands and limits](docs/PHASE7.md).
+History lookup stays local and does not attach to a personal Chrome profile. Live testing and the
+finished README remain Phases 8 and 9.
+
 ## Current baseline
 
 A terminal-first browser agent, built May 2026. You give it a task. It opens Chrome through
