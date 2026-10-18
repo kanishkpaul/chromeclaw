@@ -1,0 +1,30 @@
+{
+  "calendarDate": "2026-10-18",
+  "stage": 2,
+  "cadence": "Seven back-to-back live-testing stages per owner clarification, not seven calendar days.",
+  "baseCommit": "b86c5f6ba4dba6a896b9325d85d1577e309ff8b8",
+  "inventoryBefore": "Finder and ChatGPT only; no unrelated user browser/model/development jobs; no extra app needed closing",
+  "memoryFreeBefore": "80%",
+  "preserved": "macOS services and Codex session",
+  "node": "v24.18.0",
+  "model": "Qwen3-VL-8B-Instruct-Q4_K_M.gguf",
+  "weightsSha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+  "server": "llama.cpp 9780 (1191758c5)",
+  "ctxSize": 8192,
+  "parameters": {
+    "offline": true,
+    "temperature": 0,
+    "reasoning": "off",
+    "parallel": 1,
+    "cacheRamMiB": 256,
+    "textOnly": true
+  },
+  "hostedInference": false,
+  "personalProfile": false,
+  "searchEngineRetries": false,
+  "modelServerStopped": true,
+  "terminalResult": "2/2",
+  "limits": "Original labels frozen before trials; no tuning or label correction after observed misses.",
+  "finalProcessInspection": "No Google Chrome or llama-server process found after cleanup",
+  "memoryAfter": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 179498 \nPages purgeable: 7039 \nPages purged: 164881575 \n\nSwap I/O:\nSwapins: 16853187 \nSwapouts: 21077987 \n\nPage Q counts:\nPages active: 165670 \nPages inactive: 465849 \nPages speculative: 2581 \nPages throttled: 0 \nPages wired down: 149900 \n\nCompressor Stats:\nPages used by compressor: 48614 \nPages decompressed: 1158827272 \nPages compressed: 1297979805 \n\nFile I/O:\nPageins: 165714266 \nPageouts: 535504 \n\nSystem-wide memory free percentage: 79%\n"
+}

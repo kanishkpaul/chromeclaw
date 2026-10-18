@@ -1,0 +1,6 @@
+/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-live/terminal-stage3-z3hxpols
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 161, in <module>
+    assert len(checks) == 2 and all(check['passed'] for check in checks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

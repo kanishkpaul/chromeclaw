@@ -10,11 +10,18 @@ import { URL } from "node:url";
 import { BrowserAgentRuntime, OpenAICompatiblePlanner } from "../dist/index.js";
 
 // Frozen labels select mock replies only. Actual inference never receives those labels.
+const day2 = process.argv.includes("--day2");
+assert.ok(
+  !(day2 && process.argv.includes("--followup")),
+  "Choose one manifest.",
+);
 const fixtureBytes = await readFile(
   new URL(
-    process.argv.includes("--followup")
-      ? "./fixtures/live-day1-followup.json"
-      : "./fixtures/live-day1.json",
+    day2
+      ? "./fixtures/live-day2.json"
+      : process.argv.includes("--followup")
+        ? "./fixtures/live-day1-followup.json"
+        : "./fixtures/live-day1.json",
     import.meta.url,
   ),
 );
@@ -45,7 +52,7 @@ await writeFile(
   catalog,
   JSON.stringify({
     version: 1,
-    entries: [
+    entries: fixture.catalogEntries ?? [
       {
         url: "https://example.com/",
         title: "example domain synthetic bookmark",
@@ -100,7 +107,9 @@ const server = createServer((request, response) => {
       let action;
       if (current.mode === "work") {
         const field = offered.targets.find((node) =>
-          /customer name/i.test(node.name),
+          node.name
+            ?.toLowerCase()
+            .includes((current.label ?? "Customer name").toLowerCase()),
         );
         action =
           page.url === "about:blank"
@@ -308,7 +317,7 @@ try {
               verify: async (session) => {
                 verifiedField =
                   (await session.page
-                    .locator(`input[name="${item.field}"]`)
+                    .locator(`:is(input,textarea)[name="${item.field}"]`)
                     .inputValue()) === item.value &&
                   session.page.url() === item.url;
                 await session.page.screenshot({
@@ -427,10 +436,14 @@ try {
 }
 async function writeReport() {
   const report = {
-    suite: process.argv.includes("--followup")
-      ? "live-01-day1-development-followup"
-      : "live-01-day1",
+    suite: day2
+      ? "live-01-session2"
+      : process.argv.includes("--followup")
+        ? "live-01-day1-development-followup"
+        : "live-01-day1",
     startedOn: fixture.frozenAt,
+    session: fixture.session ?? 1,
+    ...(day2 ? { distinctDayCredit: false } : {}),
     actualLocal: actual,
     hostedInference: false,
     profile: actual

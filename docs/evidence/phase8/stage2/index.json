@@ -1,0 +1,41 @@
+{
+  "stage": 2,
+  "calendarDate": "2026-10-18",
+  "cadence": "Back-to-back stages per D-028; calendar days are not an acceptance gate.",
+  "parentPr": "https://github.com/kanishkpaul/chromeclaw/pull/14",
+  "attempts": [
+    {
+      "name": "emulated",
+      "report": "emulated/report.json",
+      "actualLocal": false,
+      "passed": 8,
+      "total": 8,
+      "exitCode": 0
+    },
+    {
+      "name": "emulated-duplicate",
+      "report": "emulated-duplicate/report.json",
+      "actualLocal": false,
+      "passed": 8,
+      "total": 8,
+      "exitCode": 0
+    },
+    {
+      "name": "actual-local",
+      "report": "actual-local/report.json",
+      "actualLocal": true,
+      "passed": 5,
+      "total": 8,
+      "exitCode": 1
+    },
+    {
+      "name": "terminal",
+      "report": "terminal/report.json",
+      "actualLocal": true,
+      "passed": 2,
+      "total": 2,
+      "exitCode": 0
+    }
+  ],
+  "fixtureSha256": "3062f9e779efcf532bd1b8a7153c40e12aeb4e331286c8503cc1029093e95692"
+}

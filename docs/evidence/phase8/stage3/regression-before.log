@@ -1,0 +1,19 @@
+{"execution":"/Users/kanishk/Downloads/GitHub/chromeclaw/.chromeclaw/phase8-research-regression/built-NQwOC4","source":false,"live":false,"checks":[{"id":"duplicate-ranked-url-refuses-valid-citations","passed":false,"status":"done","runId":"run_mvdsfyv5_l8pbv0m"},{"id":"unique-ranked-url-with-valid-citation-completes","passed":true,"status":"done","runId":"run_mvdsfzgq_bq9k2zx"},{"id":"no-browser-writes","passed":true,"requests":[{"method":"GET","path":"/index"},{"method":"GET","path":"/source"},{"method":"GET","path":"/index"},{"method":"GET","path":"/source"}]}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(checks.length === 3 && checks.every((check) => check.passed))
+
+    at file:///Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-research-regression.browser.mjs:112:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

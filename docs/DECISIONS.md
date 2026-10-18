@@ -436,3 +436,107 @@ ordinary interactive actions retain all-request refusal handling. No redirect, q
 credential or action gate is relaxed. Read-only captures can be incomplete after blocked assets;
 reference validation remains distinct from semantic correctness. Original live failures and
 revised-label development follow-ups remain separate evidence.
+
+## D-028 · 2026-10-18 · Seven live-testing stages, without a calendar wait
+
+Kanishk clarified: “day 1-7 should be like 7 phases of live testing” and “testing it yourself
+while running real tasks.” This supersedes D-027's calendar-day requirement and the old
+`daily-01` week-of-use wording. The seven stages in PHASE8.md can run back-to-back; evidence,
+independent outcomes and regression-before-fix requirements remain. Recorded model misses,
+site drift and barriers remain limitations, not capability passes. Keep dummy BYOK and synthetic
+history per the owner's scope. No new dependency, top-level directory, runtime permission or
+browser frontend is added. Historical Day 1 reports and already-frozen Stage 2 fixture bytes
+retain their old calendar metadata for provenance; those fields no longer control acceptance.
+
+## D-029 · 2026-10-18 · Distinct ranked URLs and explicit retrieval provenance
+
+Stage 3's actual local proposal repeated the same RFC URL three times. A controlled browser
+reproduction with valid citations and a focused unit test confirmed that the completion verifier
+accepted duplicate URLs as distinct ranks. Require unique exact source URLs before accepting a
+web/history result; citation-to-source binding already requires the canonical captured URL.
+The gate does not repair model results, add destinations or relax source evidence. Preserve the
+original live misses, then verify duplicate refusal and single-result success in source/compiled
+fixtures and a separate real-source check.
+
+Keep one fixed public-search probe separate from an independently predeclared assisted lane.
+The latter uses a controlled candidate index with real public source reads; it cannot establish
+public-search availability or retrieval quality. A challenge stops the public probe without a
+retry, solver or engine switch. BYOK remains dummy emulation; actual local inference and TUI
+outcomes remain separately scored. No dependency, top-level directory, search backend or task
+permission is added. Subsequent live PRs stack on the preceding stage and stay unmerged until
+Kanishk asks.
+
+## D-030 · 2026-10-18 · Block-level passages and truthful capture omission
+
+Stage 6's actual local model quoted a CERN sentence correctly but could not cite it, because
+capture made one passage per DOM text node and the sentence spans an inline link. The same page
+named `<A NAME=14>People</A>` "14", and a 3,566-character httpbin paragraph was cut to 2,000
+characters while `omittedPassages` stayed false. Controlled loopback reproductions failed before
+each fix. Capture now merges text nodes that share a block-level ancestor, collapses source
+whitespace in ordinary prose and keeps every `pre*`/`break-spaces` value exact. Any cut text marks the
+capture omitted, so the prompt and research readers no longer present a prefix as complete.
+`placeholder` and `name` remain label fallbacks only for form fields.
+
+Rejected: raising the 2,000/6,000-character bounds, which changes prompt capacity rather than
+truthfulness; multi-passage answers, which would weaken the exact single-citation check; and a
+full accessible-name implementation, which remains outside this slice. `pre-line` keeps its source
+spaces rather than collapsing them, a conservative mismatch with rendering. No dependency,
+permission, directory or plugin boundary is added.
+
+## D-031 · 2026-10-18 · Separate browser disconnect and exit bounds; per-node preformatted passages
+
+"Browser cleanup failed." appeared on most actual-local runs from Stages 2, 3 and 6 but never
+on short scripted runs. With a 35-second scripted planner, a loopback reproduction failed 3/3.
+Branded Chrome started GoogleUpdater helpers during the task. The driver disconnected within
+about 50 ms, but Chrome's main process exited only after the helpers finished, past the single
+5-second deadline. Cleanup now bounds driver disconnect at 5 seconds, then process exit at 45
+seconds, and records which bound failed. The cleanup event now carries the close error rather
+than discarding it.
+
+Rejected: resolving cleanup at disconnect. It removed the warning, but Chrome kept writing the
+profile, so credentials, readers and live-regression suites failed with `ENOTEMPTY` on profile
+removal, and a next task could reuse a profile still held open. Also rejected: switching to
+bundled Chromium, which changes the work surface, and a longer single deadline, which would
+hide a hung driver. Cost: when the updater wakes, a long branded-Chrome task can take about
+10–27 seconds longer to report completion.
+
+Stage 7's retest also found that D-030's block merge folded RFC HTML's inline `<pre>` headings
+into 2,000-character passages. Research claims must equal a complete passage, so the RFC 2606
+title was no longer quotable. Preformatted nodes now keep one trimmed passage each, as before
+D-030. Ordinary prose still merges across inline elements. A controlled regression failed before
+this change and passes after it. No dependency, permission, directory or plugin boundary is added.
+
+## D-032 · 2026-10-18 · Per-reference freshness for read-only find
+
+Kanishk chose option B in [FIND_FRESHNESS.md](FIND_FRESHNESS.md). Read-only find no longer
+requires the whole document to be unchanged. A result passes freshness only if:
+- the page URL is unchanged;
+- each cited passage recaptures to the same text at the same ID;
+- each cited control is the same retained, connected node, with its name, role, destination,
+  attributes and form destination unchanged, visible, enabled and uncovered.
+
+Layout movement and unrelated mutations are ignored. This amends D-015 for find only. Ask has no
+freshness callback, and every activation, write and navigation keeps whole-snapshot binding and
+exact approval. `referenceIsCurrent` must never admit an action.
+
+The Phase 8 `find-node` case on nodejs.org failed as stale in every lane, and a loopback
+reproduction refused all nine cases before this change. Afterwards, static, clock and
+layout-shift cases complete, while relabel, retarget, replace, cover and cited-passage changes
+still refuse. Residual risk: uncited nearby text can change a result's meaning. Relevance stays
+model-proposed and is labelled as such.
+
+Live retest: `find-node` no longer fails as stale in either lane. It now stops at the separate
+duplicate-label rule, because nodejs.org offers two "File system" links, both to `fs.html`, and
+find asks for a position. That rule is unchanged here. The CERN find and the other Stage 6
+local cases still pass 4/4. No dependency, permission, directory or plugin boundary is added.
+
+## D-033 · 2026-10-18 · Same-destination links are not ambiguous to find
+
+Kanishk asked to relax find's duplicate-label rule only when every same-named, same-role link
+has the same destination. After D-032, nodejs.org `find-node` stopped at that rule: the page
+offers two "File system" links, sidebar and index, both to `fs.html`. A unit test and a loopback
+browser check failed before the change. Find now accepts a link whose same-label, same-role peers
+all share its exact destination URL. A destination differing only by fragment counts as
+different. Buttons, links to differing destinations and other controls still need a position.
+The live retest then passed `find-node` in the scripted and local lanes. This changes no
+permission, activation or approval rule.

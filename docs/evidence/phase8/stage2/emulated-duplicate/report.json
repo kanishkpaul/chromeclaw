@@ -1,0 +1,281 @@
+{
+  "suite": "live-01-session2",
+  "startedOn": "2026-10-18",
+  "session": 2,
+  "distinctDayCredit": false,
+  "actualLocal": false,
+  "hostedInference": false,
+  "profile": "emulated-byok-wire-only",
+  "fixtureSha256": "3062f9e779efcf532bd1b8a7153c40e12aeb4e331286c8503cc1029093e95692",
+  "limits": "Second engineering session on the same calendar date as Day 1. Anonymous public reads, one unsubmitted dummy textarea edit, synthetic history. No activation, posting, login, personal profile or search-engine retry. Labels frozen before execution; all misses retained.",
+  "selected": 8,
+  "completed": 8,
+  "passed": 8,
+  "modelQualityClaim": "None; labels drive mock responses.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [
+    {
+      "caseId": "read-httpbin-heading",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "read-robots",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "read-iana-heading",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-iana-reservation",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "find-absent-checkout",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent-textarea",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent-textarea",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    },
+    {
+      "caseId": "edit-unsent-textarea",
+      "model": "dummy-byok-wire-emulator",
+      "stream": false,
+      "outputLimit": 1200,
+      "authorization": "dummy-only"
+    }
+  ],
+  "results": [
+    {
+      "id": "read-httpbin-heading",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "Herman Melville - Moby-Dick",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 2151,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrr88w_bsghwhi",
+      "log": "read-httpbin-heading/run_mvdrr88w_bsghwhi.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-robots",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "User-agent: *\nDisallow: /deny",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1139,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrr9x7_o1ow0eu",
+      "log": "read-robots/run_mvdrr9x7_o1ow0eu.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-iana-heading",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "Example Domains",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 2654,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrrasu_nh1zw3j",
+      "log": "read-iana-heading/run_mvdrrasu_nh1zw3j.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-iana-reservation",
+      "mode": "find",
+      "passed": true,
+      "status": "done",
+      "answer": "Offered candidate.",
+      "ranked": [
+        "https://www.iana.org/go/rfc2606"
+      ],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1814,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrrcuk_72q7r1c",
+      "log": "find-iana-reservation/run_mvdrrcuk_72q7r1c.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent-checkout",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No offered match.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1016,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 1,
+      "liveActivations": 0,
+      "runId": "run_mvdrre8z_vnbehur",
+      "log": "find-absent-checkout/run_mvdrre8z_vnbehur.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent-textarea",
+      "mode": "work",
+      "passed": true,
+      "status": "done",
+      "answer": "Synthetic field edited; form not submitted.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": true,
+      "latencyMs": 1110,
+      "steps": 3,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "reservedCost": 0.003,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 3,
+      "liveActivations": 0,
+      "runId": "run_mvdrrf17_rry1djt",
+      "log": "edit-unsent-textarea/run_mvdrrf17_rry1djt.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-iana",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://www.iana.org/help/example-domains",
+      "ranked": [],
+      "urls": [
+        "https://www.iana.org/help/example-domains"
+      ],
+      "verifiedField": false,
+      "latencyMs": 1064,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrrfw2_61dcoz1",
+      "log": "history-iana/run_mvdrrfw2_61dcoz1.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-httpbin",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://httpbin.org/html",
+      "ranked": [],
+      "urls": [
+        "https://httpbin.org/html"
+      ],
+      "verifiedField": false,
+      "latencyMs": 939,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrrgpn_seglaub",
+      "log": "history-httpbin/run_mvdrrgpn_seglaub.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

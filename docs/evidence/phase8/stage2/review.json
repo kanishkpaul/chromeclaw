@@ -1,0 +1,25 @@
+{
+  "stage": 2,
+  "reviewedFailures": [
+    {
+      "id": "read-iana-heading",
+      "classification": "8688 input tokens exceed 8192 context; no quality answer"
+    },
+    {
+      "id": "find-iana-reservation",
+      "classification": "8715 input tokens exceed 8192 context; no quality answer"
+    },
+    {
+      "id": "edit-unsent-textarea",
+      "classification": "Verified edit followed by repeated model writes; no-change/recovery stop. No final independent predicate, therefore failed. Cleanup warning retained; no leftover Chrome process at final inspection."
+    }
+  ],
+  "runtimeChanges": "none",
+  "testHarnessChanges": "selected frozen Stage 2 tasks, synthetic history entries, textarea assertions, terminal scenario",
+  "openLimitations": [
+    "context capacity",
+    "model repeats completed ordinary edit",
+    "transient browser cleanup deadline"
+  ],
+  "phase9": "unstarted"
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live-research.browser.mjs",
+      "--actual-local",
+      "--public-probe"
+    ],
+    "exitCode": 1,
+    "log": "actual-0.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live-research.browser.mjs",
+      "--actual-local"
+    ],
+    "exitCode": 1,
+    "log": "actual-1.log"
+  }
+]

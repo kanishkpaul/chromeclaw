@@ -1,0 +1,1186 @@
+{
+  "suite": "live-01-stage3",
+  "stage": 3,
+  "calendarDate": "2026-10-18",
+  "actualLocal": false,
+  "hostedInference": false,
+  "lane": "assisted-live-sources",
+  "candidateIndex": "controlled preselected index; real public source reads; not live search quality",
+  "model": "dummy-wire-only",
+  "serverContextTokens": null,
+  "fixtureSha256": "24a0666792922a721cfd12a5aa1cbc8e32b2c09aa2b552d1bcc11af5beb94523",
+  "limits": "Anonymous read-only tasks. One public search probe only, no retry/solver/fallback on a barrier. Separate predeclared assisted-retrieval lane uses a controlled candidate index and real public sources; it cannot measure live search quality. No activation, credentials, personal data or hosted inference.",
+  "selected": 6,
+  "completed": 6,
+  "passed": 6,
+  "indexRequests": [
+    {
+      "method": "GET",
+      "path": "/index/assisted-standard-titles",
+      "queryMatches": true
+    },
+    {
+      "method": "GET",
+      "path": "/index/assisted-rfc-url",
+      "queryMatches": true
+    },
+    {
+      "method": "GET",
+      "path": "/index/assisted-httpbin-inventory",
+      "queryMatches": true
+    },
+    {
+      "method": "GET",
+      "path": "/index/assisted-unavailable",
+      "queryMatches": true
+    },
+    {
+      "method": "GET",
+      "path": "/index/assisted-redirect",
+      "queryMatches": true
+    },
+    {
+      "method": "GET",
+      "path": "/index/assisted-outside-scope",
+      "queryMatches": true
+    }
+  ],
+  "modelRequests": [
+    {
+      "id": "assisted-standard-titles",
+      "authorization": "dummy-only",
+      "offered": [
+        {
+          "url": "https://www.iana.org/help/example-domains",
+          "characters": 1600,
+          "completePassages": 8
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "characters": 1600,
+          "completePassages": 3
+        }
+      ]
+    },
+    {
+      "id": "assisted-rfc-url",
+      "authorization": "dummy-only",
+      "offered": [
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "characters": 1600,
+          "completePassages": 3
+        }
+      ]
+    },
+    {
+      "id": "assisted-httpbin-inventory",
+      "authorization": "dummy-only",
+      "offered": [
+        {
+          "url": "https://httpbin.org/robots.txt",
+          "characters": 199,
+          "completePassages": 1
+        },
+        {
+          "url": "https://httpbin.org/html",
+          "characters": 1600,
+          "completePassages": 1
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "assisted-standard-titles",
+      "lane": "assisted-live-sources",
+      "mode": "research",
+      "negative": null,
+      "passed": true,
+      "status": "done",
+      "answer": "Example Domains\nReserved Top Level DNS Names",
+      "claims": [
+        {
+          "text": "Example Domains",
+          "kind": "extract",
+          "evidence": [
+            {
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "passageId": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p6",
+              "quote": "Example Domains"
+            }
+          ]
+        },
+        {
+          "text": "Reserved Top Level DNS Names",
+          "kind": "extract",
+          "evidence": [
+            {
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "passageId": "8006be20-2929-436a-a811-b2ac0e219a45:p2",
+              "quote": "Reserved Top Level DNS Names"
+            }
+          ]
+        }
+      ],
+      "urls": [],
+      "sourceCoverage": [
+        {
+          "url": "https://www.iana.org/help/example-domains",
+          "covered": true
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "covered": true
+        }
+      ],
+      "referenceValid": true,
+      "sources": [
+        {
+          "stage": "source",
+          "detail": "Captured visible passages.",
+          "url": "https://www.iana.org/help/example-domains",
+          "passages": [
+            {
+              "text": "Domains",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p1",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Protocols",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p2",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Numbers",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p3",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "About",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p4",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Instructions and Guides",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p5",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Example Domains",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p6",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "A number of domains such as",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p7",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "example.com",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p8",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "and",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p9",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "example.org",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p10",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "are maintained\nfor documentation purposes. These domains may be used as illustrative\nexamples in documents without prior coordination with us. They are not\navailable for registration or transfer.",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p11",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "We provide a web service on the example domain hosts to provide basic\ninformation on the purpose of the domain. These web services are\nprovided as best effort, but are not designed to support production\napplications. We strongly recommend you do not design applications that\nrequire the example domains to have operating HTTP service.",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p12",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Further Reading",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p13",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "IANA-managed Reserved Domains",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p14",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Special-Use Domain Names",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p15",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "(RFC 6761)",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p16",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Reserved Top Level DNS Names",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p17",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "(RFC 2606)",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p18",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Last revised",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p19",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "2026-09-27",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p20",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": ".",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p21",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Domain Names",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p22",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Root Zone Registry",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p23",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": ".INT Registry",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p24",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": ".ARPA Registry",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p25",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "IDN Repository",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p26",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Number Resources",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p27",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Number Registries",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p28",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "RIR Allocation Data",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p29",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Abuse Information",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p30",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Protocols",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p31",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Protocol Registries",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p32",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Time Zone Database",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p33",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "About Us",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p34",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "News",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p35",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Performance",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p36",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "The Organization",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p37",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Archive",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p38",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Contact Us",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p39",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "The IANA functions coordinate the Internet’s globally unique identifiers, and\n                are provided by",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p40",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Public Technical Identifiers",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p41",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": ", an affiliate of",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p42",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "ICANN",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p43",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": ".",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p44",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Privacy Policy",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p45",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            },
+            {
+              "text": "Terms of Service",
+              "kind": "document",
+              "id": "7effaca3-2210-44d6-b8bb-3896aa57ece4:p46",
+              "snapshotId": "7effaca3-2210-44d6-b8bb-3896aa57ece4",
+              "url": "https://www.iana.org/help/example-domains"
+            }
+          ]
+        },
+        {
+          "stage": "source",
+          "detail": "Captured visible passages.",
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "passages": [
+            {
+              "text": "Network Working Group                                     D. Eastlake\nRequest for Comments: 2606                                  A. Panitz\nBCP: 32                                                     June 1999\nCategory: Best Current Practice",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p1",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Reserved Top Level DNS Names",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p2",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Status of this Memo\n\n   This document specifies an Internet Best Current Practices for the\n   Internet Community, and requests discussion and suggestions for\n   improvements.  Distribution of this memo is unlimited.\n\nCopyright Notice\n\n   Copyright (C) The Internet Society (1999).  All Rights Reserved.\n\nAbstract\n\n   To reduce the likelihood of conflict and confusion, a few top level\n   domain names are reserved for use in private testing, as examples in\n   documentation, and the like.  In addition, a few second level domain\n   names reserved for use as examples are documented.\n\nTable of Contents",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p3",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p4",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Introduction............................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p5",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p6",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p7",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". TLDs for Testing, & Documentation Examples..............",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p8",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p9",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p10",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Reserved Example Second Level Domain Names..............",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p11",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p12",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "4",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p13",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". IANA Considerations.....................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p14",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p15",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "5",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p16",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Security Considerations.................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p17",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p18",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "References.................................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p19",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p20",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Authors' Addresses.........................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p21",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "4",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p22",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Full Copyright Statement...................................",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p23",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "5",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p24",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p25",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Introduction",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p26",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "The global Internet Domain Name System is documented in [RFC 1034,\n   1035, 1591] and numerous additional Requests for Comment.  It defines\n   a tree of names starting with root, \".\", immediately below which are\n   top level domain names such as \".com\" and \".us\". Below top level\n   domain names there are normally additional levels of names.",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p27",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Eastlake & Panitz        Best Current Practice                  [Page 1]",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p28",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "RFC 2606",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p29",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Reserved Top Level DNS Names             June 1999",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p30",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p31",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". TLDs for Testing, & Documentation Examples",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p32",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "There is a need for top level domain (TLD) names that can be used for\n   creating names which, without fear of conflicts with current or\n   future actual TLD names in the global DNS, can be used for private\n   testing of existing DNS related code, examples in documentation, DNS\n   related experimentation, invalid DNS names, or other similar uses.\n\n   For example, without guidance, a site might set up some local\n   additional unused top level domains for testing of its local DNS code\n   and configuration. Later, these TLDs might come into actual use on\n   the global Internet.  As a result, local attempts to reference the\n   real data in these zones could be thwarted by the local test\n   versions.  Or test or example code might be written that accesses a\n   TLD that is in use with the thought that the test code would only be\n   run in a restricted testbed net or the example never actually run.\n   Later, the test code could escape from the testbed or the example be\n   actually coded and run on the Internet. Depending on the nature of\n   the test or example, it might be best for it to be referencing a TLD\n   permanently reserved for such purposes.\n\n   To safely satisfy these needs, four domain names are reserved as\n   listed and described below.\n\n                   .test\n                .example\n                .invalid\n              .localhost\n\n      \".test\" is recommended for use in testing of current or new DNS\n      related code.\n\n      \".example\" is recommended for use in documentation or as examples.\n\n      \".invalid\" is intended for use in online construction of domain\n      names that are sure to be invalid and which it is obvious at a\n      glance are invalid.\n\n      The \".localhost\" TLD has traditionally been statically defined in\n      host DNS implementations as having an A record pointing to the\n      loop back IP address and is reserved for such use.  Any other use\n      would conflict with widely deployed code which assumes this use.",
+              "kind": "document",
+              "id": "8006be20-2929-436a-a811-b2ac0e219a45:p33",
+              "snapshotId": "8006be20-2929-436a-a811-b2ac0e219a45",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatorRequests": 1,
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "latencyMs": 1486,
+      "steps": 1,
+      "runId": "run_mvds8x22_bsictnw",
+      "log": "assisted-standard-titles/run_mvds8x22_bsictnw.jsonl",
+      "safeBarrierHandback": false
+    },
+    {
+      "id": "assisted-rfc-url",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "negative": null,
+      "passed": true,
+      "status": "done",
+      "answer": "Selected source candidate.",
+      "urls": [
+        "https://www.rfc-editor.org/rfc/rfc2606.html"
+      ],
+      "sourceCoverage": [],
+      "referenceValid": true,
+      "sources": [
+        {
+          "stage": "source",
+          "detail": "Captured visible passages.",
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "passages": [
+            {
+              "text": "Network Working Group                                     D. Eastlake\nRequest for Comments: 2606                                  A. Panitz\nBCP: 32                                                     June 1999\nCategory: Best Current Practice",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p1",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Reserved Top Level DNS Names",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p2",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Status of this Memo\n\n   This document specifies an Internet Best Current Practices for the\n   Internet Community, and requests discussion and suggestions for\n   improvements.  Distribution of this memo is unlimited.\n\nCopyright Notice\n\n   Copyright (C) The Internet Society (1999).  All Rights Reserved.\n\nAbstract\n\n   To reduce the likelihood of conflict and confusion, a few top level\n   domain names are reserved for use in private testing, as examples in\n   documentation, and the like.  In addition, a few second level domain\n   names reserved for use as examples are documented.\n\nTable of Contents",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p3",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p4",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Introduction............................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p5",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p6",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p7",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". TLDs for Testing, & Documentation Examples..............",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p8",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p9",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p10",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Reserved Example Second Level Domain Names..............",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p11",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p12",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "4",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p13",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". IANA Considerations.....................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p14",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p15",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "5",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p16",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Security Considerations.................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p17",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p18",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "References.................................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p19",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "3",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p20",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Authors' Addresses.........................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p21",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "4",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p22",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Full Copyright Statement...................................",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p23",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "5",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p24",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "1",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p25",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". Introduction",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p26",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "The global Internet Domain Name System is documented in [RFC 1034,\n   1035, 1591] and numerous additional Requests for Comment.  It defines\n   a tree of names starting with root, \".\", immediately below which are\n   top level domain names such as \".com\" and \".us\". Below top level\n   domain names there are normally additional levels of names.",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p27",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Eastlake & Panitz        Best Current Practice                  [Page 1]",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p28",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "RFC 2606",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p29",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "Reserved Top Level DNS Names             June 1999",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p30",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "2",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p31",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": ". TLDs for Testing, & Documentation Examples",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p32",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            },
+            {
+              "text": "There is a need for top level domain (TLD) names that can be used for\n   creating names which, without fear of conflicts with current or\n   future actual TLD names in the global DNS, can be used for private\n   testing of existing DNS related code, examples in documentation, DNS\n   related experimentation, invalid DNS names, or other similar uses.\n\n   For example, without guidance, a site might set up some local\n   additional unused top level domains for testing of its local DNS code\n   and configuration. Later, these TLDs might come into actual use on\n   the global Internet.  As a result, local attempts to reference the\n   real data in these zones could be thwarted by the local test\n   versions.  Or test or example code might be written that accesses a\n   TLD that is in use with the thought that the test code would only be\n   run in a restricted testbed net or the example never actually run.\n   Later, the test code could escape from the testbed or the example be\n   actually coded and run on the Internet. Depending on the nature of\n   the test or example, it might be best for it to be referencing a TLD\n   permanently reserved for such purposes.\n\n   To safely satisfy these needs, four domain names are reserved as\n   listed and described below.\n\n                   .test\n                .example\n                .invalid\n              .localhost\n\n      \".test\" is recommended for use in testing of current or new DNS\n      related code.\n\n      \".example\" is recommended for use in documentation or as examples.\n\n      \".invalid\" is intended for use in online construction of domain\n      names that are sure to be invalid and which it is obvious at a\n      glance are invalid.\n\n      The \".localhost\" TLD has traditionally been statically defined in\n      host DNS implementations as having an A record pointing to the\n      loop back IP address and is reserved for such use.  Any other use\n      would conflict with widely deployed code which assumes this use.",
+              "kind": "document",
+              "id": "25882beb-d7db-463b-bc80-f7efb50f576d:p33",
+              "snapshotId": "25882beb-d7db-463b-bc80-f7efb50f576d",
+              "url": "https://www.rfc-editor.org/rfc/rfc2606.html"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatorRequests": 1,
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "latencyMs": 1095,
+      "steps": 1,
+      "runId": "run_mvds8y7p_x373r8z",
+      "log": "assisted-rfc-url/run_mvds8y7p_x373r8z.jsonl",
+      "safeBarrierHandback": false
+    },
+    {
+      "id": "assisted-httpbin-inventory",
+      "lane": "assisted-live-sources",
+      "mode": "research",
+      "negative": null,
+      "passed": true,
+      "status": "done",
+      "answer": "User-agent: *\nDisallow: /deny\nHerman Melville - Moby-Dick",
+      "claims": [
+        {
+          "text": "User-agent: *\nDisallow: /deny",
+          "kind": "extract",
+          "evidence": [
+            {
+              "snapshotId": "bb9df677-2c26-40ed-ae1c-93eefd89c351",
+              "passageId": "bb9df677-2c26-40ed-ae1c-93eefd89c351:p1",
+              "quote": "User-agent: *\nDisallow: /deny"
+            }
+          ]
+        },
+        {
+          "text": "Herman Melville - Moby-Dick",
+          "kind": "extract",
+          "evidence": [
+            {
+              "snapshotId": "120367cb-9e3e-421b-bff5-0c38820a8bab",
+              "passageId": "120367cb-9e3e-421b-bff5-0c38820a8bab:p1",
+              "quote": "Herman Melville - Moby-Dick"
+            }
+          ]
+        }
+      ],
+      "urls": [],
+      "sourceCoverage": [
+        {
+          "url": "https://httpbin.org/robots.txt",
+          "covered": true
+        },
+        {
+          "url": "https://httpbin.org/html",
+          "covered": true
+        }
+      ],
+      "referenceValid": true,
+      "sources": [
+        {
+          "stage": "source",
+          "detail": "Captured visible passages.",
+          "url": "https://httpbin.org/robots.txt",
+          "passages": [
+            {
+              "text": "User-agent: *\nDisallow: /deny",
+              "kind": "document",
+              "id": "bb9df677-2c26-40ed-ae1c-93eefd89c351:p1",
+              "snapshotId": "bb9df677-2c26-40ed-ae1c-93eefd89c351",
+              "url": "https://httpbin.org/robots.txt"
+            }
+          ]
+        },
+        {
+          "stage": "source",
+          "detail": "Captured visible passages.",
+          "url": "https://httpbin.org/html",
+          "passages": [
+            {
+              "text": "Herman Melville - Moby-Dick",
+              "kind": "document",
+              "id": "120367cb-9e3e-421b-bff5-0c38820a8bab:p1",
+              "snapshotId": "120367cb-9e3e-421b-bff5-0c38820a8bab",
+              "url": "https://httpbin.org/html"
+            },
+            {
+              "text": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable forge to the hold again, after concluding his contributory work for Ahab's leg, but still retained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly invoked by the headsmen, and harpooneers, and bowsmen to do some little job for them; altering, or repairing, or new shaping their various weapons and boat furniture. Often he would be surrounded by an eager circle, all waiting to be served; holding boat-spades, pike-heads, harpoons, and lances, and jealously watching his every sooty movement, as he toiled. Nevertheless, this old man's was a patient hammer wielded by a patient arm. No murmur, no impatience, no petulance did come from him. Silent, slow, and solemn; bowing over still further his chronically broken back, he toiled away, as if toil were life itself, and the heavy beating of his hammer the heavy beating of his heart. And so it was.—Most miserable! A peculiar walk in this old man, a certain slight but painful appearing yawing in his gait, had at an early period of the voyage excited the curiosity of the mariners. And to the importunity of their persisted questionings he had finally given in; and so it came to pass that every one now knew the shameful story of his wretched fate. Belated, and not innocently, one bitter winter's midnight, on the road running between two country towns, the blacksmith half-stupidly felt the deadly numbness stealing over him, and sought refuge in a leaning, dilapidated barn. The issue was, the loss of the extremities of both feet. Out of this revelation, part by part, at last came out the four acts of the gladness, and the one long, and as yet uncatastrophied fifth act of the grief of his life's drama. He was an old man, who, at the age of nearly sixty, had po",
+              "kind": "document",
+              "id": "120367cb-9e3e-421b-bff5-0c38820a8bab:p2",
+              "snapshotId": "120367cb-9e3e-421b-bff5-0c38820a8bab",
+              "url": "https://httpbin.org/html"
+            }
+          ]
+        }
+      ],
+      "failures": [],
+      "modelAttempts": 1,
+      "usage": [
+        {
+          "promptTokens": 16,
+          "completionTokens": 16
+        }
+      ],
+      "emulatorRequests": 1,
+      "reservedCost": 0.001,
+      "actualHostedSpend": 0,
+      "latencyMs": 2208,
+      "steps": 1,
+      "runId": "run_mvds8z24_oly7eu8",
+      "log": "assisted-httpbin-inventory/run_mvds8z24_oly7eu8.jsonl",
+      "safeBarrierHandback": false
+    },
+    {
+      "id": "assisted-unavailable",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "negative": "unavailable",
+      "passed": true,
+      "status": "uncertain",
+      "error": "No validated source matches; absence from the wider web/history is not established.",
+      "answer": "No readable permitted sources matched the selected scope.",
+      "urls": [],
+      "sourceCoverage": [],
+      "referenceValid": false,
+      "sources": [],
+      "failures": [
+        {
+          "stage": "source-failure",
+          "detail": "Source reading failed, expired or was cancelled.",
+          "url": "https://httpbin.org/status/404"
+        }
+      ],
+      "modelAttempts": 0,
+      "usage": [],
+      "emulatorRequests": 0,
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "latencyMs": 979,
+      "steps": 1,
+      "runId": "run_mvds90rh_eeab9t4",
+      "log": "assisted-unavailable/run_mvds90rh_eeab9t4.jsonl",
+      "safeBarrierHandback": false
+    },
+    {
+      "id": "assisted-redirect",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "negative": "redirect",
+      "passed": true,
+      "status": "uncertain",
+      "error": "No validated source matches; absence from the wider web/history is not established.",
+      "answer": "No readable permitted sources matched the selected scope.",
+      "urls": [],
+      "sourceCoverage": [],
+      "referenceValid": false,
+      "sources": [],
+      "failures": [
+        {
+          "stage": "source-failure",
+          "detail": "Source reading failed, expired or was cancelled.",
+          "url": "https://httpbin.org/redirect/1"
+        }
+      ],
+      "modelAttempts": 0,
+      "usage": [],
+      "emulatorRequests": 0,
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "latencyMs": 880,
+      "steps": 1,
+      "runId": "run_mvds91io_0e8fia8",
+      "log": "assisted-redirect/run_mvds91io_0e8fia8.jsonl",
+      "safeBarrierHandback": false
+    },
+    {
+      "id": "assisted-outside-scope",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "negative": "scope",
+      "passed": true,
+      "status": "uncertain",
+      "error": "No validated source matches; absence from the wider web/history is not established.",
+      "answer": "No readable permitted sources matched the selected scope.",
+      "urls": [],
+      "sourceCoverage": [],
+      "referenceValid": false,
+      "sources": [],
+      "failures": [
+        {
+          "stage": "source-failure",
+          "detail": "The destination origin is outside the fixed task permissions.",
+          "url": "https://httpbin.org/robots.txt"
+        }
+      ],
+      "modelAttempts": 0,
+      "usage": [],
+      "emulatorRequests": 0,
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "latencyMs": 580,
+      "steps": 1,
+      "runId": "run_mvds9274_vv18wkh",
+      "log": "assisted-outside-scope/run_mvds9274_vv18wkh.jsonl",
+      "safeBarrierHandback": false
+    }
+  ]
+}

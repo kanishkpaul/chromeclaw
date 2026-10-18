@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 150, in <module>
+    wait(lambda: any(event['type'] == 'run_completed' and event['payload']['status'] == 'stopped' for event in records()[before:]), 20)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/live.pty.py", line 106, in wait
+    raise AssertionError('Live terminal did not reach the expected state; inspect recording.')
+AssertionError: Live terminal did not reach the expected state; inspect recording.

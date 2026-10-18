@@ -129,6 +129,28 @@ describe("research reference and support boundary", () => {
       ).passed,
     ).toBe(false);
   });
+  it("does not count one cited URL multiple times in a ranked result", () => {
+    const match = {
+      url: observation.url,
+      reason: "Captured source",
+      evidence: [reference],
+    };
+    const action: Extract<BrowserAction, { type: "finish" }> = {
+      type: "finish",
+      answer: "Source",
+      webFind: { outcome: "matches", matches: [match] },
+    };
+    expect(
+      verifyDiscovery(action, { ...scope, mode: "web" }, observations).passed,
+    ).toBe(true);
+    expect(
+      verifyDiscovery(
+        { ...action, webFind: { outcome: "matches", matches: [match, match] } },
+        { ...scope, mode: "web" },
+        observations,
+      ).passed,
+    ).toBe(false);
+  });
   it("builds only exact trusted queries and refuses a parameter-bearing engine", () => {
     expect(discoveryQueries(scope)).toEqual([
       "https://example.com/search?q=user+intent",

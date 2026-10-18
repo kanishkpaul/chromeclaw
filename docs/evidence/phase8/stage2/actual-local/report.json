@@ -1,0 +1,223 @@
+{
+  "suite": "live-01-session2",
+  "startedOn": "2026-10-18",
+  "session": 2,
+  "distinctDayCredit": false,
+  "actualLocal": true,
+  "hostedInference": false,
+  "profile": "chromeclaw-qwen3vl",
+  "fixtureSha256": "3062f9e779efcf532bd1b8a7153c40e12aeb4e331286c8503cc1029093e95692",
+  "limits": "Second engineering session on the same calendar date as Day 1. Anonymous public reads, one unsubmitted dummy textarea edit, synthetic history. No activation, posting, login, personal profile or search-engine retry. Labels frozen before execution; all misses retained.",
+  "selected": 8,
+  "completed": 8,
+  "passed": 5,
+  "modelQualityClaim": "Small frozen public-site pilot only; development retests are not held out. Synthetic history excluded from inference.",
+  "cacheCondition": "Fresh disposable profile per task; model server warm after first task. Not a paired cold/warm benchmark.",
+  "requests": [],
+  "results": [
+    {
+      "id": "read-httpbin-heading",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "Herman Melville - Moby-Dick",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 11637,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2423,
+          "completionTokens": 101
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrrllb_rm9j92c",
+      "log": "read-httpbin-heading/run_mvdrrllb_rm9j92c.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-robots",
+      "mode": "ask",
+      "passed": true,
+      "status": "done",
+      "answer": "User-agent: *\nDisallow: /deny",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 6644,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 1426,
+          "completionTokens": 109
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrrukk_v0wqk8m",
+      "log": "read-robots/run_mvdrrukk_v0wqk8m.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "read-iana-heading",
+      "mode": "ask",
+      "passed": false,
+      "status": "failed",
+      "error": "Planner transport failed: http (400).",
+      "answer": "Planner transport failed: http (400).",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1901,
+      "steps": 2,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrrzp5_7v4tfr0",
+      "log": "read-iana-heading/run_mvdrrzp5_7v4tfr0.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-iana-reservation",
+      "mode": "find",
+      "passed": false,
+      "status": "failed",
+      "error": "Planner transport failed: http (400).",
+      "answer": "Planner transport failed: http (400).",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 1193,
+      "steps": 2,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrs15y_5cmdwu3",
+      "log": "find-iana-reservation/run_mvdrs15y_5cmdwu3.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "find-absent-checkout",
+      "mode": "find",
+      "passed": true,
+      "status": "uncertain",
+      "error": "The model reported no match in the captured viewport; absence is unverified.",
+      "answer": "No checkout payment button is offered.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 6871,
+      "steps": 2,
+      "usage": [
+        {
+          "promptTokens": 2579,
+          "completionTokens": 42
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrs234_tc6tguy",
+      "log": "find-absent-checkout/run_mvdrs234_tc6tguy.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "edit-unsent-textarea",
+      "mode": "work",
+      "passed": false,
+      "status": "failed",
+      "error": "Three identical unsuccessful proposals. Stopped recovery.",
+      "answer": "Three identical unsuccessful proposals. Stopped recovery.",
+      "ranked": [],
+      "urls": [],
+      "verifiedField": false,
+      "latencyMs": 29792,
+      "steps": 6,
+      "usage": [
+        {
+          "promptTokens": 1217,
+          "completionTokens": 16
+        },
+        {
+          "promptTokens": 2145,
+          "completionTokens": 53
+        },
+        {
+          "promptTokens": 2253,
+          "completionTokens": 57
+        },
+        {
+          "promptTokens": 2342,
+          "completionTokens": 58
+        },
+        {
+          "promptTokens": 2426,
+          "completionTokens": 57
+        }
+      ],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrs7dz_nixeijd",
+      "log": "edit-unsent-textarea/run_mvdrs7dz_nixeijd.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-iana",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://www.iana.org/help/example-domains",
+      "ranked": [],
+      "urls": [
+        "https://www.iana.org/help/example-domains"
+      ],
+      "verifiedField": false,
+      "latencyMs": 831,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrsudm_plte3ta",
+      "log": "history-iana/run_mvdrsudm_plte3ta.jsonl",
+      "sourceFailures": []
+    },
+    {
+      "id": "history-httpbin",
+      "mode": "history",
+      "passed": true,
+      "status": "done",
+      "answer": "https://httpbin.org/html",
+      "ranked": [],
+      "urls": [
+        "https://httpbin.org/html"
+      ],
+      "verifiedField": false,
+      "latencyMs": 785,
+      "steps": 1,
+      "usage": [],
+      "reservedCost": 0,
+      "actualHostedSpend": 0,
+      "emulatedRequests": 0,
+      "liveActivations": 0,
+      "runId": "run_mvdrsv0n_bfeaxr6",
+      "log": "history-httpbin/run_mvdrsv0n_bfeaxr6.jsonl",
+      "sourceFailures": []
+    }
+  ]
+}

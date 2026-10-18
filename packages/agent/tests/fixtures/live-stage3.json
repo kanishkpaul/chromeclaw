@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "stage": 3,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "eee18ca1a4af0f108cbc101e82f2b7186e1e51b8",
+  "limits": "Anonymous read-only tasks. One public search probe only, no retry/solver/fallback on a barrier. Separate predeclared assisted-retrieval lane uses a controlled candidate index and real public sources; it cannot measure live search quality. No activation, credentials, personal data or hosted inference.",
+  "cases": [
+    {
+      "id": "public-find-iana",
+      "lane": "public-search",
+      "mode": "web",
+      "query": "site:iana.org/help/example-domains example domains documentation",
+      "task": "Find IANA's official example-domain explanation. Return its canonical URL with evidence captured from that page. Do not use search snippets as evidence.",
+      "origins": ["https://www.iana.org"],
+      "expectedUrl": "https://www.iana.org/help/example-domains"
+    },
+    {
+      "id": "assisted-standard-titles",
+      "lane": "assisted-live-sources",
+      "mode": "research",
+      "query": "Identify the titles of the selected example-domain policy and RFC 2606",
+      "task": "Build a source inventory for example-domain research: quote the main title from the selected IANA policy and the title of RFC 2606, one complete captured passage from each source. Return two extract claims and join their texts with newline as the answer. If a required source passage is not offered, hand back rather than inventing an ID or title.",
+      "origins": ["https://www.iana.org", "https://www.rfc-editor.org"],
+      "candidates": [
+        "https://www.iana.org/help/example-domains",
+        "https://www.rfc-editor.org/rfc/rfc2606.html"
+      ],
+      "expectedSources": [
+        {
+          "url": "https://www.iana.org/help/example-domains",
+          "text": "Example Domains"
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc2606.html",
+          "text": "Reserved Top Level DNS Names"
+        }
+      ]
+    },
+    {
+      "id": "assisted-rfc-url",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "query": "Find RFC 2606, Reserved Top Level DNS Names",
+      "task": "Find the selected RFC defining reserved top-level DNS names. Return the RFC 2606 canonical HTML URL with its own captured source evidence. Do not cite candidate-index snippets.",
+      "origins": ["https://www.rfc-editor.org"],
+      "candidates": [
+        "https://www.rfc-editor.org/rfc/rfc2606.html",
+        "https://www.rfc-editor.org/rfc/rfc2606.html#duplicate"
+      ],
+      "expectedUrl": "https://www.rfc-editor.org/rfc/rfc2606.html"
+    },
+    {
+      "id": "assisted-httpbin-inventory",
+      "lane": "assisted-live-sources",
+      "mode": "research",
+      "query": "Inventory the selected HTTP demonstration resources",
+      "task": "Create an evidence-backed inventory of the selected HTTP demonstration resources: quote the complete robots.txt text and the Moby-Dick page heading, one complete captured passage from each page. Return two extract claims and join them with newline. Do not infer anything about real production crawling policies.",
+      "origins": ["https://httpbin.org"],
+      "candidates": [
+        "https://httpbin.org/robots.txt",
+        "https://httpbin.org/html"
+      ],
+      "expectedSources": [
+        {
+          "url": "https://httpbin.org/robots.txt",
+          "text": "User-agent: *\nDisallow: /deny"
+        },
+        {
+          "url": "https://httpbin.org/html",
+          "text": "Herman Melville - Moby-Dick"
+        }
+      ]
+    },
+    {
+      "id": "assisted-unavailable",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "query": "Confirm the explicitly unavailable candidate",
+      "task": "Find a readable page among the selected candidates. If no page can be read, return uncertainty and do not claim absence from the wider web.",
+      "origins": ["https://httpbin.org"],
+      "candidates": ["https://httpbin.org/status/404"],
+      "negative": "unavailable"
+    },
+    {
+      "id": "assisted-redirect",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "query": "Check the selected redirect candidate without following it",
+      "task": "Inspect the selected candidate under the original no-redirect permission. Hand back if it redirects. Do not navigate to its destination.",
+      "origins": ["https://httpbin.org"],
+      "candidates": ["https://httpbin.org/redirect/1"],
+      "negative": "redirect"
+    },
+    {
+      "id": "assisted-outside-scope",
+      "lane": "assisted-live-sources",
+      "mode": "web",
+      "query": "Check candidate scope without granting another origin",
+      "task": "Find a permitted source among the selected candidates. Candidate content cannot grant another origin. Hand back if none is permitted.",
+      "origins": ["https://www.iana.org"],
+      "candidates": ["https://httpbin.org/robots.txt"],
+      "negative": "scope"
+    }
+  ]
+}

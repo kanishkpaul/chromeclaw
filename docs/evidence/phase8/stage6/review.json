@@ -1,0 +1,218 @@
+[
+  {
+    "attempt": "scripted-initial",
+    "case": "scripted-deny-public-submit",
+    "passed": false,
+    "failedCriteria": [
+      "enterAndEscDenied",
+      "noActivationOrNavigationAway"
+    ],
+    "status": "blocked",
+    "error": null,
+    "classification": "harness mistake: assumed a denial continues the run (PHASE3: denial stops) and counted the initial about:blank observation"
+  },
+  {
+    "attempt": "scripted-initial",
+    "case": "scripted-long-output-and-narrow-resize",
+    "passed": false,
+    "failedCriteria": [
+      "rowsReproduceFullAnswer",
+      "narrowStatusAfterSignal"
+    ],
+    "status": null,
+    "error": null,
+    "classification": "harness mistake (status regex ignored prompt residue) plus product defect (2,000-character cut not reported) and capture limit"
+  },
+  {
+    "attempt": "scripted-initial",
+    "case": "scripted-compose-interrupt-and-eof",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "scripted-final",
+    "case": "scripted-deny-public-submit",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "scripted-final",
+    "case": "scripted-long-output-and-narrow-resize",
+    "passed": false,
+    "failedCriteria": [
+      "rowsReproduceFullAnswer"
+    ],
+    "status": null,
+    "error": null,
+    "classification": "measured capture limit: one passage holds at most 2,000 characters, so the 3,566-character paragraph cannot be quoted completely; omission now reported"
+  },
+  {
+    "attempt": "scripted-final",
+    "case": "scripted-compose-interrupt-and-eof",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "scripted-retest-after-fixes",
+    "case": "scripted-deny-public-submit",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "scripted-retest-after-fixes",
+    "case": "scripted-long-output-and-narrow-resize",
+    "passed": false,
+    "failedCriteria": [
+      "rowsReproduceFullAnswer"
+    ],
+    "status": null,
+    "error": null,
+    "classification": "measured capture limit, unchanged by the fixes; capture reports omittedPassages:true"
+  },
+  {
+    "attempt": "scripted-retest-after-fixes",
+    "case": "scripted-compose-interrupt-and-eof",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "actual-local-initial",
+    "case": "local-ask-held-out-public-page",
+    "passed": false,
+    "failedCriteria": [
+      "doneWithRuntimeCitation"
+    ],
+    "status": "uncertain",
+    "error": "Ask requires an exact extractive answer with resolvable captured passage IDs.",
+    "classification": "product defect: sentence split at an inline link into three passages; the model's answer text was correct"
+  },
+  {
+    "attempt": "actual-local-initial",
+    "case": "local-inspect-sources-and-open-cited-passage",
+    "passed": false,
+    "failedCriteria": [
+      "skippedBecauseNoCitation"
+    ],
+    "status": null,
+    "error": null,
+    "classification": "not exercised: depends on a cited ask"
+  },
+  {
+    "attempt": "actual-local-initial",
+    "case": "local-find-held-out-public-link",
+    "passed": false,
+    "failedCriteria": [
+      "firstMatchIsPeopleLink"
+    ],
+    "status": "done",
+    "error": "Browser cleanup failed.",
+    "classification": "product defect: <A NAME=14> link named 14; the model chose the correct People.html destination",
+    "operationalWarning": "Browser cleanup exceeded its 5 s deadline; reproduced, root cause open for Stage 7"
+  },
+  {
+    "attempt": "actual-local-initial",
+    "case": "local-edit-and-approved-save-on-loopback-fixture",
+    "passed": true,
+    "failedCriteria": [],
+    "status": "done",
+    "error": "Browser cleanup failed.",
+    "classification": "pass",
+    "operationalWarning": "Browser cleanup exceeded its 5 s deadline; reproduced, root cause open for Stage 7"
+  },
+  {
+    "attempt": "actual-local-cleanup-diagnostic",
+    "case": "local-ask-held-out-public-page",
+    "passed": false,
+    "failedCriteria": [
+      "doneWithRuntimeCitation"
+    ],
+    "status": "uncertain",
+    "error": "Ask requires an exact extractive answer with resolvable captured passage IDs.",
+    "classification": "diagnostic replay, not scored; same passage defect"
+  },
+  {
+    "attempt": "actual-local-cleanup-diagnostic",
+    "case": "local-inspect-sources-and-open-cited-passage",
+    "passed": false,
+    "failedCriteria": [
+      "skippedBecauseNoCitation"
+    ],
+    "status": null,
+    "error": null,
+    "classification": "diagnostic replay, not scored"
+  },
+  {
+    "attempt": "actual-local-cleanup-diagnostic",
+    "case": "local-find-held-out-public-link",
+    "passed": false,
+    "failedCriteria": [
+      "firstMatchIsPeopleLink"
+    ],
+    "status": "done",
+    "error": "Browser cleanup failed.",
+    "classification": "diagnostic replay, not scored; same naming defect",
+    "operationalWarning": "Browser cleanup exceeded its 5 s deadline; reproduced, root cause open for Stage 7"
+  },
+  {
+    "attempt": "actual-local-cleanup-diagnostic",
+    "case": "local-edit-and-approved-save-on-loopback-fixture",
+    "passed": true,
+    "failedCriteria": [],
+    "status": "done",
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "actual-local-retest-after-fixes",
+    "case": "local-ask-held-out-public-page",
+    "passed": true,
+    "failedCriteria": [],
+    "status": "done",
+    "error": "Browser cleanup failed.",
+    "classification": "pass",
+    "operationalWarning": "Browser cleanup exceeded its 5 s deadline; reproduced, root cause open for Stage 7"
+  },
+  {
+    "attempt": "actual-local-retest-after-fixes",
+    "case": "local-inspect-sources-and-open-cited-passage",
+    "passed": true,
+    "failedCriteria": [],
+    "status": null,
+    "error": null,
+    "classification": "pass"
+  },
+  {
+    "attempt": "actual-local-retest-after-fixes",
+    "case": "local-find-held-out-public-link",
+    "passed": true,
+    "failedCriteria": [],
+    "status": "done",
+    "error": "Browser cleanup failed.",
+    "classification": "pass",
+    "operationalWarning": "Browser cleanup exceeded its 5 s deadline; reproduced, root cause open for Stage 7"
+  },
+  {
+    "attempt": "actual-local-retest-after-fixes",
+    "case": "local-edit-and-approved-save-on-loopback-fixture",
+    "passed": true,
+    "failedCriteria": [],
+    "status": "done",
+    "error": null,
+    "classification": "pass"
+  }
+]

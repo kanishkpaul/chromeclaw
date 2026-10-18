@@ -209,12 +209,14 @@ silently convert a read request into a write task.
 
 ### daily-01: Make the three jobs dependable
 
-Use the TUI for a week of bounded personal tasks. Each failure becomes an eval before its fix.
+Run the seven live-testing stages in [PHASE8.md](PHASE8.md), using the TUI ourselves for real
+bounded tasks. Kanishk clarified that the stages can run back-to-back; there is no calendar-week
+requirement. Each confirmed product failure becomes an eval before its fix.
 Add adapters, cross-tab ask or routing complexity only when recorded needs justify them. Generate
 model reports from the acceptance reports, separating fixtures, perturbations, attacks and live
 held-out tasks. Report cold/warm latency, steps, tokens/cost, interventions and refusal errors.
 
-Done when: seven days of traces are reviewed, every observed failure has a regression, docs match
+Done when: all seven stages have reviewed traces, every confirmed product defect has a regression, docs match
 the actual commands and enabled plugins, and the TUI remains usable under long output and resize.
 Existing safety regressions still pass. Mock scores never stand in for model quality.
 

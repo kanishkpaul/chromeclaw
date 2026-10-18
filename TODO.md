@@ -47,5 +47,15 @@ remaining limits are in [completion evidence](docs/evidence/phase7/completion/RE
 [the contract](docs/PHASE7.md). Live testing and final presentation remain Phases 8 and 9.
 
 Phase 8 has started with a bounded public-site pilot, dummy BYOK wire emulation and cached local
-inference. Original failed attempts and controlled regressions remain evidence. The seven-day
-bounded-use gate is open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).
+inference. Original failed attempts and controlled regressions remain evidence. Kanishk clarified
+that Days 1–7 are seven back-to-back testing stages, not calendar days. The seven-stage gate is
+open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).
+
+Stages 1–5 are recorded. Stage 3 fixes duplicate ranked source URLs after a failing reproduction.
+Public search encountered a barrier; actual-local assisted synthesis and TUI misses remain
+explicit limits rather than passing capability claims. Stage 4 records pause/cancel/reopen,
+retained permissions and budgets, and an unsent edit with no replay. Stage 5 records dummy BYOK
+protocol/failure handling on real public reads. Stages 6–7 are pending. See
+[Stage 3 evidence](docs/evidence/phase8/stage3/README.md).
+See [Stage 4 evidence](docs/evidence/phase8/stage4/README.md) for recovery results and limits.
+See [Stage 5 evidence](docs/evidence/phase8/stage5/README.md) for protocol results and limits.

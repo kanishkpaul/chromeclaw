@@ -215,6 +215,12 @@ export function verifyDiscovery(
     };
   }
   const result = action.webFind;
+  if (
+    result?.outcome === "matches" &&
+    new Set(result.matches.map((match) => match.url)).size !==
+      result.matches.length
+  )
+    return { passed: false, detail: "Ranked source URLs must be unique." };
   const passed =
     result?.outcome === "matches" &&
     result.matches.every((match) =>

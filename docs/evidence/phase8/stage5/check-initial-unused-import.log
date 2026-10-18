@@ -1,0 +1,162 @@
+
+> chromeclaw@0.1.0 check /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && pnpm typecheck && pnpm lint && pnpm test
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/shared build: CLI Building entry: src/index.ts
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/egress build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 30ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 31ms
+packages/egress build: DTS Build start
+packages/shared build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 313ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 613ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 49.83 KB
+packages/browser build: ESM ⚡️ Build success in 11ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 628ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/index.js               98.93 KB
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM ⚡️ Build success in 15ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 795ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 9ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 792ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 11ms
+DTS Build start
+DTS ⚡️ Build success in 836ms
+DTS dist/index.d.ts 20.00 B
+
+> chromeclaw@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress typecheck && pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck
+
+
+> @chromeclaw/egress@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> tsc --noEmit
+
+
+> @chromeclaw/shared@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> tsc --noEmit
+
+
+> @chromeclaw/browser@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> tsc --noEmit
+
+
+> @chromeclaw/agent@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> tsc --noEmit
+
+
+> @chromeclaw/evals@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> tsc --noEmit
+
+
+> @chromeclaw/cli@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsc --noEmit
+
+
+> chromeclaw@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress lint && pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint
+
+
+> @chromeclaw/egress@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/shared@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/browser@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/agent@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> eslint src tests --ext .ts
+
+
+/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent/tests/live-byok.browser.mjs
+  7:8  error  'process' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+/Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @chromeclaw/agent@0.1.0 lint: `eslint src tests --ext .ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

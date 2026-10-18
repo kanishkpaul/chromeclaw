@@ -1,0 +1,383 @@
+
+> chromeclaw@0.1.0 eval:models /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/models.browser.mjs --source
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/shared build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI tsup v8.5.1
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Cleaning output folder
+packages/egress build: CLI Cleaning output folder
+packages/shared build: ESM Build start
+packages/egress build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 27ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 28ms
+packages/egress build: DTS Build start
+packages/shared build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 480ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 1079ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 50.91 KB
+packages/browser build: ESM ⚡️ Build success in 18ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 1047ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/index.js               99.51 KB
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM ⚡️ Build success in 22ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 1138ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 11ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 1143ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 13ms
+DTS Build start
+DTS ⚡️ Build success in 1208ms
+DTS dist/index.d.ts 20.00 B
+{
+  "suite": "phase4-model-accounting",
+  "source": true,
+  "actualLocal": false,
+  "responseFormat": "json",
+  "model": "synthetic-model",
+  "endpoint": "http://127.0.0.1:49849/read/v1",
+  "node": "v24.18.0",
+  "platform": "darwin",
+  "evidenceDir": "attempt-7mqaFs",
+  "checks": [
+    {
+      "id": "production-local-factory-browser-read-and-accounting",
+      "passed": true
+    },
+    {
+      "id": "typed-alias-cannot-change-the-fixed-user-task-or-repeat-its-commit",
+      "passed": true
+    },
+    {
+      "id": "local-transport-failure-records-selected-endpoint-without-hosted-fallback",
+      "passed": true
+    },
+    {
+      "id": "retry-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "parse-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "usage-invalid-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "usage-over-retains-reservation-refuses-another-send-and-reconstructs-budget",
+      "passed": true
+    },
+    {
+      "id": "missing-usage-is-explicit-null-without-a-fabricated-charge",
+      "passed": true
+    },
+    {
+      "id": "cli-read-exit-0-done-json",
+      "passed": true
+    },
+    {
+      "id": "cli-fail-exit-1-failed-json",
+      "passed": true
+    },
+    {
+      "id": "cli-blocked-exit-1-blocked-json",
+      "passed": true
+    },
+    {
+      "id": "cli-answer-exit-2-awaiting-answer-json",
+      "passed": true
+    },
+    {
+      "id": "cli-reopen-recaptures-and-returns-paused-exit-2",
+      "passed": true
+    },
+    {
+      "id": "cli-approval-exit-2-awaiting-approval-json",
+      "passed": true
+    },
+    {
+      "id": "cli-uncertain-exit-3-uncertain-json",
+      "passed": true
+    },
+    {
+      "id": "cli-cancel-exit-130-stopped-jsonl",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "read",
+      "runId": "run_mvdzfrbq_pxluw0n",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "read/run_mvdzfrbq_pxluw0n.jsonl"
+    },
+    {
+      "name": "form",
+      "runId": "run_mvdzfrxd_ycutii7",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "form/run_mvdzfrxd_ycutii7.jsonl"
+    },
+    {
+      "name": "local-failure",
+      "runId": "run_mvdzfsk8_43jcpxi",
+      "status": "failed",
+      "reservedCost": 0,
+      "relativeLog": "local-failure/run_mvdzfsk8_43jcpxi.jsonl"
+    },
+    {
+      "name": "retry",
+      "runId": "run_mvdzfsy2_1z2j052",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "retry/run_mvdzfsy2_1z2j052.jsonl"
+    },
+    {
+      "name": "parse",
+      "runId": "run_mvdzftfo_kddmjys",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "parse/run_mvdzftfo_kddmjys.jsonl"
+    },
+    {
+      "name": "usage-invalid",
+      "runId": "run_mvdzfuao_ess7bu7",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "usage-invalid/run_mvdzfuao_ess7bu7.jsonl"
+    },
+    {
+      "name": "usage-over",
+      "runId": "run_mvdzfupo_0mf75n4",
+      "status": "failed",
+      "reservedCost": 0.1,
+      "relativeLog": "usage-over/run_mvdzfupo_0mf75n4.jsonl"
+    },
+    {
+      "name": "unknown-usage",
+      "runId": "run_mvdzfv4e_st3kwvv",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "unknown-usage/run_mvdzfv4e_st3kwvv.jsonl"
+    },
+    {
+      "name": "cli-read",
+      "runId": "run_mvdzfvph_760puee",
+      "status": "done",
+      "reservedCost": 0,
+      "relativeLog": "cli-read/run_mvdzfvph_760puee.jsonl"
+    },
+    {
+      "name": "cli-fail",
+      "runId": "run_mvdzfwfm_4iokgq8",
+      "status": "failed",
+      "reservedCost": 0,
+      "relativeLog": "cli-fail/run_mvdzfwfm_4iokgq8.jsonl"
+    },
+    {
+      "name": "cli-blocked",
+      "runId": "run_mvdzfx1y_jdww2r7",
+      "status": "blocked",
+      "reservedCost": 0,
+      "relativeLog": "cli-blocked/run_mvdzfx1y_jdww2r7.jsonl"
+    },
+    {
+      "name": "cli-answer",
+      "runId": "run_mvdzfxo5_b7yxizh",
+      "status": "awaiting-answer",
+      "reservedCost": 0,
+      "relativeLog": "cli-answer/run_mvdzfxo5_b7yxizh.jsonl"
+    },
+    {
+      "name": "cli-approval",
+      "runId": "run_mvdzfywi_l5x4o7v",
+      "status": "awaiting-approval",
+      "reservedCost": 0,
+      "relativeLog": "cli-approval/run_mvdzfywi_l5x4o7v.jsonl"
+    },
+    {
+      "name": "cli-uncertain",
+      "runId": "run_mvdzfznx_1i514va",
+      "status": "uncertain",
+      "reservedCost": 0,
+      "relativeLog": "cli-uncertain/run_mvdzfznx_1i514va.jsonl"
+    },
+    {
+      "name": "cli-cancel",
+      "runId": "run_mvdzg0ab_jma5ts5",
+      "status": "stopped",
+      "reservedCost": 0,
+      "relativeLog": "cli-cancel/run_mvdzg0ab_jma5ts5.jsonl"
+    }
+  ],
+  "syntheticRequests": [
+    {
+      "scenario": "read",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "form",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "retry",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "parse",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "usage-invalid",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "usage-over",
+      "outputLimit": 16
+    },
+    {
+      "scenario": "unknown-usage",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "unknown-usage",
+      "outputLimit": 512
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "read",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "fail",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "blocked",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "answer",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "approval",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "approval",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "uncertain",
+      "outputLimit": 1024
+    },
+    {
+      "scenario": "cancel",
+      "outputLimit": 1024
+    }
+  ],
+  "providerAttempts": 22,
+  "savedCities": [
+    "Kolkata"
+  ],
+  "loginSubmissions": 0,
+  "limitations": [
+    "Hosted inference intentionally skipped by owner.",
+    "Client reservations are not verified provider invoices.",
+    "Synthetic HTTP services; no model capability score."
+  ]
+}

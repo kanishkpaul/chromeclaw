@@ -1,0 +1,196 @@
+
+> chromeclaw@0.1.0 check /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build && pnpm typecheck && pnpm lint && pnpm test
+
+
+> chromeclaw@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm build:packages && pnpm --filter @chromeclaw/cli build
+
+
+> chromeclaw@0.1.0 build:packages /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress --filter @chromeclaw/shared --filter @chromeclaw/browser --filter @chromeclaw/agent --filter @chromeclaw/evals build
+
+Scope: 5 of 7 workspace projects
+packages/egress build$ tsup src/index.ts --format esm --dts --clean
+packages/shared build$ tsup src/index.ts --format esm --dts --clean
+packages/egress build: CLI Building entry: src/index.ts
+packages/shared build: CLI Building entry: src/index.ts
+packages/egress build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI Using tsconfig: tsconfig.json
+packages/shared build: CLI tsup v8.5.1
+packages/egress build: CLI tsup v8.5.1
+packages/egress build: CLI Target: es2022
+packages/shared build: CLI Target: es2022
+packages/egress build: CLI Cleaning output folder
+packages/shared build: CLI Cleaning output folder
+packages/egress build: ESM Build start
+packages/shared build: ESM Build start
+packages/egress build: ESM dist/index.js 5.46 KB
+packages/egress build: ESM ⚡️ Build success in 27ms
+packages/shared build: ESM dist/index.js 18.72 KB
+packages/shared build: ESM ⚡️ Build success in 27ms
+packages/shared build: DTS Build start
+packages/egress build: DTS Build start
+packages/egress build: DTS ⚡️ Build success in 333ms
+packages/egress build: DTS dist/index.d.ts 1.29 KB
+packages/egress build: Done
+packages/shared build: DTS ⚡️ Build success in 612ms
+packages/shared build: DTS dist/index.d.ts 336.37 KB
+packages/shared build: Done
+packages/browser build$ tsup src/index.ts --format esm --dts --clean
+packages/browser build: CLI Building entry: src/index.ts
+packages/browser build: CLI Using tsconfig: tsconfig.json
+packages/browser build: CLI tsup v8.5.1
+packages/browser build: CLI Target: es2022
+packages/browser build: CLI Cleaning output folder
+packages/browser build: ESM Build start
+packages/browser build: ESM dist/index.js 49.83 KB
+packages/browser build: ESM ⚡️ Build success in 11ms
+packages/browser build: DTS Build start
+packages/browser build: DTS ⚡️ Build success in 641ms
+packages/browser build: DTS dist/index.d.ts 5.74 KB
+packages/browser build: Done
+packages/agent build$ tsup src/index.ts --format esm --dts --clean
+packages/agent build: CLI Building entry: src/index.ts
+packages/agent build: CLI Using tsconfig: tsconfig.json
+packages/agent build: CLI tsup v8.5.1
+packages/agent build: CLI Target: es2022
+packages/agent build: CLI Cleaning output folder
+packages/agent build: ESM Build start
+packages/agent build: ESM dist/tab-2MRQJHXE.js        469.00 B
+packages/agent build: ESM dist/back-OVKW3VTC.js       353.00 B
+packages/agent build: ESM dist/select-ALJQQITH.js     378.00 B
+packages/agent build: ESM dist/click-HK7IAYE5.js      365.00 B
+packages/agent build: ESM dist/wait-O4EXKB4C.js       396.00 B
+packages/agent build: ESM dist/index.js               98.74 KB
+packages/agent build: ESM dist/type-7TXD7YF7.js       403.00 B
+packages/agent build: ESM dist/press-6VP2UEIR.js      371.00 B
+packages/agent build: ESM dist/scroll-YUW5WSOD.js     459.00 B
+packages/agent build: ESM dist/navigate-P5HR5UKX.js   422.00 B
+packages/agent build: ESM dist/engine-tab-WW36YQSD.js 909.00 B
+packages/agent build: ESM ⚡️ Build success in 17ms
+packages/agent build: DTS Build start
+packages/agent build: DTS ⚡️ Build success in 798ms
+packages/agent build: DTS dist/index.d.ts 10.36 KB
+packages/agent build: Done
+packages/evals build$ tsup src/index.ts --format esm --dts --clean
+packages/evals build: CLI Building entry: src/index.ts
+packages/evals build: CLI Using tsconfig: tsconfig.json
+packages/evals build: CLI tsup v8.5.1
+packages/evals build: CLI Target: es2022
+packages/evals build: CLI Cleaning output folder
+packages/evals build: ESM Build start
+packages/evals build: ESM dist/index.js 8.58 KB
+packages/evals build: ESM ⚡️ Build success in 9ms
+packages/evals build: DTS Build start
+packages/evals build: DTS ⚡️ Build success in 806ms
+packages/evals build: DTS dist/index.d.ts 2.38 KB
+packages/evals build: Done
+
+> @chromeclaw/cli@0.1.0 build /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsup src/index.ts --format esm --dts --clean
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/index.js 79.71 KB
+ESM ⚡️ Build success in 11ms
+DTS Build start
+DTS ⚡️ Build success in 845ms
+DTS dist/index.d.ts 20.00 B
+
+> chromeclaw@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress typecheck && pnpm --filter @chromeclaw/shared typecheck && pnpm --filter @chromeclaw/browser typecheck && pnpm --filter @chromeclaw/agent typecheck && pnpm --filter @chromeclaw/evals typecheck && pnpm --filter @chromeclaw/cli typecheck
+
+
+> @chromeclaw/egress@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> tsc --noEmit
+
+
+> @chromeclaw/shared@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> tsc --noEmit
+
+
+> @chromeclaw/browser@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> tsc --noEmit
+
+
+> @chromeclaw/agent@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> tsc --noEmit
+
+
+> @chromeclaw/evals@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> tsc --noEmit
+
+
+> @chromeclaw/cli@0.1.0 typecheck /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> tsc --noEmit
+
+
+> chromeclaw@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw
+> pnpm --filter @chromeclaw/egress lint && pnpm --filter @chromeclaw/shared lint && pnpm --filter @chromeclaw/browser lint && pnpm --filter @chromeclaw/agent lint && pnpm --filter @chromeclaw/evals lint && pnpm --filter @chromeclaw/cli lint
+
+
+> @chromeclaw/egress@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/egress
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/shared@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/shared
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/browser@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/browser
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/agent@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/agent
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/evals@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/packages/evals
+> eslint src tests --ext .ts
+
+
+> @chromeclaw/cli@0.1.0 lint /Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli
+> eslint src tests --ext .ts
+
+
+> chromeclaw@0.1.0 test /Users/kanishk/Downloads/GitHub/chromeclaw
+> vitest run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/kanishk/Downloads/GitHub/chromeclaw
+
+ ✓ packages/agent/tests/config.test.ts (6 tests) 8ms
+ ✓ packages/agent/tests/discovery.test.ts (4 tests) 3ms
+ ✓ packages/agent/tests/find.test.ts (7 tests) 4ms
+ ✓ packages/agent/tests/storage.test.ts (4 tests) 31ms
+ ✓ packages/agent/tests/stream.test.ts (4 tests) 39ms
+ ✓ packages/agent/tests/tools.test.ts (3 tests) 5ms
+ ✓ packages/agent/tests/safety.test.ts (7 tests) 4ms
+ ✓ packages/agent/tests/ask.test.ts (3 tests) 3ms
+ ✓ packages/agent/tests/prompt.test.ts (4 tests) 2ms
+ ✓ packages/evals/tests/scoring.test.ts (6 tests) 11ms
+ ✓ packages/agent/tests/search.test.ts (2 tests) 3ms
+ ✓ packages/agent/tests/history.test.ts (1 test) 9ms
+ ✓ apps/cli/tests/terminal.test.ts (3 tests) 12ms
+ ✓ packages/shared/tests/architecture.test.ts (2 tests) 89ms
+ ✓ packages/agent/tests/openai.test.ts (1 test) 4ms
+ ✓ packages/egress/tests/http.test.ts (8 tests) 570ms
+   ✓ bounded application egress > caps 429 retries and withholds HTTP error bodies 311ms
+ ✓ packages/browser/tests/targets.test.ts (1 test) 2ms
+ ✓ packages/shared/tests/schemas.test.ts (3 tests) 2ms
+ ✓ packages/shared/tests/utils.test.ts (2 tests) 1ms
+ ✓ packages/agent/tests/planner.test.ts (2 tests) 3ms
+ ✓ apps/cli/tests/cli.test.ts (5 tests) 1444ms
+   ✓ provider CLI boundary > rejects invalid provider and run settings with no successful run 664ms
+
+ Test Files  21 passed (21)
+      Tests  78 passed (78)
+   Start at  17:30:00
+   Duration  1.68s (transform 405ms, setup 0ms, collect 1.42s, tests 2.25s, environment 2ms, prepare 931ms)
+
