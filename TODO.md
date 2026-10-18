@@ -50,3 +50,8 @@ Phase 8 has started with a bounded public-site pilot, dummy BYOK wire emulation 
 inference. Original failed attempts and controlled regressions remain evidence. Kanishk clarified
 that Days 1–7 are seven back-to-back testing stages, not calendar days. The seven-stage gate is
 open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).
+
+Stages 1–3 are recorded. Stage 3 fixes duplicate ranked source URLs after a failing reproduction.
+Public search encountered a barrier; actual-local assisted synthesis and TUI misses remain
+explicit limits rather than passing capability claims. Stages 4–7 are pending. See
+[Stage 3 evidence](docs/evidence/phase8/stage3/README.md).

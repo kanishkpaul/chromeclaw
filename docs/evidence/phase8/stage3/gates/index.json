@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/live-research-regression.browser.mjs",
+      "--source"
+    ],
+    "exitCode": 0,
+    "log": "gate-0.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live-research-regression.browser.mjs"
+    ],
+    "exitCode": 0,
+    "log": "gate-1.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/live-research-regression.browser.mjs",
+      "--live-source"
+    ],
+    "exitCode": 0,
+    "log": "gate-2.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsx",
+      "--tsconfig",
+      "tsconfig.base.json",
+      "packages/agent/tests/discovery.browser.mjs"
+    ],
+    "exitCode": 0,
+    "log": "gate-3.log"
+  },
+  {
+    "command": [
+      "node",
+      "packages/agent/tests/discovery.browser.mjs",
+      "--built"
+    ],
+    "exitCode": 0,
+    "log": "gate-4.log"
+  }
+]

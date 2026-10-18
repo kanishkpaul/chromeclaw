@@ -182,4 +182,14 @@ failed attempts and exit nonzero on misses. Synthetic history remains a separate
 subset. `--followup` on the underlying script selects revised-label development checks rather
 than changing original scores. The live commands stay manual; CI runs `eval:live-regressions`
 against controlled pages in source/compiled modes. See [PHASE8.md](PHASE8.md) for scope, scoring,
-cleanup, emulation limits and the unfinished seven-day gate.
+cleanup, emulation limits and the unfinished seven-stage gate.
+
+The owner superseded the calendar-day gate with seven back-to-back stages (D-028).
+Stage 3's `eval:live-research` keeps public search and controlled-candidate/live-source lanes
+separate. `--actual-local --public-probe` runs the single public query; the default candidate
+lane is dummy BYOK, and `--actual-local` measures local source synthesis. Do not count assisted
+retrieval as public-search quality or negative zero-inference cases as model answers.
+`eval:live-regressions` includes source/compiled ranked-URL uniqueness checks. The underlying
+`live-research-regression.browser.mjs --live-source` is a manual real-source engineering retest,
+not inference or a CI network dependency. The [Stage 3 report](evidence/phase8/stage3/README.md)
+retains the pre-fix failures and frozen local/TUI misses.

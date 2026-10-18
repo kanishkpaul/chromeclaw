@@ -1,0 +1,88 @@
+{
+  "stage": 3,
+  "parentPr": "https://github.com/kanishkpaul/chromeclaw/pull/15",
+  "parentCommit": "eee18ca1a4af0f108cbc101e82f2b7186e1e51b8",
+  "attempts": [
+    {
+      "name": "public-search",
+      "report": "public-search/report.json",
+      "passed": 0,
+      "total": 1,
+      "exitCode": 1,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "emulated",
+      "report": "emulated/report.json",
+      "passed": 6,
+      "total": 6,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "actual-local",
+      "report": "actual-local/report.json",
+      "passed": 3,
+      "total": 6,
+      "exitCode": 1,
+      "qualityDenominator": "local positive assisted tasks: 0/3; negative cases use zero inference"
+    },
+    {
+      "name": "terminal",
+      "report": "terminal/report.json",
+      "passed": 1,
+      "total": 2,
+      "exitCode": 1,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "regression-before",
+      "report": "regression-before/report.json",
+      "passed": 2,
+      "total": 3,
+      "exitCode": 1,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "regression-source",
+      "report": "regression-source/report.json",
+      "passed": 3,
+      "total": 3,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "regression-compiled",
+      "report": "regression-compiled/report.json",
+      "passed": 3,
+      "total": 3,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "regression-live-source",
+      "report": "regression-live-source/report.json",
+      "passed": 3,
+      "total": 3,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "discovery-source",
+      "report": "discovery-source/report.json",
+      "passed": 60,
+      "total": 60,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    },
+    {
+      "name": "discovery-compiled",
+      "report": "discovery-compiled/report.json",
+      "passed": 60,
+      "total": 60,
+      "exitCode": 0,
+      "qualityDenominator": "not an independent model-quality denominator"
+    }
+  ],
+  "fixtureSha256": "24a0666792922a721cfd12a5aa1cbc8e32b2c09aa2b552d1bcc11af5beb94523"
+}

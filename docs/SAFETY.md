@@ -148,3 +148,11 @@ still refuse. Interactive action outcomes retain every request refusal. The cont
 regression independently checks zero requests at denied asset/telemetry endpoints in source and
 compiled modes. Styling/scripts can consequently be absent, and captures remain bounded by the
 existing visibility rules. This does not establish arbitrary live-site isolation or correctness.
+
+Stage 3 requires distinct ranked source URLs in addition to valid source-bound references.
+A duplicate result refuses completion rather than being silently rewritten into a new model
+answer. Controlled source/compiled and real-source checks retain single-result completion while
+rejecting repeated URLs with otherwise valid evidence. Source origins, query construction,
+model accounting and action permissions remain unchanged. The fixed public search lane stops
+at a challenge; a separately declared controlled candidate index with actual public page reads
+is assisted retrieval, never evidence of public-search availability or broad relevance.

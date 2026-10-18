@@ -2,6 +2,7 @@
 import codecs
 import fcntl
 import json
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import os
 from pathlib import Path
 import pty
@@ -13,6 +14,8 @@ import sys
 import tempfile
 import termios
 import time
+import threading
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[3]
 MODEL = os.environ.get('CHROMECLAW_TEST_LOCAL_MODEL')
@@ -20,21 +23,51 @@ ENDPOINT = os.environ.get('CHROMECLAW_TEST_LOCAL_URL')
 if not MODEL or not ENDPOINT:
     raise RuntimeError('Explicit local endpoint/model required; no fallback.')
 DAY2 = '--day2' in sys.argv
+STAGE3 = '--stage3' in sys.argv
+if DAY2 and STAGE3:
+    raise RuntimeError('Choose one terminal scenario.')
 SITE = 'https://httpbin.org/robots.txt' if DAY2 else 'https://example.com/'
 ORIGIN = 'https://httpbin.org' if DAY2 else 'https://example.com'
-ARTIFACTS = Path(tempfile.mkdtemp(prefix='terminal-session2-' if DAY2 else 'terminal-', dir=ROOT / '.chromeclaw/phase8-live'))
+ARTIFACTS = Path(tempfile.mkdtemp(prefix='terminal-stage3-' if STAGE3 else 'terminal-session2-' if DAY2 else 'terminal-', dir=ROOT / '.chromeclaw/phase8-live'))
 WORK = Path(tempfile.mkdtemp(prefix='chromeclaw-live-tui-'))
 LOGS = ARTIFACTS / 'runs'
 LOGS.mkdir()
 expected = 'User-agent: *\nDisallow: /deny' if DAY2 else 'This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.'
 question = 'Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.' if DAY2 else 'Quote the complete English paragraph describing this domain use, with its exact captured passage citation.'
+index_server, index_requests = None, []
+source_urls = ['https://httpbin.org/robots.txt', 'https://httpbin.org/html']
+if STAGE3:
+    SITE = source_urls[0]
+    question = 'Create an inventory of the selected HTTP demo resources. Quote the complete robots.txt text and the Moby-Dick heading, one complete captured passage from each source. Return two extract claims, one per source, and join their texts with newline. Do not infer production policy.'
+
+    class CandidateIndex(BaseHTTPRequestHandler):
+        def do_GET(self):
+            parsed = urlsplit(self.path)
+            admitted = parsed.path == '/index' and parse_qs(parsed.query).get('q') == [question]
+            index_requests.append({'path': parsed.path, 'queryMatches': admitted})
+            self.send_response(200 if admitted else 404)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.end_headers()
+            if admitted:
+                self.wfile.write(('Controlled candidate list, not live search. ' + ''.join('<a href="' + url + '">Selected source</a>' for url in source_urls)).encode())
+
+        def log_message(self, *_args):
+            # Structured candidate-index requests are retained with the terminal report.
+            return
+
+    index_server = ThreadingHTTPServer(('127.0.0.1', 0), CandidateIndex)
+    threading.Thread(target=index_server.serve_forever, daemon=True).start()
+    ORIGIN = 'http://127.0.0.1:' + str(index_server.server_port)
+    expected = ['User-agent: *\nDisallow: /deny', 'Herman Melville - Moby-Dick']
 clean = {key: value for key, value in os.environ.items() if not key.startswith('CHROMECLAW_') and key not in ['OPENAI_API_KEY', 'HF_TOKEN', 'HUGGINGFACE_API_KEY', 'OPENAI_BASE_URL']}
 clean.update(TERM='xterm-256color', NO_COLOR='1', DOTENV_CONFIG_PATH='/nonexistent-chromeclaw-env')
 master, slave = pty.openpty()
 fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 40, 100, 0, 0))
 command = ['node', str(ROOT / 'apps/cli/dist/index.js'), 'tui', '--provider', 'local', '--model', MODEL,
-           '--base-url', ENDPOINT, '--origin', ORIGIN, '--no-stream', '--response-format', 'llama-schema',
+           '--base-url', ENDPOINT, '--origin', ORIGIN, *(['https://httpbin.org'] if STAGE3 else []), '--no-stream', '--response-format', 'llama-schema',
            '--max-output-tokens', '1200', '--request-timeout-ms', '90000', '--timeout-ms', '180000', '--max-steps', '4', '--log-dir', str(LOGS)]
+if STAGE3:
+    command.append('--allow-loopback')
 process = subprocess.Popen(command, stdin=slave, stdout=slave, stderr=slave, cwd=WORK, env=clean, start_new_session=True)
 os.close(slave)
 decoder = codecs.getincrementaldecoder('utf8')('replace')
@@ -84,10 +117,18 @@ def completed():
 
 try:
     wait(lambda: 'ready' in text, 20)
-    os.write(master, ('/ask ' + SITE + ' ' + question + '\n').encode())
+    request = '/research ' + json.dumps({'mode': 'research', 'engineUrl': ORIGIN + '/index', 'queries': [question], 'maxSources': 5}) if STAGE3 else '/ask ' + SITE + ' ' + question
+    os.write(master, (request + '\n').encode())
     wait(completed, 180)
     result = completed()
-    checks.append({'id': 'actual-local-public-read-through-tui', 'passed': result['status'] == 'done' and result.get('finalAnswer') == expected, 'status': result['status']})
+    passed = result['status'] == 'done' and (all(text in result.get('finalAnswer', '') for text in expected) if STAGE3 else result.get('finalAnswer') == expected)
+    if STAGE3:
+        records = [json.loads(line) for file in LOGS.glob('*.jsonl') for line in file.read_text().split('\n')[:-1]]
+        observations = {event['payload']['snapshotId']: event['payload'] for event in records if event['type'] == 'observation'}
+        claims = [claim for event in records if event['type'] == 'step' for claim in event['payload'].get('action', {}).get('claims', [])]
+        cited_urls = {observations.get(ref['snapshotId'], {}).get('url') for claim in claims for ref in claim['evidence']}
+        passed = passed and set(source_urls).issubset(cited_urls)
+    checks.append({'id': 'actual-local-assisted-research-through-tui' if STAGE3 else 'actual-local-public-read-through-tui', 'passed': passed, 'status': result['status']})
     os.write(master, b'/sources\n')
     drain(1)
     fcntl.ioctl(master, termios.TIOCSWINSZ, struct.pack('HHHH', 28, 60, 0, 0))
@@ -106,12 +147,15 @@ finally:
             process.wait(timeout=5)
     drain()
     os.close(master)
+    if index_server:
+        index_server.shutdown()
+        index_server.server_close()
     shutil.rmtree(WORK)
     (ARTIFACTS / 'terminal.txt').write_text(text)
     with (ARTIFACTS / 'terminal.cast').open('w') as output:
-        output.write(json.dumps({'version': 2, 'width': 100, 'height': 40, 'title': 'ChromeClaw session 2 live local read' if DAY2 else 'ChromeClaw Day 1 live local read; development follow-up'}) + '\n')
+        output.write(json.dumps({'version': 2, 'width': 100, 'height': 40, 'title': 'ChromeClaw Stage 3 assisted live-source research' if STAGE3 else 'ChromeClaw session 2 live local read' if DAY2 else 'ChromeClaw Day 1 live local read; development follow-up'}) + '\n')
         for event in recording:
             output.write(json.dumps(event) + '\n')
-    (ARTIFACTS / 'report.json').write_text(json.dumps({'suite': 'live-01-terminal-session2' if DAY2 else 'live-01-terminal-development-followup', 'actualLocal': True, 'hostedInference': False, 'model': MODEL, 'site': SITE, 'checks': checks, 'latencyMs': round((time.monotonic() - started) * 1000)}, indent=2) + '\n')
+    (ARTIFACTS / 'report.json').write_text(json.dumps({'suite': 'live-01-terminal-stage3' if STAGE3 else 'live-01-terminal-session2' if DAY2 else 'live-01-terminal-development-followup', 'actualLocal': True, 'hostedInference': False, 'lane': 'assisted live sources; controlled candidate index, not public search' if STAGE3 else 'public read', 'indexRequests': index_requests, 'model': MODEL, 'site': SITE, 'sources': source_urls if STAGE3 else [SITE], 'checks': checks, 'latencyMs': round((time.monotonic() - started) * 1000)}, indent=2) + '\n')
 print(ARTIFACTS)
 assert len(checks) == 2 and all(check['passed'] for check in checks)

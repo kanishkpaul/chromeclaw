@@ -42,7 +42,8 @@
     "eval:discovery-terminal": "pnpm build && python3 apps/cli/tests/discovery.pty.py",
     "eval:live": "pnpm build && node packages/agent/tests/live.browser.mjs",
     "eval:live-local": "pnpm build && node packages/agent/tests/live.browser.mjs --actual-local",
-    "eval:live-regressions": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/live-regressions.browser.mjs --source && node packages/agent/tests/live-regressions.browser.mjs",
+    "eval:live-regressions": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/live-regressions.browser.mjs --source && node packages/agent/tests/live-regressions.browser.mjs && tsx --tsconfig tsconfig.base.json packages/agent/tests/live-research-regression.browser.mjs --source && node packages/agent/tests/live-research-regression.browser.mjs",
+    "eval:live-research": "pnpm build && node packages/agent/tests/live-research.browser.mjs",
     "eval:live-terminal": "pnpm build && python3 apps/cli/tests/live.pty.py"
   },
   "devDependencies": {

@@ -1,0 +1,44 @@
+{
+  "stage": 3,
+  "publicProbe": {
+    "queryCount": 1,
+    "barrierHandback": true,
+    "modelAttempts": 0,
+    "fallback": false
+  },
+  "modelPositiveAssisted": {
+    "correct": 0,
+    "total": 3
+  },
+  "negativeNoInference": {
+    "correct": 3,
+    "total": 3
+  },
+  "findings": [
+    {
+      "case": "assisted-standard-titles",
+      "classification": "Navigation label Domains chosen instead of Example Domains; references valid but gold title failed; cleanup warning retained."
+    },
+    {
+      "case": "assisted-rfc-url",
+      "classification": "Three copies of one canonical URL and invalid passage quotation. Original run refused. A separate valid-reference duplicate case reproduced an acceptance defect."
+    },
+    {
+      "case": "assisted-httpbin-inventory",
+      "classification": "References resolve but answer includes an extra blank line rather than exactly joining claim texts; original contract unchanged."
+    },
+    {
+      "case": "terminal",
+      "classification": "Body prose selected instead of Moby-Dick heading, invalid claim references; research uncertain. Source/trace, resize and exit passed."
+    }
+  ],
+  "confirmedDefect": "Duplicate ranked URLs accepted as multiple ranks with valid references; unit and browser failed before fix, source/compiled/live-source regressions pass after fix.",
+  "nonClaims": [
+    "public search quality",
+    "assisted retrieval as public-search availability",
+    "general reasoning or entailment",
+    "negative zero-inference checks as model successes",
+    "complete live-network isolation"
+  ],
+  "phase9": "unstarted"
+}

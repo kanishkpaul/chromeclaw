@@ -1,6 +1,6 @@
 # Phase 8: live testing
 
-Status: Stages 1 and 2 recorded; Stages 3–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
+Status: Stages 1–3 recorded; Stages 4–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
 seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
 means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
 Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
@@ -49,6 +49,15 @@ Stage 2 uses `node packages/agent/tests/live.browser.mjs --day2` for dummy BYOK,
 `day2` filenames/flags identify the second stage, not elapsed days. Its frozen manifest retains
 pre-clarification calendar metadata for provenance; D-028 supersedes those fields.
 See [Stage 2 evidence](evidence/phase8/stage2/README.md).
+
+Stage 3 uses `pnpm eval:live-research` for dummy BYOK with a controlled candidate index and
+real public sources. Append `--actual-local` with the explicit endpoint/model variables for
+actual inference. The separate `--actual-local --public-probe` lane issues one fixed public
+search query; a challenge ends it without a retry or engine switch. Assisted retrieval is
+predeclared separately and cannot count as a successful public search. The actual-local TUI
+workflow is `python3 apps/cli/tests/live.pty.py --stage3` with those same model variables.
+See [Stage 3 evidence](evidence/phase8/stage3/README.md) for original misses, a duplicate-ranked-URL
+reproduction/fix and a separately labelled real-source regression check.
 
 The emulator injects the existing OpenAI-compatible adapter at its test seam, with a loopback
 HTTP server, dummy bearer key, synthetic usage and declared reservation ceilings. Production

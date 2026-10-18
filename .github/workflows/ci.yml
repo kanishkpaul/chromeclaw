@@ -62,5 +62,6 @@ jobs:
             .chromeclaw/phase7-safety
             .chromeclaw/phase7-terminal
             .chromeclaw/phase8-regressions
+            .chromeclaw/phase8-research-regression
           include-hidden-files: true
           if-no-files-found: error

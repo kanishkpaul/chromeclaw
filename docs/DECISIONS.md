@@ -447,3 +447,21 @@ site drift and barriers remain limitations, not capability passes. Keep dummy BY
 history per the owner's scope. No new dependency, top-level directory, runtime permission or
 browser frontend is added. Historical Day 1 reports and already-frozen Stage 2 fixture bytes
 retain their old calendar metadata for provenance; those fields no longer control acceptance.
+
+## D-029 · 2026-10-18 · Distinct ranked URLs and explicit retrieval provenance
+
+Stage 3's actual local proposal repeated the same RFC URL three times. A controlled browser
+reproduction with valid citations and a focused unit test confirmed that the completion verifier
+accepted duplicate URLs as distinct ranks. Require unique exact source URLs before accepting a
+web/history result; citation-to-source binding already requires the canonical captured URL.
+The gate does not repair model results, add destinations or relax source evidence. Preserve the
+original live misses, then verify duplicate refusal and single-result success in source/compiled
+fixtures and a separate real-source check.
+
+Keep one fixed public-search probe separate from an independently predeclared assisted lane.
+The latter uses a controlled candidate index with real public source reads; it cannot establish
+public-search availability or retrieval quality. A challenge stops the public probe without a
+retry, solver or engine switch. BYOK remains dummy emulation; actual local inference and TUI
+outcomes remain separately scored. No dependency, top-level directory, search backend or task
+permission is added. Subsequent live PRs stack on the preceding stage and stay unmerged until
+Kanishk asks.
