@@ -1,0 +1,126 @@
+{
+  "checks": [
+    {
+      "id": "unowned-page-cannot-borrow-pending-reader-admission",
+      "passed": true
+    },
+    {
+      "id": "five-concurrent-readers-preserve-foreground-and-refuse-sixth",
+      "passed": true
+    },
+    {
+      "id": "passages-exclude-values-and-block-inline-script-query-and-frame-requests",
+      "passed": true
+    },
+    {
+      "id": "canonical-deduplication-query-and-unpermitted-origin-refusal",
+      "passed": true
+    },
+    {
+      "id": "redirect-and-missing-source-failures-stay-local",
+      "passed": true
+    },
+    {
+      "id": "cancellation-closes-only-the-source-tab",
+      "passed": true
+    },
+    {
+      "id": "twenty-source-budget-does-not-reset-after-batches",
+      "passed": true
+    },
+    {
+      "id": "revocation-refuses-further-reads-and-preserves-foreground",
+      "passed": true
+    },
+    {
+      "id": "expiry-refuses-before-source-creation",
+      "passed": true
+    },
+    {
+      "id": "read-and-navigation-authority-required-before-creation",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "/held4"
+    },
+    {
+      "method": "GET",
+      "url": "/held0"
+    },
+    {
+      "method": "GET",
+      "url": "/held1"
+    },
+    {
+      "method": "GET",
+      "url": "/held3"
+    },
+    {
+      "method": "GET",
+      "url": "/held2"
+    },
+    {
+      "method": "GET",
+      "url": "/source"
+    },
+    {
+      "method": "GET",
+      "url": "/redirect"
+    },
+    {
+      "method": "GET",
+      "url": "/missing"
+    },
+    {
+      "method": "GET",
+      "url": "/held-cancel"
+    },
+    {
+      "method": "GET",
+      "url": "/budget0"
+    },
+    {
+      "method": "GET",
+      "url": "/budget1"
+    },
+    {
+      "method": "GET",
+      "url": "/budget2"
+    },
+    {
+      "method": "GET",
+      "url": "/budget3"
+    },
+    {
+      "method": "GET",
+      "url": "/budget4"
+    },
+    {
+      "method": "GET",
+      "url": "/budget5"
+    },
+    {
+      "method": "GET",
+      "url": "/budget6"
+    },
+    {
+      "method": "GET",
+      "url": "/budget7"
+    },
+    {
+      "method": "GET",
+      "url": "/budget8"
+    },
+    {
+      "method": "GET",
+      "url": "/budget9"
+    },
+    {
+      "method": "GET",
+      "url": "/budget10"
+    }
+  ]
+}

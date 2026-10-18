@@ -33,6 +33,7 @@ jobs:
       - run: pnpm exec tsx --tsconfig tsconfig.base.json packages/browser/tests/work.browser.mjs --built
       - run: pnpm eval:work
       - run: pnpm eval:session
+      - run: pnpm eval:readers
       - run: pnpm eval:tui
       - uses: actions/upload-artifact@v4
         if: always()
@@ -52,5 +53,6 @@ jobs:
             .chromeclaw/phase6-work
             .chromeclaw/phase6-work-safety
             .chromeclaw/phase6-find
+            .chromeclaw/phase7-readers
           include-hidden-files: true
           if-no-files-found: error

@@ -112,3 +112,13 @@ and losing edits. Up to two answers can guide remaining work; they cannot replac
 approval or renew permissions. Noninteractive finishes still return uncertain. Tests independently
 check that a premature finish followed by a human correction produces one correct save, without
 repeating a possible commit. Evaluation reports count completion judgments and session hand-backs.
+
+Phase 7's opt-in background readers retain the original origin/read/navigation/expiry checks.
+Only exact adapter-created tabs are admitted. Readers disable scripts before navigation and
+refuse query-bearing requests, subframes, redirects, secondary navigation and nonstatic resources.
+They capture visible passages without form values. Five concurrent tabs, twenty unique attempted
+sources and fifteen seconds per reader bound this first slice. Cancellation/revocation closes
+reader-owned tabs only. The default action runtime has no reader admission. This does not yet
+establish research prompt-injection resistance or supported synthesis; those gates remain open.
+Static reads share the task context's cookies and retain the existing GET, DNS and network limits.
+See [PHASE7.md](PHASE7.md) and its source/compiled browser evidence.

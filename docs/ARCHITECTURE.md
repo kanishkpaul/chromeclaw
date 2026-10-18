@@ -92,3 +92,11 @@ paths. The runtime composes them and retains explicit legacy search/extraction/s
 The other three final plugin registries and pure-core extraction remain pending. Owned tabs and
 back destinations belong to the browser adapter, not personal profile/history access.
 See [PHASE6.md](PHASE6.md), D-023 and the controlled acceptance report.
+
+## Phase 7 source-reader boundary
+
+`browser/readers.ts` adds opt-in admission for five bounded static reader tabs. The existing
+navigation guard still checks task origins, DNS, expiry and redirects; reader admission further
+restricts requests and never changes the active task page. This browser primitive is not wired
+into a new ability yet. Search, research orchestration and history integration remain pending.
+See [PHASE7.md](PHASE7.md) and D-024.

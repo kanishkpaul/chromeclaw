@@ -39,3 +39,7 @@ tool plugins. Twenty scripted workflows pass through the TUI with independent st
 Actual local-model outcomes, misses and interventions are reported separately; this is controlled
 engineering acceptance, not reliable autonomous or held-out capability. See
 [Phase 6 scope](docs/PHASE6.md) and [evidence](docs/evidence/phase6/completion/README.md).
+
+Phase 7 has started with opt-in background source readers and ten source/compiled browser fixture
+groups. Search, research synthesis, terminal orchestration and history/web finding remain open.
+See [the Phase 7 contract](docs/PHASE7.md) and [starter evidence](docs/evidence/phase7/readers/README.md).
