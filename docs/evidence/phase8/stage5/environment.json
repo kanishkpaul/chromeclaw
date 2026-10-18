@@ -1,0 +1,25 @@
+{
+  "foregroundAtStart": [
+    "Finder",
+    "ChatGPT/Codex"
+  ],
+  "initialMemoryAvailablePercent": 76,
+  "stoppedUnneededWorkloads": [
+    {
+      "pid": 9145,
+      "executable": "/Applications/WhatsApp.app/Contents/PlugIns/ServiceExtension.appex/Contents/MacOS/ServiceExtension",
+      "signal": "SIGTERM"
+    }
+  ],
+  "transientPythonExitedBeforeInspection": true,
+  "actualHostedInference": false,
+  "actualLocalInference": false,
+  "leftoverChromeOrModelProcesses": [],
+  "otherApplicationExecutablesAtEnd": [
+    "13885 107008 /Applications/WhatsApp.app/Contents/PlugIns/ServiceExtension.appex/Contents/MacOS/ServiceExtension"
+  ],
+  "memoryAfter": "The system has 17179869184 (1048576 pages with a page size of 16384).\n\nStats: \nPages free: 85527 \nPages purgeable: 9413 \nPages purged: 165006598 \n\nSwap I/O:\nSwapins: 16874688 \nSwapouts: 21093491 \n\nPage Q counts:\nPages active: 337012 \nPages inactive: 370677 \nPages speculative: 1851 \nPages throttled: 0 \nPages wired down: 157680 \n\nCompressor Stats:\nPages used by compressor: 59365 \nPages decompressed: 1160601137 \nPages compressed: 1300429549 \n\nFile I/O:\nPageins: 166520074 \nPageouts: 537618 \n\nSystem-wide memory free percentage: 77%\n",
+  "node": "v24.18.0",
+  "pnpm": "10.23.0",
+  "chrome": "Google Chrome 155.0.8059.80"
+}

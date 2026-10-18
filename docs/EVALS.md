@@ -200,3 +200,10 @@ the underlying script with explicit endpoint/model variables for the two actual-
 during local planning. The [Stage 4 report](evidence/phase8/stage4/README.md) separates recovery
 mechanics, narrow extractive model results, controlled lifecycle gates and harness corrections.
 These public-site commands remain manual; existing lifecycle fixtures are deterministic gates.
+
+Stage 5's `eval:live-byok` uses only an explicit dummy-provider adapter seam and public read-only
+Chrome tasks. Its frozen seventeen cases check JSON/SSE, reply repair, retry ceilings, usage,
+timeouts, cancellation and per-attempt durable reservations. Successful fault handling is not a
+successful model answer: expected failures count toward the protocol contract only. The
+[Stage 5 report](evidence/phase8/stage5/README.md) separates synthetic usage/reservations from
+zero actual hosted spending. Source/compiled model fixtures retain configuration/fallback gates.

@@ -1,6 +1,6 @@
 # Phase 8: live testing
 
-Status: Stages 1–4 recorded; Stages 5–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
+Status: Stages 1–5 recorded; Stages 6–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
 seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
 means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
 Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
@@ -72,6 +72,13 @@ silently counting an emulator run. `python3 apps/cli/tests/live.pty.py --stage4`
 pause, cancel, reopen, resume and cancellation during a second local request. Reopen reloads a
 permitted page and pauses; it does not promise to preserve unsaved form edits or replay them.
 See [Stage 4 evidence](evidence/phase8/stage4/README.md), including original harness failures.
+
+Stage 5 uses `pnpm eval:live-byok` for seventeen frozen dummy-provider protocol/failure cases
+with real public-page reads. It never selects an actual model or real hosted endpoint. The
+emulator checks a durable reservation before receiving each request, including retries. See
+[Stage 5 evidence](evidence/phase8/stage5/README.md) for JSON/SSE, malformed replies, usage,
+timeouts, cancellation, authentication errors and budget limits. This is protocol evidence,
+not vendor authentication, TLS, invoice validation or model capability.
 
 ## Scoring and review
 
