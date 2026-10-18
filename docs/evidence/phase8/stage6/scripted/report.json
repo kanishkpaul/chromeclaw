@@ -1,0 +1,110 @@
+{
+  "suite": "live-01-stage6-terminal",
+  "lane": "scripted",
+  "actualLocal": false,
+  "hostedInference": false,
+  "model": "synthetic-stage6-model",
+  "manifestSha256": "41461f0eef53bf711421f45e6c0afb21aa2b4e752c0f720d7f85418e6a62cd8f",
+  "results": [
+    {
+      "id": "scripted-deny-public-submit",
+      "lane": "scripted",
+      "passed": true,
+      "criteria": {
+        "cardShowsDurablePendingId": true,
+        "wrongIdRefusedAndStillPending": true,
+        "enterAndEscDenied": true,
+        "noActivationOrNavigationAway": true
+      },
+      "runIds": [
+        "run_mvdw9luh_8gcpbkx",
+        "run_mvdw9oef_s0uc80r"
+      ],
+      "acts": [
+        "navigate",
+        "type",
+        "navigate",
+        "type"
+      ],
+      "observationUrls": [
+        "about:blank",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "about:blank",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post",
+        "https://httpbin.org/forms/post"
+      ],
+      "gates": [
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "block",
+          "reason": "The exact action was denied.",
+          "approved": false
+        },
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "allow",
+          "approved": false
+        },
+        {
+          "decision": "block",
+          "reason": "The exact action was denied.",
+          "approved": false
+        }
+      ]
+    },
+    {
+      "id": "scripted-long-output-and-narrow-resize",
+      "lane": "scripted",
+      "passed": false,
+      "criteria": {
+        "doneWithRuntimeCitation": true,
+        "rowsReproduceFullAnswer": false,
+        "narrowStatusAfterSignal": true,
+        "rowsWithinNarrowWidth": true,
+        "sourceCompleteOrMarkedShortened": true
+      },
+      "runId": "run_mvdw9qlr_ygv4b3u",
+      "rowsEqualDurableAnswer": true,
+      "durableAnswerEqualsIndependentText": false,
+      "capturedOmittedPassages": true,
+      "expectedChars": 3566,
+      "answerChars": 2000,
+      "ioctlOnlyWidestRow": 95,
+      "ioctlOnlyReachedNode": false,
+      "sourceDurableChars": 4803,
+      "sourceDisplayedChars": 4803
+    },
+    {
+      "id": "scripted-compose-interrupt-and-eof",
+      "lane": "scripted",
+      "passed": true,
+      "criteria": {
+        "discardStartsNoRun": true,
+        "sendStartsOneRunWithBothLines": true,
+        "ctrlCStopsWithoutLaterAct": true,
+        "promptReturnsAfterInterrupt": true,
+        "eofExitsCleanlyWithoutOwnedChrome": true
+      },
+      "runId": "run_mvdw9x20_mh581p3",
+      "exitCode": 0,
+      "leftoverChrome": []
+    }
+  ],
+  "leftoverOwnedChrome": [],
+  "latencyMs": 18974
+}

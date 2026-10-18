@@ -156,3 +156,11 @@ rejecting repeated URLs with otherwise valid evidence. Source origins, query con
 model accounting and action permissions remain unchanged. The fixed public search lane stops
 at a challenge; a separately declared controlled candidate index with actual public page reads
 is assisted retrieval, never evidence of public-search availability or broad relevance.
+
+Stage 6 makes capture report a cut passage as omitted, so a 2,000-character prefix is no longer
+presented to the model or research readers as complete text. Text nodes now merge within their
+block-level ancestor, which lets one exact citation cover a sentence containing an inline link.
+Exact single-passage verification and the 2,000/6,000-character bounds are unchanged. `placeholder`
+and `name` attributes label only form fields; credential classification, which already applies only to
+form fields, still sees them. Controlled source/compiled regressions and the credential, safety
+and work-safety suites cover these changes. A complete accessible-name implementation is not claimed.

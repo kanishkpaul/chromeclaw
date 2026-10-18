@@ -465,3 +465,20 @@ retry, solver or engine switch. BYOK remains dummy emulation; actual local infer
 outcomes remain separately scored. No dependency, top-level directory, search backend or task
 permission is added. Subsequent live PRs stack on the preceding stage and stay unmerged until
 Kanishk asks.
+
+## D-030 · 2026-10-18 · Block-level passages and truthful capture omission
+
+Stage 6's actual local model quoted a CERN sentence correctly but could not cite it, because
+capture made one passage per DOM text node and the sentence spans an inline link. The same page
+named `<A NAME=14>People</A>` "14", and a 3,566-character httpbin paragraph was cut to 2,000
+characters while `omittedPassages` stayed false. Controlled loopback reproductions failed before
+each fix. Capture now merges text nodes that share a block-level ancestor, collapses source
+whitespace in ordinary prose and keeps every `pre*`/`break-spaces` value exact. Any cut text marks the
+capture omitted, so the prompt and research readers no longer present a prefix as complete.
+`placeholder` and `name` remain label fallbacks only for form fields.
+
+Rejected: raising the 2,000/6,000-character bounds, which changes prompt capacity rather than
+truthfulness; multi-passage answers, which would weaken the exact single-citation check; and a
+full accessible-name implementation, which remains outside this slice. `pre-line` keeps its source
+spaces rather than collapsing them, a conservative mismatch with rendering. No dependency,
+permission, directory or plugin boundary is added.

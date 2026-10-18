@@ -1,0 +1,88 @@
+{
+  "suite": "live-01-stage6-terminal",
+  "lane": "actualLocal",
+  "actualLocal": true,
+  "hostedInference": false,
+  "model": "chromeclaw-qwen3vl",
+  "manifestSha256": "41461f0eef53bf711421f45e6c0afb21aa2b4e752c0f720d7f85418e6a62cd8f",
+  "results": [
+    {
+      "id": "local-ask-held-out-public-page",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "doneWithRuntimeCitation": false,
+        "answerContainsFrozenSentence": true
+      },
+      "runId": "run_mvdwakoj_rwcf6bi",
+      "status": "uncertain",
+      "answer": "The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.",
+      "error": "Ask requires an exact extractive answer with resolvable captured passage IDs."
+    },
+    {
+      "id": "local-inspect-sources-and-open-cited-passage",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "skippedBecauseNoCitation": false
+      },
+      "skipped": true,
+      "runId": "run_mvdwakoj_rwcf6bi"
+    },
+    {
+      "id": "local-find-held-out-public-link",
+      "lane": "actualLocal",
+      "passed": false,
+      "criteria": {
+        "doneWithValidatedMatch": true,
+        "firstMatchIsPeopleLink": false,
+        "noActivationOrLaterNavigation": true
+      },
+      "runId": "run_mvdwbkjo_j1101ea",
+      "status": "done",
+      "firstMatch": {
+        "snapshotId": "6169932d-cc49-4edd-b5ca-c05889649684",
+        "target": 21,
+        "reason": "The target is explicitly labeled 'People' and matches the task requirement to find a list of people involved in the project."
+      },
+      "element": {
+        "name": "14",
+        "role": "link",
+        "href": null,
+        "destination": "https://info.cern.ch/hypertext/WWW/People.html"
+      },
+      "error": "Browser cleanup failed."
+    },
+    {
+      "id": "local-edit-and-approved-save-on-loopback-fixture",
+      "lane": "actualLocal",
+      "passed": true,
+      "criteria": {
+        "serverRecordsExactlyOneCorrectSave": true,
+        "saveOnlyAfterExactApproval": true,
+        "noRepeatedWriteOrSecondSave": true
+      },
+      "runId": "run_mvdwcj8i_ipky9aq",
+      "status": "done",
+      "answer": "Note saved for review.",
+      "error": "Browser cleanup failed.",
+      "saves": [
+        {
+          "note": "STAGE6-LOCAL-NOTE"
+        }
+      ],
+      "approvals": [
+        "pending_mvdwcsoi_ftp754w"
+      ],
+      "denials": [],
+      "interventions": [],
+      "acts": [
+        "navigate",
+        "type",
+        "click"
+      ]
+    }
+  ],
+  "leftoverOwnedChrome": [],
+  "latencyMs": 137339
+}

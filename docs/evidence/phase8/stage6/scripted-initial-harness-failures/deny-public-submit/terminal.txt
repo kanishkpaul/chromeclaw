@@ -1,0 +1,45 @@
+ ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ███╗███████╗ ██████╗██╗      █████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝██║     ██╔══██╗██║    ██║
+██║     ███████║██████╔╝██║   ██║██╔████╔██║█████╗  ██║     ██║     ███████║██║ █╗ ██║
+██║     ██╔══██║██╔══██╗██║   ██║██║╚██╔╝██║██╔══╝  ██║     ██║     ██╔══██║██║███╗██║
+╚██████╗██║  ██║██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╗███████╗██║  ██║╚███╔███╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝
+ ChromeClaw 0.1.0 · synthetic-stage6-model · local · http://127.0.0.1:49453/v1
+❯   Task + Enter · /research JSON · /find-web JSON · /find-history JSON · /forget RUN-ID · /origins UR
+  L ... · /find URL description · /ask URL question · /passage ID · /open ID · /close-source · /comp
+  ose then /send · /settings · /history · /trace · /sources · /source N · /pause · /continue · /canc
+  el · /resume ID · /quit
+❯  synthetic-stage6-model │ local │ ready │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ stage6-deny Type STAGE6-UNSENT in the Delivery instructions field, then propose the submit control so the operator can refuse it.
+ ⋔ ChromeClaw
+❯   provider {"provider":"local","model":"synthetic-stage6-model","configuration":{"stream":false,"res
+  provider ponseFormat":"json","endpoint":"http://127.0.0.1:49453/v1","mode":"local","requestCost":0
+  provider ,"maxOutputTokens":1200,"tokenLimitField":"max_tokens","requestTimeoutMs":90000}}
+❯   ┊ send      "http://127.0.0.1:49453/v1/chat/completions" · 5564 bytes
+❯   ┊ navigate  {"type":"navigate","url":"https://httpbin.org/forms/post"} · 1659 ms
+❯   ┊ send      "http://127.0.0.1:49453/v1/chat/completions" · 8819 bytes
+❯   ┊ type      target 12; value withheld · 72 ms
+❯   ┊ send      "http://127.0.0.1:49453/v1/chat/completions" · 9181 bytes
+❯ ╭─ Approve once? Inspect Chrome before deciding.
+❯   │ action {"type":"click","snapshotId":"124ba560-30a3-4c02-8a13-d5a5ca70bbc0","target":13}
+❯   │ target "Submit order"
+❯   │ destination "https://httpbin.org/post"
+❯   │ reason "Activate button \"Submit order\". Its handler may commit a change."
+❯ ╰─ /approve pending_mvdw3ae6_3rueaks · /deny or Esc denies · Enter denies
+❯  synthetic-stage6-model │ local │ awaiting-approval │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /approve not-pending_mvdw3ae6_3rueaks
+  Copy the current pending ID to approve exactly once, or /deny.
+❯ 
+  ┊ click     {"type":"click","snapshotId":"124ba560-30a3-4c02-8a13-d5a5ca70bbc0","target":13} · 140
+  ┊ 7 ms
+❯   error "The exact action was denied."
+❯   result {"status":"blocked","answer":"The exact action was denied.","runId":"run_mvdw3628_6lyvki2"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  synthetic-stage6-model │ local │ blocked │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯ /quit
+Closed. ⋔

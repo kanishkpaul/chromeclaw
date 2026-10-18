@@ -1,6 +1,6 @@
 # Phase 8: live testing
 
-Status: Stages 1–5 recorded; Stages 6–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
+Status: Stages 1–6 recorded; Stage 7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
 seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
 means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
 Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
@@ -80,6 +80,15 @@ emulator checks a durable reservation before receiving each request, including r
 timeouts, cancellation, authentication errors and budget limits. This is protocol evidence,
 not vendor authentication, TLS, invoice validation or model capability.
 
+Stage 6 uses `pnpm eval:live-terminal-stage6` for scripted terminal mechanics on public pages and
+`python3 apps/cli/tests/stage6.pty.py --actual-local` with the explicit model variables. Every
+case drives the compiled TUI in a PTY. It covers approval cards, wrong-ID refusal, Enter/Esc
+denial, compose, Ctrl-C, EOF, signalled resize, long output, source/passage/open/trace inspection,
+a held-out ask and find, and one approved loopback save. Three capture defects were reproduced
+and fixed (D-030). `TIOCSWINSZ` without SIGWINCH never reached Node, so earlier "resize" checks did
+not exercise a resize. A recurring 5-second browser-cleanup warning in actual-local TUI runs
+remains open for Stage 7. See [Stage 6 evidence](evidence/phase8/stage6/README.md).
+
 ## Scoring and review
 
 Read trials require a runtime-verified citation and the frozen expected text. Find trials compare
@@ -109,7 +118,7 @@ separately. A task used to develop a fix or revised label is no longer held out.
 | 3 | Research and web retrieval | Fixed trusted queries, actual source citations, cross-source review, unavailable sources/access-barrier hand-back; never bypass a barrier to obtain a passing score |
 | 4 | Interruptions and recovery | Pause/cancel/reopen during real browser tasks, original permissions and budgets retained, no replayed side effects |
 | 5 | BYOK protocol and failure handling | Dummy credentials/provider with real browser tasks; malformed replies, retries, usage, cancellation and no hosted fallback; no model-quality claim |
-| 6 | Terminal workflows | End-to-end tasks through the TUI, sources/trace inspection, long output, resize and explicit control; recordings and independent outcomes |
+| 6 | Terminal workflows | End-to-end tasks through the TUI, sources/trace inspection, long output, resize and explicit control; recordings and independent outcomes; recorded |
 | 7 | Final regression and retest | Each observed product defect reproduced before its fix, affected gates rerun, live retests, model-specific results/limits and process cleanup |
 
 Complete and review the seven stages with task, scope, model, outcome, interventions, failure

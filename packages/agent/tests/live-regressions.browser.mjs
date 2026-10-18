@@ -17,6 +17,14 @@ const execution = await mkdtemp(
 const profiles = await mkdtemp(
   path.join(tmpdir(), "chromeclaw-live-regression-"),
 );
+// Stage 6 found one visible text node longer than the 2,000-character passage cap reported
+// as complete. Keep the node longer than the cap and the page below every total bound.
+const LONG_PARAGRAPH = "Stage six long paragraph sentence. ".repeat(72).trim();
+// Stage 6 found legacy CERN markup splitting a linked sentence into unquotable passages and
+// naming <A NAME=14> links "14". Preformatted text must keep its exact line breaks.
+const STRUCTURE_PAGE =
+  '<title>Structure</title><p>The fixture sentence has an <a href="/structure#x">inline\n link</a> inside\n it.</p>' +
+  '<p><a name="14" href="/structure#people">People</a></p><pre>Line one\n  Line two</pre>';
 let forbidden = 0;
 const foreign = createServer((_request, response) => {
   forbidden++;
@@ -27,6 +35,16 @@ const foreignOrigin = `http://127.0.0.1:${foreign.address().port}`;
 const server = createServer((request, response) => {
   if (request.url === "/redirect") {
     response.writeHead(302, { location: "/forbidden-target" }).end();
+    return;
+  }
+  if (request.url === "/structure") {
+    response.setHeader("content-type", "text/html");
+    response.end(STRUCTURE_PAGE);
+    return;
+  }
+  if (request.url === "/long") {
+    response.setHeader("content-type", "text/html");
+    response.end(`<title>Long passage</title><p>${LONG_PARAGRAPH}</p>`);
     return;
   }
   if (request.url !== "/read") {
@@ -97,6 +115,99 @@ try {
     passed: opened.ok,
   });
   if (opened.ok) await opened.close();
+  let structure;
+  const structured = await new BrowserAgentRuntime().run({
+    task: "Quote the preformatted text.",
+    askUrl: origin + "/structure",
+    headless: true,
+    profileDir: path.join(profiles, "structure"),
+    logDir: execution,
+    permissions: { origins: [origin], allowLoopback: true, timeoutMs: 60000 },
+    planner: {
+      name: "regression-oracle",
+      model: "plumbing-only",
+      async plan({ observation }) {
+        structure = {
+          passages: observation.passages.map((item) => item.text),
+          linkNames: observation.interactiveElements.map((node) => node.name),
+        };
+        const passage = observation.passages.find((item) =>
+          item.text.startsWith("Line one"),
+        );
+        assert.ok(passage);
+        return {
+          type: "finish",
+          answer: passage.text,
+          evidence: [
+            {
+              snapshotId: observation.snapshotId,
+              passageId: passage.id,
+              quote: passage.text,
+            },
+          ],
+        };
+      },
+    },
+  });
+  checks.push({
+    id: "sentence-with-inline-link-is-one-passage",
+    passed: structure?.passages.includes(
+      "The fixture sentence has an inline link inside it.",
+    ),
+    ...structure,
+  });
+  checks.push({
+    id: "legacy-anchor-name-attribute-is-not-link-name",
+    passed: structure?.linkNames.includes("People") === true,
+  });
+  checks.push({
+    id: "preformatted-passage-keeps-line-breaks",
+    passed:
+      structured.status === "done" &&
+      structure?.passages.includes("Line one\n  Line two") === true,
+    status: structured.status,
+  });
+  let longCapture;
+  const long = await new BrowserAgentRuntime().run({
+    task: "Quote the complete paragraph.",
+    askUrl: origin + "/long",
+    headless: true,
+    profileDir: path.join(profiles, "long"),
+    logDir: execution,
+    permissions: { origins: [origin], allowLoopback: true, timeoutMs: 60000 },
+    planner: {
+      name: "regression-oracle",
+      model: "plumbing-only",
+      async plan({ observation }) {
+        const passage = observation.passages.find((item) =>
+          LONG_PARAGRAPH.startsWith(item.text),
+        );
+        assert.ok(passage);
+        longCapture = {
+          omittedPassages: observation.omittedPassages,
+          capturedChars: passage.text.length,
+          paragraphChars: LONG_PARAGRAPH.length,
+        };
+        return {
+          type: "finish",
+          answer: passage.text,
+          evidence: [
+            {
+              snapshotId: observation.snapshotId,
+              passageId: passage.id,
+              quote: passage.text,
+            },
+          ],
+        };
+      },
+    },
+  });
+  checks.push({
+    id: "passage-cut-at-node-cap-is-reported-as-omitted",
+    passed: longCapture?.omittedPassages === true,
+    ...longCapture,
+    status: long.status,
+  });
   const redirected = await new BrowserAgentRuntime().run({
     task: "Read only the selected redirect page.",
     askUrl: origin + "/redirect",
@@ -133,4 +244,4 @@ try {
   );
   console.log(JSON.stringify(report));
 }
-assert.ok(checks.length === 4 && checks.every((check) => check.passed));
+assert.ok(checks.length === 8 && checks.every((check) => check.passed));
