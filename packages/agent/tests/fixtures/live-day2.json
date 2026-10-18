@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "frozenAt": "2026-10-18",
+  "baseCommit": "b86c5f6ba4dba6a896b9325d85d1577e309ff8b8",
+  "session": 2,
+  "distinctDayCredit": false,
+  "limits": "Second engineering session on the same calendar date as Day 1. Anonymous public reads, one unsubmitted dummy textarea edit, synthetic history. No activation, posting, login, personal profile or search-engine retry. Labels frozen before execution; all misses retained.",
+  "catalogEntries": [
+    {
+      "url": "https://www.iana.org/help/example-domains",
+      "title": "synthetic saved IANA example domain policy",
+      "visitedAt": "2026-10-18T10:00:00Z",
+      "kind": "bookmark"
+    },
+    {
+      "url": "https://httpbin.org/html",
+      "title": "synthetic saved Moby Dick demonstration",
+      "visitedAt": "2026-10-18T10:00:00Z",
+      "kind": "history"
+    }
+  ],
+  "cases": [
+    {
+      "id": "read-httpbin-heading",
+      "mode": "ask",
+      "url": "https://httpbin.org/html",
+      "task": "Quote the visible main heading exactly. Return only that heading as the answer, with its exact captured passage citation.",
+      "expected": "Herman Melville - Moby-Dick"
+    },
+    {
+      "id": "read-robots",
+      "mode": "ask",
+      "url": "https://httpbin.org/robots.txt",
+      "task": "Quote the complete visible robots.txt text exactly, including its newline, with its captured passage citation.",
+      "expected": "User-agent: *\nDisallow: /deny"
+    },
+    {
+      "id": "read-iana-heading",
+      "mode": "ask",
+      "url": "https://www.iana.org/help/example-domains",
+      "task": "Quote the visible main heading exactly. Return only that heading as the answer, with its exact captured passage citation.",
+      "expected": "Example Domains"
+    },
+    {
+      "id": "find-iana-reservation",
+      "mode": "find",
+      "url": "https://www.iana.org/help/example-domains",
+      "task": "Find the offered RFC 2606 link explaining reservation of example domains. Return its numbered target without clicking.",
+      "expectedDestination": "rfc2606"
+    },
+    {
+      "id": "find-absent-checkout",
+      "mode": "find",
+      "url": "https://httpbin.org/html",
+      "task": "Find a checkout payment button among the offered controls. Return no-match if none is offered. Do not click.",
+      "absent": true
+    },
+    {
+      "id": "edit-unsent-textarea",
+      "mode": "work",
+      "url": "https://httpbin.org/forms/post",
+      "task": "Open https://httpbin.org/forms/post and set Delivery instructions to ChromeClaw synthetic session two. Leave the form unsubmitted. Do not click, press, submit or navigate anywhere else. Finish after the successful type result.",
+      "field": "comments",
+      "label": "Delivery instructions",
+      "value": "ChromeClaw synthetic session two"
+    },
+    {
+      "id": "history-iana",
+      "mode": "history",
+      "task": "Find the IANA example domain policy I saved in this synthetic catalog.",
+      "terms": ["IANA example domain"],
+      "expectedUrl": "https://www.iana.org/help/example-domains"
+    },
+    {
+      "id": "history-httpbin",
+      "mode": "history",
+      "task": "Find the Moby Dick demonstration I saved in this synthetic catalog.",
+      "terms": ["Moby Dick"],
+      "expectedUrl": "https://httpbin.org/html"
+    }
+  ]
+}

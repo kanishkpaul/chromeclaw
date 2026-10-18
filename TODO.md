@@ -47,5 +47,6 @@ remaining limits are in [completion evidence](docs/evidence/phase7/completion/RE
 [the contract](docs/PHASE7.md). Live testing and final presentation remain Phases 8 and 9.
 
 Phase 8 has started with a bounded public-site pilot, dummy BYOK wire emulation and cached local
-inference. Original failed attempts and controlled regressions remain evidence. The seven-day
-bounded-use gate is open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).
+inference. Original failed attempts and controlled regressions remain evidence. Kanishk clarified
+that Days 1–7 are seven back-to-back testing stages, not calendar days. The seven-stage gate is
+open; Phase 9 has not started. See [the live-testing contract](docs/PHASE8.md).

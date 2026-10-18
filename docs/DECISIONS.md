@@ -436,3 +436,14 @@ ordinary interactive actions retain all-request refusal handling. No redirect, q
 credential or action gate is relaxed. Read-only captures can be incomplete after blocked assets;
 reference validation remains distinct from semantic correctness. Original live failures and
 revised-label development follow-ups remain separate evidence.
+
+## D-028 · 2026-10-18 · Seven live-testing stages, without a calendar wait
+
+Kanishk clarified: “day 1-7 should be like 7 phases of live testing” and “testing it yourself
+while running real tasks.” This supersedes D-027's calendar-day requirement and the old
+`daily-01` week-of-use wording. The seven stages in PHASE8.md can run back-to-back; evidence,
+independent outcomes and regression-before-fix requirements remain. Recorded model misses,
+site drift and barriers remain limitations, not capability passes. Keep dummy BYOK and synthetic
+history per the owner's scope. No new dependency, top-level directory, runtime permission or
+browser frontend is added. Historical Day 1 reports and already-frozen Stage 2 fixture bytes
+retain their old calendar metadata for provenance; those fields no longer control acceptance.

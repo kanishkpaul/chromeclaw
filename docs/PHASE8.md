@@ -1,8 +1,10 @@
 # Phase 8: live testing
 
-Status: Day 1 pilot recorded. The seven-day `daily-01` gate is not complete. Phase 9 remains
-unstarted. A session of automated public-site trials cannot substitute for seven reviewed days
-of personal use.
+Status: Stages 1 and 2 recorded; Stages 3–7 pending. Kanishk clarified on 2026-10-18 that Days 1–7 mean
+seven stages of live testing, not seven calendar days. Stages can run back-to-back. Live testing
+means operating ChromeClaw ourselves on real tasks and reviewing the resulting evidence.
+Phase 9 remains unstarted. D-028 supersedes the old calendar-day gate, including historical
+Day 1 report language; archived evidence and frozen task bytes remain unchanged.
 
 ## Authorized scope
 
@@ -41,6 +43,13 @@ after testing; evidence stays. Live-site commands are manual, not nondeterminist
 CI runs the controlled regression and archives its evidence. [Day 1 evidence](evidence/phase8/day1/README.md)
 retains original misses and separately labelled development follow-ups.
 
+Stage 2 uses `node packages/agent/tests/live.browser.mjs --day2` for dummy BYOK, appending
+`--actual-local` with the explicit local endpoint/model variables for real inference.
+`python3 apps/cli/tests/live.pty.py --day2` records the actual-local terminal task. The legacy
+`day2` filenames/flags identify the second stage, not elapsed days. Its frozen manifest retains
+pre-clarification calendar metadata for provenance; D-028 supersedes those fields.
+See [Stage 2 evidence](evidence/phase8/stage2/README.md).
+
 The emulator injects the existing OpenAI-compatible adapter at its test seam, with a loopback
 HTTP server, dummy bearer key, synthetic usage and declared reservation ceilings. Production
 configuration still refuses loopback URLs for hosted providers. This tests the shared wire and
@@ -69,8 +78,18 @@ separately. A task used to develop a fix or revised label is no longer held out.
 
 ## Remaining gate
 
-Review seven distinct days of bounded TUI use across the three jobs, recording task, scope, model,
-outcome, interventions, failure class and regression link. Preserve the user’s synthetic-history
-and mock-BYOK choices. Exercise long output, resize, interruption and recovery in the terminal.
-Fix observed product defects and rerun their affected checks. Publish model-specific results and
-limits from the reports. Only then can Phase 8 be marked complete and Phase 9 begin.
+| Stage | Real task or validation | Acceptance evidence |
+|---|---|---|
+| 1 | Baseline live tasks and safety boundaries | Original public-site outcomes, traces, defect reproduction/fix and preserved misses; recorded |
+| 2 | Bounded reading, finding, ordinary editing and selected-history lookup | New frozen public tasks, actual local inference, dummy BYOK separately, unsent edit checked against DOM, recorded TUI use |
+| 3 | Research and web retrieval | Fixed trusted queries, actual source citations, cross-source review, unavailable sources/access-barrier hand-back; never bypass a barrier to obtain a passing score |
+| 4 | Interruptions and recovery | Pause/cancel/reopen during real browser tasks, original permissions and budgets retained, no replayed side effects |
+| 5 | BYOK protocol and failure handling | Dummy credentials/provider with real browser tasks; malformed replies, retries, usage, cancellation and no hosted fallback; no model-quality claim |
+| 6 | Terminal workflows | End-to-end tasks through the TUI, sources/trace inspection, long output, resize and explicit control; recordings and independent outcomes |
+| 7 | Final regression and retest | Each observed product defect reproduced before its fix, affected gates rerun, live retests, model-specific results/limits and process cleanup |
+
+Complete and review the seven stages with task, scope, model, outcome, interventions, failure
+classification and regression links. Synthetic history and mock BYOK remain explicit owner
+choices. A model miss or live-site barrier stays a measured limitation, never a passing capability
+claim. Fix confirmed product defects and rerun affected gates. Calendar time is not a completion
+criterion. Phase 9 starts only after this seven-stage evidence gate is satisfied.

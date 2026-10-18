@@ -16,7 +16,7 @@ merges; agents do not merge their own PRs.
 | 5 | Terminal TUI | tui-00, tui-01 | Kit-based terminal frontend, settings, evidence, approvals and cancellation; PTY recording and browser fixture report |
 | 6 | Grounding and page work | find-01, work-01 | J3a and J2 fixture sets, perturbations, attack set and model-specific results |
 | 7 | Research and remaining find modes | research-01, find-02, find-03 | J1, J3b and J3c controlled outcomes, passage support, bounded history access and per-model reports |
-| 8 | Live testing | live-01, includes daily-01 | Second-last phase. Held-out public sites, real BYOK/local models, seven days of bounded personal use, reviewed traces and regression cases |
+| 8 | Live testing | live-01, includes daily-01 | Second-last phase. Seven back-to-back testing stages on real tasks, actual local inference, dummy BYOK per owner, reviewed traces and regressions; no calendar-day wait |
 | 9 | README and final presentation | readme-01 | Last phase. Beautiful, evidence-backed README for recruiters, researchers and engineers, with accurate setup and reproducible results |
 
 ## Progress
@@ -51,7 +51,7 @@ terminal/JSON evidence and durable recovery-budget checks. Hosted inference stay
 owner authorized synthetic recollections rather than personal-history testing. Live Chrome
 history synchronization and broad semantic support are not claimed. See [PHASE7.md](PHASE7.md)
 and [completion evidence](evidence/phase7/completion/README.md). Phase 8 has started with a
-bounded Day 1 public-site pilot and dummy BYOK emulation; its seven-day gate remains open.
+bounded Stage 1 public-site pilot and dummy BYOK emulation; its seven-stage gate remains open.
 See [PHASE8.md](PHASE8.md). Phase 9 remains pending.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or

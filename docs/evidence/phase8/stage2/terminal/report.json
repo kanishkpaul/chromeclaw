@@ -1,0 +1,20 @@
+{
+  "suite": "live-01-terminal-session2",
+  "actualLocal": true,
+  "hostedInference": false,
+  "model": "chromeclaw-qwen3vl",
+  "site": "https://httpbin.org/robots.txt",
+  "checks": [
+    {
+      "id": "actual-local-public-read-through-tui",
+      "passed": true,
+      "status": "done"
+    },
+    {
+      "id": "source-trace-inspection-resize-and-clean-exit",
+      "passed": true,
+      "exitCode": 0
+    }
+  ],
+  "latencyMs": 9901
+}
