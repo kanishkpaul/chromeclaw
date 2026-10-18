@@ -1,0 +1,40 @@
+{
+  "acceptanceDateLocal": "2026-10-18",
+  "timezone": "Asia/Kolkata",
+  "baseCommit": "629b3d32063bbace80aa0855ddcda5790b7025da",
+  "platform": "macOS arm64, Apple M5, 16 GB",
+  "node": "24.18.0",
+  "pnpm": "10.23.0",
+  "python": "3.14.8",
+  "chrome": "155.0.8059.80",
+  "model": {
+    "repository": "Qwen/Qwen3-VL-8B-Instruct-GGUF",
+    "snapshot": "f982a07559d4a2f6c8744d840bf6fccab30eea96",
+    "file": "Qwen3VL-8B-Instruct-Q4_K_M.gguf",
+    "sha256": "67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2",
+    "alias": "chromeclaw-qwen3vl",
+    "textOnly": true,
+    "temperature": 0,
+    "contextTokens": 8192,
+    "parallelSlots": 1,
+    "promptCacheMiB": 256,
+    "offline": true,
+    "reasoning": "off",
+    "server": "llama-server 9780 (1191758c5)",
+    "endpoint": "http://127.0.0.1:18184/v1",
+    "responseFormat": "llama-schema",
+    "maxOutputTokens": 768,
+    "requestTimeoutMs": 90000,
+    "taskTimeoutMs": 300000
+  },
+  "developmentServerEarlier": {
+    "contextTokens": 16384,
+    "promptCacheMiB": 8192
+  },
+  "hostedInference": "explicitly waived; unverified",
+  "weightsDownloaded": false,
+  "personalProfileAccess": false,
+  "findConfidenceThreshold": 0.98,
+  "heldOutEvaluation": false,
+  "blindfoldReference": "0fddc14a24f88c5bcb72db5f93c53fd4db2c0b08"
+}

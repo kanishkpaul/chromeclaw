@@ -1,7 +1,7 @@
 import { setTimeout as delay } from "node:timers/promises";
 import {
   capturePassages,
-  clickTarget,
+  listOwnedTabs,
   guardNavigation,
   resolveTarget,
   snapshotIsCurrent,
@@ -9,10 +9,7 @@ import {
   getPageSnapshot,
   navigate,
   openBrowser,
-  pressKey,
   screenshot,
-  scroll,
-  typeIntoTarget,
   type BrowserSession,
   type BrowserRefusal,
 } from "@chromeclaw/browser";
@@ -40,7 +37,8 @@ import {
 import { PlannerReplyError, PlannerTransportError } from "./llm/openai";
 import { verifyAsk } from "./abilities/ask";
 import { readOnlyPagePermissions, pageNavigationRefusal } from "./page-scope";
-import { verifyPageFind } from "./abilities/find";
+import { FIND_CONFIDENCE_THRESHOLD, verifyPageFind } from "./abilities/find";
+import { browserTools } from "./tools";
 import { SafetyPolicy, type SafetyResult } from "./safety";
 import { JsonlRunStore, type RunLogEvent } from "./storage/jsonl";
 
@@ -268,6 +266,9 @@ export class BrowserAgentRuntime {
     let failures = 0;
     let parseFailures = 0;
     let lastObservation: BrowserObservation | undefined;
+    let completionHandbacks = run.steps.filter(
+      (step) => step.action?.type === "finish" && step.status === "uncertain",
+    ).length;
     let stage = "startup";
     let activeStepId: string | undefined;
     let stepStartedAt = Date.now();
@@ -427,7 +428,7 @@ export class BrowserAgentRuntime {
           );
         if (isFind)
           plannerTask = `${plannerTask}
-Find on ${url.href} without clicking, typing, navigating away or scrolling. Rank up to three offered visible noncredential targets or passages. Finish with pageFind: {outcome:"matches",matches:[{snapshotId,target,reason} or {snapshotId,passageId,reason}]}, strongest first, plus a brief answer. Copy IDs from the current snapshot. If ambiguous, ask_user for clarification. If absent from the captured viewport, finish with pageFind: {outcome:"no-match",reason}. Do not claim absence from the whole page. No confidence score is calibrated.`;
+Find on ${url.href} without clicking, typing, navigating away or scrolling. Rank up to three offered visible noncredential targets or passages. Finish with pageFind: {outcome:"matches",confidence:0.0..1.0,matches:[{snapshotId,target,reason} or {snapshotId,passageId,reason}]}, strongest first, plus a brief answer. Copy IDs from the current snapshot. If ambiguous, ask_user for clarification. If absent from the captured viewport, finish with pageFind: {outcome:"no-match",reason}. Do not claim absence from the whole page. Supply an honest confidence between 0 and 1 for the whole shortlist. Confidence below ${FIND_CONFIDENCE_THRESHOLD} must hand back or report no match; do not inflate it to pass the gate. This threshold has only controlled development calibration.`;
         else
           plannerTask = `${plannerTask}
 Read ${url.href}. This is a read-only ask task. Return the exact relevant captured passage as the answer with snapshotId, passageId and exact quote. If the answer is not readable, use ask_user; do not guess.`;
@@ -540,7 +541,21 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         lastObservation = await getPageSnapshot(session.page, {
           screenshotsDir: options.screenshotsDir,
           readPassages: isReadOnlyPage,
+          readHistory: permissions.tools.includes("back"),
         });
+        if (
+          permissions.tools.some((tool) =>
+            ["open_tab", "switch_tab", "close_tab"].includes(tool),
+          )
+        )
+          lastObservation.tabs = listOwnedTabs(session);
+        if (
+          lastObservation.backUrl &&
+          (destinationRefusal(lastObservation.backUrl, permissions) ||
+            new URL(lastObservation.backUrl).search ||
+            new URL(lastObservation.backUrl).hash)
+        )
+          delete lastObservation.backUrl;
         if (isReadOnlyPage)
           lastObservation.visibleText =
             lastObservation.passages
@@ -603,6 +618,10 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
             throw new PlannerReplyError(
               "Planner reply does not match the strict action contract.",
             );
+          if (isFind && parsed.data.type === "finish" && !parsed.data.pageFind)
+            throw new PlannerReplyError(
+              "Find completion requires pageFind; use ask_user if ambiguous.",
+            );
           action = parsed.data;
           parseFailures = 0;
         } catch (error) {
@@ -619,12 +638,15 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
               "observing",
               undefined,
               lastObservation,
-              "Reply parsing failed. Return one strict JSON action.",
+              isFind
+                ? "Find needs finish.pageFind with ranked references and confidence, or ask_user for ambiguity. Return one strict JSON action."
+                : "Reply parsing failed. Return one strict JSON action.",
             ),
           );
           continue;
         }
         if (action.type === "type") privacy.withhold(action.text);
+        if (action.type === "select") privacy.withhold(action.option);
         const stepId = createId("step");
         activeStepId = stepId;
         await emit("proposal", { stepId, action });
@@ -706,7 +728,15 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
             destination:
               target?.destination ??
               target?.formDestination ??
-              (action.type === "navigate" ? action.url : lastObservation.url),
+              (action.type === "navigate" ||
+              action.type === "back" ||
+              action.type === "open_tab"
+                ? action.url
+                : action.type === "close_tab"
+                  ? (lastObservation.tabs?.find(
+                      (tab) => tab.id === action.tabId,
+                    )?.url ?? lastObservation.url)
+                  : lastObservation.url),
             reason: gate.reason ?? "Exact approval required.",
           });
           const pending: PendingInput = {
@@ -841,6 +871,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           const finishObservation = lastObservation;
           const verification = isFind
             ? await verifyPageFind(action, lastObservation, {
+                description: `${options.task}\n${(run.answers ?? []).join("\n")}`,
                 snapshotIsCurrent: async () => {
                   if (
                     !(await snapshotIsCurrent(
@@ -875,6 +906,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           run.status = verification.passed ? "done" : "uncertain";
           run.finalAnswer = privacy.text(action.answer);
           if (!verification.passed) run.error = verification.detail;
+          else delete run.error;
           await saveStep(
             makeStep(
               index,
@@ -887,6 +919,25 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
               stepId,
             ),
           );
+          if (
+            !verification.passed &&
+            !isAsk &&
+            !isFind &&
+            options.interactive &&
+            completionHandbacks < 2
+          ) {
+            completionHandbacks++;
+            const reply = await requestInput({
+              id: createId("pending"),
+              kind: "answer",
+              question:
+                "Completion is not verified. Inspect Chrome and describe remaining work or the observed result. Do not repeat a possibly completed commit.",
+            });
+            if (reply?.kind === "answer") {
+              (run.answers ??= []).push(privacy.text(reply.answer));
+              continue;
+            }
+          }
           break;
         }
         if (action.type === "fail") {
@@ -917,11 +968,21 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         await notify();
         signal.throwIfAborted();
         stage = "act";
-        await emit("act_started", { stepId, action });
+        const tool = browserTools.find((tool) =>
+          tool.actions.includes(action.type),
+        );
+        await emit("act_started", {
+          stepId,
+          action,
+          ...(tool ? { effect: tool.effect, input: tool.input } : {}),
+        });
         signal.throwIfAborted();
         inFlight = true;
         run.status = action.type === "wait" ? "waiting" : "acting";
-        const execution = await executeAction(session, action, options, signal);
+        const execution = await abortable(
+          executeAction(session, action, options, signal, permissions),
+          signal,
+        );
         inFlight = false;
         signal.throwIfAborted();
         const navigationRefusal = navigation.refusal();
@@ -938,6 +999,8 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
         if (
           possibleCommit &&
           typeof result === "string" &&
+          // A checked-state acknowledgment stays inside the driver; ordinary values remain private.
+          !result.endsWith("Verified native toggle.") &&
           after.url === lastObservation.url &&
           after.visibleText === lastObservation.visibleText
         ) {
@@ -986,7 +1049,7 @@ Read ${url.href}. This is a read-only ask task. Return the exact relevant captur
           });
         const unchanged =
           stale ||
-          (action.type === "type" &&
+          ((action.type === "type" || action.type === "select") &&
             typeof result === "string" &&
             result.startsWith("No change"));
         if (unchanged) {
@@ -1138,12 +1201,34 @@ function makeStep(
   };
 }
 function formatRecentSteps(steps: AgentStep[]): string {
+  // Target numbers are snapshot-local: after Next, the same number may now mean Save.
+  // Retain safe bound names and compact outcomes across a longer task without field values.
   return steps
-    .slice(-6)
-    .map(
-      (step) =>
-        `${step.index}. ${step.phase} ${step.action?.type ?? ""} ${JSON.stringify({ action: step.action, result: step.result, error: step.error, gate: step.gate, before: step.beforeId, after: step.afterId })}`,
-    )
+    .slice(-24)
+    .map((step) => {
+      const action = step.action;
+      const target =
+        action && "target" in action
+          ? step.observation?.interactiveElements.find(
+              (node) => node.number === action.target,
+            )
+          : undefined;
+      return `${step.index}. ${step.phase} ${action?.type ?? ""} ${JSON.stringify(
+        {
+          target: target
+            ? {
+                number: target.number,
+                name: target.name,
+                snapshotId: step.beforeId,
+              }
+            : undefined,
+          url: action && "url" in action ? action.url : undefined,
+          result: step.result?.slice(0, 240),
+          error: step.error?.slice(0, 160),
+          gate: step.gate,
+        },
+      )}`;
+    })
     .join("\n");
 }
 function proposalKey(action: BrowserAction): string {
@@ -1202,32 +1287,28 @@ async function executeAction(
   action: BrowserAction,
   options: AgentRunOptions,
   signal: AbortSignal,
+  permissions: NonNullable<AgentRun["permissions"]>,
 ): Promise<string | BrowserRefusal> {
+  if (
+    "snapshotId" in action &&
+    !(await snapshotIsCurrent(session.page, action.snapshotId))
+  )
+    return {
+      refused: true,
+      reason: "Page context is stale. Capture the page again.",
+    };
+  const tool = browserTools.find((tool) => tool.actions.includes(action.type));
+  if (tool) return tool.execute(action, { session, permissions, signal });
   switch (action.type) {
-    case "navigate":
-      await navigate(session.page, action.url);
-      return `Navigated to ${session.page.url()}`;
     case "search_web":
       await navigate(
         session.page,
         `https://duckduckgo.com/?q=${encodeURIComponent(action.query)}`,
       );
       return "Search requested.";
-    case "click":
-      return clickTarget(session.page, action);
-    case "type":
-      return typeIntoTarget(session.page, { ...action, value: action.text });
-    case "press":
-      return pressKey(session.page, action.key, action);
-    case "wait":
-      await delay(action.ms, undefined, { signal });
-      return `Waited ${action.ms}ms`;
     case "extract_text":
     case "summarize_page":
       return (await extractVisibleText(session.page)).slice(0, 4000);
-    case "scroll":
-      await scroll(session.page, action.direction, action.amount);
-      return `Scrolled ${action.direction} by ${action.amount}px`;
     case "screenshot": {
       const file = await screenshot(session.page, options.screenshotsDir);
       return file

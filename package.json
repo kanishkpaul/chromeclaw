@@ -29,7 +29,12 @@
     "eval:ask-local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/ask.browser.mjs --actual-local",
     "eval:session": "pnpm build && node packages/browser/tests/session.browser.mjs",
     "eval:tui-local": "pnpm build && python3 apps/cli/tests/tui.pty.py --actual-local",
-    "eval:find": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs"
+    "eval:find": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find.browser.mjs",
+    "eval:find-labelled": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-model.browser.mjs",
+    "eval:find-local": "pnpm build && tsx --tsconfig tsconfig.base.json packages/agent/tests/find-model.browser.mjs --actual-local",
+    "eval:work": "pnpm build && tsx packages/agent/tests/work-assets.mjs && python3 apps/cli/tests/tui.pty.py --phase6",
+    "eval:work-local": "pnpm build && tsx packages/agent/tests/work-assets.mjs && python3 apps/cli/tests/tui.pty.py --phase6 --actual-local",
+    "eval:work-safety": "pnpm build && tsx --tsconfig tsconfig.base.json packages/browser/tests/work.browser.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -32,7 +32,7 @@ try {
     mutate = false;
     const logDir = path.join(execution, id);
     const run = await new BrowserAgentRuntime().run({
-      task: "Find where delivery is arranged; do not activate anything.", findUrl: origin + "/page",
+      task: "Find the FIRST delivery control where delivery is arranged; do not activate anything.", findUrl: origin + "/page",
       maxSteps: 4, headless: true, profileDir: path.join(profiles, id), logDir,
       permissions: { origins: [origin], write: true, irreversible: "confirm", allowLoopback: true, timeoutMs: 30000 },
       // A synthetic planner exercises runtime contracts. It is not a relevance/model-quality eval.
@@ -52,13 +52,14 @@ try {
         if (id === "no-match") return { type: "finish", answer: "No match", pageFind: { outcome: "no-match", reason: "Not in captured viewport" } };
         if (id === "stale") { mutate = true; await delay(500); }
         const matches = id === "mixed" ? [target, passage] : id === "passage" || id === "stale" ? [passage] : id === "duplicates" ? [target, target] : id === "invented" ? [{ ...target, target: 999 }] : id === "credential" ? [{ ...target, target: targets.find((node) => node.isCredential).number }] : [target];
-        return { type: "finish", answer: "Delivery candidates", pageFind: { outcome: "matches", matches } };
+        return { type: "finish", answer: "Delivery candidates", pageFind: { outcome: "matches", confidence: 1, matches } };
       } },
       verify: async () => ({ passed: true, detail: "Cannot override find validation" }),
     });
     const expected = ["target", "passage", "mixed"].includes(id) ? "done" : id === "clarify" ? "awaiting-answer" : ["click", "type", "navigate", "scroll"].includes(id) ? "blocked" : "uncertain";
     assert.equal(run.status, expected, `${id}: ${run.error}`);
     assert.equal(run.permissions.write, false);
+    assert.ok(run.steps.every((step) => !step.observation?.backUrl && !step.observation?.tabs));
     assert.ok(!run.permissions.tools.some((tool) => ["click", "type", "press", "scroll"].includes(tool)));
     if (id === "target") {
       const reopened = await new BrowserAgentRuntime().reopen(run.id, {

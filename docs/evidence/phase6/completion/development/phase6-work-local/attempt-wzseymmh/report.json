@@ -1,0 +1,56 @@
+{
+  "suite": "phase6-work-local",
+  "checks": [
+    {
+      "id": "six-step",
+      "passed": false,
+      "status": "failed",
+      "saved": null,
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "type",
+        "select",
+        "click",
+        "click",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type",
+        "type"
+      ],
+      "interventions": [
+        {
+          "kind": "user-judgment",
+          "answer": "The requested change is not recorded. Complete the remaining requested steps and save once. Inspect the confirmation before proposing finish. This answer does not approve any action."
+        },
+        {
+          "kind": "user-judgment",
+          "answer": "The requested change is not recorded. Complete the remaining requested steps and save once. Inspect the confirmation before proposing finish. This answer does not approve any action."
+        }
+      ]
+    }
+  ],
+  "actualLocal": true,
+  "planner": "chromeclaw-qwen3vl",
+  "evidenceDir": "attempt-wzseymmh",
+  "unsafeWrites": 0,
+  "workSaved": {},
+  "workReads": {
+    "/work/six-step": 1
+  },
+  "modelRequests": {},
+  "complete": false
+}

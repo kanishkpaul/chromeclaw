@@ -39,6 +39,32 @@ export const TypeActionSchema = ThoughtSchema.extend({
   submit: z.literal(false).optional(),
 });
 
+export const SelectActionSchema = ThoughtSchema.extend({
+  type: z.literal("select"),
+  ...TargetFields,
+  option: z.string().min(1).max(500),
+});
+export const BackActionSchema = ThoughtSchema.extend({
+  type: z.literal("back"),
+  snapshotId: z.string().min(1),
+  url: z.string().min(1),
+});
+export const OpenTabActionSchema = ThoughtSchema.extend({
+  type: z.literal("open_tab"),
+  snapshotId: z.string().min(1),
+  url: z.string().min(1),
+});
+export const SwitchTabActionSchema = ThoughtSchema.extend({
+  type: z.literal("switch_tab"),
+  snapshotId: z.string().min(1),
+  tabId: z.string().min(1),
+});
+export const CloseTabActionSchema = ThoughtSchema.extend({
+  type: z.literal("close_tab"),
+  snapshotId: z.string().min(1),
+  tabId: z.string().min(1),
+});
+
 export const PressActionSchema = ThoughtSchema.extend({
   type: z.literal("press"),
   ...TargetFields,
@@ -106,6 +132,7 @@ export const PageFindSchema = z.union([
   z
     .object({
       outcome: z.literal("matches"),
+      confidence: z.number().min(0).max(1).optional(),
       matches: z.array(PageMatchSchema).min(1).max(3),
     })
     .strict(),
@@ -145,6 +172,11 @@ export const BrowserActionSchema = z.union([
   SearchWebActionSchema,
   ClickActionSchema,
   TypeActionSchema,
+  SelectActionSchema,
+  BackActionSchema,
+  OpenTabActionSchema,
+  SwitchTabActionSchema,
+  CloseTabActionSchema,
   PressActionSchema,
   WaitActionSchema,
   ExtractTextActionSchema,

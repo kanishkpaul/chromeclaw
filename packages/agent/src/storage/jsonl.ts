@@ -73,7 +73,14 @@ const PayloadSchemas = {
     .strict(),
   gate: z.object({ stepId: z.string(), gate: GateRecordSchema }).strict(),
   act_started: z
-    .object({ stepId: z.string(), action: BrowserActionSchema })
+    .object({
+      stepId: z.string(),
+      action: BrowserActionSchema,
+      effect: z
+        .enum(["navigate", "activate", "edit", "read", "wait", "tabs"])
+        .optional(),
+      input: z.enum(["trusted", "native-dom-fallback", "none"]).optional(),
+    })
     .strict(),
   step: StepRecordSchema,
   state: z

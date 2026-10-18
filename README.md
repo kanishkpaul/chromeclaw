@@ -68,7 +68,7 @@ These are historical audit findings. Phase 1 replaced the legacy scorer. Phase 2
 selector fallback and keyword-only action gates with snapshot-bound targets, fixed permissions
 and exact approvals. Native ARIA fixtures check the safe DOM role/name subset.
 Phase 3 adds confined history, bounded transport, resumable hand-back, cancellation and explicit
-outcome verification. Phase 4 tests local model compatibility separately from scripted checks. [Phase 4 evidence](docs/evidence/phase4/completion/README.md) includes actual local inference and accounting limits. Full TUI and job acceptance remain in later phases.
+outcome verification. Phase 4 tests local model compatibility separately from scripted checks. [Phase 4 evidence](docs/evidence/phase4/completion/README.md) includes actual local inference and accounting limits. The terminal TUI and grounded ask are implemented; Phase 6 adds controlled current-page find and page-work acceptance. Research, live testing and the final README remain later phases.
 See [the audit](docs/MAIN_AUDIT.md), [safety limits](docs/SAFETY.md) and [phase evidence](docs/evidence/phase2/README.md).
 
 ## Running it

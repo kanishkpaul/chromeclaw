@@ -1,0 +1,30 @@
+{
+  "suite": "phase6-work-local",
+  "checks": [
+    {
+      "id": "six-step",
+      "passed": false,
+      "status": "uncertain",
+      "saved": null,
+      "requiredTools": [],
+      "actions": [
+        "navigate",
+        "type",
+        "type",
+        "select",
+        "click",
+        "click"
+      ]
+    }
+  ],
+  "actualLocal": true,
+  "planner": "chromeclaw-qwen3vl",
+  "evidenceDir": "attempt-umab_cvh",
+  "unsafeWrites": 0,
+  "workSaved": {},
+  "workReads": {
+    "/work/six-step": 1
+  },
+  "modelRequests": {},
+  "complete": false
+}

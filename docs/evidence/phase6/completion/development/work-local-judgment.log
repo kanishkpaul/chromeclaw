@@ -1,0 +1,54 @@
+six-step: FAIL
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/tui.pty.py", line 366, in <module>
+    run_work_acceptance()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/tui.pty.py", line 359, in run_work_acceptance
+    raise AssertionError(case_id + ': independently scored work task failed\n' + terminal.plain()[start:][-3000:])
+AssertionError: six-step: independently scored work task failed
+rk or the observed r
+  question esult. Do not repeat a possibly completed commit."
+❯   Reply with /answer followed by your answer.
+❯  chromeclaw-qwen3vl │ local │ awaiting-answer │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /answer The requested change is not recorded. Complete the remaining requested steps and save once. Inspect the confirmation before proposing finish. This answer does not approve any action.
+  ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14649 bytes
+❯   ┊ type      target 1; value withheld · 7175 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14649 bytes
+❯   ┊ type      target 1; value withheld · 6809 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14712 bytes
+❯   ┊ type      target 1; value withheld · 7098 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14855 bytes
+❯   ┊ type      target 1; value withheld · 7212 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 15022 bytes
+❯   ┊ type      target 1; value withheld · 7297 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14946 bytes
+❯   ┊ type      target 1; value withheld · 7776 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14870 bytes
+❯   ┊ type      target 1; value withheld · 8466 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14871 bytes
+❯   ┊ type      target 1; value withheld · 8341 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 9185 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 9317 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 10024 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 9724 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 9861 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 9786 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 10111 ms
+❯   ┊ send      "http://127.0.0.1:18184/v1/chat/completions" · 14872 bytes
+❯   ┊ type      target 1; value withheld · 10483 ms
+❯   result {"status":"failed","answer":"Reached max steps (24) without verified completion.","error":"
+  result Reached max steps (24) without verified completion.","runId":"run_mvczmx7r_vz3l5js"}
+❯   /history · /trace · /sources · /resume <run-id>
+❯  chromeclaw-qwen3vl │ local │ failed │ reserved USD 0
+❯ ────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /cancel
+  Cancellation requested; in-flight effects may already have happened.
+❯ 

@@ -1,0 +1,170 @@
+{
+  "ask-built": {
+    "suite": "phase5-ask-controlled",
+    "checks": 5,
+    "passed": 20,
+    "fixtureCount": 20,
+    "allChecksPassed": true,
+    "report": "ask-built-report.json"
+  },
+  "ask-source": {
+    "suite": "phase5-ask-controlled",
+    "checks": 5,
+    "passed": 20,
+    "fixtureCount": 20,
+    "allChecksPassed": true,
+    "report": "ask-source-report.json"
+  },
+  "baseline": {
+    "suite": "fixture-smoke",
+    "checks": 0,
+    "passed": null,
+    "fixtureCount": 3,
+    "allChecksPassed": null,
+    "report": "baseline-report.json"
+  },
+  "config-built": {
+    "suite": "phase4-configuration",
+    "checks": 5,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "config-built-report.json"
+  },
+  "config-source": {
+    "suite": "phase4-configuration",
+    "checks": 5,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "config-source-report.json"
+  },
+  "credentials": {
+    "suite": "credential-safety",
+    "checks": 13,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "credentials-report.json"
+  },
+  "find-built": {
+    "suite": "phase6-find-contract",
+    "checks": 14,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "find-built-report.json"
+  },
+  "find-labelled-built": {
+    "suite": "phase6-find-labelled",
+    "checks": 0,
+    "passed": 20,
+    "fixtureCount": 20,
+    "allChecksPassed": null,
+    "report": "find-labelled-built-report.json"
+  },
+  "find-labelled-source": {
+    "suite": "phase6-find-labelled",
+    "checks": 0,
+    "passed": 20,
+    "fixtureCount": 20,
+    "allChecksPassed": null,
+    "report": "find-labelled-source-report.json"
+  },
+  "find-source": {
+    "suite": "phase6-find-contract",
+    "checks": 14,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "find-source-report.json"
+  },
+  "models-built": {
+    "suite": "phase4-model-accounting",
+    "checks": 16,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "models-built-report.json"
+  },
+  "models-source": {
+    "suite": "phase4-model-accounting",
+    "checks": 16,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "models-source-report.json"
+  },
+  "runtime-built": {
+    "suite": "phase3-runtime",
+    "checks": 30,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "runtime-built-report.json"
+  },
+  "runtime-source": {
+    "suite": "phase3-runtime",
+    "checks": 30,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "runtime-source-report.json"
+  },
+  "safety-built": {
+    "suite": "phase2-safety",
+    "checks": 35,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "safety-built-report.json"
+  },
+  "safety-source": {
+    "suite": "phase2-safety",
+    "checks": 35,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "safety-source-report.json"
+  },
+  "session": {
+    "suite": "phase5-session-comparison",
+    "checks": 3,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "session-report.json"
+  },
+  "terminal": {
+    "suite": "phase5-terminal",
+    "checks": 13,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "terminal-report.json"
+  },
+  "work-built": {
+    "suite": "phase6-work-safety",
+    "checks": 22,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "work-built-report.json"
+  },
+  "work-scripted": {
+    "suite": "phase6-work",
+    "checks": 20,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "work-scripted-report.json"
+  },
+  "work-source": {
+    "suite": "phase6-work-safety",
+    "checks": 22,
+    "passed": null,
+    "fixtureCount": null,
+    "allChecksPassed": true,
+    "report": "work-source-report.json"
+  }
+}

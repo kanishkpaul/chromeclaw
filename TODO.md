@@ -34,6 +34,8 @@ Phase 5 adds a local TUI trace/source inspector, passage-grounded ask and explic
 The richer screenshot/timing trace viewer above remains open. Held-out testing and final README
 remain Phases 8 and 9. See [Phase 5 evidence](docs/evidence/phase5/completion/README.md).
 
-Phase 6 is in progress: experimental `/find` and `run --find` provide ranked current-capture
-references without act permission. Labelled model ranking and J2 acceptance remain open;
-see [Phase 6 scope](docs/PHASE6.md).
+Phase 6 implements `/find` / `run --find`, labelled ranking reports and nine independent browser
+tool plugins. Twenty scripted workflows pass through the TUI with independent state checks.
+Actual local-model outcomes, misses and interventions are reported separately; this is controlled
+engineering acceptance, not reliable autonomous or held-out capability. See
+[Phase 6 scope](docs/PHASE6.md) and [evidence](docs/evidence/phase6/completion/README.md).

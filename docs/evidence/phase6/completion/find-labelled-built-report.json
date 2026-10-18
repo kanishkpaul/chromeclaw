@@ -1,0 +1,333 @@
+{
+  "suite": "phase6-find-labelled",
+  "actual": false,
+  "built": true,
+  "dev": false,
+  "model": "scripted-plumbing-only",
+  "threshold": 0.98,
+  "fixtures": 20,
+  "passed": 20,
+  "top1": {
+    "correct": 15,
+    "total": 15
+  },
+  "top3": {
+    "correct": 15,
+    "total": 15
+  },
+  "noMatch": {
+    "errors": 0,
+    "total": 5
+  },
+  "falseNoMatch": 0,
+  "writes": 0,
+  "execution": "built-zEci22",
+  "results": [
+    {
+      "id": "buy",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 912,
+      "runId": "run_mvdcja2b_azyeya8",
+      "log": "buy/run_mvdcja2b_azyeya8.jsonl"
+    },
+    {
+      "id": "settings",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 638,
+      "runId": "run_mvdcjarm_9wlj0q6",
+      "log": "settings/run_mvdcjarm_9wlj0q6.jsonl"
+    },
+    {
+      "id": "delivery",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": "Delivery takes two working days.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 705,
+      "runId": "run_mvdcjb9b_4hzn4ec",
+      "log": "delivery/run_mvdcjb9b_4hzn4ec.jsonl"
+    },
+    {
+      "id": "absent",
+      "split": "dev",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 721,
+      "runId": "run_mvdcjbsx_t9p8nl1",
+      "log": "absent/run_mvdcjbsx_t9p8nl1.jsonl"
+    },
+    {
+      "id": "ambiguous",
+      "split": "dev",
+      "passed": true,
+      "status": "awaiting-answer",
+      "expected": "clarify",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 664,
+      "runId": "run_mvdcjccx_26vpzjc",
+      "log": "ambiguous/run_mvdcjccx_26vpzjc.jsonl"
+    },
+    {
+      "id": "second-edit",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 678,
+      "runId": "run_mvdcjcvd_jh89gdh",
+      "log": "second-edit/run_mvdcjcvd_jh89gdh.jsonl"
+    },
+    {
+      "id": "cancel",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 629,
+      "runId": "run_mvdcjde7_08age8k",
+      "log": "cancel/run_mvdcjde7_08age8k.jsonl"
+    },
+    {
+      "id": "search",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 783,
+      "runId": "run_mvdcjdvp_qw3ha2z",
+      "log": "search/run_mvdcjdvp_qw3ha2z.jsonl"
+    },
+    {
+      "id": "contact",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 874,
+      "runId": "run_mvdcjehf_l7qosiy",
+      "log": "contact/run_mvdcjehf_l7qosiy.jsonl"
+    },
+    {
+      "id": "select",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 1101,
+      "runId": "run_mvdcjf5q_0v5qyd2",
+      "log": "select/run_mvdcjf5q_0v5qyd2.jsonl"
+    },
+    {
+      "id": "frame",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 822,
+      "runId": "run_mvdcjg0b_3hi3m9p",
+      "log": "frame/run_mvdcjg0b_3hi3m9p.jsonl"
+    },
+    {
+      "id": "shadow",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 616,
+      "runId": "run_mvdcjgn4_8zseax7",
+      "log": "shadow/run_mvdcjgn4_8zseax7.jsonl"
+    },
+    {
+      "id": "modal",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 570,
+      "runId": "run_mvdcjh48_hrm00w6",
+      "log": "modal/run_mvdcjh48_hrm00w6.jsonl"
+    },
+    {
+      "id": "covered",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 577,
+      "runId": "run_mvdcjhk2_tzkzkjx",
+      "log": "covered/run_mvdcjhk2_tzkzkjx.jsonl"
+    },
+    {
+      "id": "offscreen",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 533,
+      "runId": "run_mvdcji03_lq5ewsd",
+      "log": "offscreen/run_mvdcji03_lq5ewsd.jsonl"
+    },
+    {
+      "id": "hidden",
+      "split": "controlled",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "none",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": null,
+      "latencyMs": 555,
+      "runId": "run_mvdcjiew_61dival",
+      "log": "hidden/run_mvdcjiew_61dival.jsonl"
+    },
+    {
+      "id": "price",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": "The plan costs twelve dollars per month.",
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 550,
+      "runId": "run_mvdcjiub_03y0arw",
+      "log": "price/run_mvdcjiub_03y0arw.jsonl"
+    },
+    {
+      "id": "poison",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 583,
+      "runId": "run_mvdcjj9l_w9eg6ni",
+      "log": "poison/run_mvdcjj9l_w9eg6ni.jsonl"
+    },
+    {
+      "id": "image",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 601,
+      "runId": "run_mvdcjjps_ipt550z",
+      "log": "image/run_mvdcjjps_ipt550z.jsonl"
+    },
+    {
+      "id": "renew",
+      "split": "controlled",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        1
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 611,
+      "runId": "run_mvdcjk6h_c7mfpgm",
+      "log": "renew/run_mvdcjk6h_c7mfpgm.jsonl"
+    }
+  ]
+}

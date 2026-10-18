@@ -91,3 +91,24 @@ Structured results name offered noncredential controls or passages without activ
 snapshot/target checks plus passage recapture refuse stale results. A match validates a reference,
 not semantic relevance; an absent-match assertion stays uncertain. No automatic scroll, highlight
 or click is enabled. See [PHASE6.md](PHASE6.md) for the unfinished acceptance gate.
+
+Phase 6 upgrades activation to trusted Playwright input with an adapter-owned event-time guard and
+pre-navigation acknowledgment. A native checkbox/radio default toggle is checked privately after
+dispatch; changing another field during focus still invalidates the action. No native-click retry
+follows uncertain dispatch. Text/select keep their atomic native setter fallback, declared in the
+trace. Select refuses credentials, duplicate/disabled options, multiple-select and focus-time
+changes; option values and selected labels are not exported as form state.
+
+Owned-page history and five bounded task tabs stay within the original origin/read/tool budgets.
+An explicit tab-open result determines ownership; a popup cannot consume that admission. Close
+requires exact approval. Reopening old runs keeps their original tool list; new tool defaults do
+not add capabilities to saved envelopes. Background requests from inactive tabs are still refused.
+The event guard does not isolate arbitrary malicious JavaScript or prevent earlier page listeners
+from reacting. Known English credential labels/autocomplete tokens remain the classifier; unknown
+or non-English disguises and generic private prose retain the documented gaps.
+
+An unverified interactive page-work finish can request bounded human judgment without reloading
+and losing edits. Up to two answers can guide remaining work; they cannot replace exact action
+approval or renew permissions. Noninteractive finishes still return uncertain. Tests independently
+check that a premature finish followed by a human correction produces one correct save, without
+repeating a possible commit. Evaluation reports count completion judgments and session hand-backs.

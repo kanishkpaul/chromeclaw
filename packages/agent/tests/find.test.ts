@@ -55,7 +55,7 @@ const finish = (
 ): Finish => ({
   type: "finish",
   answer: "Candidates",
-  pageFind: { outcome: "matches", matches },
+  pageFind: { outcome: "matches", confidence: 1, matches },
 });
 const target = { snapshotId: "s", target: 1, reason: "Delivery options" };
 describe("find on the current page", () => {
@@ -125,6 +125,46 @@ describe("find on the current page", () => {
         )
       ).passed,
     ).toBe(false);
+  });
+  it("hands back below the frozen confidence threshold without exposing a ranked result", async () => {
+    const action = finish([target]);
+    if (action.pageFind?.outcome !== "matches")
+      throw new Error("Invalid fixture");
+    action.pageFind.confidence = 0.95;
+    expect((await verifyPageFind(action, observation, current)).passed).toBe(
+      false,
+    );
+    delete action.pageFind.confidence;
+    expect((await verifyPageFind(action, observation, current)).passed).toBe(
+      false,
+    );
+  });
+  it("requires a trusted ordinal for indistinguishable control labels", async () => {
+    const first = observation.interactiveElements[0];
+    if (!first) throw new Error("Missing fixture control");
+    const repeated = {
+      ...observation,
+      interactiveElements: [first, { ...first, id: "2", number: 2 }],
+    };
+    expect(
+      (await verifyPageFind(finish([target]), repeated, current)).passed,
+    ).toBe(false);
+    expect(
+      (
+        await verifyPageFind(finish([target]), repeated, {
+          ...current,
+          description: "Find the second control",
+        })
+      ).passed,
+    ).toBe(false);
+    expect(
+      (
+        await verifyPageFind(finish([{ ...target, target: 2 }]), repeated, {
+          ...current,
+          description: "Find the second control",
+        })
+      ).passed,
+    ).toBe(true);
   });
   it("rejects empty lists, four results, permission fields and ambiguous references at the wire boundary", () => {
     for (const matches of [

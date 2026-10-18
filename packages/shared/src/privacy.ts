@@ -49,6 +49,8 @@ export class PrivacyFilter {
       "completedAt",
       "payloadHash",
       "accounting",
+      "effect",
+      "input",
       "permissions",
       "configuration",
     ]);
@@ -61,8 +63,10 @@ export class PrivacyFilter {
           Object.entries(item).map(([name, child]) => [
             name,
             "type" in item &&
-            item.type === "type" &&
-            ["text", "thoughtSummary"].includes(name)
+            ((item.type === "type" &&
+              ["text", "thoughtSummary"].includes(name)) ||
+              (item.type === "select" &&
+                ["option", "thoughtSummary"].includes(name)))
               ? "[withheld]"
               : visit(child, name),
           ]),

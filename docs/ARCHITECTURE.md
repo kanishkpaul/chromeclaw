@@ -81,10 +81,14 @@ a separate guarded owned window. Egress buffers bounded SSE proposals while the 
 byte progress; only validated complete actions reach the runtime. The final plugin registries
 remain future work. See [PHASE5.md](PHASE5.md), D-020 and D-021.
 
-## Phase 6 starter boundary
+## Phase 6 grounding and tool boundary
 
 `agent/abilities/find.ts` validates structured ranked page references through injected freshness
 checks. Runtime composition supplies browser checks and shared `page-scope.ts` restrictions;
 abilities do not import one another. The CLI/TUI explicitly select find without creating another
 loop or registry. Saved `findUrl` preserves mode on reopen. `finish.pageFind` carries data only.
-The final plugin registries and J2 tool expansion remain pending; see [PHASE6.md](PHASE6.md).
+J2 dispatches nine independent registered browser tool plugins with declared effects and input
+paths. The runtime composes them and retains explicit legacy search/extraction/screenshot cases.
+The other three final plugin registries and pure-core extraction remain pending. Owned tabs and
+back destinations belong to the browser adapter, not personal profile/history access.
+See [PHASE6.md](PHASE6.md), D-023 and the controlled acceptance report.

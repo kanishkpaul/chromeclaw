@@ -1,0 +1,57 @@
+{
+  "suite": "phase6-find-labelled",
+  "actual": true,
+  "built": false,
+  "dev": false,
+  "model": "chromeclaw-qwen3vl",
+  "threshold": 0.98,
+  "fixtures": 2,
+  "passed": 2,
+  "top1": {
+    "correct": 1,
+    "total": 1
+  },
+  "top3": {
+    "correct": 1,
+    "total": 1
+  },
+  "noMatch": {
+    "errors": 0,
+    "total": 1
+  },
+  "falseNoMatch": 0,
+  "writes": 0,
+  "execution": "source-ltaf99",
+  "results": [
+    {
+      "id": "ambiguous",
+      "split": "dev",
+      "passed": true,
+      "status": "uncertain",
+      "expected": "clarify",
+      "top1": null,
+      "top3": null,
+      "noMatchError": false,
+      "confidence": 0.99,
+      "latencyMs": 12978,
+      "runId": "run_mvczg7nw_zgpoym5",
+      "log": "ambiguous/run_mvczg7nw_zgpoym5.jsonl"
+    },
+    {
+      "id": "second-edit",
+      "split": "dev",
+      "passed": true,
+      "status": "done",
+      "expected": [
+        2
+      ],
+      "top1": true,
+      "top3": true,
+      "noMatchError": false,
+      "confidence": 1,
+      "latencyMs": 8173,
+      "runId": "run_mvczghod_76ynqna",
+      "log": "second-edit/run_mvczghod_76ynqna.jsonl"
+    }
+  ]
+}

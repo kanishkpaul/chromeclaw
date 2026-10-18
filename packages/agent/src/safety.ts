@@ -53,14 +53,47 @@ export class SafetyPolicy {
       const refusal = destinationRefusal(observation.url, permissions);
       if (refusal) return block(refusal);
     }
-    if (action.type === "navigate" || action.type === "search_web") {
+    if (
+      ["back", "open_tab", "switch_tab", "close_tab"].includes(action.type) &&
+      (!("snapshotId" in action) ||
+        action.snapshotId !== observation?.snapshotId)
+    )
+      return block("Page context is stale. Capture the page again.");
+    if (action.type === "back" && action.url !== observation?.backUrl)
+      return block("Back must name the offered history destination.");
+    if (action.type === "switch_tab" || action.type === "close_tab") {
+      const tab = observation?.tabs?.find((tab) => tab.id === action.tabId);
+      if (!tab) return block("Tab is not in the observed owned task list.");
+      if (tab.url !== "about:blank") {
+        const refusal = destinationRefusal(tab.url, permissions);
+        if (refusal) return block(refusal);
+      }
+      if (action.type === "switch_tab") return { decision: "allow" };
+      if ((observation?.tabs?.length ?? 0) <= 1)
+        return block("The last task tab must remain open.");
+      return permissions.write && permissions.irreversible === "confirm"
+        ? {
+            decision: "confirm",
+            reason:
+              "Close this exact owned tab; unsaved page changes may be lost.",
+          }
+        : block("Closing a tab requires write permission and exact approval.");
+    }
+    if (
+      action.type === "navigate" ||
+      action.type === "search_web" ||
+      action.type === "back" ||
+      action.type === "open_tab"
+    ) {
       const destination =
-        action.type === "navigate"
+        action.type !== "search_web"
           ? action.url
           : `https://duckduckgo.com/?q=${encodeURIComponent(action.query)}`;
       const refusal = destinationRefusal(destination, permissions);
       if (refusal) return block(refusal);
       const url = new URL(destination);
+      if (action.type === "open_tab" && (url.search || url.hash))
+        return block("New tabs cannot carry URL data.");
       if (url.search || url.hash) {
         if (
           !observation ||
@@ -85,6 +118,7 @@ export class SafetyPolicy {
     if (
       action.type !== "click" &&
       action.type !== "type" &&
+      action.type !== "select" &&
       action.type !== "press"
     )
       return { decision: "allow" };
@@ -116,6 +150,7 @@ export class SafetyPolicy {
         observation &&
         new URL(destination).origin !== new URL(observation.url).origin &&
         (action.type === "type" ||
+          action.type === "select" ||
           target.formDestination ||
           new URL(destination).search ||
           new URL(destination).hash)
@@ -124,7 +159,12 @@ export class SafetyPolicy {
           "Cross-origin data movement is refused, including form and URL parameters.",
         );
     }
-    if (action.type === "type")
+    if (
+      action.type === "select" &&
+      target.options?.filter((option) => option === action.option).length !== 1
+    )
+      return block("Choose one unique enabled offered option label.");
+    if (action.type === "type" || action.type === "select")
       return permissions.write
         ? { decision: "allow" }
         : block("Editing is outside the fixed task permissions.");
@@ -132,7 +172,13 @@ export class SafetyPolicy {
       return block(
         "Only target-bound button or link activation is supported. Implicit submission is refused.",
       );
-    if (action.type === "press" && !["button", "link"].includes(target.role ?? "")) return block("Implicit keyboard submission is refused. Select the submit control separately.");
+    if (
+      action.type === "press" &&
+      !["button", "link"].includes(target.role ?? "")
+    )
+      return block(
+        "Implicit keyboard submission is refused. Select the submit control separately.",
+      );
     // Label heuristics cannot prove that an unknown handler is harmless. Confirm every remaining
     // activation, including unnamed buttons, instead of guessing that "Continue" cannot commit.
     if (!permissions.write || permissions.irreversible !== "confirm")

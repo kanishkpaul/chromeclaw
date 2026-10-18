@@ -327,6 +327,26 @@ export async function captureTargets(page: Page) {
         name: field.label || field.text || "",
         text: field.text.slice(0, 160),
         isCredential: field.credential,
+        ...(!field.credential && metadata.tagName === "select"
+          ? {
+              options: await element.evaluate((node) =>
+                node instanceof HTMLSelectElement
+                  ? Array.from(node.options)
+                      .filter(
+                        (option) =>
+                          !option.disabled &&
+                          !(
+                            option.parentElement instanceof
+                              HTMLOptGroupElement &&
+                            option.parentElement.disabled
+                          ),
+                      )
+                      .slice(0, 100)
+                      .map((option) => option.label)
+                  : [],
+              ),
+            }
+          : {}),
         score: 0,
       };
       elements.push(target);
@@ -408,42 +428,109 @@ export async function activateTarget(
   page: Page,
   query: TargetQuery,
   key?: string,
-): Promise<"acted" | "stale" | "uncertain"> {
+): Promise<"acted" | "toggled" | "stale" | "uncertain"> {
   const target = await resolveTarget(page, query);
   if (!target) return "stale";
   // Replaying the same approval cannot act twice, even if the page does not change.
   captures.get(page)?.targets.delete(query.target);
+  let guard;
+  let acknowledgmentTimer: ReturnType<typeof setTimeout> | undefined;
   try {
-    const destination =
-      target.metadata.destination ?? target.metadata.formDestination;
-    const navigation = destination
-      ? page
-          .waitForURL(
-            (url) => {
-              const expected = new URL(destination);
-              return (
-                url.origin === expected.origin &&
-                url.pathname === expected.pathname
-              );
-            },
-            { waitUntil: "domcontentloaded", timeout: 3000 },
-          )
-          .catch(() => false)
-      : undefined;
-    const result = await target.element.evaluate(inspectControl, {
-      expected: target.fingerprint,
-      state: target.state,
-      click: !key,
-      ...(key ? { key } : {}),
+    // The handle is rechecked at each trusted input event, not only before Playwright moves the
+    // mouse. Focus handlers and layout drift can invalidate an otherwise approved target.
+    guard = await target.element.evaluateHandle<
+      {
+        ack: Promise<"acted" | "uncertain" | "stale">;
+        toggleChanged: () => boolean;
+        stop: () => "acted" | "uncertain" | "stale";
+      },
+      { expected: string; state: JSHandle<DocumentState>; code: string }
+    >(
+      (node, input) => {
+        // Only the adapter's own inspector/guard source is compiled. Page/model text is data.
+        return new Function("node", "input", input.code)(node, input);
+      },
+      {
+        expected: target.fingerprint,
+        state: target.state,
+        code: `const __name = fn => fn;
+        const inspect = (${inspectControl.toString()});
+        const view = node.ownerDocument.defaultView;
+        let admitted = false, finished = false, blocked = false, acknowledge;
+        const ack = new Promise(resolve => { acknowledge = resolve; });
+        const events = ["pointerdown", "mousedown", "pointerup", "mouseup", "click", "keydown", "keyup"];
+        const check = event => {
+          if (finished) return;
+          // Chrome toggles native checkboxes/radios before delivering click. Permit only that
+          // expected default change after already admitted pointer/key events; recheck all peers.
+          const defaults = [];
+          if (event.type === "click" && admitted && node instanceof HTMLInputElement && ["checkbox", "radio"].includes(node.type)) {
+            for (const [field, original] of input.state.values) {
+              if (!(field instanceof HTMLInputElement) || (field !== node && !(node.type === "radio" && field.type === "radio" && field.form === node.form && field.name === node.name))) continue;
+              const [value, checked] = JSON.parse(original);
+              const expected = field === node ? node.type === "checkbox" ? !checked : true : false;
+              if (field.value === value && field.checked === expected) {
+                defaults.push([field, original]);
+                input.state.values.set(field, JSON.stringify([field.value, field.checked]));
+              }
+            }
+          }
+          const valid = inspect(node, { expected: input.expected, state: input.state, click: false });
+          for (const [field, original] of defaults) input.state.values.set(field, original);
+          if (!event.isTrusted || !event.composedPath().includes(node) || !valid) {
+            blocked = true; event.preventDefault(); event.stopImmediatePropagation(); acknowledge(admitted ? "uncertain" : "stale");
+          } else { admitted = true; if (event.type === "click") { finished = true; acknowledge(blocked ? "uncertain" : "acted"); } }
+        };
+        for (const name of events) view.addEventListener(name, check, true);
+        return { ack, toggleChanged() {
+          if (!(node instanceof HTMLInputElement) || !node.isConnected || !["checkbox", "radio"].includes(node.type)) return false;
+          const original = input.state.values.get(node);
+          if (!original) return false;
+          const [value, checked] = JSON.parse(original);
+          return node.value === value && node.checked !== checked;
+        }, stop() {
+          for (const name of events) view.removeEventListener(name, check, true);
+          return finished && !blocked ? "acted" : admitted ? "uncertain" : "stale";
+        } };`,
+      },
+    );
+    // Await the guard before dispatch: a successful form navigation discards its document.
+    const acknowledgment = guard.evaluate((guard) => guard.ack);
+    void acknowledgment.catch(() => undefined);
+    if (key) await target.element.press(key, { timeout: 3000 });
+    else await target.element.click({ timeout: 3000 });
+    // A custom widget or Space on a link may emit keys without a click. Never wait forever
+    // for that acknowledgment or replay it through native DOM activation.
+    const noAcknowledgment = new Promise<"uncertain">((resolve) => {
+      acknowledgmentTimer = setTimeout(() => resolve("uncertain"), 3000);
+      acknowledgmentTimer.unref();
     });
-    // Native activation returns before a form navigation. Wait for the advertised destination
-    // so the runtime does not clear its one-request ticket while that request is still pending.
-    if (navigation) await navigation;
-    return result?.acted ? "acted" : "stale";
+    const outcome = await Promise.race([acknowledgment, noAcknowledgment]);
+    const toggled =
+      outcome === "acted" &&
+      (await guard
+        .evaluate((guard) => guard.toggleChanged())
+        .catch(() => false));
+    if (toggled) return "toggled";
+    return outcome === "acted"
+      ? "acted"
+      : outcome === "stale"
+        ? "stale"
+        : "uncertain";
   } catch {
-    // Navigation can destroy the evaluation before acknowledgment. Never retry.
+    // A dispatched pointer/key may already have effects even if acknowledgment is lost.
+    // Do not replay through a native click fallback after a navigation or driver failure.
     return "uncertain";
   } finally {
+    if (acknowledgmentTimer) clearTimeout(acknowledgmentTimer);
+    if (guard) {
+      await guard
+        .evaluate((guard) => guard.stop())
+        .catch(() => {
+          // Navigation can discard the event guard with its document.
+        });
+      await guard.dispose();
+    }
     await target.element.dispose();
   }
 }

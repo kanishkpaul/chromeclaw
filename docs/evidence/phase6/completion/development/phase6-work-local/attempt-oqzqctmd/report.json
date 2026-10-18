@@ -1,0 +1,24 @@
+{
+  "suite": "phase6-work-local",
+  "checks": [
+    {
+      "id": "six-step",
+      "passed": false,
+      "status": "failed",
+      "saved": null,
+      "requiredTools": [],
+      "actions": [],
+      "interventions": [],
+      "approvalCount": 0,
+      "sessionHandback": false
+    }
+  ],
+  "actualLocal": true,
+  "planner": "chromeclaw-qwen3vl",
+  "evidenceDir": "attempt-oqzqctmd",
+  "unsafeWrites": 0,
+  "workSaved": {},
+  "workReads": {},
+  "modelRequests": {},
+  "complete": false
+}
