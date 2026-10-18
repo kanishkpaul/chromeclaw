@@ -359,3 +359,60 @@ The fixture records real browser concurrency, independent request observations a
 outcomes in source and compiled modes. This is engineering evidence, not actual-model research
 quality or held-out coverage. Search, synthesis, terminal orchestration, web finding and bounded
 history integration are the remaining Phase 7 work; hosted inference stays waived.
+
+## D-025: Compose discovery into the existing runtime with fixed queries
+
+Research and web finding use the existing agent loop, model adapters, request accounting, trace
+store and TUI. A search backend is a separate plugin folder with one typed registration; it takes
+injected readers and does not import another plugin. Engine-tab search is the enabled baseline;
+[the API comparison](SEARCH_BACKENDS.md) does not select an unmeasured paid provider. No new
+runtime, frontend, dependency or top-level directory is introduced.
+
+Parse discovery scope before reads. User-supplied subquestions are fixed before source content;
+models and pages cannot add queries. The browser reader accepts a parameter-bearing main-document
+request only when it is the exact predeclared search URL on its exact owned reader tab. Static
+assets and source documents retain the no-query rule. Search result links are deduplicated
+candidates, never citations. Only admitted source passages can back final claims or URL matches.
+Reopen pauses before new reads, preserves scope and expiry, and counts previous search/read
+reservations against the twenty-attempt limit. Reading never grants page-write authority.
+
+Research claims distinguish exact extraction from qualified/conflicting statements. Only complete-passage
+extracts with resolvable passage IDs can pass automated support checks; final answer text must
+exactly join those claims. Paraphrase/conflict references can be mechanically valid while support
+requires human review. This is not a semantic entailment detector. The design follows Blindfold's
+structural grounding boundary (`core/src/grounding/index.ts`, revision
+`0fddc14a24f88c5bcb72db5f93c53fd4db2c0b08`) while using ChromeClaw's existing passage contracts;
+no page node is allowed to justify a new action or query. No additional Blindfold source is copied.
+
+## D-026: Bound history access through an explicitly selected portable snapshot
+
+The disposable-browser probe records tab-local `Page.getNavigationHistory`; `History.search`
+is unavailable and normal page contexts expose neither `chrome.history` nor `chrome.bookmarks`.
+This integration cannot read a user's global Chrome history/bookmarks without another mechanism.
+Choose an explicitly supplied, selected version-one JSON snapshot rather than scrape a live
+profile database or install a privileged browser bridge. The TUI remains the only control surface.
+This supports snapshot history/bookmark lookup, not automatic live-profile synchronization.
+
+Require a bounded time window and explicit title/URL terms. Read a regular, nonsymlink JSON file
+of at most 1 MiB and 10,000 records; filter and rank locally, deduplicate and confirm at most three
+permitted pages. Unselected entries never enter model input or traces. This first history ranker
+makes zero inference requests, including with a hosted configuration; candidate metadata is not
+disclosed to a hosted model. A future semantic ranker would require a separate metadata-disclosure
+gate and evidence of incremental gain. No embedding/text index is introduced or justified by these
+synthetic tasks. Kanishk authorized made-up recollections; the twenty-case history report is seeded,
+not a claim about personal memory or a week of use. Cancel revokes an active run; deleting/changing
+the selected snapshot refuses subsequent admissions. `/forget RUN-ID` deletes its local trace and
+retained notes, without claiming to erase original exports or external copies.
+
+`/origins` changes only future TUI tasks after trusted user input and full origin validation.
+Search results cannot add origins to an active or saved envelope. A blocked source host can be
+reviewed and explicitly included in a new task; no dynamic page-driven permission expansion.
+A recovery regression caught legacy foreground restoration issuing an extra read after discovery
+budget exhaustion. Discovery now skips that restoration entirely and uses only its reader path.
+
+Source-reader CAPTCHA hand-back uses visible challenge widgets, not article keyword matching.
+Ordinary security-topic articles retain read access, preserving the old harmless-keyword intent.
+
+History reopen retains its local execution identity without invoking model configuration or
+requiring credentials. The search plugin removal gate also runs all twenty seeded history cases,
+so disabling web search cannot disable snapshot lookup.

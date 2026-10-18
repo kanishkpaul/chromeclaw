@@ -1,0 +1,8 @@
+{
+  "checks": [],
+  "browserRequests": [
+    "/search?q=amber+atlas+capacity",
+    "/source"
+  ],
+  "model": "synthetic HTTP adapter; not model quality"
+}

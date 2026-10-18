@@ -1,4 +1,4 @@
-import { mkdir, open, readdir } from "node:fs/promises";
+import { mkdir, open, readdir, unlink } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
@@ -13,6 +13,7 @@ import {
   RunRecordSchema,
   StatusSchema,
   StepRecordSchema,
+  PassageSchema,
   type AgentRun,
 } from "@chromeclaw/shared";
 
@@ -26,6 +27,7 @@ const EventSchema = z
       "configuration",
       "model_usage",
       "source_opened",
+      "discovery",
       "run_suspended",
       "observation",
       "proposal",
@@ -42,6 +44,14 @@ const EventSchema = z
   })
   .strict();
 const PayloadSchemas = {
+  discovery: z
+    .object({
+      stage: z.string().max(40),
+      detail: z.string().max(8000),
+      url: z.string().optional(),
+      passages: z.array(PassageSchema).max(100).optional(),
+    })
+    .strict(),
   run_started: RunHeaderSchema,
   configuration: z
     .object({
@@ -274,6 +284,12 @@ export class JsonlRunStore {
     if (warnings.length) run.warnings = warnings;
     return { kind: "ok", run: RunRecordSchema.parse(run), events, warnings };
   }
+  async forget(runId: string): Promise<void> {
+    RunIdSchema.parse(runId);
+    await this.writes;
+    await unlink(this.fileFor(runId));
+  }
+
   async readRun(runId: string): Promise<AgentRun | null> {
     const result = await this.readDetailed(runId);
     if (result.kind === "missing") return null;

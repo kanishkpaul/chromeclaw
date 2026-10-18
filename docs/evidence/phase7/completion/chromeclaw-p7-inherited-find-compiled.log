@@ -1,0 +1,120 @@
+{
+  "suite": "phase6-find-contract",
+  "built": true,
+  "planner": "scripted-contract-only",
+  "actualModel": false,
+  "writes": 0,
+  "checks": [
+    {
+      "id": "reopen-retains-mode-and-pauses",
+      "passed": true,
+      "runId": "run_mvdfhx27_3xgsgta",
+      "log": "target/run_mvdfhx27_3xgsgta.jsonl"
+    },
+    {
+      "id": "target",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdfhx27_3xgsgta",
+      "log": "target/run_mvdfhx27_3xgsgta.jsonl"
+    },
+    {
+      "id": "passage",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdfhy3v_pf8b5s1",
+      "log": "passage/run_mvdfhy3v_pf8b5s1.jsonl"
+    },
+    {
+      "id": "mixed",
+      "passed": true,
+      "expected": "done",
+      "status": "done",
+      "runId": "run_mvdfhylm_b1ji0zr",
+      "log": "mixed/run_mvdfhylm_b1ji0zr.jsonl"
+    },
+    {
+      "id": "duplicates",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdfhz3b_1dg45c7",
+      "log": "duplicates/run_mvdfhz3b_1dg45c7.jsonl"
+    },
+    {
+      "id": "invented",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdfhzko_as4djae",
+      "log": "invented/run_mvdfhzko_as4djae.jsonl"
+    },
+    {
+      "id": "credential",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdfi02a_5s8ov3k",
+      "log": "credential/run_mvdfi02a_5s8ov3k.jsonl"
+    },
+    {
+      "id": "stale",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdfi0jv_0nsl9ho",
+      "log": "stale/run_mvdfi0jv_0nsl9ho.jsonl"
+    },
+    {
+      "id": "no-match",
+      "passed": true,
+      "expected": "uncertain",
+      "status": "uncertain",
+      "runId": "run_mvdfi1f4_epy4qfi",
+      "log": "no-match/run_mvdfi1f4_epy4qfi.jsonl"
+    },
+    {
+      "id": "clarify",
+      "passed": true,
+      "expected": "awaiting-answer",
+      "status": "awaiting-answer",
+      "runId": "run_mvdfi1ta_8xzeg3l",
+      "log": "clarify/run_mvdfi1ta_8xzeg3l.jsonl"
+    },
+    {
+      "id": "click",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdfi292_s62pebe",
+      "log": "click/run_mvdfi292_s62pebe.jsonl"
+    },
+    {
+      "id": "type",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdfi2ps_b7cbkl1",
+      "log": "type/run_mvdfi2ps_b7cbkl1.jsonl"
+    },
+    {
+      "id": "navigate",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdfi38i_o6vbdua",
+      "log": "navigate/run_mvdfi38i_o6vbdua.jsonl"
+    },
+    {
+      "id": "scroll",
+      "passed": true,
+      "expected": "blocked",
+      "status": "blocked",
+      "runId": "run_mvdfi3qt_c27e1xy",
+      "log": "scroll/run_mvdfi3qt_c27e1xy.jsonl"
+    }
+  ],
+  "execution": "built-c1HbG9"
+}

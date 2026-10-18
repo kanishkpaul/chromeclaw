@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ResearchClaimSchema, WebFindSchema } from "./discovery";
 
 const ThoughtSchema = z
   .object({
@@ -148,6 +149,8 @@ export const FinishActionSchema = ThoughtSchema.extend({
   type: z.literal("finish"),
   answer: z.string().min(1),
   pageFind: PageFindSchema.optional(),
+  claims: z.array(ResearchClaimSchema).min(1).max(8).optional(),
+  webFind: WebFindSchema.optional(),
   evidence: z
     .array(
       z

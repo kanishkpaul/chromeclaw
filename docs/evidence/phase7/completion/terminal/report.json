@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "id": "future-scope-control",
+      "passed": true
+    },
+    {
+      "id": "tui-research",
+      "passed": true
+    },
+    {
+      "id": "tui-web",
+      "passed": true
+    },
+    {
+      "id": "tui-history",
+      "passed": true
+    },
+    {
+      "id": "terminal-source-and-passage-inspection",
+      "passed": true
+    },
+    {
+      "id": "terminal-forget-retained-notes",
+      "passed": true
+    },
+    {
+      "id": "machine-cli-research",
+      "passed": true
+    },
+    {
+      "id": "machine-cli-web",
+      "passed": true
+    },
+    {
+      "id": "machine-cli-history",
+      "passed": true
+    }
+  ],
+  "browserRequests": [
+    "/search?q=amber+atlas+capacity",
+    "/source",
+    "/search?q=amber+atlas+capacity",
+    "/source",
+    "/source",
+    "/search?q=amber+atlas+capacity",
+    "/source",
+    "/search?q=amber+atlas+capacity",
+    "/source",
+    "/source"
+  ],
+  "model": "synthetic HTTP adapter; not model quality"
+}

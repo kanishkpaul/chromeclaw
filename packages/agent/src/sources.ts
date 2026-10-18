@@ -31,16 +31,23 @@ export async function openCapturedSource(
       (event) => ObservationRecordSchema.parse(event.payload).passages ?? [],
     );
   const passage = passages.find((passage) => passage.id === passageId);
-  const cited = saved.run.steps.some(
-    (step) =>
-      step.action?.type === "finish" &&
-      step.action.evidence?.some(
-        (reference) =>
-          reference.passageId === passageId &&
-          reference.snapshotId === passage?.snapshotId &&
-          passage.text.includes(reference.quote),
-      ),
-  );
+  const cited = saved.run.steps.some((step) => {
+    if (step.action?.type !== "finish") return false;
+    const action = step.action;
+    const references = [
+      ...(action.evidence ?? []),
+      ...(action.claims ?? []).flatMap((claim) => claim.evidence),
+      ...(action.webFind?.outcome === "matches"
+        ? action.webFind.matches.flatMap((match) => match.evidence)
+        : []),
+    ];
+    return references.some(
+      (reference) =>
+        reference.passageId === passageId &&
+        reference.snapshotId === passage?.snapshotId &&
+        passage.text.includes(reference.quote),
+    );
+  });
   if (!passage || !cited)
     return { ok: false as const, reason: "Choose a cited captured passage." };
   let url: URL;

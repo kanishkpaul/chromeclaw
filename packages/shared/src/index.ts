@@ -7,3 +7,5 @@ export * from "./permissions";
 export * from "./privacy";
 
 export * from "./records";
+
+export * from "./discovery";

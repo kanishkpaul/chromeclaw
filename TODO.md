@@ -40,6 +40,8 @@ Actual local-model outcomes, misses and interventions are reported separately; t
 engineering acceptance, not reliable autonomous or held-out capability. See
 [Phase 6 scope](docs/PHASE6.md) and [evidence](docs/evidence/phase6/completion/README.md).
 
-Phase 7 has started with opt-in background source readers and ten source/compiled browser fixture
-groups. Search, research synthesis, terminal orchestration and history/web finding remain open.
-See [the Phase 7 contract](docs/PHASE7.md) and [starter evidence](docs/evidence/phase7/readers/README.md).
+Phase 7 completion adds fixed-query research, ranked source URLs and selected JSON history/bookmark
+lookup through the TUI and machine-readable CLI. History filtering makes no model requests and
+reads no live personal profile. Controlled and actual-local results, seeded recollections and
+remaining limits are in [completion evidence](docs/evidence/phase7/completion/README.md) and
+[the contract](docs/PHASE7.md). Live testing and final presentation remain Phases 8 and 9.

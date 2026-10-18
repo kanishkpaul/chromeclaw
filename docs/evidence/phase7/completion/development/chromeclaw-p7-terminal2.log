@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/discovery.pty.py", line 98, in <module>
+    wait_for(lambda: 'passage {' in text, 'No inspectable passage')
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kanishk/Downloads/GitHub/chromeclaw/apps/cli/tests/discovery.pty.py", line 82, in wait_for
+    assert predicate(), reason + '\n' + text[-2000:]
+           ~~~~~~~~~^^
+AssertionError: No inspectable passage
+be33-f6e7065cb1dc:p1","snapshotId":"
+  research d423dcd5-f327-42f1-be33-f6e7065cb1dc","url":"http://127.0.0.1:61014/s
+  research ource"},{"text":"The amber atlas capacity is 31 units.","kind":"docum
+  research ent","id":"d423dcd5-f327-42f1-be33-f6e7065cb1dc:p2","snapshotId":"d42
+  research 3dcd5-f327-42f1-be33-f6e7065cb1dc","url":"http://127.0.0.1:61014/sour
+  research ce"}]}
+[1G[0J❯ [3G[2K[1G  ┊ finish    {"type":"finish","answer":"http://127.0.0.1:61014/source","webFind
+  ┊ ":{"outcome":"matches","matches":[{"url":"http://127.0.0.1:61014/source","re
+  ┊ ason":"Local title/URL terms matched; inspect the cited page.","evidence":[{
+  ┊ "snapshotId":"d423dcd5-f327-42f1-be33-f6e7065cb1dc","passageId":"d423dcd5-f3
+  ┊ 27-42f1-be33-f6e7065cb1dc:p1","quote":"Atlas notes"}]}]}} · 37 ms
+[1G[0J❯ [3G[2K[1G  ranked URLs {"outcome":"matches","matches":[{"url":"http://127.0.0.1:61014/sou
+  ranked URLs rce","reason":"Local title/URL terms matched; inspect the cited pa
+  ranked URLs ge.","evidence":[{"snapshotId":"d423dcd5-f327-42f1-be33-f6e7065cb1
+  ranked URLs dc","passageId":"d423dcd5-f327-42f1-be33-f6e7065cb1dc:p1","quote":
+  ranked URLs "Atlas notes"}]}]}
+[1G[0J❯ [3G[2K[1G  result {"status":"done","answer":"http://127.0.0.1:61014/source","runId":"run_
+  result mvdetpbf_sxx0rxr"}
+[1G[0J❯ [3G[2K[1G  /history · /trace · /sources · /resume <run-id>
+[1G[0J❯ [3G[2K[1G lexical │ unknown │ done │ reserved USD 0
+[1G[0J❯ [3G[2K[1G────────────────────────────────────────────────────────────────────────────────
+[1G[0J❯ [3G/sources
+/passage 7a9d8408-9809-43c7-9720-d890c78e9377:p2
+[2K[1G  source 1 {"snapshot":"d423dcd5-f327-42f1-be33-f6e7065cb1dc","url":"http://127.
+  source 1 0.0.1:61014/source"}
+[1G[0J❯ [3G[2K[1G  source 2 {"snapshot":"d423dcd5-f327-42f1-be33-f6e7065cb1dc","url":"http://127.
+  source 2 0.0.1:61014/source"}
+[1G[0J❯ [3G[2K[1G  Choose a passage ID from the answer citations or /sources.
+[1G[0J❯ [3G

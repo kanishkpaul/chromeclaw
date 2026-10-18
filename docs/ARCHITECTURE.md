@@ -97,6 +97,15 @@ See [PHASE6.md](PHASE6.md), D-023 and the controlled acceptance report.
 
 `browser/readers.ts` adds opt-in admission for five bounded static reader tabs. The existing
 navigation guard still checks task origins, DNS, expiry and redirects; reader admission further
-restricts requests and never changes the active task page. This browser primitive is not wired
-into a new ability yet. Search, research orchestration and history integration remain pending.
-See [PHASE7.md](PHASE7.md) and D-024.
+restricts requests and never changes the active task page. Discovery composes that admission explicitly; ordinary page work retains active-page-only requests.
+See [PHASE7.md](PHASE7.md), the starter D-024 and completion D-025/D-026.
+
+Phase 7 completion composes `agent/discovery.ts`, the independent `search/engine-tab` backend and
+browser readers into the existing runtime. Queries are trusted configuration fixed before reads;
+models synthesize over captured passages and cannot add browser/search acts. `shared/discovery.ts`
+parses persisted mode/scope and final claim/URL-reference contracts. Discovery events retain plans,
+source reservations, failures and source evidence in the existing JSONL store. The TUI and CLI
+use the same permission construction. Local snapshot history ranks/filter metadata in `history.ts`
+and makes zero model requests; it is not global CDP history, a browser bridge or an index.
+The search registry now exists alongside tools; final ability/model registries and pure-core
+extraction are still not claimed. D-025/D-026 describe tradeoffs and the evidence boundaries.
