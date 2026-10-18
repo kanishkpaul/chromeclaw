@@ -1,0 +1,23 @@
+{
+  "baseCommit": "79ad04ca902a887bed6d033333dc323fa8b2a3ae",
+  "recordedAt": "2026-10-18T05:30:32.016121+00:00",
+  "node": "v24.18.0",
+  "pnpm": "10.23.0",
+  "sha256": {
+    "packages/browser/src/readers.ts": "fc90640ebebdd6efbd8b3ad7ceefae6089dd0e8f6f18e48f12e836bbcfc5c12c",
+    "packages/browser/src/navigation.ts": "36050f97f16f6bb5b9d3374bbcb123f601f897afedfcc62a6da52db9292ec8bb",
+    "packages/browser/src/index.ts": "9c78297fbe7bbbe5b24f3a5372df4d8521447c4faa22532609b821e4776d6129",
+    "packages/browser/tests/readers.browser.mjs": "46fdbe736bd70edc726b3591f19ab0c7b9074f9c7a8d783ed8e429f443360edc",
+    "package.json": "bbe3e4dc5d9ed785dba58a50209ced7e96e69448925ac418b79a0212aaee085d",
+    ".github/workflows/ci.yml": "c6067e8b5d1a45a080e9dd326b4d09dbcd508bd46dac66768b63416cba93a32f"
+  },
+  "evidenceSha256": {
+    "source.json": "12c844b65792ab757a063fe8792190ded2ac1bd76794f6b03ff7317f283dfc55",
+    "readers.log": "004c67badae8eb0d03dd22987bed43477faede6db7f584ab44878227666ad1e4",
+    "compiled.json": "d4fb90d6147c24a6d792410ba086307878ce08e818cc2093314916d93fd68da9",
+    "safety-compiled.json": "f6498690f9c83dfd1c1e8903622ef9c587287e987984e3b1aa6608db72814c03",
+    "check.log": "4f9d03cdbe95370044021356a2e664454ff612a9dfd80f8e5cde96f2fbad4454",
+    "work-safety-compiled.json": "153039484e9384bebfa528d8d1d89583a7298004751b4a409766ed414dde1d79",
+    "safety-source.json": "9ad62df8a2137a93b67c9ba17a676e17ae4eb066df28c13e5afdc6d81f7ec13a"
+  }
+}

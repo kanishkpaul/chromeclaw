@@ -335,3 +335,27 @@ Back task exposed this confusion and its failed trace is retained. History reads
 back tool explicitly; ask/find do not collect history or tabs. Driver acknowledgments time out
 after three seconds when a trusted key produces no click, and runtime cancellation can interrupt
 that wait without claiming an in-flight gesture was undone.
+
+## D-024: Admit static source readers separately from page-work tabs
+
+Phase 7 starts with a browser-owned reader pool composed into the existing navigation guard.
+Readers do not select the foreground page or use page-work tab permissions to gain action powers.
+They require the original read/navigation/origin/expiry permissions and have separate exact-page
+ownership. Five concurrent readers and twenty unique attempted sources are the initial bounded
+research budgets; each reader closes after at most fifteen seconds or task expiry. The caller
+must compose reader admission with the guard before reading. No application command enables
+research until runtime composition and acceptance evidence exist.
+
+Disable JavaScript through CDP and allow only a single main-document navigation and same-origin
+static assets, without queries. Blocking external scripts alone would leave inline exfiltration.
+This sacrifices script-dependent content for a small reviewable first boundary. Keep these
+failures explicit rather than silently activating pages. Reuse the existing passage reader and
+request gate instead of adding another network sender, browser context, runtime or dependency.
+No personal Chrome history/database access is introduced. No new dependency or top-level directory.
+The local Blindfold code was searched for reader/history overlap; this slice reuses ChromeClaw's
+existing capture/navigation code and copies no additional Blindfold implementation.
+
+The fixture records real browser concurrency, independent request observations and per-source
+outcomes in source and compiled modes. This is engineering evidence, not actual-model research
+quality or held-out coverage. Search, synthesis, terminal orchestration, web finding and bounded
+history integration are the remaining Phase 7 work; hosted inference stays waived.

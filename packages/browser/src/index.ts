@@ -6,3 +6,4 @@ export * from "./navigation";
 export { capturePassages } from "./reading";
 
 export { listOwnedTabs, changeTab, goBack } from "./tabs";
+export { createSourceReaders, type SourceRead } from "./readers";

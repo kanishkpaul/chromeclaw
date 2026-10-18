@@ -1,5 +1,6 @@
 import { admitOwnedTab } from "./tabs";
 import { lookup } from "node:dns/promises";
+import type { Page, Request } from "playwright";
 import type { BrowserSession } from "./controller";
 import { destinationRefusal, type TaskPermissions } from "@chromeclaw/shared";
 
@@ -9,6 +10,10 @@ import { destinationRefusal, type TaskPermissions } from "@chromeclaw/shared";
 export async function guardNavigation(
   session: BrowserSession,
   permissions: TaskPermissions,
+  readers?: {
+    owns: (page: Page) => Promise<boolean>;
+    refusal: (request: Request) => string | undefined;
+  },
 ) {
   let ticket: string | undefined;
   const refusals: string[] = [];
@@ -51,7 +56,9 @@ export async function guardNavigation(
         await route.abort("blockedbyclient");
         return;
       }
-      if (frame.page() !== session.page)
+      const isReader = Boolean(readers && (await readers.owns(frame.page())));
+      if (isReader) refusal ??= readers?.refusal(request);
+      if (frame.page() !== session.page && !isReader)
         refusal = "New tabs and popups are outside this task.";
       const source = frame.url();
       const carriesData =
@@ -113,7 +120,11 @@ export async function guardNavigation(
     }
   });
   session.context.on("page", async (page) => {
-    if (page !== session.page && !(await admitOwnedTab(session, page)))
+    if (
+      page !== session.page &&
+      !(await admitOwnedTab(session, page)) &&
+      !(readers && (await readers.owns(page)))
+    )
       void page.close().catch(() => {
         // The browser may have already closed a blocked popup.
       });
