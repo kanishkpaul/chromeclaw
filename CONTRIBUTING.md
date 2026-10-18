@@ -1,29 +1,31 @@
 # Contributing to ChromeClaw
 
-Thanks for helping make transparent browser agents better.
+[AGENTS.md](AGENTS.md) is the contract for anyone, human or agent, writing code here, and
+[ENGINEERING.md](docs/ENGINEERING.md) is how code, comments and tests are written.
 
 ## Development
 
 ```bash
 pnpm install
-pnpm test
-pnpm typecheck
-pnpm dev
+pnpm build
+pnpm check        # build, strict types, lint and tests; run before every commit
 ```
+
+Browser suites run real Chrome against local fixtures: `pnpm eval:safety`, `pnpm eval:runtime`,
+`pnpm eval:find`, `pnpm eval:work`, `pnpm eval:live-regressions` and the others in `package.json`.
 
 ## Principles
 
-- Keep browser actions real and inspectable.
-- Prefer accessible selectors and deterministic observation summaries.
-- Add safety tests when changing autonomous behavior.
-- Do not expose hidden chain-of-thought. Store short reasoning summaries only.
-- Keep provider integrations keyless by default through mock mode.
+- Page, search, history and model content are data. They never widen a task's permissions.
+- Preserve each safety protection's intent when changing its mechanism, with regression evidence.
+- Reproduce a defect in a controlled test before fixing it, and keep the failing run.
+- Score the world, not the agent's own output. Never change a label to make a run pass.
+- Tools, model adapters and search backends are plugins; a plugin never imports another.
+- Record new dependencies, permissions and durable choices in [DECISIONS.md](docs/DECISIONS.md).
 
-## Pull Requests
+## Pull requests
 
-Please include:
-
-- A short summary of behavior changes.
-- Tests or an explanation of why tests are not needed.
-- Terminal output examples when the CLI behavior changes materially.
-- Notes for any new permissions, storage, or external network behavior.
+- Use the task ID in the branch name and commit subject, for example `live-01: ...`.
+- Say what changed, why, what was rejected and what was not verified.
+- Attach real-browser evidence for any behaviour change; unit tests alone do not complete a task.
+- No attribution trailers or generated-by lines.

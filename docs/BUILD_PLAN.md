@@ -52,7 +52,8 @@ owner authorized synthetic recollections rather than personal-history testing. L
 history synchronization and broad semantic support are not claimed. See [PHASE7.md](PHASE7.md)
 and [completion evidence](evidence/phase7/completion/README.md). Phase 8 is
 complete: Kanishk accepted its seven-stage gate on 2026-10-18 (PRs #15–#21).
-See [PHASE8.md](PHASE8.md). Phase 9 remains pending.
+See [PHASE8.md](PHASE8.md). Phase 9 (readme-01) rewrites the README from that evidence, with
+terminal images rendered from committed recordings in `docs/media`.
 Credential continuation and durable input states are covered; arbitrary PII classification is
 outside the implementation. Controlled scripted fixtures do not establish model quality or
 signed-in-site readiness.
